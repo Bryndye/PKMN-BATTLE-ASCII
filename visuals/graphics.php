@@ -5,12 +5,13 @@
 
 // CREATE HUD INGAME
 function displayGameHUD($pkmn1, $pkmn2){
+    displayGameCadre();
     clearArea([27,58],[2,2]); // Efface l'écran
     displayHUDFight();
     include 'visuals/sprites.php';
 
     // Afficher HUD du pkmn joueur
-    createPkmnHUD(getPosHealthPkmn(true), $pkmn1, true);
+    createPkmnHUD(getPosHealthPkmn(true), $pkmn1);
     displaySprite($pokemonSprites[$pkmn1['Sprite']], getPosSpritePkmn(true));
     interfaceCapacities($pkmn1['Capacites']);
     
@@ -23,7 +24,7 @@ function displayHUDFight(){
     displayBox([7,1],[23,43]);
     interfaceMenu();
 }
-function displayPkmnTeam($pkmnTeam, $pos){
+function displayPkmnTeamHUD($pkmnTeam, $pos){
     moveCursor($pos);
     $message = '<';
     for($i = 0; $i < 6; $i++){
@@ -42,71 +43,8 @@ function displayPkmnTeam($pkmnTeam, $pos){
 }
 
 
-
-// https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
-function selectColor(){
-    //\033[0m permet de remettre la couleur par defaut
-    //\033[31;40m 31:rouge & 40:noir
-    echo "\033[31;40mtexte rouge sur fond noir\033[0m";
-}
-
-function moveCursor($pos){
-    echo "\033[".$pos[0].";".$pos[1]."H";
-}   
-
-// DISPLAY A BOX
-function displayBox($scale, $pos, $styleH='*', $styleL='*'){
-    moveCursor($pos);
-    // echo "\033[".$pos[0].";".$pos[1]."H";
-    
-    for ($i = 0; $i < $scale[0]; $i++) {
-        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
-        for ($j = 0; $j < $scale[1]; $j++) {
-            if ($i == 0 || $i == $scale[0] - 1) {
-                echo $styleL;
-            } elseif ($j == 0 || $j == $scale[1] - 1) {
-                echo $styleH;
-            } else {
-                echo ' ';
-            }
-        }
-    }
-}
-
-function clearArea($scale, $pos){
-    for ($i = 0; $i <  $scale[0]; $i++) {
-        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
-        for ($j = 0; $j <  $scale[1]; $j++) {
-            echo ' ';
-        }
-    }
-}
-
-function clear(){
-    echo "\033c";
-}
-
-function displaySprite($sprite, $pos) {
-    $lines = explode("\n", $sprite); // séparer les lignes du sprite
-    for ($i = 1; $i < count($lines); $i++) {
-        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
-        echo $lines[$i]; // afficher chaque ligne du sprite
-        echo "\n";
-    }
-}
-
-function debugLog($pos, $msg){
-    moveCursor($pos);
-    if(is_array($msg)){
-        print_r($msg);
-    }
-    else{
-        echo 'Debug : ' . $msg;
-    }
-}
-
 // HUD PKMN
-function createPkmnHUD($pos, $pkmn, $isJoueur = false){
+function createPkmnHUD($pos, $pkmn){
     clearArea(getScaleHUDPkmn(),$pos);
     displayBox(getScaleHUDPkmn(),$pos,'|','-');
     echo "\033[".($pos[0]+1).";".($pos[1]+2)."H";
@@ -117,7 +55,7 @@ function createPkmnHUD($pos, $pkmn, $isJoueur = false){
     echo '<';
     echo "\033[".($pos[0]+2).";".($pos[1]+21)."H";
     echo '>';
-    updateHealthPkmn(getPosHealthPkmn($isJoueur), $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max']);
+    updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max']);
 }   
 function updateHealthPkmn($pos,$health, $healthMax){
     $pourcentage = $health/$healthMax;
@@ -147,34 +85,61 @@ function updateHealthPkmn($pos,$health, $healthMax){
     }
     echo "\033[0m";
 }
-
-function manageStatPkmn($pkmn1,$pkmn2, &$statOpen){
+    
+// -- DOIT CHANGER LES PARAM A INTEGRER
+function manageStatPkmn(&$currentPkmnJ,&$currentPkmnE,&$pkmnTeamJoueur,&$statOpen){
     if(!$statOpen){
-        displayStatPkmn($pkmn1);
+        displayPkmnTeam($pkmnTeamJoueur, $currentPkmnJ);
         $statOpen = true;
     }
     else{
-        displayGameHUD($pkmn1,$pkmn2);
+        displayGameHUD($currentPkmnJ,$currentPkmnE);
         $statOpen = false;
     }
 }
-function displayStatPkmn($pkmn){
-    displayBox([15,20],[8,40],'|','-');
-    $posY = 10;
-    $posX = 40;
-    $infos = array_keys($pkmn);
-    for ($i = 0; $i < count($infos); $i++) {
-        echo "\033[".$posY+$i.";".($posX+1)."H";
-        echo $infos[$i]." : ". $pkmn[$infos[$i]];
+function displayPkmnTeam(&$pkmnTeam, &$currentPkmn){
+    clearInGame();
+    createPkmnHUD([13,3], $currentPkmn);
+
+    for($i=1;$i<count($pkmnTeam);++$i){
+        $pos = [($i * 5) - 2,33];
+        createPkmnHUD($pos, $pkmnTeam[$i]);
     }
+    $arrayChoice = [];
+    for($i=0;$i<count($pkmnTeam);++$i){
+        array_push($arrayChoice, ($i));
+    }
+    array_push($arrayChoice, 'c');
+    $choice = waitForInput(getPosChoice(),$arrayChoice);
+    // -- DOIT CREER LE CHOIX DE REVENIR AU COMBAT
+    // if($choice == 'c'){
+    //     manageStatPkmn();
+    // }
+    displayStatPkmn($pkmnTeam[$i]);
+}
+// DISPLAY STAT FOR ONE PKMN
+function displayStatPkmn(&$pkmn){
+    clearInGame();
+    displayBox([15,20],[8,40],'|','-');
+    moveCursor([10,10]);
+    // echo $pkmn['Name'];
+    print_r($pkmn);
+
+    // -- DOIT CREER LE CHOIX DE REVENIR AU MENU DISPLAYTEAMPKMN
+    $choice = waitForInput(getPosChoice(),$arrayChoice);
+    if($choice == 'c'){
+        manageStatPkmn();
+    }
+    // $posY = 10;
+    // $posX = 40;
+    // $infos = array_keys($pkmn);
+    // for ($i = 0; $i < count($infos); $i++) {
+    //     echo "\033[".$posY+$i.";".($posX+1)."H";
+    //     echo $infos[$i]." : ". $pkmn[$infos[$i]];
+    // }
 }
 
-function messageBoiteDialogue($message){
-    clearArea([5,58],[24,2]); //clear boite dialogue
-    echo "\033[25;3H";
-    echo $message;
-    // waitForInput([30,0]);
-}
+
 
 function displaySpritePkmn($pkmn, $isJoueur){
     $posFinal = getPosSpritePkmn($isJoueur);
@@ -219,26 +184,6 @@ function interfaceCapacities($capacites){
             echo $stringPP.$capacites[$i]['PP Max'];
         }
     }
-    // echo "\033[".($posY).";".($posX)."H";
-    // echo "1 : TACKLE";
-    // echo "\033[".($posY+1).";".($posX)."H";
-    // echo "INFINITE PP";
-    
-    // ECRIRE FOR POUR GENERER LES CAPACITES QUA UN PKMN
-    // echo "\033[".($posY+3).";".($posX)."H";
-    // echo "3 : GROWL";
-    // echo "\033[".($posY+4).";".($posX)."H";
-    // echo "30/30 PP";
-    
-    // echo "\033[".($posY).";".($posX+20)."H";
-    // echo "2 : EMBER";
-    // echo "\033[".($posY+1).";".($posX+20)."H";
-    // echo "10/15 PP";
-    
-    // echo "\033[".($posY+3).";".($posX+20)."H";
-    // echo "4 : FLAMETHROWER";
-    // echo "\033[".($posY+4).";".($posX+20)."H";
-    // echo "8/10 PP";
 }
 
 function interfaceMenu(){
@@ -248,7 +193,7 @@ function interfaceMenu(){
     echo "1 : ATTACK";
     
     echo "\033[".($posY+1).";".($posX)."H";
-    echo "2 : STAT";
+    echo "2 : PKMN";
     
     echo "\033[".($posY+2).";".($posX)."H";
     echo "3 : BAG";

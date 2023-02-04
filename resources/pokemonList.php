@@ -1,116 +1,8 @@
 <?php 
 include 'resources/capacites.php';
-$pokemonPokedex = [
-    '1' => [
-        'Name'=> 'Bulbazaur',
-        'N Pokedex' => '1',
-        'Type 1' => 'grass',
-        'Type 2' => 'poison',
-        'StatsBase' => [
-            'Health' => 45,
-            'Atk' => 49,
-            'Def' => 49,
-            'Atk Spe' => 65,
-            'Def Spe' => 65,
-            'Vit' => 45,
-        ],
-        'Sprite' => 'Zone'
-    ],
-    '19' => [
-        'Name'=> 'Rattata',
-        'N Pokedex' => '19',
-        'Type 1' => 'normal',
-        'Type 2' => '',
-        'StatsBase' => [
-            'Health' => 30,
-            'Atk' => 56,
-            'Def' => 35,
-            'Atk Spe' => 25,
-            'Def Spe' => 35,
-            'Vit' => 72,
-        ],
-        'Sprite' => 'Rattata'
-    ],
-    '20' => [
-        'Name'=> 'Rattatac',
-        'N Pokedex' => '20',
-        'Type 1' => 'normal',
-        'Type 2' => '',
-        'StatsBase' => [
-            'Health' => 55,
-            'Atk' => 81,
-            'Def' => 60,
-            'Atk Spe' => 50,
-            'Def Spe' => 70,
-            'Vit' => 97,
-        ],
-        'Sprite' => 'Rattatac'
-    ],
-    '25' => [
-        'Name'=> 'Pikachu',
-        'N Pokedex' => '25',
-        'Type 1' => 'electric',
-        'Type 2' => '',
-        'StatsBase' => [
-            'Health' => 45,
-            'Atk' => 49,
-            'Def' => 49,
-            'Atk Spe' => 65,
-            'Def Spe' => 65,
-            'Vit' => 150,
-        ],
-        'Sprite' => 'Pikachu'
-    ]
-];
-$pokemons = [
-    '1' => [
-        'Name'=> 'Pikachu',
-        'Level' => 100,
-        'N Pokedex' => '025',
-        'Type 1' => 'electric',
-        'Type 2' => '',
-        'exp' => 0,
-        'Health Max' => 247,
-        'Health' => 247,
-        'Atk' => 330,
-        'Defense' => 5,
-        'Vit' => 100,
-        'Sprite' => 'Pikachu'
-    ],
-    '2' => [
-        'Name'=> 'Rattata',
-        'Level' => 100,
-        'N Pokedex' => '019',
-        'Type 1' => 'normal',
-        'Type 2' => '',
-        'exp' => 0,
-        'Health Max' => 300,
-        'Health' => 300,
-        'Atk' => 110,
-        'Defense' => 5,
-        'Vit' => 13,
-        'Sprite' => 'Rattata'
-    ],
-    '3' => [
-        'Name'=> 'Rattatac',
-        'Level' => 100,
-        'N Pokedex' => '020',
-        'Type 1' => 'normal',
-        'Type 2' => '',
-        'exp' => 0,
-        'Health Max' => 300,
-        'Health' => 300,
-        'Atk' => 11,
-        'Defense' => 5,
-        'Vit' => 8,
-        'Sprite' => 'Rattata'
-    ]
-];
 
-// function getPokedex(){
-//     global $pokemonPokedex;
-//     return $pokemonPokedex;
-// }
+$json = file_get_contents('json/data.json');
+$pokemonPokedex = json_decode($json, true);
 
 function getPkmnFromPokedex($index){
     global $pokemonPokedex;
@@ -155,10 +47,10 @@ function generatePkmnBattle($index, $level, $exp = 0){
             'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level),
         ],
         'Capacites' => [
-            '0' => getCapacite('Tackle'),
-            '1' => getCapacite('Scratch'),
-            '2' => getCapacite('HyperBeam'),
-            '3' => getCapacite('bite'),
+            '0' => getCapacite('tackle'),
+            '1' => getCapacite('scratch'),
+            '2' => getCapacite('hyper-beam'),
+            '3' => ""/*getCapacite('bite')*/
         ],
         'Sprite' => $pkmn['Sprite']
     ];    

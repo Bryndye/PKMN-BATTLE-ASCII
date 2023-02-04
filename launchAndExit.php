@@ -1,7 +1,7 @@
 <?php
 // include 'graphics.php';
 function intro(){
-    displayBox([29,60],[1,1]);
+    displayGameCadre();
     echo "\033[?25l";
     
     // Animation de * en diagonale sur l'écran

@@ -11,33 +11,35 @@ include_once 'resources/typeMatchUp.php';
 include_once 'shopEchange.php';
 
 clear(); // Clear the screen
-intro(); // INTRO & MENU START
+// intro(); // INTRO & MENU START
 
 // init team battle : Le joueur a une team "fixe" 
 // enemy a une team genere proceduralement 
 $pkmnTeamJoueur = [
-    generatePkmnBattle('25', 50),
+    generatePkmnBattle('128', 150),
+    generatePkmnBattle('25', 5),
+    generatePkmnBattle('25', 5),
+    generatePkmnBattle('25', 5),
+    generatePkmnBattle('25', 5),
     generatePkmnBattle('25', 5)
 ];
 $pkmnTeamEnemy = [
-    generatePkmnBattle('19', 100),
-    generatePkmnBattle('20', 100),
-    generatePkmnBattle('19', 100)
+    generatePkmnBattle('151', 100),
+    generatePkmnBattle('150', 100),
+    generatePkmnBattle('149', 100)
 ];
-// print_r($pkmnTeamJoueur);
-// sleep(500);
+// print_r($pkmnTeamJoueur[0]);
+// sleep(50);
+
 // Loop fight tant que Equipe joueur a des pkmn en vie (a creer condition)
 // while(true){
 //     // generer IA pkmn team
-// print_r($pkmnTeamJoueur);
-// print_r($pkmnTeamJoueur[0]['Capacites'][0]['Name']);
-// sleep(500);
     startFight($pkmnTeamJoueur, $pkmnTeamEnemy);
 // }
 // $pkmnTest = generatePkmnBattle(1,10);
-// print_r($pkmnTest);
-// waitForInput([30,0]);
+
 // Choisir nouveau Pkmn ajout a lequipe
+// waitForInput([30,0]);
 // wantNewPkmn();
 
 // FIN DU JEU 

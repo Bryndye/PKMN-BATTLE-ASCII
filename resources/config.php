@@ -18,6 +18,86 @@
 // createPkmnHUD(2,3, $pkmn2);
 // displaySprite($pokemonSprites[$pkmn2['Sprite']], 1, 35);
 
+// https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
+function selectColor(){
+    //\033[0m permet de remettre la couleur par defaut
+    //\033[31;40m 31:rouge & 40:noir
+    echo "\033[31;40mtexte rouge sur fond noir\033[0m";
+}
+
+function moveCursor($pos){
+    echo "\033[".$pos[0].";".$pos[1]."H";
+}   
+
+// DISPLAY A BOX
+function displayBox($scale, $pos, $styleH='*', $styleL='*'){
+    moveCursor($pos);
+    // echo "\033[".$pos[0].";".$pos[1]."H";
+    
+    for ($i = 0; $i < $scale[0]; $i++) {
+        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
+        for ($j = 0; $j < $scale[1]; $j++) {
+            if ($i == 0 || $i == $scale[0] - 1) {
+                echo $styleL;
+            } elseif ($j == 0 || $j == $scale[1] - 1) {
+                echo $styleH;
+            } else {
+                echo ' ';
+            }
+        }
+    }
+}
+
+function displayGameCadre(){
+    displayBox([29,60],[1,1]);
+}
+
+// -- CLEAR ------------------------------------------
+function clearArea($scale, $pos){
+    for ($i = 0; $i <  $scale[0]; $i++) {
+        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
+        for ($j = 0; $j <  $scale[1]; $j++) {
+            echo ' ';
+        }
+    }
+}
+
+function clearInGame(){
+    clearArea([27,58], [2,2]);
+}
+
+function clear(){
+    echo "\033c";
+}
+// ----------------------------------------------------
+
+function displaySprite($sprite, $pos) {
+    $lines = explode("\n", $sprite); // séparer les lignes du sprite
+    for ($i = 1; $i < count($lines); $i++) {
+        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
+        echo $lines[$i]; // afficher chaque ligne du sprite
+        echo "\n";
+    }
+}
+
+function debugLog($pos, $msg){
+    moveCursor($pos);
+    if(is_array($msg)){
+        print_r($msg);
+    }
+    else{
+        echo 'Debug : ' . $msg;
+    }
+}
+
+function messageBoiteDialogue($message){
+    clearArea([5,58],[24,2]); //clear boite dialogue
+    echo "\033[25;3H";
+    echo $message;
+    // waitForInput([30,0]);
+}
+
+// -- POSITIONS --------------------------------------------
 $posSpritePkmnEnemy = [1,35];
 $posSpritePkmnJoueur = [7,2];
 function getPosSpritePkmn($isJoueur){
@@ -69,4 +149,12 @@ function getPosDialogue(){
     global $posBoiteDialogue;
     return $posBoiteDialogue;
 }
+
+$posCHocie = [30,0];
+function getPosChoice(){
+    global $posCHocie;
+    return $posCHocie;
+}
+// ----------------------------------------------------
+
 ?>

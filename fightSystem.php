@@ -25,19 +25,18 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         displayGameHUD($currentPkmnJoueur, $currentPkmnEnemy);
         
         // DISPLAY PKMN TEAM 
-        displayPkmnTeam($pkmnTeamJoueur, [17,34]);
-        displayPkmnTeam($pkmnTeamEnemy, [7,3]);
+        displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
+        displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
         // lance le combat quand les pkmns sont en combat
-        loopFight($currentPkmnJoueur, $currentPkmnEnemy);
-        // print_r($pkmnTeamEnemy);
+        loopFight($currentPkmnJoueur, $currentPkmnEnemy, $pkmnTeamJoueur);
     }
 }
 
 // FIGHT SYSTEM
-function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy){
+function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur){
     while($currentPkmnEnemy['Stats']['Health'] > 0 && $currentPkmnJoueur['Stats']['Health'] > 0 ){
     
-        $choice = waitForInput([30,0],[1,2,4]);
+        $choice = waitForInput(getPosChoice(),[1,2,4]);
         if($choice == 1){
             // passe a la selection des capacites
             // selectCapacite();
@@ -48,12 +47,14 @@ function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy){
                 }
             }
             // -- VERIFIER SI PP SUP A 0 --
-            $choice2 = waitForInput([30,0], $arrayChoise2);
+            $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
             // lance animation de combat une fois capacite choisi
             fight($currentPkmnJoueur, $currentPkmnEnemy, 
             $currentPkmnJoueur['Capacites'][$choice2]);
         }elseif($choice == 2){
-            manageStatPkmn($currentPkmnJoueur,$currentPkmnEnemy, $statOpen);
+            // displayPkmnTeam($pkmnTeamJoueur, $currentPkmnJoueur);
+            manageStatPkmn($currentPkmnJoueur,$currentPkmnEnemy, 
+            $pkmnTeamJoueur, $statOpen);
         }
         elseif($choice == 4){
             exitGame();
@@ -65,7 +66,6 @@ function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy){
 // -- FUNCTIONS TO CALL FOR FIGHT --
 function fight(&$pkmn1,&$pkmn2, &$capacite){
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
-    clearArea([1,50],[30,0]); // clear choice
     
     if($pkmn1['Stats']['Vit'] > $pkmn2['Stats']['Vit']){
         attackBehaviourPkmn($pkmn1, $pkmn2,false, $capacite);
@@ -90,7 +90,7 @@ function fight(&$pkmn1,&$pkmn2, &$capacite){
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite = null){
     // A CHANGER CAR IA NE CHOISIT PAS SON ATK
     if($capacite == null){
-        $capacite = getCapacite('Tackle');
+        $capacite = getCapacite('tackle');
     }
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
@@ -116,13 +116,13 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     // 1ere etape
     $a = (2 * $pkmnAtk['Level'] +10)/250;
 
-    // 2eme etape -> categorie d'atk
+    // 2eme etape -> Category d'atk
     // b = stat Atk utilisé pour la capacite / stat def utilisé contre la capacité
-    if($capacite['categorie'] == 'physic'){
+    if($capacite['Category'] == 'physical'){
         $statAtkToUsed = $pkmnAtk['Stats']['Atk'];
         $statDefToUsed = $pkmnDef['Stats']['Def'];
     }
-    else if($capacite['categorie'] == 'special'){
+    else if($capacite['Category'] == 'special'){
         $statAtkToUsed = $pkmnAtk['Stats']['Atk Spe'];
         $statDefToUsed = $pkmnDef['Stats']['Def Spe'];
     }
@@ -193,6 +193,9 @@ function isTeamPkmnKO($teamPkmn){
     return false;
 }
 
+function switchPkmn(){
+
+}
 function searchNewPkmnInTeam(&$teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){

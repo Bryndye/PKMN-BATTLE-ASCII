@@ -14,17 +14,16 @@ function waitForInput($pos, $options = null){
         };
         $sentence .= ' : ';
     }
-    // echo "\033[".$pos[0].";".$pos[1]."H";
     moveCursor($pos);
     $choice = readline($sentence);
 
     if($options != null){
         while (!in_array($choice, $options)) {
-            // echo "\033[".$pos[0].";".$pos[1]."H";
             moveCursor($pos);
             $choice = readline($sentence);
         }
     }
+    clearArea([1,60], $pos);
     return $choice;
     // echo "Vous avez choisi : " . $choice; 
 }
