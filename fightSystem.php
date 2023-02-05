@@ -2,10 +2,6 @@
 
 $statOpen = false;
 $stopLoop = false;
-$pkmnTeamJoueur = [];
-$pkmnTeamEnemy = [];
-$currentPkmnJoueur;
-$currentPkmnEnemy;
 
 // Transformer la function en selection de pkmn ?
 function startFight(&$pkmnJoueur, &$pkmnEnemy){
@@ -23,21 +19,23 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         $currentPkmnEnemy = &$pkmnTeamEnemy[searchNewPkmnInTeam($pkmnTeamEnemy)];
         // ICI MESSAGE PKMN LANCEr de pokeball
         displayGameHUD($currentPkmnJoueur, $currentPkmnEnemy);
-        
-        // DISPLAY PKMN TEAM 
-        displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
-        displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
+    
         // lance le combat quand les pkmns sont en combat
-        loopFight($currentPkmnJoueur, $currentPkmnEnemy, $pkmnTeamJoueur);
+        loopFight($currentPkmnJoueur, $currentPkmnEnemy, $pkmnTeamJoueur, $pkmnTeamEnemy);
     }
 }
 
 // FIGHT SYSTEM
-function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur){
+function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur, &$pkmnTeamEnemy){
     while($currentPkmnEnemy['Stats']['Health'] > 0 && $currentPkmnJoueur['Stats']['Health'] > 0 ){
-    
+        // DISPLAY PKMN TEAM 
+        // print($currentPkmnJoueurG['Name'] . rand(1,1000));
+        displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
+        displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
         $choice = waitForInput(getPosChoice(),[1,2,4]);
+
         if($choice == 1){
+            interfaceCapacities($currentPkmnJoueur['Capacites']);
             // passe a la selection des capacites
             // selectCapacite();
             $arrayChoise2 = [];
@@ -51,8 +49,8 @@ function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur){
             // lance animation de combat une fois capacite choisi
             fight($currentPkmnJoueur, $currentPkmnEnemy, 
             $currentPkmnJoueur['Capacites'][$choice2]);
-        }elseif($choice == 2){
-            // displayPkmnTeam($pkmnTeamJoueur, $currentPkmnJoueur);
+        }
+        elseif($choice == 2){
             manageStatPkmn($currentPkmnJoueur,$currentPkmnEnemy, 
             $pkmnTeamJoueur, $statOpen);
         }
@@ -64,27 +62,26 @@ function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur){
 
 
 // -- FUNCTIONS TO CALL FOR FIGHT --
-function fight(&$pkmn1,&$pkmn2, &$capacite){
+function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite){
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     
-    if($pkmn1['Stats']['Vit'] > $pkmn2['Stats']['Vit']){
-        attackBehaviourPkmn($pkmn1, $pkmn2,false, $capacite);
-        if(!isPkmnDead($pkmn2, false)){
-            attackBehaviourPkmn($pkmn2, $pkmn1,true);
-            isPkmnDead($pkmn1, true);
+    if($pkmnJoueur['Stats']['Vit'] > $pkmnEnemy['Stats']['Vit']){
+        attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
+        if(!isPkmnDead($pkmnEnemy, false)){
+            attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true);
+            isPkmnDead($pkmnJoueur, true);
         }
     }
     else{
-        attackBehaviourPkmn($pkmn2, $pkmn1,true);
-        if (!isPkmnDead($pkmn1, true)){
-            attackBehaviourPkmn($pkmn1, $pkmn2,false, $capacite);
-            isPkmnDead($pkmn2, false);
+        attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true);
+        if (!isPkmnDead($pkmnJoueur, true)){
+            attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
+            isPkmnDead($pkmnEnemy, false);
         }
     }
     
     // reinitialiser HUD apres combat
-    displayHUDFight();
-    interfaceCapacities($pkmn1['Capacites']);
+    displayInterfaceMenu();
 }
 
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite = null){
@@ -110,9 +107,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite 
 }
 
 // fct calculator dmg capacite + stats
-function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
-    // $pkmnDef['Stats']['Health'] -= $pkmnAtk['Stats']['Atk']; //atk simple
-    
+function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){    
     // 1ere etape
     $a = (2 * $pkmnAtk['Level'] +10)/250;
 
@@ -158,7 +153,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     // A ajouter le msg si crit
 }
 
-// DEATH PKMN
+// DEATH PKMN -- A FIX CE SOUCIS --
 function isPkmnDead(&$pkmn, $isJoueur){
     // sleep(5);
     if($pkmn['Stats']['Health'] <= 0){
@@ -170,6 +165,16 @@ function isPkmnDead(&$pkmn, $isJoueur){
     }
 }
 
+function isPkmnDead_simple(&$pkmn){
+    // sleep(5);
+    if($pkmn['Stats']['Health'] <= 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+// ----------------------------------
 function PkmnKO($pkmn, $isJoueur){
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     clearArea(getScaleHUDPkmn(), getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
@@ -193,9 +198,6 @@ function isTeamPkmnKO($teamPkmn){
     return false;
 }
 
-function switchPkmn(){
-
-}
 function searchNewPkmnInTeam(&$teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){
@@ -203,5 +205,42 @@ function searchNewPkmnInTeam(&$teamPkmn){
         }
     }
     return null;
+}
+
+function switchPkmn(&$pkmnTeam ,$index, &$currentPkmnJoueur, &$currentPkmnE, &$statOpen){
+    // $currentPkmnJ = $pkmnTeam[$index]; // supprime le pkmn au lieu de juste changer le current 
+    
+    // $a = $pkmnTeam[$index];
+    // $pkmnTeam[$index] = $a;
+    
+    // for($i=0;$i<count($pkmnTeam);++$i){
+    //     print_r($pkmnTeam[$i]['Name']);
+    // }
+    // print("$index \n");
+    // $currentPkmnJ = array_splice($pkmnTeam, $index, 1, true);
+    // global $x;
+    // print($x);
+    // $x = 3;
+    // sleep(5);
+    // print_r($currentPkmnJoueurG);
+    // echo debug_zval_dump($currentPkmnJoueurG) ? 'La variable est passée par référence' : 'La variable est passée par copie';
+    // sleep(5);
+
+    $currentPkmnJoueur = &$pkmnTeam[$index];
+    manageStatPkmn($currentPkmnJoueur,$currentPkmnE,$pkmnTeam,$statOpen);
+    print_r($currentPkmnJoueur['Name']);
+    
+    // sleep(5);
+    // // $currentPkmnJ = $currentPkmnJ;
+
+    // for($i=0;$i<count($pkmnTeam);++$i){
+    //     if(isset($pkmnTeam[$i]['Name'])){
+    //         print_r($pkmnTeam[$i]['Name']);
+    //     }
+    //     else{
+    //         $pkmnTeam[$i];
+    //     }
+    // }
+    // sleep(50);
 }
 ?>

@@ -7,19 +7,19 @@
 function displayGameHUD($pkmn1, $pkmn2){
     displayGameCadre();
     clearArea([27,58],[2,2]); // Efface l'écran
-    displayHUDFight();
+    displayInterfaceMenu();
     include 'visuals/sprites.php';
 
     // Afficher HUD du pkmn joueur
     createPkmnHUD(getPosHealthPkmn(true), $pkmn1);
     displaySprite($pokemonSprites[$pkmn1['Sprite']], getPosSpritePkmn(true));
-    interfaceCapacities($pkmn1['Capacites']);
+    // interfaceCapacities($pkmn1['Capacites']);
     
     // Afficher HUD du pkmn ennemi
     createPkmnHUD(getPosHealthPkmn(false), $pkmn2);
     displaySprite($pokemonSprites[$pkmn2['Sprite']], getPosSpritePkmn(false));
 }
-function displayHUDFight(){
+function displayInterfaceMenu(){
     displayBox([7,60],[23,0]);
     displayBox([7,1],[23,43]);
     interfaceMenu();
@@ -89,36 +89,56 @@ function updateHealthPkmn($pos,$health, $healthMax){
 // -- DOIT CHANGER LES PARAM A INTEGRER
 function manageStatPkmn(&$currentPkmnJ,&$currentPkmnE,&$pkmnTeamJoueur,&$statOpen){
     if(!$statOpen){
-        displayPkmnTeam($pkmnTeamJoueur, $currentPkmnJ);
         $statOpen = true;
+        displayPkmnTeam($pkmnTeamJoueur, $currentPkmnJ,$currentPkmnE, $statOpen);
     }
     else{
-        displayGameHUD($currentPkmnJ,$currentPkmnE);
         $statOpen = false;
+        displayGameHUD($currentPkmnJ,$currentPkmnE);
     }
 }
-function displayPkmnTeam(&$pkmnTeam, &$currentPkmn){
+function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
+    $statOpen = false;
+    displayGameHUD($currentPkmnJ,$currentPkmnE);
+}
+function displayPkmnTeam(&$pkmnTeam, &$currentPkmnJ, &$currentPkmnE, &$statOpen){
     clearInGame();
-    createPkmnHUD([13,3], $currentPkmn);
-
-    for($i=1;$i<count($pkmnTeam);++$i){
-        $pos = [($i * 5) - 2,33];
-        createPkmnHUD($pos, $pkmnTeam[$i]);
-    }
+    createPkmnHUD([13,3], $currentPkmnJ);
+    
     $arrayChoice = [];
+    $z = 1;
     for($i=0;$i<count($pkmnTeam);++$i){
-        array_push($arrayChoice, ($i));
+        // print_r($pkmnTeam[$i]);
+        // sleep(5);
+        // print_r($currentPkmnJ);
+        // sleep(50);
+        if($pkmnTeam[$i] != $currentPkmnJ){
+            $pos = [($z * 5) - 2,33];
+            createPkmnHUD($pos, $pkmnTeam[$i]);
+            if(!isPkmnDead_simple($pkmnTeam[$i])){
+                array_push($arrayChoice, ($i));
+            }
+            ++$z;
+        }
+        // print_r($pkmnTeam[$i]);
+        // sleep(1);
     }
+    // for($i=0;$i<count($pkmnTeam);++$i){
+    //     if($pkmnTeam[$i] != $currentPkmnE){
+    //     }
+    // }
     array_push($arrayChoice, 'c');
     $choice = waitForInput(getPosChoice(),$arrayChoice);
-    // -- DOIT CREER LE CHOIX DE REVENIR AU COMBAT
-    // if($choice == 'c'){
-    //     manageStatPkmn();
-    // }
-    displayStatPkmn($pkmnTeam[$i]);
+    if($choice != 'c'){
+        //switchPkmn($pkmnTeam, $choice, $currentPkmnJ, $currentPkmnE, $statOpen);
+    }
+    else{
+        // -- DOIT CREER LE CHOIX DE REVENIR AU COMBAT
+        displayOffMenuTeam($currentPkmnJ,$currentPkmnE, $statOpen);
+    }
 }
 // DISPLAY STAT FOR ONE PKMN
-function displayStatPkmn(&$pkmn){
+function displayStatPkmn(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
     clearInGame();
     displayBox([15,20],[8,40],'|','-');
     moveCursor([10,10]);
@@ -128,7 +148,7 @@ function displayStatPkmn(&$pkmn){
     // -- DOIT CREER LE CHOIX DE REVENIR AU MENU DISPLAYTEAMPKMN
     $choice = waitForInput(getPosChoice(),$arrayChoice);
     if($choice == 'c'){
-        manageStatPkmn();
+        displayOffMenuTeam($currentPkmnJ,$currentPkmnE, $statOpen);
     }
     // $posY = 10;
     // $posX = 40;
