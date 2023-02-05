@@ -130,7 +130,10 @@ function displayPkmnTeam(&$pkmnTeam, &$currentPkmnJ, &$currentPkmnE, &$statOpen)
     array_push($arrayChoice, 'c');
     $choice = waitForInput(getPosChoice(),$arrayChoice);
     if($choice != 'c'){
-        //switchPkmn($pkmnTeam, $choice, $currentPkmnJ, $currentPkmnE, $statOpen);
+        switchPkmn($pkmnTeam, $choice, $currentPkmnJ, $currentPkmnE, $statOpen);
+        print($currentPkmnJ['Name']);
+        sleep(2);
+        displayOffMenuTeam($pkmnTeam[0],$currentPkmnE,$statOpen);
     }
     else{
         // -- DOIT CREER LE CHOIX DE REVENIR AU COMBAT

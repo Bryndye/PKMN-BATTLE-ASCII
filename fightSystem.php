@@ -2,7 +2,6 @@
 
 $statOpen = false;
 $stopLoop = false;
-
 // Transformer la function en selection de pkmn ?
 function startFight(&$pkmnJoueur, &$pkmnEnemy){
     // animation entrer dresseurs
@@ -15,19 +14,22 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
     // while dun combat tant que les equipes sont pleines
     while(isTeamPkmnKO($pkmnTeamJoueur) && isTeamPkmnKO($pkmnTeamEnemy)){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
-        $currentPkmnJoueur = &$pkmnTeamJoueur[searchNewPkmnInTeam($pkmnTeamJoueur)];
-        $currentPkmnEnemy = &$pkmnTeamEnemy[searchNewPkmnInTeam($pkmnTeamEnemy)];
+        searchNewPkmnInTeam($pkmnTeamJoueur);
+        searchNewPkmnInTeam($pkmnTeamEnemy);
         // ICI MESSAGE PKMN LANCEr de pokeball
-        displayGameHUD($currentPkmnJoueur, $currentPkmnEnemy);
+        displayGameHUD($pkmnTeamJoueur[0], $pkmnTeamEnemy[0]);
     
         // lance le combat quand les pkmns sont en combat
-        loopFight($currentPkmnJoueur, $currentPkmnEnemy, $pkmnTeamJoueur, $pkmnTeamEnemy);
+        loopFight($pkmnTeamJoueur, $pkmnTeamEnemy);
     }
 }
 
 // FIGHT SYSTEM
-function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur, &$pkmnTeamEnemy){
-    while($currentPkmnEnemy['Stats']['Health'] > 0 && $currentPkmnJoueur['Stats']['Health'] > 0 ){
+function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
+    while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
+        // if($currentPkmnEnemy['Stats']['Health'] > 0 && $currentPkmnJoueur['Stats']['Health'] > 0 ){
+        //     break;
+        // }
         // DISPLAY PKMN TEAM 
         // print($currentPkmnJoueurG['Name'] . rand(1,1000));
         displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
@@ -35,24 +37,25 @@ function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur, &$
         $choice = waitForInput(getPosChoice(),[1,2,4]);
 
         if($choice == 1){
-            interfaceCapacities($currentPkmnJoueur['Capacites']);
+            interfaceCapacities($pkmnTeamJoueur[0]['Capacites']);
             // passe a la selection des capacites
             // selectCapacite();
             $arrayChoise2 = [];
             for($i=0;$i<4;++$i){
-                if(isset($currentPkmnJoueur['Capacites'][$i]['Name'])){
+                if(isset($pkmnTeamJoueur[0]['Capacites'][$i]['Name'])){
                     array_push($arrayChoise2, ($i));
                 }
             }
             // -- VERIFIER SI PP SUP A 0 --
             $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
             // lance animation de combat une fois capacite choisi
-            fight($currentPkmnJoueur, $currentPkmnEnemy, 
-            $currentPkmnJoueur['Capacites'][$choice2]);
+            fight($pkmnTeamJoueur[0], $pkmnTeamEnemy[0], 
+            $pkmnTeamJoueur[0]['Capacites'][$choice2]);
         }
         elseif($choice == 2){
-            manageStatPkmn($currentPkmnJoueur,$currentPkmnEnemy, 
+            manageStatPkmn($pkmnTeamJoueur[0],$pkmnTeamEnemy[0], 
             $pkmnTeamJoueur, $statOpen);
+            // si le joueur switch, le pkmn enemy attacks
         }
         elseif($choice == 4){
             exitGame();
@@ -63,6 +66,7 @@ function loopFight(&$currentPkmnJoueur, &$currentPkmnEnemy, &$pkmnTeamJoueur, &$
 
 // -- FUNCTIONS TO CALL FOR FIGHT --
 function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite){
+    // le choix de la capacite doit se faire ici 
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     
     if($pkmnJoueur['Stats']['Vit'] > $pkmnEnemy['Stats']['Vit']){
@@ -201,46 +205,30 @@ function isTeamPkmnKO($teamPkmn){
 function searchNewPkmnInTeam(&$teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){
-            return $i;
+            switchPkmn($teamPkmn, $i);
+            return;
         }
     }
     return null;
 }
 
-function switchPkmn(&$pkmnTeam ,$index, &$currentPkmnJoueur, &$currentPkmnE, &$statOpen){
-    // $currentPkmnJ = $pkmnTeam[$index]; // supprime le pkmn au lieu de juste changer le current 
-    
-    // $a = $pkmnTeam[$index];
-    // $pkmnTeam[$index] = $a;
-    
-    // for($i=0;$i<count($pkmnTeam);++$i){
-    //     print_r($pkmnTeam[$i]['Name']);
-    // }
-    // print("$index \n");
-    // $currentPkmnJ = array_splice($pkmnTeam, $index, 1, true);
-    // global $x;
-    // print($x);
-    // $x = 3;
-    // sleep(5);
-    // print_r($currentPkmnJoueurG);
-    // echo debug_zval_dump($currentPkmnJoueurG) ? 'La variable est passée par référence' : 'La variable est passée par copie';
-    // sleep(5);
+function switchPkmn(&$pkmnTeam ,$index){
 
-    $currentPkmnJoueur = &$pkmnTeam[$index];
-    manageStatPkmn($currentPkmnJoueur,$currentPkmnE,$pkmnTeam,$statOpen);
-    print_r($currentPkmnJoueur['Name']);
-    
-    // sleep(5);
-    // // $currentPkmnJ = $currentPkmnJ;
+    $a = &$pkmnTeam[$index];
+    array_unshift($pkmnTeam, $a); // ajoute $a en premier index
+    for($i=1;$i<count($pkmnTeam);++$i){
+        if($pkmnTeam[$i] == $a){
+            array_splice($pkmnTeam, $i, 1);
+        }
 
+    }
     // for($i=0;$i<count($pkmnTeam);++$i){
-    //     if(isset($pkmnTeam[$i]['Name'])){
-    //         print_r($pkmnTeam[$i]['Name']);
+    //     if(isset($pkmnTeam[$i])){
+    //         print_r($pkmnTeam[$i]['Name'] . "\n");
     //     }
     //     else{
     //         $pkmnTeam[$i];
     //     }
     // }
-    // sleep(50);
 }
 ?>
