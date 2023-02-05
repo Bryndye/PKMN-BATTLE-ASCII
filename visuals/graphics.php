@@ -61,7 +61,8 @@ function createPkmnHUD($pos, $pkmn){
     echo "\033[".($pos[0]+1).";".($pos[1]+2)."H";
     echo $pkmn['Name'];
     echo "\033[".($pos[0]+1).";".($pos[1]+19)."H";
-    echo "Lv".$pkmn['Level'];
+    $string = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : $pkmn['Status'];
+    echo $string;
     echo "\033[".($pos[0]+2).";".($pos[1]+10)."H";
     echo '<';
     echo "\033[".($pos[0]+2).";".($pos[1]+21)."H";

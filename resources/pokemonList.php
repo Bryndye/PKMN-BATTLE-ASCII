@@ -53,7 +53,7 @@ function generatePkmnBattle($index, $level, $exp = 0){
             '3' => ""/*getCapacite('bite')*/
         ],
         'Sprite' => $pkmn['Sprite'],
-        'Status' => ''
+        'Status' => 'BRN'
     ];    
     return $pokemonBattle;
 }

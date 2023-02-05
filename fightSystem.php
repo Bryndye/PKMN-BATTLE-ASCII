@@ -58,31 +58,18 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         elseif($choice == 4){
             exitGame();
         }
+        if(!isPkmnDead_simple($pkmnTeamJoueur[0])){
+            damageTurn($pkmnTeamJoueur[0], true);
+        }
+        if(!isPkmnDead_simple($pkmnTeamEnemy[0])){
+            damageTurn($pkmnTeamEnemy[0], false);
+        }
     } 
 }
 
 
-// -- FUNCTIONS TO CALL FOR FIGHT --
-function selectAction(&$pkmnJoueur,&$pkmnEnemy, $choice2){
-    //recheck stat : Status / priority
-    if($pkmnJoueur['Stats']['Vit'] > $pkmnEnemy['Stats']['Vit']){
-        fight_test($pkmnTeamJoueur[0], $pkmnTeamEnemy[0], 
-        $pkmnTeamJoueur[0]['Capacites'][$choice2]);
-    }
-    else{
-        fight_test($pkmnTeamJoueur[0], $pkmnTeamEnemy[0], 
-        $pkmnTeamJoueur[0]['Capacites'][$choice2]);
-    }
-    // reinitialiser HUD apres combat
-    displayInterfaceMenu();
-}
-function fight_test(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueur = false){
-    clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
+//// FUNCTIONS TO CALL FOR FIGHT ///////////////////////////
 
-    if(figth_test_2($pkmnAtk, $pkmnDef,false, $capacite)){
-        figth_test_2($pkmnDef, $pkmnAtk,false, $capacite);
-    }
-}
 function figth_test_2(&$pkmnAtk,&$pkmnDef, &$capacite = null, $isJoueur = false){
     // get capacite from IA
     attackBehaviourPkmn($pkmnAtk, $pkmnDef,true,$capacite);
@@ -91,6 +78,16 @@ function figth_test_2(&$pkmnAtk,&$pkmnDef, &$capacite = null, $isJoueur = false)
 
 function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, $isJoueur = false){
     // le choix de la capacite doit se faire ici 
+    $vitJoueur = $pkmnJoueur['Stats']['Vit'];
+    $vitEnemy = $pkmnEnemy['Stats']['Vit'];
+
+    if($pkmnJoueur['Status'] == 'PAR'){
+        $vitJoueur *= 0.5;
+    }
+    if($pkmnEnemy['Status'] == 'PAR'){
+        $vitEnemy *= 0.5;
+    }
+
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     if($pkmnJoueur['Stats']['Vit'] > $pkmnEnemy['Stats']['Vit']){
         attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
@@ -132,7 +129,12 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
 
     // 2eme etape -> Category d'atk
     // b = stat Atk utilisé pour la capacite / stat def utilisé contre la capacité
+    $isBurned = 1;
     if($capacite['Category'] == 'physical'){
+        // damage reduce 0.5 if pkmn burn
+        if($pkmnAtk['Status'] == 'BRN'){
+            $isBurned = 0.5;
+        }
         $statAtkToUsed = $pkmnAtk['Stats']['Atk'];
         $statDefToUsed = $pkmnDef['Stats']['Def'];
     }
@@ -150,7 +152,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     $isCrit = false; // doit creer le crit avec capacite
     $efficace = checkTypeMatchup($capacite['Type'], $pkmnDef['Type 1']) * checkTypeMatchup($capacite['Type'], $pkmnDef['Type 2']);
     $random = rand(85,100) / 100;
-    $c = $capacite['Power'] * $stab * $efficace * $random;
+    $c = $capacite['Power'] * $stab * $efficace * $isBurned * $random;
     // c = Capacite Base atk* STAB(1-2)* Type(0.5-4)* Critical(1-2)* random([0.85,1]}
     
     $finalDamage = intval($a * $b * $c); // final
@@ -177,7 +179,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     // A ajouter le msg si crit
 }
 
-// DEATH PKMN -- A FIX CE SOUCIS ----------
+///// POKEMON DEATH FUNCTIONS //////////////////////////////////
 function isPkmnDead(&$pkmn, $isJoueur){
     // sleep(5);
     if($pkmn['Stats']['Health'] <= 0){
@@ -188,17 +190,6 @@ function isPkmnDead(&$pkmn, $isJoueur){
         return false;
     }
 }
-
-function isPkmnDead_simple(&$pkmn){
-    // sleep(5);
-    if($pkmn['Stats']['Health'] <= 0){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-// ----------------------------------------
 function PkmnKO($pkmn, $isJoueur){
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     clearArea(getScaleHUDPkmn(), getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
@@ -212,6 +203,16 @@ function PkmnKO($pkmn, $isJoueur){
     messageBoiteDialogue($pkmn['Name'] . ' is K.O.');
 }
 
+function isPkmnDead_simple(&$pkmn){
+    // sleep(5);
+    if($pkmn['Stats']['Health'] <= 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 function isTeamPkmnKO($teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){
@@ -220,7 +221,11 @@ function isTeamPkmnKO($teamPkmn){
     }
     return false;
 }
+///////////////////////////////////////////////////////////
 
+
+
+//// FUNCTIONS LOOKING FOR NEW PKMN IN BATTLE ////////////
 function searchNewPkmnInTeam(&$teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){
@@ -248,5 +253,25 @@ function switchPkmn(&$pkmnTeam ,$index){
     //         $pkmnTeam[$i];
     //     }
     // }
+}
+///////////////////////////////////////////////////////////
+
+
+
+function damageTurn(&$pkmn, $isJoueur){
+    if($pkmn['Status'] == null){
+        return;
+    }
+    if($pkmn['Status'] == 'BRN'){
+        $pkmn['Stats']['Health'] -= intval($pkmn['Stats']['Health Max'] * 0.06);
+    }
+    else if($pkmn['Status'] == 'PSN'){
+        $pkmn['Stats']['Health'] -= intval($pkmn['Stats']['Health Max'] * 0.08);
+    }
+    messageBoiteDialogue($pkmn['Name'] . ' takes damage from is status!');
+    sleep(1);
+    updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmn['Stats']['Health'], $pkmn['Stats']['Health Max']);
+    clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
+    isPkmnDead($pkmn, $isJoueur);
 }
 ?>
