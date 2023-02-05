@@ -13,12 +13,12 @@ function displayGameHUD($pkmn1, $pkmn2){
     // Afficher HUD du pkmn joueur
     createPkmnHUD(getPosHealthPkmn(true), $pkmn1);
     displaySprite($pokemonSprites[$pkmn1['Sprite']], getPosSpritePkmn(true));
-    // interfaceCapacities($pkmn1['Capacites']);
     
     // Afficher HUD du pkmn ennemi
     createPkmnHUD(getPosHealthPkmn(false), $pkmn2);
     displaySprite($pokemonSprites[$pkmn2['Sprite']], getPosSpritePkmn(false));
 }
+
 function displayInterfaceMenu(){
     displayBox([7,60],[23,0]);
     displayBox([7,1],[23,43]);
@@ -42,6 +42,17 @@ function displayPkmnTeamHUD($pkmnTeam, $pos){
     echo $message;
 }
 
+// function pkmnAppearinBattle($sprite, $isJoueur, $animPkBall = false){
+//     if($animPkBall){
+//         include 'visuals/sprites.php';
+//         displaySprite($sprites['Pokeball'], getPosSpritePkmn($isJoueur));
+//         clearSpritePkmn($isJoueur, 1);
+//     }
+//     displaySprite($sprite, getPosSpritePkmn($isJoueur));
+//     if($animPkBall){
+//         sleep(1);
+//     }
+// }
 
 // HUD PKMN
 function createPkmnHUD($pos, $pkmn){
@@ -101,7 +112,7 @@ function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
     $statOpen = false;
     displayGameHUD($currentPkmnJ,$currentPkmnE);
 }
-function displayPkmnTeam(&$pkmnTeam, &$currentPkmnE, &$statOpen){
+function displayPkmnTeam(&$pkmnTeam, &$currentPkmnE, &$statOpen, $pkmnDeath = false){
     clearInGame();
     createPkmnHUD([13,3], $pkmnTeam[0]);
     
@@ -121,9 +132,14 @@ function displayPkmnTeam(&$pkmnTeam, &$currentPkmnE, &$statOpen){
     if($choice != 'c'){
         switchPkmn($pkmnTeam, $choice);
         displayOffMenuTeam($pkmnTeam[0],$currentPkmnE,$statOpen);
+        messageBoiteDialogue("Go ". $pkmnTeam[0]['Name']);
+        // pkmnAppearinBattle($pokemonSprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn(true), true);
+        if(!$pkmnDeath){
+            figth_test_2($currentPkmnE,$pkmnTeam[0]);
+        }
     }
     else{
-        // -- DOIT CREER LE CHOIX DE REVENIR AU COMBAT
+        // Reviens au menu choix 
         displayOffMenuTeam($pkmnTeam[0],$currentPkmnE, $statOpen);
     }
 }
@@ -150,18 +166,11 @@ function displayStatPkmn(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
     // }
 }
 
-
-
 function displaySpritePkmn($pkmn, $isJoueur){
     $posFinal = getPosSpritePkmn($isJoueur);
     
     include 'visuals/sprites.php';
     displaySprite($pokemonSprites[$pkmn['Sprite']], $posFinal);
-}
-function clearSpritePkmn($isJoueur){
-    $posFinal = getPosSpritePkmn($isJoueur);
-    // clear area pkmn sprite in battle
-    clearArea([13,25],$posFinal);
 }
 
 // TEST HUD PLACEMENT

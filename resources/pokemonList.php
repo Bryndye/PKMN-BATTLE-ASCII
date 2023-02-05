@@ -52,7 +52,8 @@ function generatePkmnBattle($index, $level, $exp = 0){
             '2' => getCapacite('hyper-beam'),
             '3' => ""/*getCapacite('bite')*/
         ],
-        'Sprite' => $pkmn['Sprite']
+        'Sprite' => $pkmn['Sprite'],
+        'Status' => ''
     ];    
     return $pokemonBattle;
 }

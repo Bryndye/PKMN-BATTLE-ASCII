@@ -69,6 +69,22 @@ function clearInGame(){
 function clear(){
     echo "\033c";
 }
+
+function clearSpritePkmn($isJoueur, $pauseTime = 0){
+    if($pauseTime != 0){
+        sleep($pauseTime);
+    }
+    $posClearSprite = getPosSpritePkmn($isJoueur);
+    $posClearSprite = [$posClearSprite[0]+1,$posClearSprite[1]];
+    $scaleClear = getScaleSpritePkmn();
+    clearArea($scaleClear,$posClearSprite);
+}
+// function clearSpritePkmn($isJoueur){
+//     $posFinal = getPosSpritePkmn($isJoueur);
+//     // clear area pkmn sprite in battle
+//     clearArea([13,25],$posFinal);
+// }
+
 // ----------------------------------------------------
 
 function displaySprite($sprite, $pos) {
@@ -94,6 +110,7 @@ function messageBoiteDialogue($message){
     clearArea([5,58],[24,2]); //clear boite dialogue
     echo "\033[25;3H";
     echo $message;
+    sleep(1);
     // waitForInput([30,0]);
 }
 
