@@ -87,59 +87,47 @@ function updateHealthPkmn($pos,$health, $healthMax){
 }
     
 // -- DOIT CHANGER LES PARAM A INTEGRER
-function manageStatPkmn(&$currentPkmnJ,&$currentPkmnE,&$pkmnTeamJoueur,&$statOpen){
+function managePkmnTeamHUD(&$pkmnTeamJoueur,&$currentPkmnE,&$statOpen){
     if(!$statOpen){
         $statOpen = true;
-        displayPkmnTeam($pkmnTeamJoueur, $currentPkmnJ,$currentPkmnE, $statOpen);
+        displayPkmnTeam($pkmnTeamJoueur,$currentPkmnE, $statOpen);
     }
     else{
         $statOpen = false;
-        displayGameHUD($currentPkmnJ,$currentPkmnE);
+        displayGameHUD($pkmnTeamJoueur[0],$currentPkmnE);
     }
 }
 function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
     $statOpen = false;
     displayGameHUD($currentPkmnJ,$currentPkmnE);
 }
-function displayPkmnTeam(&$pkmnTeam, &$currentPkmnJ, &$currentPkmnE, &$statOpen){
+function displayPkmnTeam(&$pkmnTeam, &$currentPkmnE, &$statOpen){
     clearInGame();
-    createPkmnHUD([13,3], $currentPkmnJ);
+    createPkmnHUD([13,3], $pkmnTeam[0]);
     
     $arrayChoice = [];
     $z = 1;
-    for($i=0;$i<count($pkmnTeam);++$i){
-        // print_r($pkmnTeam[$i]);
-        // sleep(5);
-        // print_r($currentPkmnJ);
-        // sleep(50);
-        if($pkmnTeam[$i] != $currentPkmnJ){
-            $pos = [($z * 5) - 2,33];
-            createPkmnHUD($pos, $pkmnTeam[$i]);
-            if(!isPkmnDead_simple($pkmnTeam[$i])){
-                array_push($arrayChoice, ($i));
-            }
-            ++$z;
+    for($i=1;$i<count($pkmnTeam);++$i){
+        $pos = [($z * 5) - 2,33];
+        createPkmnHUD($pos, $pkmnTeam[$i]);
+        if(!isPkmnDead_simple($pkmnTeam[$i])){
+            array_push($arrayChoice, ($i));
         }
-        // print_r($pkmnTeam[$i]);
-        // sleep(1);
+        ++$z;
     }
-    // for($i=0;$i<count($pkmnTeam);++$i){
-    //     if($pkmnTeam[$i] != $currentPkmnE){
-    //     }
-    // }
+
     array_push($arrayChoice, 'c');
     $choice = waitForInput(getPosChoice(),$arrayChoice);
     if($choice != 'c'){
-        switchPkmn($pkmnTeam, $choice, $currentPkmnJ, $currentPkmnE, $statOpen);
-        print($currentPkmnJ['Name']);
-        sleep(2);
+        switchPkmn($pkmnTeam, $choice);
         displayOffMenuTeam($pkmnTeam[0],$currentPkmnE,$statOpen);
     }
     else{
         // -- DOIT CREER LE CHOIX DE REVENIR AU COMBAT
-        displayOffMenuTeam($currentPkmnJ,$currentPkmnE, $statOpen);
+        displayOffMenuTeam($pkmnTeam[0],$currentPkmnE, $statOpen);
     }
 }
+
 // DISPLAY STAT FOR ONE PKMN
 function displayStatPkmn(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
     clearInGame();

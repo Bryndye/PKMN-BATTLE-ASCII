@@ -16,7 +16,7 @@ clear(); // Clear the screen
 // init team battle : Le joueur a une team "fixe" 
 // enemy a une team genere proceduralement 
 $pkmnTeamJoueur = [
-    generatePkmnBattle('128', 1),
+    generatePkmnBattle('128', 150),
     generatePkmnBattle('25', 5),
     generatePkmnBattle('54', 5),
     generatePkmnBattle('68', 5),

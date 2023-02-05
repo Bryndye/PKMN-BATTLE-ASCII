@@ -14,8 +14,17 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
     // while dun combat tant que les equipes sont pleines
     while(isTeamPkmnKO($pkmnTeamJoueur) && isTeamPkmnKO($pkmnTeamEnemy)){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
-        searchNewPkmnInTeam($pkmnTeamJoueur);
-        searchNewPkmnInTeam($pkmnTeamEnemy);
+        if(isPkmnDead_simple($pkmnTeamEnemy[0])){
+            searchNewPkmnInTeam($pkmnTeamEnemy);
+        }
+        if(isPkmnDead_simple($pkmnTeamJoueur[0])){
+            displayPkmnTeam($pkmnTeamJoueur, $pkmnTeamEnemy[0], $statOpen);
+        }
+        else{
+            searchNewPkmnInTeam($pkmnTeamJoueur);
+        }
+        // searchNewPkmnInTeam($pkmnTeamJoueur);
+        // searchNewPkmnInTeam($pkmnTeamEnemy);
         // ICI MESSAGE PKMN LANCEr de pokeball
         displayGameHUD($pkmnTeamJoueur[0], $pkmnTeamEnemy[0]);
     
@@ -53,8 +62,7 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
             $pkmnTeamJoueur[0]['Capacites'][$choice2]);
         }
         elseif($choice == 2){
-            manageStatPkmn($pkmnTeamJoueur[0],$pkmnTeamEnemy[0], 
-            $pkmnTeamJoueur, $statOpen);
+            managePkmnTeamHUD($pkmnTeamJoueur,$pkmnTeamEnemy[0], $statOpen);
             // si le joueur switch, le pkmn enemy attacks
         }
         elseif($choice == 4){
@@ -148,7 +156,10 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     }
 
     // MESSAGE CONDITION
-    if($efficace > 1){
+    if($finalDamage == 0){
+        messageBoiteDialogue("Nothing happens...");
+    }
+    else if($efficace > 1){
         messageBoiteDialogue("It's super effective !");
     }
     else if($efficace < 1){
