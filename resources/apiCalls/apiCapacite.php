@@ -59,7 +59,7 @@
 // // print_r($pokemonList);
 
 // PERMET DE CHANGER INDEX PAR NOM DE LA CAPACITE
-$file = file_get_contents('../json/capacites copy.json');
+$file = file_get_contents('../../json/capacites.json'); // choisir le doc a traduir
 $array = json_decode($file, true);
 
 $nom = 'new_index';
@@ -69,9 +69,10 @@ foreach ($array as $key => $value) {
     $nom = $value['Name'];
     $newArray[$nom] = $value;
 }
-print_r($newArray);
-sleep(50);
+// print_r($newArray);
+// sleep(50);
 
 $json = json_encode($newArray);
-file_put_contents('file.json', $json);
+file_put_contents('../../json/capacitesv2.json', $json); // envoyer le code 
+// -- NE PAS OUBLIER DE CHANGER PP" PAR PP Max"
 ?>

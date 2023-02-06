@@ -1,7 +1,7 @@
 <?php 
 include 'resources/capacites.php';
 
-$json = file_get_contents('json/data.json');
+$json = file_get_contents('json/pokemons.json');
 $pokemonPokedex = json_decode($json, true);
 
 function getPkmnFromPokedex($index){
@@ -50,10 +50,10 @@ function generatePkmnBattle($index, $level, $exp = 0){
             '0' => getCapacite('tackle'),
             '1' => getCapacite('scratch'),
             '2' => getCapacite('hyper-beam'),
-            '3' => ""/*getCapacite('bite')*/
+            '3' => getCapacite('quick-attack')
         ],
         'Sprite' => $pkmn['Sprite'],
-        'Status' => 'BRN'
+        'Status' => ''
     ];    
     return $pokemonBattle;
 }

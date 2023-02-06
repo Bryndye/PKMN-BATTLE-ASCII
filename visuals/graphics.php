@@ -136,7 +136,7 @@ function displayPkmnTeam(&$pkmnTeam, &$currentPkmnE, &$statOpen, $pkmnDeath = fa
         messageBoiteDialogue("Go ". $pkmnTeam[0]['Name']);
         // pkmnAppearinBattle($pokemonSprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn(true), true);
         if(!$pkmnDeath){
-            figth_test_2($currentPkmnE,$pkmnTeam[0]);
+            attackByJustOnePkmn($currentPkmnE,$pkmnTeam[0]);
         }
     }
     else{

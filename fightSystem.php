@@ -48,8 +48,11 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
             // -- VERIFIER SI PP SUP A 0 --
             $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
 
+            //  CHOIX DE IA SUR ATK
+            $capaciteE = getCapacite('tackle');
+
             fight($pkmnTeamJoueur[0], $pkmnTeamEnemy[0], 
-            $pkmnTeamJoueur[0]['Capacites'][$choice2]);
+            $pkmnTeamJoueur[0]['Capacites'][$choice2], $capaciteE);
             displayInterfaceMenu();
         }
         elseif($choice == 2){
@@ -70,34 +73,40 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
 
 //// FUNCTIONS TO CALL FOR FIGHT ///////////////////////////
 
-function figth_test_2(&$pkmnAtk,&$pkmnDef, &$capacite = null, $isJoueur = false){
+function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite = null, $isJoueur = false){
     // get capacite from IA
     attackBehaviourPkmn($pkmnAtk, $pkmnDef,true,$capacite);
     return isPkmnDead($pkmnDef, true);
 }
 
-function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, $isJoueur = false){
-    // le choix de la capacite doit se faire ici 
+function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, &$capaciteE){
+    $joueurPriority = true;
     $vitJoueur = $pkmnJoueur['Stats']['Vit'];
     $vitEnemy = $pkmnEnemy['Stats']['Vit'];
 
-    if($pkmnJoueur['Status'] == 'PAR'){
-        $vitJoueur *= 0.5;
+    if($capacite['priority'] == $capaciteE['priority']){
+        if($pkmnJoueur['Status'] == 'PAR'){
+            $vitJoueur *= 0.5;
+        }
+        if($pkmnEnemy['Status'] == 'PAR'){
+            $vitEnemy *= 0.5;
+        }
+        $joueurPriority = $pkmnJoueur['Stats']['Vit'] > $pkmnEnemy['Stats']['Vit'];
     }
-    if($pkmnEnemy['Status'] == 'PAR'){
-        $vitEnemy *= 0.5;
+    else {     
+        $joueurPriority = $capacite['priority'] > $capaciteE['priority'];
     }
 
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
-    if($pkmnJoueur['Stats']['Vit'] > $pkmnEnemy['Stats']['Vit']){
+    if($joueurPriority){
         attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
         if(!isPkmnDead($pkmnEnemy, false)){
-            attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true);
+            attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true, $capaciteE);
             isPkmnDead($pkmnJoueur, true);
         }
     }
     else{
-        attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true);
+        attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true, $capaciteE);
         if(!isPkmnDead($pkmnJoueur, true)){
             attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
             isPkmnDead($pkmnEnemy, false);
@@ -105,11 +114,7 @@ function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, $isJoueur = false){
     }
 }
 
-function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite = null){
-    // A CHANGER CAR IA NE CHOISIT PAS SON ATK
-    if($capacite == null){
-        $capacite = getCapacite('tackle');
-    }
+function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite){
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
@@ -154,8 +159,8 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     $random = rand(85,100) / 100;
     $c = $capacite['Power'] * $stab * $efficace * $isBurned * $random;
     // c = Capacite Base atk* STAB(1-2)* Type(0.5-4)* Critical(1-2)* random([0.85,1]}
-    
-    $finalDamage = intval($a * $b * $c); // final
+
+    $finalDamage = ceil($a * $b * $c); // final
     $pkmnDef['Stats']['Health'] -= $finalDamage;
 
     // une fois dmg sur pkmn, sentence super efficace/ coup critique
