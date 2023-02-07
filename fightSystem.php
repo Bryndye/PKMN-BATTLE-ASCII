@@ -22,8 +22,8 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         }
         else{
             searchNewPkmnInTeam($pkmnTeamJoueur);
-            displayGameHUD($pkmnTeamJoueur[0], $pkmnTeamEnemy[0]);
         }
+        displayGameHUD($pkmnTeamJoueur[0], $pkmnTeamEnemy[0]);
     
         // lance le combat quand les pkmns sont en combat
         loopFight($pkmnTeamJoueur, $pkmnTeamEnemy);
@@ -33,8 +33,8 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
 // FIGHT SYSTEM
 function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
     while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
-        displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
-        displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
+        refreshHUDloopFight($pkmnTeamJoueur, $pkmnTeamEnemy);
+
         $choice = waitForInput(getPosChoice(),[1,2,4]);
 
         if($choice == 1){
@@ -53,7 +53,6 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
 
             fight($pkmnTeamJoueur[0], $pkmnTeamEnemy[0], 
             $pkmnTeamJoueur[0]['Capacites'][$choice2], $capaciteE);
-            displayInterfaceMenu();
         }
         elseif($choice == 2){
             managePkmnTeamHUD($pkmnTeamJoueur,$pkmnTeamEnemy[0], $statOpen);
@@ -61,12 +60,14 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         elseif($choice == 4){
             exitGame();
         }
+        
         if(!isPkmnDead_simple($pkmnTeamJoueur[0])){
             damageTurn($pkmnTeamJoueur[0], true);
         }
         if(!isPkmnDead_simple($pkmnTeamEnemy[0])){
             damageTurn($pkmnTeamEnemy[0], false);
         }
+        displayInterfaceMenu();
     } 
 }
 
@@ -75,7 +76,9 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
 
 function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite = null, $isJoueur = false){
     // get capacite from IA
-    attackBehaviourPkmn($pkmnAtk, $pkmnDef,true,$capacite);
+    //  CHOIX DE IA SUR ATK
+    $capaciteE = getCapacite('tackle');
+    attackBehaviourPkmn($pkmnAtk, $pkmnDef,true,$capaciteE);
     return isPkmnDead($pkmnDef, true);
 }
 
@@ -115,6 +118,14 @@ function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, &$capaciteE){
 }
 
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite){
+    $ailmentParalysis = false;
+    if($pkmnAtk['Status'] == 'PAR'){
+        $ailmentParalysis = rand(0,100) < 20;
+        if($ailmentParalysis){
+            messageBoiteDialogue($pkmnAtk['Name'] . ' is paralysed');
+            return;
+        }
+    }
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
@@ -181,6 +192,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     else if($efficace < 1){
         messageBoiteDialogue("It's not very effective!");
     }
+    ailmentChanceOnpKmn($capacite, $pkmnDef);
     // A ajouter le msg si crit
 }
 
@@ -262,9 +274,28 @@ function switchPkmn(&$pkmnTeam ,$index){
 ///////////////////////////////////////////////////////////
 
 
+function ailmentChanceOnpKmn(&$capacite, &$pkmnDef){
+    if($capacite['Ailment']['ailment_chance'] != 0){
+        $chance = rand(0,100);
+        if($chance < $capacite['Ailment']['ailment_chance']){
+            $pkmnDef['Status'] = status($capacite['Ailment']['ailment']);
+            messageBoiteDialogue($pkmnDef['Name']." get ". $capacite['Ailment']['ailment']);
+        }
+    }
+}
 
+function status($nameStatus){
+    switch($nameStatus){
+        case 'paralysis':
+            return 'PAR';
+        case 'poison':
+            return 'PSN'; 
+        case 'burn':
+            return 'BRN';       
+    }
+}
 function damageTurn(&$pkmn, $isJoueur){
-    if($pkmn['Status'] == null){
+    if($pkmn['Status'] != 'BRN' || $pkmn['Status'] != 'PSN'){
         return;
     }
     if($pkmn['Status'] == 'BRN'){

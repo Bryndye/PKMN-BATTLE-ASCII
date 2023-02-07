@@ -11,11 +11,13 @@ function displayGameHUD($pkmn1, $pkmn2){
     include 'visuals/sprites.php';
 
     // Afficher HUD du pkmn joueur
+    displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
     createPkmnHUD(getPosHealthPkmn(true), $pkmn1);
     displaySprite($pokemonSprites[$pkmn1['Sprite']], getPosSpritePkmn(true));
     
     // Afficher HUD du pkmn ennemi
-    createPkmnHUD(getPosHealthPkmn(false), $pkmn2);
+    displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
+    createPkmnHUD(getPosHealthPkmn(false), $pkmn2 , false);
     displaySprite($pokemonSprites[$pkmn2['Sprite']], getPosSpritePkmn(false));
 }
 
@@ -42,6 +44,12 @@ function displayPkmnTeamHUD($pkmnTeam, $pos){
     echo $message;
 }
 
+function refreshHUDloopFight(&$pkmnTeamJoueur ,&$pkmnTeamEnemy){
+    displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
+    displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
+    createPkmnHUD(getPosHealthPkmn(true), $pkmnTeamJoueur[0]);
+    createPkmnHUD(getPosHealthPkmn(false), $pkmnTeamEnemy[0], false);
+}
 // function pkmnAppearinBattle($sprite, $isJoueur, $animPkBall = false){
 //     if($animPkBall){
 //         include 'visuals/sprites.php';
@@ -55,7 +63,7 @@ function displayPkmnTeamHUD($pkmnTeam, $pos){
 // }
 
 // HUD PKMN
-function createPkmnHUD($pos, $pkmn){
+function createPkmnHUD($pos, $pkmn, $showExp = true){
     clearArea(getScaleHUDPkmn(),$pos);
     displayBox(getScaleHUDPkmn(),$pos,'|','-');
     echo "\033[".($pos[0]+1).";".($pos[1]+2)."H";
@@ -68,6 +76,9 @@ function createPkmnHUD($pos, $pkmn){
     echo "\033[".($pos[0]+2).";".($pos[1]+21)."H";
     echo '>';
     updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max']);
+    if($showExp){
+        updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
+    }
 }   
 function updateHealthPkmn($pos,$health, $healthMax){
     $pourcentage = $health/$healthMax;
@@ -88,6 +99,29 @@ function updateHealthPkmn($pos,$health, $healthMax){
     //Set health graphic style + color
     echo "\033[".($pos[0]+2).";".($pos[1]+11)."H";
     echo "\033[".$color."m";
+    for($i=0;$i<10;++$i){
+        if (($pourcentage*10) > $i){
+            echo '=';
+        } else {
+            echo ' ';
+        }
+    }
+    echo "\033[0m";
+}
+
+function updateExpPkmn($pos,$exp, $expMax){
+    $pourcentage = $exp/$expMax;
+
+    //Set exp text
+    clearArea([1,7],[$pos[0]+3,$pos[1]+3]); //clear pour eviter 
+    echo "\033[".($pos[0]+3).";".($pos[1]+10)."H";
+    echo '<';
+    echo "\033[".($pos[0]+3).";".($pos[1]+21)."H";
+    echo '>';
+    
+    //Set health graphic style + color
+    echo "\033[".($pos[0]+3).";".($pos[1]+11)."H";
+    echo "\033[34m";
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){
             echo '=';
@@ -143,28 +177,6 @@ function displayPkmnTeam(&$pkmnTeam, &$currentPkmnE, &$statOpen, $pkmnDeath = fa
         // Reviens au menu choix 
         displayOffMenuTeam($pkmnTeam[0],$currentPkmnE, $statOpen);
     }
-}
-
-// DISPLAY STAT FOR ONE PKMN
-function displayStatPkmn(&$currentPkmnJ,&$currentPkmnE, &$statOpen){
-    clearInGame();
-    displayBox([15,20],[8,40],'|','-');
-    moveCursor([10,10]);
-    // echo $pkmn['Name'];
-    print_r($pkmn);
-
-    // -- DOIT CREER LE CHOIX DE REVENIR AU MENU DISPLAYTEAMPKMN
-    $choice = waitForInput(getPosChoice(),$arrayChoice);
-    if($choice == 'c'){
-        displayOffMenuTeam($currentPkmnJ,$currentPkmnE, $statOpen);
-    }
-    // $posY = 10;
-    // $posX = 40;
-    // $infos = array_keys($pkmn);
-    // for ($i = 0; $i < count($infos); $i++) {
-    //     echo "\033[".$posY+$i.";".($posX+1)."H";
-    //     echo $infos[$i]." : ". $pkmn[$infos[$i]];
-    // }
 }
 
 function displaySpritePkmn($pkmn, $isJoueur){
