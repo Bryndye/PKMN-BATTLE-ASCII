@@ -28,6 +28,15 @@ function waitForInput($pos, $options = null){
     // echo "Vous avez choisi : " . $choice; 
 }
 
+function enterToContinue($pos, $showMessage){
+    $sentence = 'Enter to keep going';
+
+    moveCursor($pos);
+    $choice = readline($sentence);
+    clearArea([1,60], $pos);
+    return $choice;
+}
+
 function choice(){
     // echo "\033[31;0H";
     moveCursor([31,0]);

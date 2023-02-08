@@ -3,11 +3,13 @@
 include_once 'launchAndExit.php';
 include_once 'resources/inputs.php';
 include_once 'resources/config.php';
+include_once 'resources/pokemonList.php';
+include_once 'resources/typeMatchUp.php';
 include_once 'visuals/graphics.php'; 
 include_once 'visuals/sprites.php';
-include_once 'resources/pokemonList.php';
 include_once 'fightSystem.php';
-include_once 'resources/typeMatchUp.php';
+include_once 'visuals/hudfight.php';
+include_once 'resources/programFight.php';
 include_once 'shopEchange.php';
 
 clear(); // Clear the screen
@@ -28,11 +30,6 @@ $pkmnTeamEnemy = [
     generatePkmnBattle('150', 100),
     generatePkmnBattle('149', 100)
 ];
-
-// print_r(getCapacite('tackle'));
-// sleep(50);
-// print_r($pkmnTeamJoueur[0]);
-// sleep(50);
 
 // Loop fight tant que Equipe joueur a des pkmn en vie (a creer condition)
 // while(true){
