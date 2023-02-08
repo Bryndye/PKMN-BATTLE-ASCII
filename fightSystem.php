@@ -36,7 +36,7 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
     while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
         refreshHUDloopFight($pkmnTeamJoueur, $pkmnTeamEnemy);
 
-        $choice = waitForInput(getPosChoice(),[1,2,4]);
+        $choice = waitForInput(getPosChoice(),[1,2/*,4*/]);
 
         if($choice == 1){
             interfaceCapacities($pkmnTeamJoueur[0]['Capacites']);
@@ -50,18 +50,32 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
             $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
 
             //  CHOIX DE IA SUR ATK
-            $capaciteE = getCapacite('tackle');
-
+            // $capaciteE = getCapacite('tackle');
+            $actionJoueur = $pkmnTeamJoueur[0]['Capacites'][$choice2];
             fight($pkmnTeamJoueur[0], $pkmnTeamEnemy[0], 
             $pkmnTeamJoueur[0]['Capacites'][$choice2], $capaciteE);
         }
         elseif($choice == 2){
+            $a = $pkmnTeamJoueur[0];
             managePkmnTeamHUD($pkmnTeamJoueur,$pkmnTeamEnemy[0], $statOpen);
+            $actionJoueur = $a != $pkmnTeamJoueur[0];
+            // return 1 si vrai, donc switch pkmn mais rien return si rien se passe
+            // print('trueeeeeee'); 
+            // sleep(50);
         }
-        elseif($choice == 4){
-            exitGame();
+        // elseif($choice == 4){
+        //     exitGame();
+        // }
+
+        // la suite se lance seulement si le joueur a choisi son action
+        if($actionJoueur == null){
+            continue;
         }
+        //  CHOIX DE IA SUR ATK
+        $capaciteE = getCapacite('tackle');
         
+        // COMBAT AVEC ACTION JOUEUR ET ACTION ENEMY
+
         if(!isPkmnDead_simple($pkmnTeamJoueur[0])){
             damageTurn($pkmnTeamJoueur[0], true);
         }

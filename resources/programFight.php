@@ -194,18 +194,11 @@ function switchPkmn(&$pkmnTeam ,$index){
             array_splice($pkmnTeam, $i, 1);
         }
     }
-    // for($i=0;$i<count($pkmnTeam);++$i){
-    //     if(isset($pkmnTeam[$i])){
-    //         print_r($pkmnTeam[$i]['Name'] . "\n");
-    //     }
-    //     else{
-    //         $pkmnTeam[$i];
-    //     }
-    // }
 }
 ///////////////////////////////////////////////////////////
 
 
+//// STATUS DAMAGES ///////////////////////////////////////
 function ailmentChanceOnpKmn(&$capacite, &$pkmnDef){
     if($capacite['Ailment']['ailment_chance'] != 0){
         $chance = rand(0,100);
@@ -242,4 +235,5 @@ function damageTurn(&$pkmn, $isJoueur){
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     isPkmnDead($pkmn, $isJoueur);
 }
+///////////////////////////////////////////////////////////
 ?>
