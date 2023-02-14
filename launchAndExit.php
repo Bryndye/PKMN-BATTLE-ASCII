@@ -7,7 +7,7 @@ function intro(){
     // Animation de * en diagonale sur l'écran
     for ($i = 0; $i < 30; $i++) {
         clearArea([27,58],[2,2]); // Efface l'écran
-        echo "\033[?25l"; //hide cursor
+        // echo "\033[?25l"; //hide cursor
         echo "\033[".$i.";".($i+$i)."H";
         echo "*";
         usleep(10000); // Arrête l'exécution d'un programme durant un laps de temps

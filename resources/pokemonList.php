@@ -48,9 +48,9 @@ function generatePkmnBattle($index, $level, $exp = 0){
         ],
         'Capacites' => [
             '0' => getCapacite('tackle'),
-            '1' => getCapacite('scratch'),
-            '2' => getCapacite('hyper-beam'),
-            '3' => getCapacite('quick-attack')
+            '1' => getCapacite('splash'),
+            '2' => getRandCapacites(),
+            '3' => getRandCapacites()
         ],
         'Sprite' => $pkmn['Sprite'],
         'Status' => ''

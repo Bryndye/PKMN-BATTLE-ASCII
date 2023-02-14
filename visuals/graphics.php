@@ -99,7 +99,7 @@ function messageBoiteDialogue($message){
     clearArea([5,58],[24,2]); //clear boite dialogue
     echo "\033[25;3H";
     echo $message;
-    // sleep(1);
+    sleep(1);
     // waitForInput([30,0]);
 }
 

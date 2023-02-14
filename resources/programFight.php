@@ -22,6 +22,7 @@ function whichPkmnHasPriority($pkmnJoueur, $pkmnEnemy, $capacite, $capaciteE){
     else {     
         $joueurPriority = $capacite['priority'] > $capaciteE['priority'];
     }
+    return $joueurPriority;
 }
 
 function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamage = false){
@@ -52,6 +53,10 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &
 
 // fct calculator dmg capacite + stats
 function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){    
+
+    if(!is_numeric($capacite['Power'])){
+        $capacite['Power'] = 0;
+    }
     // 1ere etape
     $a = (2 * $pkmnAtk['Level'] +10)/250;
 
@@ -166,8 +171,6 @@ function searchNewPkmnInTeam(&$teamPkmn){
 function selectPkmn($arrayChoice, &$pkmnTeam, &$currentPkmnE){
     array_push($arrayChoice, 'c');
     $choice = waitForInput(getPosChoice(),$arrayChoice);
-
-    // displayOffMenuTeam($pkmnTeam[0],$currentPkmnE);
     return $choice;
 }
 

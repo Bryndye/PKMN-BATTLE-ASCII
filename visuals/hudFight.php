@@ -7,11 +7,16 @@
 // createPkmnHUD(2,3, $pkmn2);
 // displaySprite($pokemonSprites[$pkmn2['Sprite']], 1, 35);
 
-// CREATE HUD INGAME
-function displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
+function displaySkeletonHUD(){
     displayGameCadre();
     clearInGame();
     displayInterfaceMenu();
+}
+// CREATE HUD INGAME
+function displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
+    // displayGameCadre();
+    clearInGame();
+    // displayInterfaceMenu();
     include 'visuals/sprites.php';
 
     // Afficher HUD du pkmn joueur
