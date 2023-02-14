@@ -34,6 +34,20 @@ function getPosHealthPkmn($isJoueur){
     return $posFinal;
 }
 
+$posTeamE = [7,3];
+$posTeamJ = [17,34];
+function getPosTeam($isJoueur){
+    global $posTeamJ, $posTeamE;
+    
+    if($isJoueur){
+        $posFinal = $posTeamJ;
+    }
+    else{
+        $posFinal = $posTeamE;
+    }
+    return $posFinal;
+}
+
 $scaleHUDPkmn = [5,25];
 function getScaleHUDPkmn(){
     global $scaleHUDPkmn;

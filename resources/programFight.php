@@ -5,16 +5,7 @@
 // clearArea(27,58,2,2); // Efface l'écran
 
 //// FUNCTIONS TO CALL FOR FIGHT ///////////////////////////
-
-function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite = null, $isJoueur = false){
-    // get capacite from IA
-    //  CHOIX DE IA SUR ATK
-    $capaciteE = getCapacite('tackle');
-    attackBehaviourPkmn($pkmnAtk, $pkmnDef,true,$capaciteE);
-    return isPkmnDead($pkmnDef, true);
-}
-
-function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, &$capaciteE){
+function whichPkmnHasPriority($pkmnJoueur, $pkmnEnemy, $capacite, $capaciteE){
     $joueurPriority = true;
     $vitJoueur = $pkmnJoueur['Stats']['Vit'];
     $vitEnemy = $pkmnEnemy['Stats']['Vit'];
@@ -31,25 +22,14 @@ function fight(&$pkmnJoueur,&$pkmnEnemy, &$capacite, &$capaciteE){
     else {     
         $joueurPriority = $capacite['priority'] > $capaciteE['priority'];
     }
-
-    clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
-    if($joueurPriority){
-        attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
-        if(!isPkmnDead($pkmnEnemy, false)){
-            attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true, $capaciteE);
-            isPkmnDead($pkmnJoueur, true);
-        }
-    }
-    else{
-        attackBehaviourPkmn($pkmnEnemy, $pkmnJoueur,true, $capaciteE);
-        if(!isPkmnDead($pkmnJoueur, true)){
-            attackBehaviourPkmn($pkmnJoueur, $pkmnEnemy,false, $capacite);
-            isPkmnDead($pkmnEnemy, false);
-        }
-    }
 }
 
-function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite){
+function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamage = false){
+    attackBehaviourPkmn($pkmnAtk, $pkmnDef,$isJoueurTakeDamage,$capacite);
+    return isPkmnDead($pkmnDef, $isJoueurTakeDamage);
+}
+
+function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &$capacite){
     $ailmentParalysis = false;
     if($pkmnAtk['Status'] == 'PAR'){
         $ailmentParalysis = rand(0,100) < 20;
@@ -61,12 +41,12 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueur = true, &$capacite)
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
-    clearSpritePkmn($isJoueur, 1);
+    clearSpritePkmn($isJoueurTakeDamage, 1);
     sleep(1);
-    displaySpritePkmn($pkmnDef, $isJoueur);
+    displaySpritePkmn($pkmnDef, $isJoueurTakeDamage);
     sleep(1);
     damageCalculator($pkmnAtk,$pkmnDef, $capacite);
-    updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmnDef['Stats']['Health'], $pkmnDef['Stats']['Health Max']);
+    updateHealthPkmn(getPosHealthPkmn($isJoueurTakeDamage),$pkmnDef['Stats']['Health'], $pkmnDef['Stats']['Health Max']);
     sleep(1);
 }
 
@@ -130,16 +110,15 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
 
 ///// POKEMON DEATH FUNCTIONS //////////////////////////////////
 function isPkmnDead(&$pkmn, $isJoueur){
-    // sleep(5);
     if($pkmn['Stats']['Health'] <= 0){
-        PkmnKO($pkmn, $isJoueur);
+        animatePkmnKo($pkmn, $isJoueur);
         return true;
     }
     else{
         return false;
     }
 }
-function PkmnKO($pkmn, $isJoueur){
+function animatePkmnKo($pkmn, $isJoueur){
     clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
     clearArea(getScaleHUDPkmn(), getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
 
@@ -184,9 +163,15 @@ function searchNewPkmnInTeam(&$teamPkmn){
     }
     return null;
 }
+function selectPkmn($arrayChoice, &$pkmnTeam, &$currentPkmnE){
+    array_push($arrayChoice, 'c');
+    $choice = waitForInput(getPosChoice(),$arrayChoice);
+
+    // displayOffMenuTeam($pkmnTeam[0],$currentPkmnE);
+    return $choice;
+}
 
 function switchPkmn(&$pkmnTeam ,$index){
-
     $a = &$pkmnTeam[$index];
     array_unshift($pkmnTeam, $a); // ajoute $a en premier index
     for($i=1;$i<count($pkmnTeam);++$i){
@@ -194,6 +179,7 @@ function switchPkmn(&$pkmnTeam ,$index){
             array_splice($pkmnTeam, $i, 1);
         }
     }
+    messageBoiteDialogue("Go ". $pkmnTeam[0]['Name']);
 }
 ///////////////////////////////////////////////////////////
 
