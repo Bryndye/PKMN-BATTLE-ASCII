@@ -75,7 +75,6 @@ function pkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/){
     usleep(500000);
     clearSpritePkmn($isJoueur, 1);
     displaySpritePkmn($pkmn, $isJoueur);
-    usleep(500000);
 }
 
 function displayEntirePkmnBattle($pkmnTeam, $isJoueur){
@@ -83,6 +82,9 @@ function displayEntirePkmnBattle($pkmnTeam, $isJoueur){
     createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
 }
 
+function clearPkmnHUD($isJoueur){
+    clearArea(getScaleHUDPkmn(),getPosHealthPkmn($isJoueur));
+}
 function createPkmnHUD($pos, $pkmn, $showExp = true){
     clearArea(getScaleHUDPkmn(),$pos);
     displayBox(getScaleHUDPkmn(),$pos,'|','-');
@@ -128,7 +130,6 @@ function updateHealthPkmn($pos,$health, $healthMax){
     }
     echo "\033[0m";
 }
-
 function updateExpPkmn($pos,$exp, $expMax){
     $pourcentage = $exp/$expMax;
 

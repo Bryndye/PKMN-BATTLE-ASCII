@@ -12,14 +12,15 @@ function startFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
     displaySprite($sprites['trainer'], getPosSpritePkmn(false));
     
     messageBoiteDialogue('Tu vas subir !'); // message trainer 
-    sleep(2);
+    sleep(1);
     messageBoiteDialogue('Trainer wants to fight!'); // message trainer 
-    sleep(2);
+    sleep(1);
 
     // animation pokeball
     pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+    sleep(1);
     pkmnAppearinBattle(false, $pkmnTeamJoueur[0]);// faire apparaitre pkmn E
-
+    sleep(1);
     gameplayLoop($pkmnTeamJoueur, $pkmnTeamEnemy);
 }
 
@@ -41,7 +42,6 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
             displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             interfaceMenu();
             pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
-
         }
     
         // lance le combat quand les pkmns sont en combat
@@ -79,7 +79,6 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
             $choice2 = selectPkmn($choicesPkmnTeam, $pkmnTeamJoueur, $pkmnTeamEnemy[0]);
             if($choice2 != 'c'){           
                 displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
-                displaySkeletonHUD();
             }
         }
         // elseif($choice == 4){
@@ -150,18 +149,15 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
             $pkmnAtk = &$action['teamAtk'][0]; // first pkmn de l'attaquant
             $pkmnDef = &$action['teamDef'][0]; // first pkmn du défenseur
             $capacite = &$action['teamAtk'][0]['Capacites'][$action['choice'][1]];
-            if($capacite['Category'] != 'status'){
-                $aPkmnIsDead = attackByJustOnePkmn($pkmnAtk,$pkmnDef, $capacite, !$action['isjoueur']);
-            }
-            else{
-                messageBoiteDialogue("Nothing happens... status unavailable");
-            }
+            $aPkmnIsDead = attackByJustOnePkmn($pkmnAtk,$pkmnDef, $capacite, !$action['isjoueur']);
         }
         elseif($action['choice'][0] == '2'){
             switchPkmn($action['teamAtk'], $action['choice'][1]);
-            usleep(1000000);
+
+            clearPkmnHUD($action['teamAtk'], $action['isjoueur']);
+            pkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
+            usleep(500000);
             refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
-            // displayOffMenuTeam($pkmnTeamJoueur[0],$pkmnTeamEnemy[0]);
         }
     }
     if(!isPkmnDead_simple($pkmnTeamJoueur[0])){

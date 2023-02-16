@@ -46,9 +46,18 @@ function generatePkmnBattle($index, $level, $exp = 0){
             'Def Spe' => calculateStats($pkmn['StatsBase']['Def Spe'], $level),
             'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level),
         ],
+        'Stats Temp' => [
+            'Health' => 0,
+            'Health Max' => 0,
+            'Atk' => 0,
+            'Def' => 0,
+            'Atk Spe' => 0,
+            'Def Spe' => 0,
+            'Vit' => 0,
+        ],
         'Capacites' => [
-            '0' => getCapacite('tackle'),
-            '1' => getCapacite('hyper-beam'),
+            '0' => getCapacite('double-edge'),
+            '1' => getCapacite('fury-attack'),
             '2' => getRandCapacites(),
             '3' => getRandCapacites()
         ],

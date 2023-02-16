@@ -108,7 +108,7 @@ function messageBoiteDialogue($message){
     clearBoiteDialogue();
     echo "\033[26;4H";
     echo $message;
-    usleep(50000);
+    sleep(1);
     // waitForInput([30,0]);
 }
 function clearBoiteDialogue(){

@@ -38,17 +38,18 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
-    clearSpritePkmn($isJoueurTakeDamage, 1);
-    usleep(500000);
-    displaySpritePkmn($pkmnDef, $isJoueurTakeDamage);
-    usleep(500000);
-    damageCalculator($pkmnAtk,$pkmnDef, $capacite);
+    if($capacite['Category'] == 'status'){
+        boostStatsTemp($pkmnAtk,$pkmnDef, $capacite);
+    }
+    else{
+        damageCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
+    }
     updateHealthPkmn(getPosHealthPkmn($isJoueurTakeDamage),$pkmnDef['Stats']['Health'], $pkmnDef['Stats']['Health Max']);
     usleep(500000);
 }
 
 // fct calculator dmg capacite + stats
-function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){    
+function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){    
 
     if(!is_numeric($capacite['Power'])){
         $capacite['Power'] = 0;
@@ -84,17 +85,24 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     $c = $capacite['Power'] * $stab * $efficace * $isBurned * $random;
     // c = Capacite Base atk* STAB(1-2)* Type(0.5-4)* Critical(1-2)* random([0.85,1]}
 
-    $finalDamage = ceil($a * $b * $c); // final
-    $pkmnDef['Stats']['Health'] -= $finalDamage;
+    $finalDamage = ceil($a * $b * $c); // final damage
 
-    // une fois dmg sur pkmn, sentence super efficace/ coup critique
-    if($pkmnDef['Stats']['Health'] < 0){
-        $pkmnDef['Stats']['Health'] = 0;
+    //  check if its multiple hits
+    $timesHit = 1;
+    if($capacite['hits']['min hits'] != null && $capacite['hits']['max hits']){
+        $timesHit = getHits($capacite['hits']['min hits'], $capacite['hits']['max hits']);
+        messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit);
     }
-
+    pkmnTakesDmg($pkmnDef, $finalDamage, !$isJoueur);
+    
+    // update health pkmn def before drain
+    createPkmnHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
+    usleep(500000);
+    
     // MESSAGE CONDITION
     if($finalDamage == 0){
-        messageBoiteDialogue("Nothing happens...");
+        messageBoiteDialogue("It didn't affect ".$pkmnDef['Name']);
+        return;
     }
     else if($isCrit){
         messageBoiteDialogue("Critical hit!");
@@ -105,10 +113,50 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite){
     else if($efficace < 1){
         messageBoiteDialogue("It's not very effective!");
     }
+
     ailmentChanceOnpKmn($capacite, $pkmnDef);
-    // A ajouter le msg si crit
+    if($capacite['Drain'] != 0){
+        pkmnTakesDmg($pkmnAtk, -ceil(($capacite['Drain']/100) * $finalDamage), $isJoueur);
+        // $pkmnAtk['Stats']['Health'] += ceil(($capacite['Drain']/100) * $finalDamage);
+        if($capacite['Drain'] <= 0){
+            messageBoiteDialogue($pkmnAtk['Name']." has recoil!");
+
+            // update health pkmn atk after drain
+            createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
+        }
+    }
 }
 
+function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
+    messageBoiteDialogue("Boost ...");
+}
+
+function getHits($minHits, $maxHits) {
+    $totalHits = 0;
+    $chance = 1;
+    $hitsLeft = $maxHits - $minHits + 1;
+    while ($hitsLeft > 0 && mt_rand(1, $hitsLeft) <= $chance) {
+        $totalHits++;
+        $hitsLeft--;
+        $chance = $chance / 2;
+    }
+    return $minHits + $totalHits;
+}
+
+function pkmnTakesDmg(&$pkmn, $damage, $isJoueur){
+    // animation hit pkmn
+    usleep(500000);
+    clearSpritePkmn($isJoueur);
+    usleep(500000);
+    displaySpritePkmn($pkmn, $isJoueur);
+    usleep(500000);
+
+    $pkmn['Stats']['Health'] -= $damage;
+    if($pkmn['Stats']['Health'] < 0){
+        $pkmn['Stats']['Health'] = 0;
+    }
+
+}
 ///// POKEMON DEATH FUNCTIONS //////////////////////////////////
 function isPkmnDead(&$pkmn, $isJoueur){
     if($pkmn['Stats']['Health'] <= 0){
