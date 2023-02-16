@@ -1,7 +1,7 @@
 <?php
 // -- POSITIONS --------------------------------------------
-$posSpritePkmnEnemy = [1,35];
-$posSpritePkmnJoueur = [7,2];
+$posSpritePkmnEnemy = [1,31];
+$posSpritePkmnJoueur = [8,2];
 function getPosSpritePkmn($isJoueur){
     // Pour get une var global d'un script il faut créer le global dans la function
     global $posSpritePkmnEnemy, $posSpritePkmnJoueur;
@@ -15,7 +15,7 @@ function getPosSpritePkmn($isJoueur){
     return $posFinal;
 }
 
-$scaleSpritePkmn = [15,25];
+$scaleSpritePkmn = [15,28];
 function getScaleSpritePkmn(){
     global $scaleSpritePkmn;
     return $scaleSpritePkmn;
@@ -54,23 +54,23 @@ function getScaleHUDPkmn(){
     return $scaleHUDPkmn;
 }
 
-$scaleBoiteDialogue = [5,58];
+$scaleBoiteDialogue = [7,60];
 function getScaleDialogue(){
     global $scaleBoiteDialogue;
     return $scaleBoiteDialogue;
 }
 
-$posBoiteDialogue = [24,2];
+$posBoiteDialogue = [24,1];
 function getPosDialogue(){
     global $posBoiteDialogue;
     return $posBoiteDialogue;
 }
 
-$posCHocie = [30,0];
+$posCHocie = [31,0];
 function getPosChoice(){
     global $posCHocie;
     return $posCHocie;
 }
-// ----------------------------------------------------
+///////////////////////////////////////////////////////
 
 ?>

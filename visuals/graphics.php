@@ -11,6 +11,9 @@
 // echo "\033[31;40mtexte rouge sur fond noir\033[0m"; // change la couleur
 
 // https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
+
+
+//// STANDARD FCT DRAW ///////////////////////////////
 function selectColor(){
     //\033[0m permet de remettre la couleur par defaut
     //\033[31;40m 31:rouge & 40:noir
@@ -24,7 +27,6 @@ function moveCursor($pos){
 // DISPLAY A BOX
 function displayBox($scale, $pos, $styleH='*', $styleL='*'){
     moveCursor($pos);
-    // echo "\033[".$pos[0].";".$pos[1]."H";
     
     for ($i = 0; $i < $scale[0]; $i++) {
         echo "\033[".$pos[0]+$i.";".$pos[1]."H";
@@ -41,10 +43,12 @@ function displayBox($scale, $pos, $styleH='*', $styleL='*'){
 }
 
 function displayGameCadre(){
-    displayBox([29,60],[1,1]);
+    displayBox([30,60],[1,1]);
 }
+//////////////////////////////////////////////////////////////
 
-// -- CLEAR ------------------------------------------
+
+///// CLEAR /////////////////////////////////////////
 function clearArea($scale, $pos){
     for ($i = 0; $i <  $scale[0]; $i++) {
         echo "\033[".$pos[0]+$i.";".$pos[1]."H";
@@ -71,14 +75,12 @@ function clearSpritePkmn($isJoueur, $pauseTime = 0){
     $scaleClear = getScaleSpritePkmn();
     clearArea($scaleClear,$posClearSprite);
 }
-// function clearSpritePkmn($isJoueur){
-//     $posFinal = getPosSpritePkmn($isJoueur);
-//     // clear area pkmn sprite in battle
-//     clearArea([13,25],$posFinal);
-// }
 
-// ----------------------------------------------------
+//////////////////////////////////////////////////////////////
 
+
+
+///// DISPLAY SPRITE /////////////////////////////////////////
 function displaySprite($sprite, $pos) {
     $lines = explode("\n", $sprite); // séparer les lignes du sprite
     for ($i = 1; $i < count($lines); $i++) {
@@ -94,14 +96,32 @@ function displaySpritePkmn($pkmn, $isJoueur){
     include 'visuals/sprites.php';
     displaySprite($pokemonSprites[$pkmn['Sprite']], $posFinal);
 }
+//////////////////////////////////////////////////////////////
+
+
+//// DISPLAY DIALOGUE ///////////////////////////////////////////
+function displayBoiteDialogue(){
+    displayBox(getScaleDialogue(), getPosDialogue());
+}
 
 function messageBoiteDialogue($message){
-    clearArea([5,58],[24,2]); //clear boite dialogue
-    echo "\033[25;3H";
+    clearBoiteDialogue();
+    echo "\033[26;4H";
     echo $message;
-    sleep(1);
+    usleep(50000);
     // waitForInput([30,0]);
 }
+function clearBoiteDialogue(){
+    $pos = getPosDialogue();
+    $scale = getScaleDialogue();
+    clearArea([$scale[0]-2, $scale[1]-2],[$pos[0]+1, $pos[1]+1]); //clear boite dialogue
+}
+
+function displayChoiceMenuRight(){
+    displayBox([7,1],[23,43]);
+}
+
+//////////////////////////////////////////////////////////////
 
 
 function debugLog($pos, $msg){

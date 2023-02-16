@@ -48,7 +48,7 @@ function generatePkmnBattle($index, $level, $exp = 0){
         ],
         'Capacites' => [
             '0' => getCapacite('tackle'),
-            '1' => getCapacite('splash'),
+            '1' => getCapacite('hyper-beam'),
             '2' => getRandCapacites(),
             '3' => getRandCapacites()
         ],

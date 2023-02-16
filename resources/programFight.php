@@ -1,9 +1,5 @@
 <?php
 
-// FUNCTION TO LAUNCH GAME & PLAY
-// displayBox(29,60,1,1); // Cadre du jeu
-// clearArea(27,58,2,2); // Efface l'écran
-
 //// FUNCTIONS TO CALL FOR FIGHT ///////////////////////////
 function whichPkmnHasPriority($pkmnJoueur, $pkmnEnemy, $capacite, $capaciteE){
     $joueurPriority = true;
@@ -43,12 +39,12 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
     clearSpritePkmn($isJoueurTakeDamage, 1);
-    sleep(1);
+    usleep(500000);
     displaySpritePkmn($pkmnDef, $isJoueurTakeDamage);
-    sleep(1);
+    usleep(500000);
     damageCalculator($pkmnAtk,$pkmnDef, $capacite);
     updateHealthPkmn(getPosHealthPkmn($isJoueurTakeDamage),$pkmnDef['Stats']['Health'], $pkmnDef['Stats']['Health Max']);
-    sleep(1);
+    usleep(500000);
 }
 
 // fct calculator dmg capacite + stats
@@ -124,7 +120,7 @@ function isPkmnDead(&$pkmn, $isJoueur){
     }
 }
 function animatePkmnKo($pkmn, $isJoueur){
-    clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
+    clearBoiteDialogue();
     clearArea(getScaleHUDPkmn(), getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
 
     // Clear sprite pkmn

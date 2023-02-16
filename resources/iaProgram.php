@@ -41,7 +41,7 @@ function iaChoice(&$pkmnTeamJ, &$pkmnTeamE){
         }
         return "1 $meilleureCapacite";
     }
-    // return '1 0'; // choice default
+    return '1 0'; // choice default
 }
 
 function choosePkmn(&$teamPkmn){
