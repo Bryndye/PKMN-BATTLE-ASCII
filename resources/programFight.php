@@ -65,12 +65,12 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
         if($pkmnAtk['Status'] == 'BRN'){
             $isBurned = 0.5;
         }
-        $statAtkToUsed = $pkmnAtk['Stats']['Atk'];
-        $statDefToUsed = $pkmnDef['Stats']['Def'];
+        $statAtkToUsed = $pkmnAtk['Stats']['Atk'] * calculateBoostTemps($pkmnAtk,'Atk');
+        $statDefToUsed = $pkmnDef['Stats']['Def'] * calculateBoostTemps($pkmnAtk,'Def');
     }
     else if($capacite['Category'] == 'special'){
-        $statAtkToUsed = $pkmnAtk['Stats']['Atk Spe'];
-        $statDefToUsed = $pkmnDef['Stats']['Def Spe'];
+        $statAtkToUsed = $pkmnAtk['Stats']['Atk Spe'] * calculateBoostTemps($pkmnAtk,'Atk Spe');
+        $statDefToUsed = $pkmnDef['Stats']['Def Spe'] * calculateBoostTemps($pkmnAtk,'Def Spe');
     }
     $b = $statAtkToUsed / $statDefToUsed;
 
@@ -89,11 +89,11 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
 
     //  check if its multiple hits
     $timesHit = 1;
-    if($capacite['hits']['min hits'] != null && $capacite['hits']['max hits']){
-        $timesHit = getHits($capacite['hits']['min hits'], $capacite['hits']['max hits']);
+    if($capacite['effects']['hits']['min hits'] != null && $capacite['effects']['hits']['max hits']){
+        $timesHit = getHits($capacite['effects']['hits']['min hits'], $capacite['effects']['hits']['max hits']);
         messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit);
     }
-    pkmnTakesDmg($pkmnDef, $finalDamage, !$isJoueur);
+    pkmnTakesDmg($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
     // update health pkmn def before drain
     createPkmnHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
@@ -115,10 +115,10 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     }
 
     ailmentChanceOnpKmn($capacite, $pkmnDef);
-    if($capacite['Drain'] != 0){
-        pkmnTakesDmg($pkmnAtk, -ceil(($capacite['Drain']/100) * $finalDamage), $isJoueur);
-        // $pkmnAtk['Stats']['Health'] += ceil(($capacite['Drain']/100) * $finalDamage);
-        if($capacite['Drain'] <= 0){
+    if($capacite['effects']['Drain'] != 0){
+        pkmnTakesDmg($pkmnAtk, -ceil(($capacite['effects']['Drain']/100) * $finalDamage), $isJoueur);
+
+        if($capacite['effects']['Drain'] <= 0){
             messageBoiteDialogue($pkmnAtk['Name']." has recoil!");
 
             // update health pkmn atk after drain
@@ -127,8 +127,39 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
 function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
-    messageBoiteDialogue("Boost ...");
+    $effects = $capacite['effects'];
+    if(isset($effects['Stats Self'])){
+        foreach($effects['Stats Self'] as $stat){
+            $chance = rand(0,10);
+            if($chance < $stat[2]){ 
+                $pkmnAtk['Stats Temp'][$stat[1]] > 6 ?
+                    6:  $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
+            }
+
+            messageBoiteDialogue($pkmnAtk['Name']." has boost for ". $stat[1]."!");
+        }
+    }
+}
+
+function calculateBoostTemps($pkmn, $stat){
+    if(!isset($stat)){
+        return 1;
+    }
+    $varTop = 3;
+    $varBot = 3;
+    if($pkmn['Stats Temp'][$stat] > 0){
+        $varTop = $pkmn['Stats Temp'][$stat] + 3;
+    }
+    else{
+        $varBot = abs($pkmn['Stats Temp'][$stat]) + 3;
+    }
+    print($varTop / $varBot);
+    sleep(2);
+    return $varTop / $varBot;
 }
 
 function getHits($minHits, $maxHits) {
@@ -157,6 +188,10 @@ function pkmnTakesDmg(&$pkmn, $damage, $isJoueur){
     }
 
 }
+/////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
 ///// POKEMON DEATH FUNCTIONS //////////////////////////////////
 function isPkmnDead(&$pkmn, $isJoueur){
     if($pkmn['Stats']['Health'] <= 0){
@@ -233,11 +268,12 @@ function switchPkmn(&$pkmnTeam ,$index){
 
 //// STATUS DAMAGES ///////////////////////////////////////
 function ailmentChanceOnpKmn(&$capacite, &$pkmnDef){
-    if($capacite['Ailment']['ailment_chance'] != 0){
+    $ailment = $capacite['effects']['Ailment'];
+    if(isset($ailment['ailment_chance']) && $ailment['ailment_chance'] != 0){
         $chance = rand(0,100);
-        if($chance < $capacite['Ailment']['ailment_chance']){
-            $pkmnDef['Status'] = status($capacite['Ailment']['ailment']);
-            messageBoiteDialogue($pkmnDef['Name']." get ". $capacite['Ailment']['ailment']);
+        if($chance < $ailment['ailment_chance']){
+            $pkmnDef['Status'] = status($ailment['ailment']);
+            messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment']);
         }
     }
 }
@@ -253,20 +289,22 @@ function status($nameStatus){
     }
 }
 function damageTurn(&$pkmn, $isJoueur){
-    if($pkmn['Status'] != 'BRN' || $pkmn['Status'] != 'PSN'){
-        return;
+    if($pkmn['Status'] == 'BRN' || $pkmn['Status'] == 'PSN'){
+
+        if($pkmn['Status'] == 'BRN'){
+            pkmnTakesDmg($pkmn, intval($pkmn['Stats']['Health Max'] * 0.06), $isJoueur);
+            // $pkmn['Stats']['Health'] -= intval($pkmn['Stats']['Health Max'] * 0.06);
+        }
+        else if($pkmn['Status'] == 'PSN'){
+            pkmnTakesDmg($pkmn, intval($pkmn['Stats']['Health Max'] * 0.10), $isJoueur);
+        }
+        messageBoiteDialogue($pkmn['Name'] . ' takes damage from is status!');
+        sleep(1);
+        updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmn['Stats']['Health'], $pkmn['Stats']['Health Max']);
+        clearBoiteDialogue();
+        sleep(1);
+        isPkmnDead($pkmn, $isJoueur);
     }
-    if($pkmn['Status'] == 'BRN'){
-        $pkmn['Stats']['Health'] -= intval($pkmn['Stats']['Health Max'] * 0.06);
-    }
-    else if($pkmn['Status'] == 'PSN'){
-        $pkmn['Stats']['Health'] -= intval($pkmn['Stats']['Health Max'] * 0.08);
-    }
-    messageBoiteDialogue($pkmn['Name'] . ' takes damage from is status!');
-    sleep(1);
-    updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmn['Stats']['Health'], $pkmn['Stats']['Health Max']);
-    clearArea(getScaleDialogue(),getPosDialogue()); //clear boite dialogue
-    isPkmnDead($pkmn, $isJoueur);
 }
 ///////////////////////////////////////////////////////////
 ?>

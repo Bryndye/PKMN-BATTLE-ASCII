@@ -47,18 +47,23 @@ function generatePkmnBattle($index, $level, $exp = 0){
             'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level),
         ],
         'Stats Temp' => [
-            'Health' => 0,
-            'Health Max' => 0,
             'Atk' => 0,
             'Def' => 0,
             'Atk Spe' => 0,
             'Def Spe' => 0,
             'Vit' => 0,
+            'protected' => false,
+            'Substitute' => [
+                'Health Max' => 3,
+                'Health' => 0,
+                'Used' => false
+            ]
         ],
         'Capacites' => [
-            '0' => getCapacite('double-edge'),
+            '0' => getCapacite('swords-dance'),
             '1' => getCapacite('fury-attack'),
             '2' => getRandCapacites(),
+            '2' => getCapacite('smog'),
             '3' => getRandCapacites()
         ],
         'Sprite' => $pkmn['Sprite'],

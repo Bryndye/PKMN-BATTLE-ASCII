@@ -1,5 +1,5 @@
 <?php
-$json = file_get_contents('json/capacitesv2.json');
+$json = file_get_contents('json/capacitesv5.json');
 $capacites = json_decode($json, true);
 
 
@@ -22,7 +22,7 @@ function getRandCapacites(){
 }
 
 function setCapacitePlayable($capacite){
-    $capacite['PP'] = $capacite['PP Max'];
+    $capacite['PP Max'] = $capacite['PP'];
     unset($capacite['Pkmns Learned']);
     return $capacite;
 }
