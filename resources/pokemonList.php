@@ -27,16 +27,17 @@ function generatePkmnBattle($index, $level, $exp = 0){
         'Level' => $level,
         'exp' => $exp,
         'expToLevel' => getNextLevelExp($level),
+        'exp base' => 64,
         'Type 1' => $pkmn['Type 1'],
         'Type 2' => $pkmn['Type 2'],
-        // 'StatsBase' => [
-        //     'Health' => $pkmn['StatsBase']['Health'],
-        //     'Atk' => $pkmn['StatsBase']['Atk'],
-        //     'Def' => $pkmn['StatsBase']['Def'],
-        //     'Atk Spe' => $pkmn['StatsBase']['Atk Spe'],
-        //     'Def Spe' => $pkmn['StatsBase']['Def Spe'],
-        //     'Vit' => $pkmn['StatsBase']['Vit'],
-        // ],
+        'StatsBase' => [
+            'Health' => $pkmn['StatsBase']['Health'],
+            'Atk' => $pkmn['StatsBase']['Atk'],
+            'Def' => $pkmn['StatsBase']['Def'],
+            'Atk Spe' => $pkmn['StatsBase']['Atk Spe'],
+            'Def Spe' => $pkmn['StatsBase']['Def Spe'],
+            'Vit' => $pkmn['StatsBase']['Vit'],
+        ],
         'Stats' => [
             'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level),
             'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level),
@@ -60,10 +61,9 @@ function generatePkmnBattle($index, $level, $exp = 0){
             ]
         ],
         'Capacites' => [
-            '0' => getCapacite('swords-dance'),
-            '1' => getCapacite('fury-attack'),
-            '2' => getRandCapacites(),
-            '2' => getCapacite('smog'),
+            '0' => getCapacite('mega-drain'),
+            '1' => getRandCapacites(),
+            '2' => getCapacite('hyper-beam'),
             '3' => getRandCapacites()
         ],
         'Sprite' => $pkmn['Sprite'],
@@ -83,8 +83,61 @@ function calculateStats($stat, $level){
     return intval($result);
 }
 
+
+//// EXPERIENCE FCTS ////////////////////////////////////////////////////////////////////
+function levelUp(&$pkmn, $expLeft){
+    messageBoiteDialogue($pkmn['Name'].' level up!');
+    sleep(1);
+
+    $pkmn['Level']++;
+    $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
+    $pkmn['exp'] = 0;
+    $newStats = [];
+    $oldStats= [];
+    foreach($pkmn['StatsBase'] as $key =>&$stat){
+        if($key == 'Health'){
+            $newStats[$key] = calculateHealth($stat,$pkmn['Level']);
+        }
+        else{
+            $newStats[$key] = calculateStats($stat,$pkmn['Level']);
+        }
+        $oldStats[$key] = $pkmn['Stats'][$key];
+        $pkmn['Stats'][$key] = $newStats[$key];
+    }
+    levelUpWindow($oldStats, $newStats);
+
+    getExp($pkmn, $expLeft);
+}
+
+function getExp(&$pkmn, $exp){
+    $pkmn['exp'] += $exp;
+    messageBoiteDialogue($pkmn['Name'].' obtained '.$exp.'!');
+    sleep(1);
+    if($pkmn['exp'] >= $pkmn['expToLevel']){
+        $expLeft = $pkmn['exp'] - $pkmn['expToLevel'];
+        levelUp($pkmn, $expLeft);
+    }
+}
+
 function getNextLevelExp($currentLevel) {
-    $result = pow(2, $currentLevel / 7) * 50;
-    return intval($result);
+    $expToNextLevel = (int)((4 * $currentLevel * $currentLevel * $currentLevel) / 5);
+    // $result = pow(2, $currentLevel / 7) * 50;
+    return intval($expToNextLevel);
+}
+
+function expToGive($pkmnAtk, $pkmnDef){
+    $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['exp base'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
+    return intval($exp) *20;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+function healthInBloc(&$pkmn){
+    if($pkmn['Stats']['Health'] > $pkmn['Stats']['Health Max']){
+        $pkmn['Stats']['Health'] = $pkmn['Stats']['Health Max'];
+    }
+    else if($pkmn['Stats']['Health'] < 0){
+        $pkmn['Stats']['Health'] = 0;
+    }
 }
 ?>

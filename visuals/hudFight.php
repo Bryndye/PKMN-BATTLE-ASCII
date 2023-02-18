@@ -152,6 +152,44 @@ function updateExpPkmn($pos,$exp, $expMax){
     }
     echo "\033[0m";
 }
+
+function levelUpWindow($oldStats, $newStats){
+    displayBox([10,20], [7,39], '|', '-');
+    $pos = [7,39];
+
+    $keys = array_keys($oldStats);
+
+    $differences = [];
+    for($i=0;$i<count($newStats);++$i){
+        array_push($differences, $newStats[$keys[$i]]-$oldStats[$keys[$i]]);
+    }
+    $i = 1;
+    foreach($oldStats as $key=>$stat){
+        writeSentence($key, [$pos[0]+$i,$pos[1]+2]);
+        $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
+        moveCursor([$pos[0]+$i,$pos[1]+15]);
+    
+        echo $phrase_alignee;
+        ++$i;
+    }
+    sleep(2);
+    for($i=0;$i<count($newStats);++$i){
+        $phrase_alignee = str_pad($differences[$i].'->', 4, " ", STR_PAD_LEFT);
+        moveCursor([$pos[0]+$i+1,$pos[1]+10]);
+
+        echo $phrase_alignee;
+    }
+    sleep(2);
+    $i = 1;
+    foreach($newStats as $key=>$stat){
+        writeSentence($key, [$pos[0]+$i,$pos[1]+2]);
+        $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
+        moveCursor([$pos[0]+$i,$pos[1]+15]);
+    
+        echo $phrase_alignee;
+        ++$i;
+    }
+}
     
 
 //// DISPLAY MENU ///////////////////////////////////

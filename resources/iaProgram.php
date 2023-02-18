@@ -5,9 +5,22 @@
 //     generatePkmnBattle('150', 100),
 //     generatePkmnBattle('149', 100)
 // ];
+function generatePNJ($indexFloor, $level){
+    $pnj = [
+        'Nom' => 'PaBigOuf',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "De toute façon je voulais chier..."
+        ],
+        'Team' => generatePkmnTeam(1),
+    ];
+    return $pnj;
+}
+
 function generatePkmnTeam($level = 5){
     $pkmnTeam = [];
-    for($i=0; $i<rand(0,6); ++$i){
+    for($i=0; $i<rand(1,6); ++$i){
         array_push($pkmnTeam, generatePkmnBattle(rand(0,151), $level + rand(-2,2)));
     }
     return $pkmnTeam;

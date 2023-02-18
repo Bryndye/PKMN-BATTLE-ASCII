@@ -3,30 +3,31 @@
 $statOpen = false;
 $stopLoop = false;
 // Transformer la function en selection de pkmn ?
-function startFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
+function startFight(&$pkmnTeamJoueur, &$pnj){
     displaySkeletonHUD();
+    $pkmnTeamEnemy = &$pnj['Team'];
 
     // animation entrer dresseurs
     include 'visuals/sprites.php';
-    displaySprite($sprites['trainerBack'], getPosSpritePkmn(true));
-    displaySprite($sprites['trainer'], getPosSpritePkmn(false));
+    // displaySprite($sprites['trainerBack'], getPosSpritePkmn(true));
+    // displaySprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
     
-    messageBoiteDialogue('Tu vas subir !'); // message trainer 
-    sleep(1);
-    messageBoiteDialogue('Trainer wants to fight!'); // message trainer 
-    sleep(1);
+    // messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
+    // sleep(1);
+    // messageBoiteDialogue($pnj['Nom'].' wants to fight!'); // message trainer 
+    // sleep(1);
 
-    // animation pokeball
-    pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
-    sleep(1);
-    pkmnAppearinBattle(false, $pkmnTeamJoueur[0]);// faire apparaitre pkmn E
-    sleep(1);
-    gameplayLoop($pkmnTeamJoueur, $pkmnTeamEnemy);
+    // // animation pokeball
+    // pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+    // sleep(1);
+    // pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
+    // sleep(1);
+    gameplayLoop($pkmnTeamJoueur, $pnj);
 }
 
 // Start the game loop
-function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
-    
+function gameplayLoop(&$pkmnTeamJoueur, &$pnj){
+    $pkmnTeamEnemy = &$pnj['Team'];
     // while dun combat tant que les equipes sont pleines
     while(isTeamPkmnKO($pkmnTeamJoueur) && isTeamPkmnKO($pkmnTeamEnemy)){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
@@ -47,6 +48,9 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         // lance le combat quand les pkmns sont en combat
         loopFight($pkmnTeamJoueur, $pkmnTeamEnemy);
     }
+
+    // fct after battle
+    endBattle($pkmnTeamJoueur, $pnj);
 }
 
 // FIGHT SYSTEM
@@ -63,7 +67,7 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         $actionJoueur = null;
         if($choice == 1){
             interfaceCapacities($pkmnTeamJoueur[0]['Capacites']);
-            $arrayChoise2 = [];
+            $arrayChoise2 = ['c'];
             for($i=0;$i<4;++$i){
                 if(isset($pkmnTeamJoueur[0]['Capacites'][$i]['Name']) && $pkmnTeamJoueur[0]['Capacites'][$i]['PP'] > 0){
                     array_push($arrayChoise2, ($i));
@@ -98,6 +102,9 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         fight($pkmnTeamJoueur, $pkmnTeamEnemy, 
         $actionJoueur, $actionEnemy); 
     } 
+    if($pkmnTeamEnemy[0]['Stats']['Health'] <= 0 ){
+        endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
+    }
 }
 
 function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
@@ -166,5 +173,21 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
     if(!isPkmnDead_simple($pkmnTeamEnemy[0])){
         damageTurn($pkmnTeamEnemy[0], false);
     }  
+}
+
+function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
+    messageBoiteDialogue("You've fainted " . $pkmnE['Name']);
+    foreach($pkmnTeamJoueur as &$pkmn){
+        getExp($pkmn, expToGive($pkmn, $pkmnE));
+        return;
+    }   
+}   
+
+function endBattle($pkmnTeamJoueur, $pnj){
+    resetStatsTemp($pkmnTeamJoueur[0]);
+    messageBoiteDialogue("You've fainted " . $pnj['Nom']);
+    sleep(2);
+    messageBoiteDialogue($pnj['Dialogues']['end']);
+    sleep(2);
 }
 ?>

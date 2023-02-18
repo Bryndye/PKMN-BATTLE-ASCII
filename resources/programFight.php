@@ -39,7 +39,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
     if($capacite['Category'] == 'status'){
-        boostStatsTemp($pkmnAtk,$pkmnDef, $capacite);
+        boostStatsTemp($pkmnAtk, $capacite);
     }
     else{
         damageCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
@@ -130,7 +130,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
+function boostStatsTemp(&$pkmnAtk, $capacite){
     $effects = $capacite['effects'];
     if(isset($effects['Stats Self'])){
         foreach($effects['Stats Self'] as $stat){
@@ -157,14 +157,19 @@ function calculateBoostTemps($pkmn, $stat){
     else{
         $varBot = abs($pkmn['Stats Temp'][$stat]) + 3;
     }
-    print($varTop / $varBot);
-    sleep(2);
+    
     return $varTop / $varBot;
+}
+
+function resetStatsTemp(&$pkmn){
+    foreach($pkmn['Stats Temp'] as &$stat){
+        $stat = 0;
+    }
 }
 
 function getHits($minHits, $maxHits) {
     $totalHits = 0;
-    $chance = 1;
+    $chance = 5;
     $hitsLeft = $maxHits - $minHits + 1;
     while ($hitsLeft > 0 && mt_rand(1, $hitsLeft) <= $chance) {
         $totalHits++;
@@ -181,12 +186,12 @@ function pkmnTakesDmg(&$pkmn, $damage, $isJoueur){
     usleep(500000);
     displaySpritePkmn($pkmn, $isJoueur);
     usleep(500000);
-
-    $pkmn['Stats']['Health'] -= $damage;
-    if($pkmn['Stats']['Health'] < 0){
-        $pkmn['Stats']['Health'] = 0;
+    if($damage < 0){
+        messageBoiteDialogue($pkmn['Name'] . ' heals ' . -$damage . ' Hp.');
     }
 
+    $pkmn['Stats']['Health'] -= $damage;
+    healthInBloc($pkmn);
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -234,6 +239,7 @@ function isTeamPkmnKO($teamPkmn){
     return false;
 }
 ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 
 
@@ -264,11 +270,15 @@ function switchPkmn(&$pkmnTeam ,$index){
     messageBoiteDialogue("Go ". $pkmnTeam[0]['Name']);
 }
 ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 
 //// STATUS DAMAGES ///////////////////////////////////////
 function ailmentChanceOnpKmn(&$capacite, &$pkmnDef){
     $ailment = $capacite['effects']['Ailment'];
+    if($pkmnDef['Status'] == $ailment['ailment']){
+        return;
+    }
     if(isset($ailment['ailment_chance']) && $ailment['ailment_chance'] != 0){
         $chance = rand(0,100);
         if($chance < $ailment['ailment_chance']){

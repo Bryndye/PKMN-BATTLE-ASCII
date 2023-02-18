@@ -31,11 +31,12 @@ $pokemonList = [];
 //     // $pokemonList[$i] = $pokemon;
 // }
 
-print_r($pokemonList);
+// print_r($pokemonList);
 
 $url = "https://pokeapi.co/api/v2/pokemon/1";
 $response = @file_get_contents($url);
-print($response);
+$capaciteData = json_decode($response, true);
+print_r($capaciteData);
 
 // if ($response === false) {
 //     echo "Error : failed to open stream for URL " . $url . "\n";
