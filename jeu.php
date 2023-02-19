@@ -16,23 +16,18 @@ include_once 'shopEchange.php';
 clear(); // Clear the screen
 // intro(); // INTRO & MENU START
 echo "\033[?25l"; // hide cursor
-shell_exec('mode con: cols=60 lines=32');
+// shell_exec('mode con: cols=60 lines=32');
 // init team battle : Le joueur a une team "fixe" 
-// enemy a une team genere proceduralement 
 $pkmnTeamJoueur = [
-    generatePkmnBattle('128', 10),
-    generatePkmnBattle('25', 50),
-    generatePkmnBattle('54', 50),
-    generatePkmnBattle('68', 50),
-    generatePkmnBattle('19', 50),
-    generatePkmnBattle('27', 50)
+    generatePkmnBattle('mewtwo', 10),
+    generatePkmnBattle(25, 50),
+    generatePkmnBattle(54, 50),
+    generatePkmnBattle(68, 50),
+    generatePkmnBattle(19, 50),
+    generatePkmnBattle(27, 50)
 ];
-// $pkmnTeamEnemy = [
-//     generatePkmnBattle('151', 100),
-//     generatePkmnBattle('150', 100),
-//     generatePkmnBattle('149', 100)
-// ];
-
+// print_r($pkmnTeamJoueur[0]);
+// sleep(10);
 // Loop fight tant que Equipe joueur a des pkmn en vie (a creer condition)
 while(true){
     // generer IA pkmn team

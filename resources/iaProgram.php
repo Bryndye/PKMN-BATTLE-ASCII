@@ -13,7 +13,7 @@ function generatePNJ($indexFloor, $level){
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "De toute façon je voulais chier..."
         ],
-        'Team' => generatePkmnTeam(1),
+        'Team' => generatePkmnTeam($level),
     ];
     return $pnj;
 }

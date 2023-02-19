@@ -1,26 +1,63 @@
 <?php 
 include 'resources/capacites.php';
 
-$json = file_get_contents('json/pokemons.json');
+$json = file_get_contents('json/pokemonsv1.json');
 $pokemonPokedex = json_decode($json, true);
 
-function getPkmnFromPokedex($index){
-    global $pokemonPokedex;
-    return $pokemonPokedex[$index];
+
+//// GET POKEMONS ///////////////////////////////////
+/////////////////////////////////////////////////////
+function getPokemon($pkmn){
+    if(is_numeric($pkmn)){
+        return getPokemonByIndex($pkmn);
+    }
+    elseif(is_string($pkmn)){
+        return getPkmnFromPokedex($pkmn);
+    }
 }
 
-function getPokedex($pkmn = '1'){
+function getPkmnFromPokedex($name){
     global $pokemonPokedex;
-    if(isset($pokemonPokedex[$pkmn])){
-        return $pokemonPokedex[$pkmn];
+    return $pokemonPokedex[$name];
+}
+
+function getPokemonByIndex($index = 1){
+    global $pokemonPokedex;
+    $keys = ["ignore this value"];
+    $keys = array_merge($keys, array_keys($pokemonPokedex));
+    // print_r($pokemonPokedex[$keys[$index]]);
+    // sleep(10);
+    if(isset($pokemonPokedex[$keys[$index]])){
+        return $pokemonPokedex[$keys[$index]];
     }
     else{
-        return $pokemonPokedex['1'];
+        return $pokemonPokedex[$keys[1]];
     }
 }
 
+function getPokemonByName($name){
+    global $pokemonPokedex;
+
+    if(isset($pokemonPokedex[$name])){
+        return $pokemonPokedex[$name];
+    }
+    else{
+        return $pokemonPokedex['bulbasaur'];
+    }
+}
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+
 function generatePkmnBattle($index, $level, $exp = 0){
-    $pkmn = getPkmnFromPokedex($index);
+    $pkmn = getPokemon($index);
+    $ivs = [
+        'Health' => rand(1,31),
+        'Atk' => rand(1,31),
+        'Def' => rand(1,31),
+        'Atk Spe' => rand(1,31),
+        'Def Spe' => rand(1,31),
+        'Vit' => rand(1,31),
+    ];
     $pokemonBattle = [
         'Name'=> $pkmn['Name'],
         'N Pokedex' => $pkmn['N Pokedex'],
@@ -38,14 +75,23 @@ function generatePkmnBattle($index, $level, $exp = 0){
             'Def Spe' => $pkmn['StatsBase']['Def Spe'],
             'Vit' => $pkmn['StatsBase']['Vit'],
         ],
+        'ivs' => $ivs,
+        'evs' =>[
+            'Health' => 0,
+            'Atk' => 0,
+            'Def' => 0,
+            'Atk Spe' => 0,
+            'Def Spe' => 0,
+            'Vit' => 0,
+        ],
         'Stats' => [
-            'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level),
-            'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level),
-            'Atk' => calculateStats($pkmn['StatsBase']['Atk'], $level),
-            'Def' => calculateStats($pkmn['StatsBase']['Def'], $level),
-            'Atk Spe' => calculateStats($pkmn['StatsBase']['Atk Spe'], $level),
-            'Def Spe' => calculateStats($pkmn['StatsBase']['Def Spe'], $level),
-            'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level),
+            'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
+            'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
+            'Atk' => calculateStats($pkmn['StatsBase']['Atk'], $level, $ivs['Atk']),
+            'Def' => calculateStats($pkmn['StatsBase']['Def'], $level, $ivs['Def']),
+            'Atk Spe' => calculateStats($pkmn['StatsBase']['Atk Spe'], $level, $ivs['Atk Spe']),
+            'Def Spe' => calculateStats($pkmn['StatsBase']['Def Spe'], $level, $ivs['Def Spe']),
+            'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level, $ivs['Vit']),
         ],
         'Stats Temp' => [
             'Atk' => 0,
@@ -71,15 +117,13 @@ function generatePkmnBattle($index, $level, $exp = 0){
     ];    
     return $pokemonBattle;
 }
-function calculateHealth($stat, $level){
-    // $health = ((2 * $pkmn['StatsBase']['Health']* $level)/100)+$level+10;
-    $result = ((2 * $stat* $level)/100)+$level+10;
+function calculateHealth($statBase, $level, $iv, $ev = 0){
+    $result = ((2 * ($statBase + $iv) * $level)/100)+$level+10;
     return intval($result);
 }
 
-function calculateStats($stat, $level){
-    // $stat = ((2 * $pkmn['StatsBase']['Health']* $level)/100+5);
-    $result = ((2 * $stat * $level)/100+5);
+function calculateStats($statBase, $level, $iv, $ev = 0){
+    $result = ((2 * ($statBase + $iv) * $level)/100+5);
     return intval($result);
 }
 
@@ -88,24 +132,34 @@ function calculateStats($stat, $level){
 function levelUp(&$pkmn, $expLeft){
     messageBoiteDialogue($pkmn['Name'].' level up!');
     sleep(1);
-
     $pkmn['Level']++;
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
+
     $newStats = [];
     $oldStats= [];
-    foreach($pkmn['StatsBase'] as $key =>&$stat){
+    foreach($pkmn['Stats'] as $key =>&$stat){
         if($key == 'Health'){
-            $newStats[$key] = calculateHealth($stat,$pkmn['Level']);
+            continue;
+        }
+        if($key != 'Health Max'){
+            $oldStats[$key] = $pkmn['Stats'][$key];
+        }
+        if($key == 'Health Max'){
+            $oldStats['Health'] = $pkmn['Stats'][$key];
+            $newStats['Health'] = calculateHealth($pkmn['StatsBase']['Health'],$pkmn['Level'], $pkmn['ivs']['Health']);
+            $stat = $newStats['Health'];
+            $pkmn['Stats']['Health'] += $newStats['Health']-$oldStats['Health'];
         }
         else{
-            $newStats[$key] = calculateStats($stat,$pkmn['Level']);
+            $newStats[$key] = calculateStats($pkmn['StatsBase'][$key],$pkmn['Level'], $pkmn['ivs'][$key]);
+            $stat = $newStats[$key];
         }
-        $oldStats[$key] = $pkmn['Stats'][$key];
-        $pkmn['Stats'][$key] = $newStats[$key];
     }
     levelUpWindow($oldStats, $newStats);
-
+    
+    // print_r($pkmn['ivs']);
+    // sleep(5);
     getExp($pkmn, $expLeft);
 }
 
@@ -127,7 +181,7 @@ function getNextLevelExp($currentLevel) {
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['exp base'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) *20;
+    return intval($exp)* 20;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
