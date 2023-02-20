@@ -1,7 +1,7 @@
 <?php 
 include 'resources/capacites.php';
 
-$json = file_get_contents('json/pokemonsv1.json');
+$json = file_get_contents('json/pokemonsv2.json');
 $pokemonPokedex = json_decode($json, true);
 
 
@@ -67,6 +67,10 @@ function generatePkmnBattle($index, $level, $exp = 0){
         'exp base' => 64,
         'Type 1' => $pkmn['Type 1'],
         'Type 2' => $pkmn['Type 2'],
+        'scale' => [
+            $pkmn['scale']['weight'],
+            $pkmn['scale']['height'],
+        ],
         'StatsBase' => [
             'Health' => $pkmn['StatsBase']['Health'],
             'Atk' => $pkmn['StatsBase']['Atk'],
@@ -109,7 +113,7 @@ function generatePkmnBattle($index, $level, $exp = 0){
         'Capacites' => [
             '0' => getCapacite('mega-drain'),
             '1' => getRandCapacites(),
-            '2' => getCapacite('hyper-beam'),
+            '2' => getCapacite('toxic'),
             '3' => getRandCapacites()
         ],
         'Sprite' => $pkmn['Sprite'],
@@ -192,6 +196,30 @@ function healthInBloc(&$pkmn){
     }
     else if($pkmn['Stats']['Health'] < 0){
         $pkmn['Stats']['Health'] = 0;
+    }
+}
+
+function resetTeamStatsTemp(&$pkmnTeam){
+    foreach($pkmnTeam as $pkmn){
+        resetStatsTemp($pkmn);
+    }
+}
+
+function resetStatsTemp(&$pkmn){
+    foreach($pkmn['Stats Temp'] as $statTemp){
+        if(is_numeric($statTemp)){
+            $statTemp = 0;
+        }
+        else if(is_bool($statTemp)){
+            $statTemp = false;
+        }
+        else if($statTemp == 'Substitute'){
+            foreach($statTemp as $stats){
+                $stats['Health Max'] =  3;
+                $stats['Health'] = 0;
+                $stats['Used'] = false;
+            }
+        }
     }
 }
 ?>

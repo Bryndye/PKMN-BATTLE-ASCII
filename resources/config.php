@@ -73,4 +73,9 @@ function getPosChoice(){
 }
 ///////////////////////////////////////////////////////
 
+function multipleOf($number, $multiple) {
+    $result = bcdiv($number, $multiple, 0); // 0 decimal places
+    return $result;
+}
+
 ?>

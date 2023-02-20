@@ -26,4 +26,41 @@ function setCapacitePlayable($capacite){
     unset($capacite['Pkmns Learned']);
     return $capacite;
 }
+
+function setPowerCapacityPourcentByWeight($pkmn){
+    $weight = $pkmn['weight']; 
+    $power = 20;  
+    if($weight < 10){
+        $power = 20;
+    }
+    else if ($weight < 25) {
+        $power = 40;
+    } 
+    else if ($weight < 50) {
+        $power = 60;
+    }
+    else if ($weight < 100) {
+        $power = 80;
+    }
+    else if ($weight <= 200) {
+        $power = 100;
+    }
+    else{
+        $power = 120;
+    }   
+    return $power;
+}   
+
+function setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite){
+    $power = $capacite['Power'];
+    $factor = multipleOf($power, 2);
+    return $factor * 20; 
+}
+
+function setPowerCapacityToOS($pkmnDef, $capacite){
+    // print($pkmnDef['Stats']['Health']);
+    // sleep(1);
+    return 10000;
+}
+
 ?>

@@ -21,10 +21,12 @@ function whichPkmnHasPriority($pkmnJoueur, $pkmnEnemy, $capacite, $capaciteE){
     return $joueurPriority;
 }
 
+
 function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamage = false){
     attackBehaviourPkmn($pkmnAtk, $pkmnDef,$isJoueurTakeDamage,$capacite);
     return isPkmnDead($pkmnDef, $isJoueurTakeDamage);
 }
+
 
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &$capacite){
     $ailmentParalysis = false;
@@ -38,21 +40,51 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
+    // failed capacity
+    usleep(500000);
+    $chance = rand(0,100);
+    if($chance > $capacite['Accuracy']){
+        messageBoiteDialogue('But it failed');
+        return;
+    }
+
+    // penser au Power="reset" et status qui applique status="PSN"
     if($capacite['Category'] == 'status'){
-        boostStatsTemp($pkmnAtk, $capacite);
+
+        $ailment = $capacite['effects']['Ailment'];
+        if($capacite['Power'] == 'reset'){
+            // do something
+        }
+        else if(is_string($ailment['ailment'])){
+            ailmentChanceOnpKmn($capacite, $pkmnDef, true);
+        }
+        else{
+            boostStatsTemp($pkmnAtk, $pkmnDef, $capacite);           
+        }
     }
     else{
         damageCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
     }
-    updateHealthPkmn(getPosHealthPkmn($isJoueurTakeDamage),$pkmnDef['Stats']['Health'], $pkmnDef['Stats']['Health Max']);
+    createPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
     usleep(500000);
 }
 
-// fct calculator dmg capacite + stats
-function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){    
 
-    if(!is_numeric($capacite['Power'])){
-        $capacite['Power'] = 0;
+// fct calculator dmg capacite + stats
+function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){  
+    $power = $capacite['Power'];
+    if(is_string($capacite['Power'])){
+        if($capacite['Power'] == 'ko'){
+            $power = setPowerCapacityToOS($pkmnDef, $capacite);
+        }
+        else if($capacite['Power'] == 'weight'){
+            $power = setPowerCapacityPourcentByWeight($pkmn);
+        }else if($capacite['Power'] == 'speed'){
+            $power = setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite);
+        }
+        else if($capacite['Power'] == 'random'){
+            $capacite = getRandCapacites();
+        }
     }
     // 1ere etape
     $a = (2 * $pkmnAtk['Level'] +10)/250;
@@ -82,7 +114,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     $isCrit = false; // doit creer le crit avec capacite
     $efficace = checkTypeMatchup($capacite['Type'], $pkmnDef['Type 1']) * checkTypeMatchup($capacite['Type'], $pkmnDef['Type 2']);
     $random = rand(85,100) / 100;
-    $c = $capacite['Power'] * $stab * $efficace * $isBurned * $random;
+    $c = $power * $stab * $efficace * $isBurned * $random;
     // c = Capacite Base atk* STAB(1-2)* Type(0.5-4)* Critical(1-2)* random([0.85,1]}
 
     $finalDamage = ceil($a * $b * $c); // final damage
@@ -130,17 +162,28 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function boostStatsTemp(&$pkmnAtk, $capacite){
+function boostStatsTemp(&$pkmnAtk, $pkmnDef, $capacite){
     $effects = $capacite['effects'];
     if(isset($effects['Stats Self'])){
         foreach($effects['Stats Self'] as $stat){
-            $chance = rand(0,10);
+            $chance = rand(0,100);
             if($chance < $stat[2]){ 
                 $pkmnAtk['Stats Temp'][$stat[1]] > 6 ?
                     6:  $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
             }
 
             messageBoiteDialogue($pkmnAtk['Name']." has boost for ". $stat[1]."!");
+        }
+    }
+    if(isset($effects['Stats Target'])){
+        foreach($effects['Stats Target'] as $stat){
+            $chance = rand(0,100);
+            if($chance < $stat[2]){ 
+                $pkmnDef['Stats Temp'][$stat[1]] < -6 ?
+                    -6:  $pkmnDef['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
+            }
+
+            messageBoiteDialogue($pkmnDef['Name']." gets down on ". $stat[1]."!");
         }
     }
 }
@@ -159,12 +202,6 @@ function calculateBoostTemps($pkmn, $stat){
     }
     
     return $varTop / $varBot;
-}
-
-function resetStatsTemp(&$pkmn){
-    foreach($pkmn['Stats Temp'] as &$stat){
-        $stat = 0;
-    }
 }
 
 function getHits($minHits, $maxHits) {
@@ -274,17 +311,27 @@ function switchPkmn(&$pkmnTeam ,$index){
 
 
 //// STATUS DAMAGES ///////////////////////////////////////
-function ailmentChanceOnpKmn(&$capacite, &$pkmnDef){
+function ailmentChanceOnpKmn(&$capacite, &$pkmnDef, $isStatusCap = false){
     $ailment = $capacite['effects']['Ailment'];
     if($pkmnDef['Status'] == $ailment['ailment']){
         return;
     }
-    if(isset($ailment['ailment_chance']) && $ailment['ailment_chance'] != 0){
+
+    if($capacite['Category'] == 'status'){
+        $pkmnDef['Status'] = status($ailment['ailment']);
+        messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment']);
+        return;
+    }
+    else if(isset($ailment['ailment_chance']) && $ailment['ailment_chance'] != 0){
         $chance = rand(0,100);
-        if($chance < $ailment['ailment_chance']){
+        if($chance <= $ailment['ailment_chance']){
             $pkmnDef['Status'] = status($ailment['ailment']);
             messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment']);
+            return;
         }
+    }
+    if($isStatusCap){
+        messageBoiteDialogue('But it failed');
     }
 }
 

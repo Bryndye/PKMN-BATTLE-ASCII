@@ -121,8 +121,13 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
     
     // array_push($actionsTurn, $actionEnemy,$actionJoueur);
     // array_push($actionsTurn, $actionJoueur); // first
+    // print($pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]]);
+    // sleep(2);
+    $priorityJoueur = isActionBePriority($pkmnTeamJoueur[0], $arrayJoueur); 
+    // isset($pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]]) ? $pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]] : 0;
+    $priorityEnemy = isActionBePriority($pkmnTeamEnemy[0], $arrayEnemy); 
 
-    $joueurPriority = whichPkmnHasPriority($pkmnTeamJoueur[0],$pkmnTeamEnemy[0], $pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]], $pkmnTeamEnemy[0]['Capacites'][$arrayEnemy[1]]);
+    $joueurPriority = whichPkmnHasPriority($pkmnTeamJoueur[0],$pkmnTeamEnemy[0], $priorityJoueur, $priorityEnemy);
     
     if($joueurPriority /*|| $actionPriority*/){   
         array_push($actionsTurn, $actionJoueur); // first
@@ -175,6 +180,21 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
     }  
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function isActionBePriority($pkmn, $action){
+    if($action[0] != '1'){
+        return 0;
+    }
+    $priority = isset($pkmn['Capacites'][$action[1]]) ? $pkmn['Capacites'][$action[1]] : 0;
+    return $priority;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
     messageBoiteDialogue("You've fainted " . $pkmnE['Name']);
     foreach($pkmnTeamJoueur as &$pkmn){
@@ -184,7 +204,7 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
 }   
 
 function endBattle($pkmnTeamJoueur, $pnj){
-    resetStatsTemp($pkmnTeamJoueur[0]);
+    resetTeamStatsTemp($pkmnTeamJoueur);
     messageBoiteDialogue("You've fainted " . $pnj['Nom']);
     sleep(2);
     messageBoiteDialogue($pnj['Dialogues']['end']);
