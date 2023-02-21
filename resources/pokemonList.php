@@ -50,6 +50,8 @@ function getPokemonByName($name){
 
 function generatePkmnBattle($index, $level, $exp = 0){
     $pkmn = getPokemon($index);
+    // print_r($pkmn);
+    // sleep(50);
     $ivs = [
         'Health' => rand(1,31),
         'Atk' => rand(1,31),
@@ -112,12 +114,16 @@ function generatePkmnBattle($index, $level, $exp = 0){
         ],
         'Capacites' => [
             '0' => getCapacite('tackle'),
-            '1' => getCapacite('growl'),
+            '1' => getCapacite('flamethrower'),
             '2' => getRandCapacites(),
             '3' => getRandCapacites()
         ],
         'Sprite' => $pkmn['Sprite'],
-        'Status' => ''
+        'Status' => '',
+        'evolution' => [
+            'Name' => is_array($pkmn['evolutions']['after']) ? $pkmn['evolutions']['after']['Name'] : null,
+            'Level' => is_array($pkmn['evolutions']['after']) ? $pkmn['evolutions']['after']['min level'] : null
+        ]
     ];    
     return $pokemonBattle;
 }
@@ -177,6 +183,7 @@ function getExp(&$pkmn, $exp){
     if($pkmn['exp'] >= $pkmn['expToLevel']){
         $expLeft = $pkmn['exp'] - $pkmn['expToLevel'];
         levelUp($pkmn, $expLeft);
+        checkThingsToDoLevelUp($pkmn);
     }
 }
 
@@ -233,4 +240,57 @@ function resetStatsTemp(&$pkmn){
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
+function checkThingsToDoLevelUp(&$pkmn){
+    $capArray = getPokemon($pkmn['Name'])['capacites'];
+    if($pkmn['Level'] >= $capArray[0]){
+        print('bouh');
+    }
+    if($pkmn['Level'] >= $pkmn['evolution']['Level']){
+        evolution($pkmn);
+    }
+}
+
+function evolution(&$pkmn){
+    clearInGame();
+    displayBoiteDialogue();
+    messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
+    $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
+
+    include 'visuals/sprites.php';
+    displaySprite($pokemonSprites[$pkmn['Sprite']], [5,16]);
+    sleep(1);
+    clearSprite([5,16]);
+    sleep(1);
+    displaySprite($pokemonSprites[$pkmnEvol['Sprite']], [5,16]);
+    setStatsToEvol($pkmn, $pkmnEvol);
+}
+
+function setStatsToEvol(&$pkmn, $pkmnToEvolve){
+    foreach($pkmnToEvolve as $key=>$stat){
+        $pkmn[$key] = $stat;
+    }
+    $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
+
+    $newStats = [];
+    $oldStats= [];
+    foreach($pkmn['Stats'] as $key =>&$stat){
+        if($key == 'Health'){
+            continue;
+        }
+        if($key != 'Health Max'){
+            $oldStats[$key] = $pkmn['Stats'][$key];
+        }
+        if($key == 'Health Max'){
+            $oldStats['Health'] = $pkmn['Stats'][$key];
+            $newStats['Health'] = calculateHealth($pkmn['StatsBase']['Health'],$pkmn['Level'], $pkmn['ivs']['Health']);
+            $stat = $newStats['Health'];
+            $pkmn['Stats']['Health'] += $newStats['Health']-$oldStats['Health'];
+        }
+        else{
+            $newStats[$key] = calculateStats($pkmn['StatsBase'][$key],$pkmn['Level'], $pkmn['ivs'][$key]);
+            $stat = $newStats[$key];
+        }
+    }
+    // charmeleon evole into charmeleon
+}
 ?>

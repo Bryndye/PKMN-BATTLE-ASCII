@@ -74,13 +74,13 @@ function chooseFirstPokemon(){
 
     $choice = waitForInput([31,0], [1,2,3]);
     if($choice == 1){
-        return generatePkmnBattle('bulbasaur', 5);
+        return generatePkmnBattle('bulbasaur', 15);
     }
     else if($choice == 2){
-        return generatePkmnBattle('squirtle', 5);
+        return generatePkmnBattle('squirtle', 15);
     }
     else if($choice == 3){
-        return generatePkmnBattle('charmander', 5);
+        return generatePkmnBattle('charmander', 15);
     }
 }
 ?>

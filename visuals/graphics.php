@@ -100,6 +100,12 @@ function clear(){
     echo "\033c";
 }
 
+function clearSprite($pos){
+    $posClearSprite = [$pos[0]+1,$pos[1]];
+    $scaleClear = getScaleSpritePkmn();
+    clearArea($scaleClear,$posClearSprite);
+}
+
 function clearSpritePkmn($isJoueur, $pauseTime = 0){
     if($pauseTime != 0){
         sleep($pauseTime);
