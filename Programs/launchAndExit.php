@@ -60,4 +60,27 @@ function exitGame(){
     echo "\033c";
     exit();
 }
+
+
+
+function chooseFirstPokemon(){
+    displayBoiteDialogue();
+    messageBoiteDialogue('Choose your first Pokemon :    
+1 : Bulbi  2 : Carapuce  3 : Charmander');
+    include 'visuals/sprites.php';
+    displaySprite($pokemonSprites["Cat"], [-3,16]);
+    displaySprite($pokemonSprites["Cat"], [8,2]);
+    displaySprite($pokemonSprites["Cat"], [8,32]);
+
+    $choice = waitForInput([31,0], [1,2,3]);
+    if($choice == 1){
+        return generatePkmnBattle('bulbasaur', 5);
+    }
+    else if($choice == 2){
+        return generatePkmnBattle('squirtle', 5);
+    }
+    else if($choice == 3){
+        return generatePkmnBattle('charmander', 5);
+    }
+}
 ?>

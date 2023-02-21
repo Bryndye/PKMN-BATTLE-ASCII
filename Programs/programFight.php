@@ -267,7 +267,7 @@ function isPkmnDead_simple(&$pkmn){
     }
 }
 
-function isTeamPkmnKO($teamPkmn){
+function isTeamPkmnAlive($teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){
             return true;

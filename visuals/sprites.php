@@ -171,6 +171,8 @@ $pokemonSprites = [
 
 ',
     'Cat' => '
+    
+
 
 
 ( \
@@ -183,8 +185,7 @@ $pokemonSprites = [
 \   \/\      (\   )
  \   ) \     ) \  \
   /  ) /__  /_  )( \
- (___)))__))(__))(__)))
-    ',
+ (___)))__))(__))(__)))',
 
     // les limites de 'zone' sont compris dans le sprite
     'Zone' => '

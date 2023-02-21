@@ -54,18 +54,16 @@ function writeSentence($string, $pos, $scale = 0){
     echo $string;
 }
 
-function limitSentence($string, $scale){
-    $texte = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod nunc a nunc laoreet, quis varius odio ultrices.";
-    $x = 20; // taille maximale du texte
-    $y = 10; // position où le texte doit se terminer
+function limitSentence($string, $scale = 50, $pos = [26,4]){
+    $x = $scale; // taille maximale du texte
 
     // Découpe le texte en plusieurs lignes en respectant une longueur maximale de x caractères par ligne
-    $texteDecoupe = wordwrap($texte, $x, "\n", true);
+    $texteDecoupe = wordwrap($string, $x, "\n", true);
 
     // Affiche chaque ligne de texte en respectant la position y
     $lines = explode("\n", $texteDecoupe);
     for ($i = 0; $i < count($lines); $i++) {
-        echo "\033[" . ($y + $i) . ";0H"; // positionne le curseur à la ligne y+i et à la colonne 0
+        echo "\033[".$pos[0]+$i.";".$pos[1]."H";
         echo $lines[$i]; // affiche la ligne de texte
     }
 }
@@ -144,8 +142,9 @@ function displayBoiteDialogue(){
 
 function messageBoiteDialogue($message){
     clearBoiteDialogue();
-    echo "\033[26;4H";
-    echo $message;
+    limitSentence($message);
+    // echo "\033[26;4H";
+    // echo $message;
     sleep(1);
     // waitForInput([30,0]);
 }

@@ -29,7 +29,7 @@ function startFight(&$pkmnTeamJoueur, &$pnj){
 function gameplayLoop(&$pkmnTeamJoueur, &$pnj){
     $pkmnTeamEnemy = &$pnj['Team'];
     // while dun combat tant que les equipes sont pleines
-    while(isTeamPkmnKO($pkmnTeamJoueur) && isTeamPkmnKO($pkmnTeamEnemy)){
+    while(isTeamPkmnAlive($pkmnTeamJoueur) && isTeamPkmnAlive($pkmnTeamEnemy)){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
         if(isPkmnDead_simple($pkmnTeamEnemy[0])){
             choosePkmn($pkmnTeamEnemy);
@@ -205,9 +205,14 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
 
 function endBattle($pkmnTeamJoueur, $pnj){
     resetTeamStatsTemp($pkmnTeamJoueur);
-    messageBoiteDialogue("You've fainted " . $pnj['Nom']);
-    sleep(2);
-    messageBoiteDialogue($pnj['Dialogues']['end']);
-    sleep(2);
+    if(!isTeamPkmnAlive($pkmnTeamJoueur)){
+        messageBoiteDialogue("You lost");
+    }
+    else{
+        messageBoiteDialogue("You've fainted " . $pnj['Nom']);
+        sleep(2);
+        messageBoiteDialogue($pnj['Dialogues']['end']);
+        sleep(2);
+    }
 }
 ?>

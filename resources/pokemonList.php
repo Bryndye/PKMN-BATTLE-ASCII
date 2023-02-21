@@ -111,9 +111,9 @@ function generatePkmnBattle($index, $level, $exp = 0){
             ]
         ],
         'Capacites' => [
-            '0' => getCapacite('mega-drain'),
-            '1' => getRandCapacites(),
-            '2' => getCapacite('toxic'),
+            '0' => getCapacite('tackle'),
+            '1' => getCapacite('growl'),
+            '2' => getRandCapacites(),
             '3' => getRandCapacites()
         ],
         'Sprite' => $pkmn['Sprite'],
@@ -167,6 +167,9 @@ function levelUp(&$pkmn, $expLeft){
     getExp($pkmn, $expLeft);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
 function getExp(&$pkmn, $exp){
     $pkmn['exp'] += $exp;
     messageBoiteDialogue($pkmn['Name'].' obtained '.$exp.'!');
@@ -185,10 +188,13 @@ function getNextLevelExp($currentLevel) {
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['exp base'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp)* 20;
+    return intval($exp) * 10;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
+function fullHealTeam(&$teamPkmn){
+
+}
 
 function healthInBloc(&$pkmn){
     if($pkmn['Stats']['Health'] > $pkmn['Stats']['Health Max']){
@@ -198,6 +204,8 @@ function healthInBloc(&$pkmn){
         $pkmn['Stats']['Health'] = 0;
     }
 }
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 
 function resetTeamStatsTemp(&$pkmnTeam){
     foreach($pkmnTeam as $pkmn){
@@ -222,4 +230,7 @@ function resetStatsTemp(&$pkmn){
         }
     }
 }
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
 ?>

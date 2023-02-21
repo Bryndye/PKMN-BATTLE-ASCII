@@ -20,8 +20,8 @@ function generatePNJ($indexFloor, $level){
 
 function generatePkmnTeam($level = 5){
     $pkmnTeam = [];
-    for($i=0; $i<rand(1,6); ++$i){
-        array_push($pkmnTeam, generatePkmnBattle(rand(0,151), $level + rand(-2,2)));
+    for($i=0; $i<rand(1,1); ++$i){
+        array_push($pkmnTeam, generatePkmnBattle(rand(0,151), $level + rand(-4,-1)));
     }
     return $pkmnTeam;
 }
