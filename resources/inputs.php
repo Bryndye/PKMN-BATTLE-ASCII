@@ -1,9 +1,14 @@
 <?php
-function waitForInput($pos, $options = null){
+function waitForInput($pos, $options = null, $string = null){
     // créer la phrase choose
     $sentence = 'Choose ';
     if($options == null){
-        $sentence = 'Enter to keep going';
+        if($string){
+            $sentence = $string;
+        }
+        else{
+            $sentence = 'Enter to keep going';
+        }
     }
     else{
         for($i=0;$i<count($options);++$i){

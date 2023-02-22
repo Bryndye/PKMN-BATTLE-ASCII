@@ -121,8 +121,8 @@ function generatePkmnBattle($index, $level, $exp = 0){
         'Sprite' => $pkmn['Sprite'],
         'Status' => '',
         'evolution' => [
-            'Name' => is_array($pkmn['evolutions']['after']) ? $pkmn['evolutions']['after']['Name'] : null,
-            'Level' => is_array($pkmn['evolutions']['after']) ? $pkmn['evolutions']['after']['min level'] : null
+            'Name' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['Name'] : null,
+            'Level' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['min level'] : null
         ]
     ];    
     return $pokemonBattle;
@@ -195,7 +195,7 @@ function getNextLevelExp($currentLevel) {
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['exp base'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) * 10;
+    return intval($exp) * 100;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -263,6 +263,8 @@ function evolution(&$pkmn){
     sleep(1);
     displaySprite($pokemonSprites[$pkmnEvol['Sprite']], [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
+    sleep(1);
+    messageBoiteDialogue('Tadadaa...');
 }
 
 function setStatsToEvol(&$pkmn, $pkmnToEvolve){

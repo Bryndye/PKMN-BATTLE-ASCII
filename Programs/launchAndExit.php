@@ -6,7 +6,7 @@ function intro(){
     
     // Animation de * en diagonale sur l'écran
     for ($i = 0; $i < 30; $i++) {
-        clearArea([27,58],[2,2]); // Efface l'écran
+        clearArea([28,58],[2,2]); // Efface l'écran
         // echo "\033[?25l"; //hide cursor
         echo "\033[".$i.";".($i+$i)."H";
         echo "*";
@@ -19,37 +19,37 @@ function intro(){
 
 
     // Menu titre + press pour joueur
-    clearArea([27,58],[2,2]); // Efface l'écran
-    echo displaySprite($sprites['title'],[10,6]);
+    displayGameCadre();
+    displaySprite($sprites['title'],[10,6]);
     
-    // echo "\033[25;20H";
     // echo 'Press any to enter';
     waitForInput([25,20]);
-
-    // Lance le menu après être passé par l'intro
-    menuStart();
 }
 
 function animationIntro(){
     include 'visuals/sprites.php';
-    echo displaySprite($pokemonSprites['Charizard'],[1,2]);
+    displaySprite($pokemonSprites['Charizard'],[1,2]);
     sleep(2);
-    echo displaySprite($sprites['effectTitle'],[1,2]);
+    displaySprite($sprites['effectTitle'],[1,2]);
     sleep(1);
-    echo displaySprite($sprites['effectFireTitle'],[21,53]);
+    displaySprite($sprites['effectFireTitle'],[22,53]);
     sleep(1);
-    echo displaySprite($sprites['effectFireTitle2'],[20,4]);
+    displaySprite($sprites['effectFireTitle2'],[21,4]);
     sleep(1);
 }
 function menuStart(){
-    clearArea([27,58],[2,2]); // Efface l'écran
+    clearArea([28,58],[2,2]); // Efface l'écran
+    displayGameCadre();
     displayBox([7,20],[5,5]);
+
     echo "\033[7;7H";
-    echo "1 : NEW GAME";
+    echo isSaveExist('json/save.json',true) ? '1 : CONTINUE' : "1 : NEW GAME";
     echo "\033[9;7H";
     echo "2 : QUIT";
+    displayStatsFromSaveToMenu();
+
     // Attend la selection entre 1 et 2
-    $choice = waitForInput([30,0],[1,2]);
+    $choice = waitForInput([31,0],[1,2]);
     if($choice == 2){
         exitGame();
     }
@@ -61,12 +61,33 @@ function exitGame(){
     exit();
 }
 
+function displayStatsFromSaveToMenu(){
+    if(isSaveExist('json/myGame.json')){
+        displayBox([25,30],[3,28]);
+        $save = getSave('json/myGame.json');
+        writeSentence('Name : '.$save['name'], [5,30]);
+        writeSentence('Wins : '.$save['wins'], [7,30]);
+        writeSentence('Loses : '.$save['loses'], [9,30]);
 
+        if(isSaveExist()){
+            $saveFight = getSave();
+            
+            writeSentence("Money : ".$saveFight['money'], [11,30]);
+            
+            $y = 0;
+            // writeSentence('--------- Team ----------', [11,30]);
+            foreach($saveFight['team'] as $key => $pkmn){
+                writeSentence($pkmn['Name']."  Lv: ".$pkmn['Level'], [13+$y,30]);
+                $y +=2;
+            }
+        }
+    }
+}
 
 function chooseFirstPokemon(){
     displayBoiteDialogue();
     messageBoiteDialogue('Choose your first Pokemon :    
-1 : Bulbi  2 : Carapuce  3 : Charmander');
+1 : Bulbasaur  2 : Squirtle  3 : Charmander');
     include 'visuals/sprites.php';
     displaySprite($pokemonSprites["Cat"], [-3,16]);
     displaySprite($pokemonSprites["Cat"], [8,2]);

@@ -14,37 +14,54 @@ include_once 'Programs/programFight.php';
 include_once 'Programs/iaProgram.php';
 include_once 'Programs/shopEchange.php';
 
+
+//// SET THE GAME ////
 clear(); // Clear the screen
-// intro(); // INTRO & MENU START
 echo "\033[?25l"; // hide cursor
+shell_exec('mode con: cols=60 lines=32');
 
-// shell_exec('mode con: cols=60 lines=32');
-// init team battle : Le joueur a une team "fixe" 
-$save = getSaveIfExist();
-// print_r(count($save['team']));
-// sleep(50);
-$pkmnTeamJoueur = &$save['team'];
+// intro(); // INTRO & MENU START
 
-// Loop fight tant que Equipe joueur a des pkmn en vie (a creer condition)
+createSaveMyGame();
+
+//// GAME ////
 while(true){
-    // generer IA pkmn team
-    // $pkmnTeamEnemy = generatePkmnTeam();
-    $pnj = generatePNJ(0, $pkmnTeamJoueur[0]['Level']);
-    startFight($pkmnTeamJoueur, $pnj);
-    if(!isTeamPkmnAlive($pkmnTeamJoueur)){
-        deleteSave();
-        break;
+    menuStart();
+    //Sauvegardes joueur
+    $save = getSaveIfExist();
+    $pkmnTeamJoueur = &$save['team'];
+    
+
+    // Loop fight tant que Equipe joueur a des pkmn en vie
+    while(true){
+        // generer IA pkmn team
+        // $pkmnTeamEnemy = generatePkmnTeam();
+        $pnj = generatePNJ(0, $pkmnTeamJoueur[0]['Level']);
+        startFight($pkmnTeamJoueur, $pnj);
+
+        if(!isTeamPkmnAlive($pkmnTeamJoueur)){
+            addData(1, 'loses', 'json/myGame.json');
+            deleteSave();
+            break;
+        }
+        else{
+            addData(1, 'wins', 'json/myGame.json');
+            saveData($pkmnTeamJoueur, 'team');
+        }
+        // Choisir nouveau Pkmn ajout a lequipe
+        // waitForInput([30,0]);
+        // wantNewPkmn();
+        
+        // wild pokemon ou pokemon a donner
     }
-    else{
-        saveData($pkmnTeamJoueur, 'team');
-    }
+    // voulez vous continuez a jouer ? 
+    // si non save et break boucle
 }
-// Choisir nouveau Pkmn ajout a lequipe
-// waitForInput([30,0]);
-// wantNewPkmn();
+
+
+
 
 // FIN DU JEU 
-// Clear the screen
 clear();
 
 displayBox([5,30],[12,25]);
