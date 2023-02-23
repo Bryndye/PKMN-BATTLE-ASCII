@@ -355,7 +355,7 @@ function damageTurn(&$pkmn, $isJoueur){
         else if($pkmn['Status'] == 'PSN'){
             pkmnTakesDmg($pkmn, intval($pkmn['Stats']['Health Max'] * 0.10), $isJoueur);
         }
-        messageBoiteDialogue($pkmn['Name'] . ' takes damage from is status!');
+        messageBoiteDialogue($pkmn['Name'] . ' takes damage from its status!');
         sleep(1);
         updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmn['Stats']['Health'], $pkmn['Stats']['Health Max']);
         clearBoiteDialogue();

@@ -121,8 +121,8 @@ function generatePkmnBattle($index, $level, $exp = 0){
         'Sprite' => $pkmn['Sprite'],
         'Status' => '',
         'evolution' => [
-            'Name' => is_array($pkmn['evolutions']['after']) ? $pkmn['evolutions']['after']['Name'] : null,
-            'Level' => is_array($pkmn['evolutions']['after']) ? $pkmn['evolutions']['after']['min level'] : null
+            'Name' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['Name'] : null,
+            'Level' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['min level'] : null
         ]
     ];    
     return $pokemonBattle;
@@ -139,12 +139,12 @@ function calculateStats($statBase, $level, $iv, $ev = 0){
 
 
 //// EXPERIENCE FCTS ////////////////////////////////////////////////////////////////////
-function levelUp(&$pkmn, $expLeft){
-    messageBoiteDialogue($pkmn['Name'].' level up!');
-    sleep(1);
+function levelUp(&$pkmn, $expLeft, $inThisFct = false){
     $pkmn['Level']++;
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
+    messageBoiteDialogue($pkmn['Name'].' level up to '.$pkmn['Level'].'!');
+    sleep(1);
 
     $newStats = [];
     $oldStats= [];
@@ -170,19 +170,22 @@ function levelUp(&$pkmn, $expLeft){
     
     // print_r($pkmn['ivs']);
     // sleep(5);
-    getExp($pkmn, $expLeft);
+    getExp($pkmn, $expLeft, true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-function getExp(&$pkmn, $exp){
+function getExp(&$pkmn, $exp, $inThisFct = false){
     $pkmn['exp'] += $exp;
-    messageBoiteDialogue($pkmn['Name'].' obtained '.$exp.'!');
+    if(!$inThisFct){
+        messageBoiteDialogue($pkmn['Name'].' gets '.$exp.' exp!');
+    }
+
     sleep(1);
     if($pkmn['exp'] >= $pkmn['expToLevel']){
         $expLeft = $pkmn['exp'] - $pkmn['expToLevel'];
-        levelUp($pkmn, $expLeft);
+        levelUp($pkmn, $expLeft, $inThisFct);
         checkThingsToDoLevelUp($pkmn);
     }
 }
@@ -195,12 +198,15 @@ function getNextLevelExp($currentLevel) {
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['exp base'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) * 10;
+    return intval($exp) * 20;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function fullHealTeam(&$teamPkmn){
-
+    foreach($teamPkmn as &$pkmn){
+        $pkmn['Stats']['Health'] = $pkmn['Stats']['Health Max'];
+        $pkmn['Status'] = '';
+    }
 }
 
 function healthInBloc(&$pkmn){
@@ -263,6 +269,8 @@ function evolution(&$pkmn){
     sleep(1);
     displaySprite($pokemonSprites[$pkmnEvol['Sprite']], [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
+    sleep(1);
+    messageBoiteDialogue('Tadadaa...');
 }
 
 function setStatsToEvol(&$pkmn, $pkmnToEvolve){
@@ -289,6 +297,12 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
         else{
             $newStats[$key] = calculateStats($pkmn['StatsBase'][$key],$pkmn['Level'], $pkmn['ivs'][$key]);
             $stat = $newStats[$key];
+        }
+        if($key == 'evolution'){ // JAI ECHOUE
+            $stat['evolution'] = [
+                'Name' => is_array($pkmnToEvolve['evolution']['after']) ? $pkmnToEvolve['evolution']['after']['Name'] : null,
+                'Level' => is_array($pkmnToEvolve['evolution']['after']) ? $pkmnToEvolve['evolution']['after']['min level'] : null
+            ];
         }
     }
     // charmeleon evole into charmeleon

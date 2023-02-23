@@ -93,7 +93,7 @@ function clearArea($scale, $pos){
 }
 
 function clearInGame(){
-    clearArea([27,58], [2,2]);
+    clearArea([28,58], [2,2]);
 }
 
 function clear(){
@@ -146,13 +146,15 @@ function displayBoiteDialogue(){
     displayBox(getScaleDialogue(), getPosDialogue());
 }
 
-function messageBoiteDialogue($message){
+function messageBoiteDialogue($message, $pressEnter = false){
     clearBoiteDialogue();
     limitSentence($message);
-    // echo "\033[26;4H";
-    // echo $message;
-    sleep(1);
-    // waitForInput([30,0]);
+    if($pressEnter){
+        waitForInput();
+    }
+    else{
+        sleep(1);
+    }
 }
 function clearBoiteDialogue(){
     $pos = getPosDialogue();
