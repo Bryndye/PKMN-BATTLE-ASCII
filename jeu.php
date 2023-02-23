@@ -20,7 +20,7 @@ clear(); // Clear the screen
 echo "\033[?25l"; // hide cursor
 shell_exec('mode con: cols=60 lines=32');
 
-// intro(); // INTRO & MENU START
+intro(); // INTRO & MENU START
 
 startGame();
 
