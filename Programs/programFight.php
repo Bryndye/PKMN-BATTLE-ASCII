@@ -78,7 +78,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             $power = setPowerCapacityToOS($pkmnDef, $capacite);
         }
         else if($capacite['Power'] == 'weight'){
-            $power = setPowerCapacityPourcentByWeight($pkmn);
+            $power = setPowerCapacityPourcentByWeight($pkmnAtk);
         }else if($capacite['Power'] == 'speed'){
             $power = setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite);
         }

@@ -275,7 +275,15 @@ function evolution(&$pkmn){
 
 function setStatsToEvol(&$pkmn, $pkmnToEvolve){
     foreach($pkmnToEvolve as $key=>$stat){
-        $pkmn[$key] = $stat;
+        if($key == 'evolution'){ // JAI ECHOUE
+            $pkmn[$key] = [
+                'Name' => is_array($pkmnToEvolve['evolution']['after']) ? $pkmnToEvolve['evolution']['after']['Name'] : null,
+                'Level' => is_array($pkmnToEvolve['evolution']['after']) ? $pkmnToEvolve['evolution']['after']['min level'] : null
+            ];
+        }
+        else{
+            $pkmn[$key] = $stat;
+        }
     }
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
 
@@ -297,12 +305,6 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
         else{
             $newStats[$key] = calculateStats($pkmn['StatsBase'][$key],$pkmn['Level'], $pkmn['ivs'][$key]);
             $stat = $newStats[$key];
-        }
-        if($key == 'evolution'){ // JAI ECHOUE
-            $stat['evolution'] = [
-                'Name' => is_array($pkmnToEvolve['evolution']['after']) ? $pkmnToEvolve['evolution']['after']['Name'] : null,
-                'Level' => is_array($pkmnToEvolve['evolution']['after']) ? $pkmnToEvolve['evolution']['after']['min level'] : null
-            ];
         }
     }
     // charmeleon evole into charmeleon
