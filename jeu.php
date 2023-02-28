@@ -18,9 +18,9 @@ include_once 'Programs/shopEchange.php';
 //// SET THE GAME ////
 clear(); // Clear the screen
 echo "\033[?25l"; // hide cursor
-shell_exec('mode con: cols=60 lines=32');
+// shell_exec('mode con: cols=60 lines=32');
 
-intro(); // INTRO & MENU START
+// intro();
 
 startGame();
 
@@ -34,10 +34,15 @@ while(true){
 
 
     // Loop fight tant que Equipe joueur a des pkmn en vie
+    if(array_key_exists('indexFloor', $save)){
+        $indexFloor = $save['indexFloor'];
+    }
+    else{
+        $indexFloor = 1;
+    }
     while(true){
         // generer IA pkmn team
-        // $pkmnTeamEnemy = generatePkmnTeam();
-        $pnj = generatePNJ(0, $pkmnTeamJoueur[0]['Level']);
+        $pnj = generatePNJ($indexFloor, $pkmnTeamJoueur[0]['Level']);
         startFight($pkmnTeamJoueur, $pnj);
 
         if(!isTeamPkmnAlive($pkmnTeamJoueur)){
@@ -46,11 +51,13 @@ while(true){
             break;
         }
         else{
+            ++$indexFloor;
             addData(1, 'wins', 'json/myGame.json');
+            addData($indexFloor, 'indexFloor', 'json/myGame.json');
             saveData($pkmnTeamJoueur, 'team');
         }
         // Choisir nouveau Pkmn ajout a lequipe
-        // waitForInput([30,0]);
+        waitForInput([31,0]);
         // wantNewPkmn();
         
         // wild pokemon ou pokemon a donner

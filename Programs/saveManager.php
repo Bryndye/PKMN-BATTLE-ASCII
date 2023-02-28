@@ -69,6 +69,7 @@ function createSaveMyGame(){
 function createSaveFights(){
     $json = [
         'team' => null,
+        'indexFloor' => 1,
         'money' => 1000,
         'items' => [
             'potion' => 5

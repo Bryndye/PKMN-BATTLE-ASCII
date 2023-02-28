@@ -38,7 +38,6 @@ function animationIntro(){
     sleep(1);
 }
 function menuStart(){
-    clearArea([28,58],[2,2]); // Efface l'écran
     displayGameCadre();
     displayBox([7,20],[5,5]);
 

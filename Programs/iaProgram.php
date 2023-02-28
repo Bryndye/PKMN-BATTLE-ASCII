@@ -6,17 +6,186 @@
 //     generatePkmnBattle('149', 100)
 // ];
 function generatePNJ($indexFloor, $level){
-    $pnj = [
-        'Nom' => 'PaBigOuf',
+    $pnj = generatePNJSpe($indexFloor, $level);
+    return $pnj;
+}
+
+function generatePNJSpe($indexFloor, $level){
+    global $pnjs;
+    if(array_key_exists($indexFloor, $pnjs)){
+        $pnj = $pnjs[$indexFloor];
+    }
+    // sleep(50);
+    if(!isset($pnj)){
+        $pnj = [
+            'Nom' => 'PaBigOuf',
+            'Sprite' => 'trainer',
+            'Dialogues' => [
+                'entrance' => "Tu vas prendre cher l'ami!",
+                'end' => "You are lucky! Next time you will lose."
+            ],
+            'Team' => generatePkmnTeam($level),
+        ];
+    }
+    return $pnj;
+}
+$pnjs = [
+    10 => [
+        'Nom' => 'Gym Leader Brock',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "De toute façon je voulais chier..."
+            'end' => "You are lucky! Next time you will lose."
         ],
-        'Team' => generatePkmnTeam($level),
-    ];
-    return $pnj;
-}
+        'Team' => [
+            generatePkmnBattle('geodude', 12),
+            generatePkmnBattle('onix', 14),
+        ],
+    ],
+    20 => [
+        'Nom' => 'Gym Leader Misty',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('staryu', 18),
+            generatePkmnBattle('starmie', 21),
+        ],
+    ],
+    30 => [
+        'Nom' => 'Gym Leader Lt. Surge',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('voltorb', 21),
+            generatePkmnBattle('pikachu', 18),
+            generatePkmnBattle('raichu', 24),
+        ],
+    ],
+    40 => [
+        'Nom' => 'Gym Leader Erika',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('victreebel', 29),
+            generatePkmnBattle('tangela', 24),
+            generatePkmnBattle('vileplume', 29),
+        ],
+    ],
+    50 => [
+        'Nom' => 'Gym Leader Koga',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('koffing', 37),
+            generatePkmnBattle('muk', 39),
+            generatePkmnBattle('koffing', 37),
+            generatePkmnBattle('weezing', 43),
+        ],
+    ],
+    60 => [
+        'Nom' => 'Gym Leader Sabrina',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('kadabra', 38),
+            generatePkmnBattle('mr.mime', 37),
+            generatePkmnBattle('venomoth', 38),
+            generatePkmnBattle('alakazam', 43),
+        ],
+    ],
+    70 => [
+        'Nom' => 'Gym Leader Blaine',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('growlithe', 42),
+            generatePkmnBattle('ponyta', 40),
+            generatePkmnBattle('rapidash', 42),
+            generatePkmnBattle('arcanine', 47),
+        ],
+    ],
+    80 => [
+        'Nom' => 'Gym Leader Giovanni',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('rhyhorn', 45),
+            generatePkmnBattle('dugtrio', 42),
+            generatePkmnBattle('nidoqueen', 44),
+            generatePkmnBattle('nidoking', 45),
+            generatePkmnBattle('rhydon', 50),
+        ],
+    ],
+    90 => [
+        'Nom' => 'Elite four Lorelei',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('geodude', 12),
+            generatePkmnBattle('onix', 14),
+        ],
+    ],
+    91 => [
+        'Nom' => 'Elite four Bruno',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('geodude', 12),
+            generatePkmnBattle('onix', 14),
+        ],
+    ],
+    92 => [
+        'Nom' => 'Elite four Olga',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('geodude', 12),
+            generatePkmnBattle('onix', 14),
+        ],
+    ],
+    93 => [
+        'Nom' => 'Elite four Peter Lance',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Tu vas prendre cher l'ami!",
+            'end' => "You are lucky! Next time you will lose."
+        ],
+        'Team' => [
+            generatePkmnBattle('geodude', 12),
+            generatePkmnBattle('onix', 14),
+        ],
+    ],
+];
 
 function generatePkmnTeam($level = 5){
     $pkmnTeam = [];
