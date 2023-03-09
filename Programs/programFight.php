@@ -5,7 +5,7 @@ function whichPkmnHasPriority($pkmnJoueur, $pkmnEnemy, $capacite, $capaciteE){
     $joueurPriority = true;
     $vitJoueur = $pkmnJoueur['Stats']['Vit'];
     $vitEnemy = $pkmnEnemy['Stats']['Vit'];
-
+    
     if($capacite['priority'] == $capaciteE['priority']){
         if($pkmnJoueur['Status'] == 'PAR'){
             $vitJoueur *= 0.5;
@@ -290,8 +290,14 @@ function searchNewPkmnInTeam(&$teamPkmn){
     }
     return null;
 }
-function selectPkmn($arrayChoice, &$pkmnTeam, &$currentPkmnE){
+function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false){
+    $arrayChoice = [];
     array_push($arrayChoice, 'c');
+    for($i=$startIndex;$i<count($pkmnTeam);++$i){
+        if($pkmnDeadSelect || !isPkmnDead_simple($pkmnTeam[$i])){
+            array_push($arrayChoice, ($i));
+        }
+    }
     $choice = waitForInput(getPosChoice(),$arrayChoice);
     return $choice;
 }

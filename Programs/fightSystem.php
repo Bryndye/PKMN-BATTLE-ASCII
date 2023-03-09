@@ -17,7 +17,7 @@ function startFight(&$pkmnTeamJoueur, &$pnj){
     // messageBoiteDialogue($pnj['Nom'].' wants to fight!'); // message trainer 
     // sleep(1);
 
-    // // animation pokeball
+    // animation pokeball
     // pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     // sleep(1);
     // pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
@@ -36,8 +36,8 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pnj){
             pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
-            $choicesPkmnTeam = displayPkmnTeam($pkmnTeamJoueur);
-            $choice2 = selectPkmn($choicesPkmnTeam, $pkmnTeamJoueur, $pkmnTeamEnemy[0]);
+            displayPkmnTeam($pkmnTeamJoueur, 1);
+            $choice2 = selectPkmn($pkmnTeamJoueur, 1);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
             displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
@@ -55,13 +55,14 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pnj){
 
 // FIGHT SYSTEM
 function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
+    $bag = getDataFromSave('items');
     while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
 
         displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         interfaceMenu();
 
         // init var choice of Player
-        $choice = waitForInput(getPosChoice(),[1,2/*,4*/]);
+        $choice = waitForInput(getPosChoice(),[1,2,3/*,4*/]);
         $choice2;
 
         $actionJoueur = null;
@@ -79,15 +80,18 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         }
         elseif($choice == 2){
             $a = $pkmnTeamJoueur[0];
-            $choicesPkmnTeam = displayPkmnTeam($pkmnTeamJoueur);
-            $choice2 = selectPkmn($choicesPkmnTeam, $pkmnTeamJoueur, $pkmnTeamEnemy[0]);
+            displayPkmnTeam($pkmnTeamJoueur);
+            $choice2 = selectPkmn($pkmnTeamJoueur, 1, true);
             if($choice2 != 'c'){           
                 displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }
         }
+        elseif($choice == 3){
+            $choice2 = displayBag($bag, $pkmnTeamJoueur);
+        }
         // elseif($choice == 4){
-            //     exitGame();
-            // }
+        //     exitGame();
+        // }
         $actionJoueur = "$choice $choice2";
 
         // Si aucune action choisie, retour au début
@@ -119,17 +123,16 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
     $arrayEnemy = explode(" ", $actionEnemy);
     $actionEnemy = ['choice' => $arrayEnemy, 'teamAtk' => &$pkmnTeamEnemy, 'teamDef' => &$pkmnTeamJoueur, 'isjoueur' =>false];
     
-    // array_push($actionsTurn, $actionEnemy,$actionJoueur);
-    // array_push($actionsTurn, $actionJoueur); // first
-    // print($pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]]);
-    // sleep(2);
+
     $priorityJoueur = isActionBePriority($pkmnTeamJoueur[0], $arrayJoueur); 
-    // isset($pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]]) ? $pkmnTeamJoueur[0]['Capacites'][$arrayJoueur[1]] : 0;
     $priorityEnemy = isActionBePriority($pkmnTeamEnemy[0], $arrayEnemy); 
 
-    $joueurPriority = whichPkmnHasPriority($pkmnTeamJoueur[0],$pkmnTeamEnemy[0], $priorityJoueur, $priorityEnemy);
+    $joueurPriority = true;
+    if($actionJoueur['choice'][0] == '1' && $actionEnemy['choice'][0] == '1'){
+        $joueurPriority = whichPkmnHasPriority($pkmnTeamJoueur[0],$pkmnTeamEnemy[0], $priorityJoueur, $priorityEnemy);
+    }
     
-    if($joueurPriority /*|| $actionPriority*/){   
+    if($joueurPriority){   
         array_push($actionsTurn, $actionJoueur); // first
         array_push($actionsTurn, $actionEnemy);
     }
@@ -137,11 +140,10 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
         array_push($actionsTurn, $actionEnemy); // first
         array_push($actionsTurn, $actionJoueur);
     }
-    // $actionPriority = false;
+
     foreach($actionsTurn as $action){
 
         if($action['choice'][0] == '2' || $action['choice'][0] == '3'){
-            // $actionPriority = $action['isjoueur'];
             $a = &$action;
             array_unshift($actionsTurn, $a); // ajoute $a en premier index
             for($i=1;$i<count($actionsTurn);++$i){
@@ -155,8 +157,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
     // si switch/ item, priorite sur les actions
     $aPkmnIsDead = false;
     foreach($actionsTurn as &$action){
-        // print_r($action['choice']);
-        // sleep(5);
+
         if($action['choice'][0] == '1' && !$aPkmnIsDead){
             $pkmnAtk = &$action['teamAtk'][0]; // first pkmn de l'attaquant
             $pkmnDef = &$action['teamDef'][0]; // first pkmn du défenseur
@@ -170,6 +171,9 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
             pkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
             usleep(500000);
             refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
+        }
+        elseif($action['choice'][0] == '3'){
+            manageBag();
         }
     }
     if(!isPkmnDead_simple($pkmnTeamJoueur[0])){

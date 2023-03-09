@@ -1,0 +1,37 @@
+{
+	"Potion":
+	{
+		"type": "heal",
+		"effect": "20"
+	},
+    "Super potion":
+	{
+		"type": "heal",
+		"effect": "50"
+	},
+    "Hyper potion":
+	{
+		"type": "heal",
+		"effect": "120"
+	},
+    "PokeBall":
+	{
+		"type": "capture",
+		"effect": "1"
+	},
+    "SuoerBall":
+	{
+		"type": "capture",
+		"effect": "1.5"
+	},
+    "HyperBall":
+	{
+		"type": "capture",
+		"effect": "2"
+	},
+    "Revive":
+	{
+		"type": "heal",
+		"effect": "1/2"
+	}
+}

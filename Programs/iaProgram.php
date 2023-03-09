@@ -24,6 +24,7 @@ function generatePNJSpe($indexFloor, $level){
                 'entrance' => "Tu vas prendre cher l'ami!",
                 'end' => "You are lucky! Next time you will lose."
             ],
+            'Bag' => [],
             'Team' => generatePkmnTeam($level),
         ];
     }
@@ -37,6 +38,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
             generatePkmnBattle('onix', 14),
@@ -49,6 +53,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('staryu', 18),
             generatePkmnBattle('starmie', 21),
@@ -60,6 +67,9 @@ $pnjs = [
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
+        ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
         ],
         'Team' => [
             generatePkmnBattle('voltorb', 21),
@@ -74,6 +84,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('victreebel', 29),
             generatePkmnBattle('tangela', 24),
@@ -86,6 +99,9 @@ $pnjs = [
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
+        ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
         ],
         'Team' => [
             generatePkmnBattle('koffing', 37),
@@ -101,6 +117,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('kadabra', 38),
             generatePkmnBattle('mr.mime', 37),
@@ -115,6 +134,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('growlithe', 42),
             generatePkmnBattle('ponyta', 40),
@@ -128,6 +150,9 @@ $pnjs = [
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
+        ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
         ],
         'Team' => [
             generatePkmnBattle('rhyhorn', 45),
@@ -144,6 +169,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
             generatePkmnBattle('onix', 14),
@@ -155,6 +183,9 @@ $pnjs = [
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
+        ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -168,6 +199,9 @@ $pnjs = [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
+        ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
             generatePkmnBattle('onix', 14),
@@ -179,6 +213,9 @@ $pnjs = [
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
+        ],
+        'Bag' => [
+            ["name"=>"Potion", "quantity"=>1]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),

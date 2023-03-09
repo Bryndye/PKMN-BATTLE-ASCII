@@ -23,7 +23,7 @@ function setFirstSave($pathFile = 'json/save.json'){ // TEAM JOUEUR TEMP FCT
     createSaveFights();
     $file = file_get_contents('json/save.json');
     $array = json_decode($file, true);
-    $array['team'][0] = chooseFirstPokemon();
+    $array['team'] = chooseFirstPokemon();
     return $array;
 }
 
@@ -72,7 +72,10 @@ function createSaveFights(){
         'indexFloor' => 1,
         'money' => 1000,
         'items' => [
-            'potion' => 5
+            [
+                'name'=>'Potion',
+                'quantity' => 5
+            ]
         ]
     ];
     $json = json_encode($json);

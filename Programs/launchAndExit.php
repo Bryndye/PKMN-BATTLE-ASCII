@@ -92,17 +92,19 @@ function chooseFirstPokemon(){
     messageBoiteDialogue('Choose your first Pokemon : 
        
 1 : Bulbasaur  2 : Squirtle  3 : Charmander');
-    
+    $team = [];
     $choice = waitForInput([31,0], [1,2,3]);
     if($choice == 1){
-        return generatePkmnBattle('bulbasaur', 15);
+        $team[0] = generatePkmnBattle('bulbasaur', 15);
     }
     else if($choice == 2){
-        return generatePkmnBattle('squirtle', 15);
+        $team[0] = generatePkmnBattle('squirtle', 15);
     }
     else if($choice == 3){
-        return generatePkmnBattle('charmander', 15);
+        $team[0] = generatePkmnBattle('charmander', 15);
     }
+    $team[1] = generatePkmnBattle(rand(1,151), 15);
+    return $team;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -135,7 +137,7 @@ function cinematicPresentation(){
     sleep(1);
     displaySprite($pokemonSprites["Pikachu"], $posSprite);
     messageBoiteDialogue("Here's Pikachu!", true);
-    messageBoiteDialogue("He's an electric type. You can meet him later in your journey.", true);
+    messageBoiteDialogue("He's an electric type. You can meet him later on your journey.", true);
     clearSprite($posSprite);
     displaySprite($sprites['trainer'], $posSprite);
     messageBoiteDialogue("By the way, what is your name?", true);

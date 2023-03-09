@@ -141,9 +141,15 @@ function calculateStats($statBase, $level, $iv, $ev = 0){
 //// EXPERIENCE FCTS ////////////////////////////////////////////////////////////////////
 function levelUp(&$pkmn, $expLeft, $inThisFct = false){
     $pkmn['Level']++;
+    if($pkmn['Level'] >= 100){
+        $pkmn['Level'] = 100;
+        $pkmn['expToLevel'] = 1;
+        $pkmn['exp'] = 1;
+        return;
+    }
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
-    messageBoiteDialogue($pkmn['Name'].' level up to '.$pkmn['Level'].'!');
+    messageBoiteDialogue($pkmn['Name'].' levels up to '.$pkmn['Level'].'!');
     sleep(1);
 
     $newStats = [];
@@ -177,6 +183,10 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false){
 ////////////////////////////////////////////////////////////////////////////////////////
 
 function getExp(&$pkmn, $exp, $inThisFct = false){
+    if($pkmn['Level'] >= 100){
+        return;
+    }
+
     $pkmn['exp'] += $exp;
     if(!$inThisFct){
         messageBoiteDialogue($pkmn['Name'].' gets '.$exp.' exp!');
@@ -251,7 +261,7 @@ function checkThingsToDoLevelUp(&$pkmn){
     if($pkmn['Level'] >= $capArray[0]){
         print('bouh');
     }
-    if($pkmn['Level'] >= $pkmn['evolution']['Level']){
+    if(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){
         evolution($pkmn);
     }
 }

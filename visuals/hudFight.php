@@ -196,21 +196,14 @@ function levelUpWindow($oldStats, $newStats){
 function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE){
     displayGameHUD($currentPkmnJ,$currentPkmnE);
 }
-function displayPkmnTeam(&$pkmnTeam, $pkmnDeath = false){
+function displayPkmnTeam(&$pkmnTeam){
     clearInGame();
     createPkmnHUD([13,3], $pkmnTeam[0]);
     
-    $arrayChoice = [];
-    $z = 1;
     for($i=1;$i<count($pkmnTeam);++$i){
-        $pos = [($z * 5) - 2,33];
+        $pos = [($i * 5) - 2,33];
         createPkmnHUD($pos, $pkmnTeam[$i]);
-        if(!isPkmnDead_simple($pkmnTeam[$i])){
-            array_push($arrayChoice, ($i));
-        }
-        ++$z;
     }
-    return $arrayChoice;
 }
 
 // MENU INTERFACE CHOICE PLAYER
