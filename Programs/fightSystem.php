@@ -2,11 +2,11 @@
 
 $statOpen = false;
 $stopLoop = false;
-// Transformer la function en selection de pkmn ?
-function startFight(&$pkmnTeamJoueur, &$pnj){
+// Animations de lancement de combat
+function startFight(&$joueur, &$pnj){
     displaySkeletonHUD();
     $pkmnTeamEnemy = &$pnj['Team'];
-
+    $pkmnTeamJoueur = &$joueur['Team'];
     // animation entrer dresseurs
     include 'visuals/sprites.php';
     // displaySprite($sprites['trainerBack'], getPosSpritePkmn(true));
@@ -22,12 +22,14 @@ function startFight(&$pkmnTeamJoueur, &$pnj){
     // sleep(1);
     // pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
     // sleep(1);
-    gameplayLoop($pkmnTeamJoueur, $pnj);
+
+    gameplayLoop($joueur, $pnj);
 }
 
-// Start the game loop
-function gameplayLoop(&$pkmnTeamJoueur, &$pnj){
+// Début du tour
+function gameplayLoop(&$joueur, &$pnj){
     $pkmnTeamEnemy = &$pnj['Team'];
+    $pkmnTeamJoueur = &$joueur['Team'];
     // while dun combat tant que les equipes sont pleines
     while(isTeamPkmnAlive($pkmnTeamJoueur) && isTeamPkmnAlive($pkmnTeamEnemy)){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
@@ -46,16 +48,19 @@ function gameplayLoop(&$pkmnTeamJoueur, &$pnj){
         }
     
         // lance le combat quand les pkmns sont en combat
-        loopFight($pkmnTeamJoueur, $pkmnTeamEnemy);
+        loopFight($joueur, $pnj);
     }
 
     // fct after battle
-    endBattle($pkmnTeamJoueur, $pnj);
+    endBattle($pkmnTeamJoueur, $pkmnTeamEnemy);
 }
 
-// FIGHT SYSTEM
-function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
-    $bag = getDataFromSave('items');
+// Selection du choix joueur et enemy
+function loopFight(&$joueur, &$pnj){
+    // print_r($joueur);
+    // sleep(5);
+    $pkmnTeamEnemy = &$pnj['Team'];
+    $pkmnTeamJoueur = &$joueur['Team'];
     while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
 
         displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
@@ -74,9 +79,7 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
                     array_push($arrayChoise2, ($i));
                 }
             }
-            // -- VERIFIER SI PP SUP A 0 --
             $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
-
         }
         elseif($choice == 2){
             $a = $pkmnTeamJoueur[0];
@@ -87,7 +90,9 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
             }
         }
         elseif($choice == 3){
-            $choice2 = displayBag($bag, $pkmnTeamJoueur);
+            $choice2 = chooseItems($joueur['Bag'], $pkmnTeamJoueur, $pnj['type']);
+            usleep(50000);
+            displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         }
         // elseif($choice == 4){
         //     exitGame();
@@ -95,34 +100,46 @@ function loopFight(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
         $actionJoueur = "$choice $choice2";
 
         // Si aucune action choisie, retour au début
-        if($actionJoueur == null || $choice2 == 'c'){            
+        if($actionJoueur == null || substr($choice2, 0, 1) == 'c'){            
             continue;
-        }      
+        }
 
         //  CHOIX DE IA SUR ATK
-        $actionEnemy = iaChoice($pkmnTeamJoueur, $pkmnTeamEnemy);
+        $actionEnemy = iaChoice($pkmnTeamJoueur, $pkmnTeamEnemy, $pnj['Bag']);
         
         // COMBAT AVEC ACTION JOUEUR ET ACTION ENEMY
         fight($pkmnTeamJoueur, $pkmnTeamEnemy, 
-        $actionJoueur, $actionEnemy); 
+        $actionJoueur, $actionEnemy, $joueur['Bag'], $pnj['Bag']); 
     } 
     if($pkmnTeamEnemy[0]['Stats']['Health'] <= 0 ){
         endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
     }
 }
 
-function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
+// Lancer les actions des joueurs
+function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$bagJ, &$bajE){
     clearBoiteDialogue();
     
     $actionsTurn = [];
 
     // voir quelle action a choisi le joueur 
     $arrayJoueur = explode(" ", $actionJoueur);
-    $actionJoueur = ['choice' => $arrayJoueur, 'teamAtk' => &$pkmnTeamJoueur, 'teamDef' => &$pkmnTeamEnemy, 'isjoueur' =>true];
+    $actionJoueur = [
+        'choice' => $arrayJoueur, 
+        'teamAtk' => &$pkmnTeamJoueur, 
+        'teamDef' => &$pkmnTeamEnemy, 
+        'isjoueur' => true,
+        'Bag' => &$bagJ
+    ];
     // voir quelle action a choisi l'ennemi 
     $arrayEnemy = explode(" ", $actionEnemy);
-    $actionEnemy = ['choice' => $arrayEnemy, 'teamAtk' => &$pkmnTeamEnemy, 'teamDef' => &$pkmnTeamJoueur, 'isjoueur' =>false];
-    
+    $actionEnemy = [
+        'choice' => $arrayEnemy, 
+        'teamAtk' => &$pkmnTeamEnemy, 
+        'teamDef' => &$pkmnTeamJoueur, 
+        'isjoueur' =>false,
+        'Bag' => &$bajE
+    ];  
 
     $priorityJoueur = isActionBePriority($pkmnTeamJoueur[0], $arrayJoueur); 
     $priorityEnemy = isActionBePriority($pkmnTeamEnemy[0], $arrayEnemy); 
@@ -173,7 +190,8 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy){
             refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
         elseif($action['choice'][0] == '3'){
-            manageBag();
+            useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
+            refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
     }
     if(!isPkmnDead_simple($pkmnTeamJoueur[0])){

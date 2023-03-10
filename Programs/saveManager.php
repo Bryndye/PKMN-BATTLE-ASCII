@@ -9,7 +9,7 @@ function getSaveIfExist(){
         $file = file_get_contents('json/save.json');
         $array = json_decode($file, true);
 
-        if(!isset($array['team'])){
+        if(!isset($array['Team'])){
             deleteSave();
             return setFirstSave();
         }
@@ -19,22 +19,22 @@ function getSaveIfExist(){
     }   
 }
 
-function setFirstSave($pathFile = 'json/save.json'){ // TEAM JOUEUR TEMP FCT
+function setFirstSave($pathFile = 'json/save.json'){ // Team JOUEUR TEMP FCT
     createSaveFights();
     $file = file_get_contents('json/save.json');
     $array = json_decode($file, true);
-    $array['team'] = chooseFirstPokemon();
+    $array['Team'] = chooseFirstPokemon();
     return $array;
 }
 
 function isSaveExist($path = 'json/save.json',$inTitle = false){
     if(file_exists($path)){
-        // Si la sauvegarde est existe mais pas de team alors delete et recommence
+        // Si la sauvegarde est existe mais pas de Team alors delete et recommence
         if($inTitle){
             $file = file_get_contents($path);
             $array = json_decode($file, true);
     
-            if(!isset($array['team'])){
+            if(!isset($array['Team'])){
                 deleteSave();
                 return false;
             }
@@ -68,13 +68,15 @@ function createSaveMyGame(){
 }
 function createSaveFights(){
     $json = [
-        'team' => null,
-        'indexFloor' => 1,
-        'money' => 1000,
-        'items' => [
+        'Team' => null,
+        'IndexFloor' => 1,
+        'Money' => 1000,
+        'Bag' => [
             [
-                'name'=>'Potion',
-                'quantity' => 5
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
             ]
         ]
     ];

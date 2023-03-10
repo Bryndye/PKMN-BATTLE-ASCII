@@ -257,16 +257,6 @@ function animatePkmnKo($pkmn, $isJoueur){
     messageBoiteDialogue($pkmn['Name'] . ' is K.O.');
 }
 
-function isPkmnDead_simple(&$pkmn){
-    // sleep(5);
-    if($pkmn['Stats']['Health'] <= 0){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
 function isTeamPkmnAlive($teamPkmn){
     for($i=0; $i<count($teamPkmn);++$i){
         if($teamPkmn[$i]['Stats']['Health'] > 0){

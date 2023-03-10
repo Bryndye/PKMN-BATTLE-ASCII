@@ -1,10 +1,5 @@
 <?php
-// Tout ce qui concerne IA
-// $pkmnTeamEnemy = [
-//     generatePkmnBattle('151', 100),
-//     generatePkmnBattle('150', 100),
-//     generatePkmnBattle('149', 100)
-// ];
+//// GENERATION D'UN PNJ //////////////////////////////////
 function generatePNJ($indexFloor, $level){
     $pnj = generatePNJSpe($indexFloor, $level);
     return $pnj;
@@ -15,10 +10,11 @@ function generatePNJSpe($indexFloor, $level){
     if(array_key_exists($indexFloor, $pnjs)){
         $pnj = $pnjs[$indexFloor];
     }
-    // sleep(50);
+
     if(!isset($pnj)){
         $pnj = [
             'Nom' => 'PaBigOuf',
+            'type' => 'trainer',
             'Sprite' => 'trainer',
             'Dialogues' => [
                 'entrance' => "Tu vas prendre cher l'ami!",
@@ -33,13 +29,19 @@ function generatePNJSpe($indexFloor, $level){
 $pnjs = [
     10 => [
         'Nom' => 'Gym Leader Brock',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -48,13 +50,19 @@ $pnjs = [
     ],
     20 => [
         'Nom' => 'Gym Leader Misty',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('staryu', 18),
@@ -63,13 +71,19 @@ $pnjs = [
     ],
     30 => [
         'Nom' => 'Gym Leader Lt. Surge',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('voltorb', 21),
@@ -79,13 +93,19 @@ $pnjs = [
     ],
     40 => [
         'Nom' => 'Gym Leader Erika',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('victreebel', 29),
@@ -95,13 +115,19 @@ $pnjs = [
     ],
     50 => [
         'Nom' => 'Gym Leader Koga',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('koffing', 37),
@@ -112,13 +138,19 @@ $pnjs = [
     ],
     60 => [
         'Nom' => 'Gym Leader Sabrina',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('kadabra', 38),
@@ -129,13 +161,19 @@ $pnjs = [
     ],
     70 => [
         'Nom' => 'Gym Leader Blaine',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('growlithe', 42),
@@ -146,13 +184,19 @@ $pnjs = [
     ],
     80 => [
         'Nom' => 'Gym Leader Giovanni',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('rhyhorn', 45),
@@ -164,13 +208,19 @@ $pnjs = [
     ],
     90 => [
         'Nom' => 'Elite four Lorelei',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -179,13 +229,19 @@ $pnjs = [
     ],
     91 => [
         'Nom' => 'Elite four Bruno',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -194,13 +250,19 @@ $pnjs = [
     ],
     92 => [
         'Nom' => 'Elite four Olga',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -209,13 +271,19 @@ $pnjs = [
     ],
     93 => [
         'Nom' => 'Elite four Peter Lance',
+        'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
             'entrance' => "Tu vas prendre cher l'ami!",
             'end' => "You are lucky! Next time you will lose."
         ],
         'Bag' => [
-            ["name"=>"Potion", "quantity"=>1]
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),

@@ -19,7 +19,7 @@
 		"type": "capture",
 		"effect": "1"
 	},
-    "SuoerBall":
+    "SuperBall":
 	{
 		"type": "capture",
 		"effect": "1.5"
@@ -32,6 +32,6 @@
     "Revive":
 	{
 		"type": "heal",
-		"effect": "1/2"
+		"effect": "50%"
 	}
 }

@@ -78,4 +78,18 @@ function multipleOf($number, $multiple) {
     return $result;
 }
 
+function remove(&$var, &$array) {
+    $index = array_search($var, $array);
+    if ($index !== false) {
+        unset($array[$index]);
+    }
+}
+
+function add($name, &$array, $value){
+    if (array_key_exists($name, $array)) {
+        $array[$name] += $value;
+    } else {
+        $array[$name] = $value;
+    }
+}
 ?>

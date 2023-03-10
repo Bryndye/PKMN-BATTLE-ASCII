@@ -28,23 +28,28 @@ startGame();
 //// GAME ////
 while(true){
     menuStart();
+
     //Sauvegardes joueur
     $save = getSaveIfExist();
-    $pkmnTeamJoueur = &$save['team'];
-    saveData($pkmnTeamJoueur, 'team');
+    $pkmnTeamJoueur = &$save['Team'];
+    saveData($pkmnTeamJoueur, 'Team');
 
 
     // Loop fight tant que Equipe joueur a des pkmn en vie
-    if(array_key_exists('indexFloor', $save)){
-        $indexFloor = $save['indexFloor'];
+    if(array_key_exists('IndexFloor', $save)){
+        $IndexFloor = $save['IndexFloor'];
     }
     else{
-        $indexFloor = 1;
+        $IndexFloor = 1;
     }
+    giveItem($save["Bag"], 'Revive', 5);
+    giveItem($save["Bag"], 'Super potion', 5);
+    giveItem($save["Bag"], 'PokeBall', 5);
+
     while(true){
         // generer IA pkmn team
-        $pnj = generatePNJ($indexFloor, $pkmnTeamJoueur[0]['Level']);
-        startFight($pkmnTeamJoueur, $pnj);
+        $pnj = generatePNJ($IndexFloor, $pkmnTeamJoueur[0]['Level']);
+        startFight($save, $pnj);
 
         if(!isTeamPkmnAlive($pkmnTeamJoueur)){
             addData(1, 'loses', 'json/myGame.json');
@@ -52,10 +57,10 @@ while(true){
             break;
         }
         else{
-            ++$indexFloor;
+            ++$IndexFloor;
             addData(1, 'wins', 'json/myGame.json');
-            addData($indexFloor, 'indexFloor', 'json/myGame.json');
-            saveData($pkmnTeamJoueur, 'team');
+            addData($IndexFloor, 'IndexFloor', 'json/myGame.json');
+            saveData($pkmnTeamJoueur, 'Team');
         }
         // Choisir nouveau Pkmn ajout a lequipe
         waitForInput([31,0]);

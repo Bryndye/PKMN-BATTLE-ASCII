@@ -227,6 +227,16 @@ function healthInBloc(&$pkmn){
         $pkmn['Stats']['Health'] = 0;
     }
 }
+
+function isPkmnDead_simple(&$pkmn){
+    // sleep(5);
+    if($pkmn['Stats']['Health'] <= 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 

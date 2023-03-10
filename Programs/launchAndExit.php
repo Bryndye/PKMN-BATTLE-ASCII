@@ -71,11 +71,11 @@ function displayStatsFromSaveToMenu(){
         if(isSaveExist()){
             $saveFight = getSave();
             
-            writeSentence("Money : ".$saveFight['money'], [11,30]);
+            writeSentence("Money : ".$saveFight['Money'], [11,30]);
             
             $y = 0;
             // writeSentence('--------- Team ----------', [11,30]);
-            foreach($saveFight['team'] as $key => $pkmn){
+            foreach($saveFight['Team'] as $key => $pkmn){
                 writeSentence($pkmn['Name']."  Lv: ".$pkmn['Level'], [13+$y,30]);
                 $y +=2;
             }
