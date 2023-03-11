@@ -28,7 +28,7 @@ function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamag
 }
 
 
-function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &$capacite){
+function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capacite){
     $ailmentParalysis = false;
     if($pkmnAtk['Status'] == 'PAR'){
         $ailmentParalysis = rand(0,100) < 20;
@@ -44,7 +44,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage = true, &
     usleep(500000);
     $chance = rand(0,100);
     if($chance > $capacite['Accuracy']){
-        messageBoiteDialogue('But it failed');
+        messageBoiteDialogue('But it failed!');
         return;
     }
 
@@ -123,7 +123,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     $timesHit = 1;
     if($capacite['effects']['hits']['min hits'] != null && $capacite['effects']['hits']['max hits']){
         $timesHit = getHits($capacite['effects']['hits']['min hits'], $capacite['effects']['hits']['max hits']);
-        messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit);
+        messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit.'.');
     }
     pkmnTakesDmg($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
@@ -300,7 +300,7 @@ function switchPkmn(&$pkmnTeam ,$index){
             array_splice($pkmnTeam, $i, 1);
         }
     }
-    messageBoiteDialogue("Go ". $pkmnTeam[0]['Name']);
+    messageBoiteDialogue("Go ". $pkmnTeam[0]['Name'].'!');
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

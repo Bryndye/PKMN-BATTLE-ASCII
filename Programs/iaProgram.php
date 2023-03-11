@@ -144,8 +144,8 @@ $pnjs = [
         ],
         'Team' => [
             generatePkmnBattle('kadabra', 38),
-            generatePkmnBattle('mr.mime', 37),
-            generatePkmnBattle('veNameoth', 38),
+            generatePkmnBattle('mr-mime', 37),
+            generatePkmnBattle('venomoth', 38),
             generatePkmnBattle('alakazam', 43),
         ],
     ],

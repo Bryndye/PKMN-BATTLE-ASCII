@@ -50,8 +50,8 @@ function getPokemonByName($name){
 
 function generatePkmnBattle($index, $level, $exp = 0){
     $pkmn = getPokemon($index);
-    // print_r($pkmn);
-    // sleep(50);
+    // print_r($pkmn['Name']."\n");
+    // sleep(1);
     $ivs = [
         'Health' => rand(1,31),
         'Atk' => rand(1,31),
@@ -124,7 +124,8 @@ function generatePkmnBattle($index, $level, $exp = 0){
             'Name' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['Name'] : null,
             'Level' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['min level'] : null
         ]
-    ];    
+    ];
+
     return $pokemonBattle;
 }
 function calculateHealth($statBase, $level, $iv, $ev = 0){

@@ -19,12 +19,13 @@ function startFight(&$joueur, &$pnj){
     sleep(1);
 
     // animation pokeball
-    pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
-    sleep(1);
     if($pnj['type'] == 'trainer'){
         pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
+    pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+    sleep(1);
+    messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!');
 
     gameplayLoop($joueur, $pnj);
 }
@@ -70,7 +71,7 @@ function loopFight(&$joueur, &$pnj){
         interfaceMenu();
 
         // init var choice of Player
-        $choice = waitForInput(getPosChoice(),[1,2,3/*,4*/]);
+        $choice = waitForInput(getPosChoice(),[1,2,3]);
         $choice2;
 
         $actionJoueur = null;
@@ -220,7 +221,7 @@ function isActionBePriority($pkmn, $action){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
-    messageBoiteDialogue("You've fainted " . $pkmnE['Name']);
+    messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
     foreach($pkmnTeamJoueur as &$pkmn){
         getExp($pkmn, expToGive($pkmn, $pkmnE));
         return;
@@ -230,10 +231,10 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
 function endBattle($pkmnTeamJoueur, $pnj){
     resetTeamStatsTemp($pkmnTeamJoueur);
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
-        messageBoiteDialogue("You lost");
+        messageBoiteDialogue("You lost!");
     }
     else{
-        messageBoiteDialogue("You've fainted " . $pnj['Name']);
+        messageBoiteDialogue("You've fainted " . $pnj['Name'].'!');
         sleep(2);
         if(isset($pnj['Dialogues']['end'])){
             messageBoiteDialogue($pnj['Dialogues']['end']);
