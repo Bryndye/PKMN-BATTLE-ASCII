@@ -1,13 +1,18 @@
 <?php
 function waitForInput($pos= [31,0], $options = null, $string = null){
     // créer la phrase choose
-    $sentence = 'Choose ';
+    if(isset($string)){
+        $sentence = $string;
+    }
+    else{
+        $sentence = 'Choose ';
+    }
     if($options == null){
         if($string){
             $sentence = $string;
         }
         else{
-            $sentence = 'Press Enter';
+            $sentence = 'Press Enter ';
         }
     }
     else{

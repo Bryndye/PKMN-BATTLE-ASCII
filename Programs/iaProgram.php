@@ -1,34 +1,24 @@
 <?php
 //// GENERATION D'UN PNJ //////////////////////////////////
 function generatePNJ($indexFloor, $level){
-    $pnj = generatePNJSpe($indexFloor, $level);
+    $pnj = managerPNJGenerate($indexFloor, $level);
     return $pnj;
 }
 
-function generatePNJSpe($indexFloor, $level){
+function managerPNJGenerate($indexFloor, $level){
     global $pnjs;
     if(array_key_exists($indexFloor, $pnjs)){
         $pnj = $pnjs[$indexFloor];
     }
 
     if(!isset($pnj)){
-        $pnj = [
-            'Nom' => 'PaBigOuf',
-            'type' => 'trainer',
-            'Sprite' => 'trainer',
-            'Dialogues' => [
-                'entrance' => "Tu vas prendre cher l'ami!",
-                'end' => "You are lucky! Next time you will lose."
-            ],
-            'Bag' => [],
-            'Team' => generatePkmnTeam($level),
-        ];
+        $pnj = generateWildPkmn($indexFloor, $level);
     }
     return $pnj;
 }
 $pnjs = [
     10 => [
-        'Nom' => 'Gym Leader Brock',
+        'Name' => 'Gym Leader Brock',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -49,7 +39,7 @@ $pnjs = [
         ],
     ],
     20 => [
-        'Nom' => 'Gym Leader Misty',
+        'Name' => 'Gym Leader Misty',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -70,7 +60,7 @@ $pnjs = [
         ],
     ],
     30 => [
-        'Nom' => 'Gym Leader Lt. Surge',
+        'Name' => 'Gym Leader Lt. Surge',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -92,7 +82,7 @@ $pnjs = [
         ],
     ],
     40 => [
-        'Nom' => 'Gym Leader Erika',
+        'Name' => 'Gym Leader Erika',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -114,7 +104,7 @@ $pnjs = [
         ],
     ],
     50 => [
-        'Nom' => 'Gym Leader Koga',
+        'Name' => 'Gym Leader Koga',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -137,7 +127,7 @@ $pnjs = [
         ],
     ],
     60 => [
-        'Nom' => 'Gym Leader Sabrina',
+        'Name' => 'Gym Leader Sabrina',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -155,12 +145,12 @@ $pnjs = [
         'Team' => [
             generatePkmnBattle('kadabra', 38),
             generatePkmnBattle('mr.mime', 37),
-            generatePkmnBattle('venomoth', 38),
+            generatePkmnBattle('veNameoth', 38),
             generatePkmnBattle('alakazam', 43),
         ],
     ],
     70 => [
-        'Nom' => 'Gym Leader Blaine',
+        'Name' => 'Gym Leader Blaine',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -183,7 +173,7 @@ $pnjs = [
         ],
     ],
     80 => [
-        'Nom' => 'Gym Leader Giovanni',
+        'Name' => 'Gym Leader Giovanni',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -207,7 +197,7 @@ $pnjs = [
         ],
     ],
     90 => [
-        'Nom' => 'Elite four Lorelei',
+        'Name' => 'Elite four Lorelei',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -228,7 +218,7 @@ $pnjs = [
         ],
     ],
     91 => [
-        'Nom' => 'Elite four Bruno',
+        'Name' => 'Elite four Bruno',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -249,7 +239,7 @@ $pnjs = [
         ],
     ],
     92 => [
-        'Nom' => 'Elite four Olga',
+        'Name' => 'Elite four Olga',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -270,7 +260,7 @@ $pnjs = [
         ],
     ],
     93 => [
-        'Nom' => 'Elite four Peter Lance',
+        'Name' => 'Elite four Peter Lance',
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
@@ -292,9 +282,25 @@ $pnjs = [
     ],
 ];
 
-function generatePkmnTeam($level = 5){
+function generateWildPkmn($indexFloor, $level){
+    // prendre un pokemon dans une list par rapport indexFloor
+    $pkmn = generatePkmnTeam($level);
+    $pnj = [
+        'Name' => $pkmn[0]['Name'],
+        'type' => 'wild',
+        'Sprite' => $pkmn[0]['Sprite'],
+        'Dialogues' => [
+            'entrance' => 'A wild Pokemon appears. '
+        ],
+        'Bag' => [],
+        'Team' => $pkmn
+    ];
+    return $pnj;
+}
+
+function generatePkmnTeam($level = 5, $count = 1){
     $pkmnTeam = [];
-    for($i=0; $i<rand(1,1); ++$i){
+    for($i=0; $i<rand(1,$count); ++$i){
         array_push($pkmnTeam, generatePkmnBattle(rand(0,151), $level + rand(-4,-1)));
     }
     return $pkmnTeam;

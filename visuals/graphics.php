@@ -147,7 +147,7 @@ function displaySpritePkmn($pkmn, $isJoueur){
     $posFinal = getPosSpritePkmn($isJoueur);
     
     include 'visuals/sprites.php';
-    displaySprite($pokemonSprites[$pkmn['Sprite']], $posFinal);
+    displaySprite($sprites[$pkmn['Sprite']], $posFinal);
 }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////

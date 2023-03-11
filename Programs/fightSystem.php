@@ -7,21 +7,22 @@ function startFight(&$joueur, &$pnj){
     displaySkeletonHUD();
     $pkmnTeamEnemy = &$pnj['Team'];
     $pkmnTeamJoueur = &$joueur['Team'];
+
     // animation entrer dresseurs
     include 'visuals/sprites.php';
-    // displaySprite($sprites['trainerBack'], getPosSpritePkmn(true));
-    // displaySprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
-    
-    // messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
-    // sleep(1);
-    // messageBoiteDialogue($pnj['Nom'].' wants to fight!'); // message trainer 
-    // sleep(1);
+    displaySprite($sprites['trainerBack'], getPosSpritePkmn(true));
+    displaySprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
+
+    messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
+    sleep(1);
+    messageBoiteDialogue($pnj['Name'].' wants to fight!'); // message trainer 
+    sleep(1);
 
     // animation pokeball
-    // pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
-    // sleep(1);
-    // pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
-    // sleep(1);
+    pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+    sleep(1);
+    pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
+    sleep(1);
 
     gameplayLoop($joueur, $pnj);
 }
@@ -52,7 +53,7 @@ function gameplayLoop(&$joueur, &$pnj){
     }
 
     // fct after battle
-    endBattle($pkmnTeamJoueur, $pkmnTeamEnemy);
+    endBattle($pkmnTeamJoueur, $pnj);
 }
 
 // Selection du choix joueur et enemy
@@ -91,7 +92,6 @@ function loopFight(&$joueur, &$pnj){
         }
         elseif($choice == 3){
             $choice2 = chooseItems($joueur['Bag'], $pkmnTeamJoueur, $pnj['type']);
-            usleep(50000);
             displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         }
         // elseif($choice == 4){
@@ -231,10 +231,12 @@ function endBattle($pkmnTeamJoueur, $pnj){
         messageBoiteDialogue("You lost");
     }
     else{
-        messageBoiteDialogue("You've fainted " . $pnj['Nom']);
+        messageBoiteDialogue("You've fainted " . $pnj['Name']);
         sleep(2);
-        messageBoiteDialogue($pnj['Dialogues']['end']);
-        sleep(2);
+        if(isset($pnj['Dialogues']['end'])){
+            messageBoiteDialogue($pnj['Dialogues']['end']);
+            sleep(2);
+        }
     }
 }
 ?>

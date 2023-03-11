@@ -14,7 +14,7 @@ include_once 'Programs/programFight.php';
 include_once 'Programs/iaProgram.php';
 include_once 'Programs/shopEchange.php';
 include_once 'Programs/itemsManager.php';
-
+include_once 'Programs/shop.php';
 
 //// SET THE GAME ////
 clear(); // Clear the screen
@@ -42,11 +42,16 @@ while(true){
     else{
         $IndexFloor = 1;
     }
-    giveItem($save["Bag"], 'Revive', 5);
-    giveItem($save["Bag"], 'Super potion', 5);
-    giveItem($save["Bag"], 'PokeBall', 5);
+    giveItemFromResources($save["Bag"], 'Potion', 5);
+    giveItemFromResources($save["Bag"], 'Revive', 5);
+    giveItemFromResources($save["Bag"], 'Super potion', 5);
+    giveItemFromResources($save["Bag"], 'PokeBall', 5);
 
     while(true){
+        // Passage au shop
+        managerShop($save);
+        managerItemsIntoMenu($save);
+
         // generer IA pkmn team
         $pnj = generatePNJ($IndexFloor, $pkmnTeamJoueur[0]['Level']);
         startFight($save, $pnj);
@@ -62,11 +67,7 @@ while(true){
             addData($IndexFloor, 'IndexFloor', 'json/myGame.json');
             saveData($pkmnTeamJoueur, 'Team');
         }
-        // Choisir nouveau Pkmn ajout a lequipe
         waitForInput([31,0]);
-        // wantNewPkmn();
-        
-        // wild pokemon ou pokemon a donner
     }
     // voulez vous continuez a jouer ? 
     // si non save et break boucle

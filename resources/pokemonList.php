@@ -283,11 +283,11 @@ function evolution(&$pkmn){
     $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
 
     include 'visuals/sprites.php';
-    displaySprite($pokemonSprites[$pkmn['Sprite']], [5,16]);
+    displaySprite($sprites[$pkmn['Sprite']], [5,16]);
     sleep(1);
     clearSprite([5,16]);
     sleep(1);
-    displaySprite($pokemonSprites[$pkmnEvol['Sprite']], [5,16]);
+    displaySprite($sprites[$pkmnEvol['Sprite']], [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     sleep(1);
     messageBoiteDialogue('Tadadaa...');

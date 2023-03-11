@@ -2,10 +2,10 @@
 // -- HUD PKMN--
 // - Afficher HUD du pkmn joueur -
 // createPkmnHUD(17,34, $pkmn1);
-// displaySprite($pokemonSprites[$pkmn1['Sprite']], 9, 3); 
+// displaySprite($sprites[$pkmn1['Sprite']], 9, 3); 
 // - Afficher HUD du pkmn ennemi -
 // createPkmnHUD(2,3, $pkmn2);
-// displaySprite($pokemonSprites[$pkmn2['Sprite']], 1, 35);
+// displaySprite($sprites[$pkmn2['Sprite']], 1, 35);
 
 
 
@@ -35,7 +35,7 @@ function refreshDisplayOnePkmn(&$pkmnTeam, $isJoueur){
     include 'visuals/sprites.php';
     
     createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
-    displaySprite($pokemonSprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn($isJoueur));
+    displaySprite($sprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn($isJoueur));
     displayPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
 }
 function refreshHUDloopFight(&$pkmnTeamJoueur ,&$pkmnTeamEnemy){

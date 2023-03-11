@@ -1,37 +1,51 @@
 {
 	"Potion":
 	{
+		"name":"Potion",
 		"type": "heal",
-		"effect": "20"
+		"effect": "20",
+		"price" : "200"
 	},
     "Super potion":
 	{
+		"name":"Super potion",
 		"type": "heal",
-		"effect": "50"
+		"effect": "50",
+		"price" : "500"
 	},
     "Hyper potion":
 	{
+		"name":"Hyper potion",
 		"type": "heal",
-		"effect": "120"
+		"effect": "120",
+		"price" : "1200"
 	},
     "PokeBall":
 	{
+		"name":"PokeBall",
 		"type": "capture",
-		"effect": "1"
+		"effect": "1",
+		"price" : "300"
 	},
     "SuperBall":
 	{
+		"name":"SuperBall",
 		"type": "capture",
-		"effect": "1.5"
+		"effect": "1.5",
+		"price" : "600"
 	},
     "HyperBall":
 	{
+		"name":"HyperBall",
 		"type": "capture",
-		"effect": "2"
+		"effect": "2",
+		"price" : "1200"
 	},
     "Revive":
 	{
+		"name":"Revive",
 		"type": "heal",
-		"effect": "50%"
+		"effect": "50%",
+		"price" : "2400"
 	}
 }

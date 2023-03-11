@@ -1,5 +1,22 @@
 <?php
 
+function managerItemsIntoMenu(&$save){
+    $pkmnTeamJoueur = &$save['Team'];
+    while(true){
+        $choice = chooseItems($save['Bag'], $pkmnTeamJoueur, 'trainer');
+        if(substr($choice, 0, 1) == 'c'){
+            break;
+        }
+        elseif(substr($choice, 1, 1) == 'c'){
+            continue;
+        }
+        else{
+            $action = explode(" ", $choice);
+            useItem($save['Bag'], $save['Bag'][$action[0]], $pkmnTeamJoueur[$action[1]]);
+        }
+    }
+}
+
 function chooseItems(&$bag, &$pkmnTeam, $type = ''){
     while(true){
         clearInGame();
@@ -33,12 +50,19 @@ function displayBag($bag, $typeEnemy = ''){
     $choice = ['c'];
     foreach($bag as $key => $item){
         moveCursor([4+$i,5]);
+        $name = '';
+        if(isset($item['name'])){
+            $name = $item['name'];
+        }
+        else{
+            $name = $key;
+        }
         if($typeEnemy == 'trainer' && $item['type'] == 'heal'){
-            echo $key . '. '.$item['name'] . ' x ' . $item['quantity'];
+            echo $key . '. '.$name . ' x ' . $item['quantity'];
             $choice[$y] = $key;
         }
         else{
-            echo $key . '. '.$item['name'] . ' x ' . $item['quantity'];
+            echo $key . '. '.$name . ' x ' . $item['quantity'];
             $choice[$y] = $key;
         }
         $i += 2;
@@ -83,7 +107,7 @@ function healPkmn($item, &$pkmn){
     elseif(!isPkmnDead_simple($pkmn)){    
         $pkmn['Stats']['Health'] += $item['effect'];
         healthInBloc($pkmn);
-        messageBoiteDialogue($pkmn['Name'] . " uses ". $item['name']."!");
+        messageBoiteDialogue("Use ". $item['name'].' on '.$pkmn['Name'] . "!");
         print($pkmn['Stats']['Health']);
     }
 }
@@ -95,27 +119,36 @@ function captureItem($item, $pkmn){
 }
 
 // Pas tester
-function giveItem(&$bag, $itemName, $quantity = 1){
+function giveItemFromResources(&$bag, $itemName, $quantity = 1){
     $file = file_get_contents('json/items.json');
     $array = json_decode($file, true);
     
     $info = $array[$itemName];
 
-
     $findPlace = false;
     foreach($bag as $key=>$itemInBag){
-        if($itemInBag['name'] == $key){
-            $bag[$itemInBag['name']]['quantity'] += $quantity;
+        if($itemInBag['name'] == $itemName){
+            $bag[$key]['quantity'] += $quantity;
             $findPlace = true;
         }
     }
     if(!$findPlace){
-        $item = [
-            "name"=>$itemName, 
-            "type"=>$info['type'],
-            "effect"=>$info['effect'],
-            "quantity"=>$quantity
-        ];
+        $item = $info;
+        $item['quantity'] = $quantity;
+        array_push($bag, $item);
+    }
+}
+
+function giveItemByItem(&$bag, $item, $quantity = 1){
+    $findPlace = false;
+    foreach($bag as $key=>$itemInBag){
+        if($itemInBag['name'] == $item['name']){
+            $bag[$key]['quantity'] += $quantity;
+            $findPlace = true;
+        }
+    }
+    if(!$findPlace){
+        $item['quantity'] = $quantity;
         array_push($bag, $item);
     }
 }
