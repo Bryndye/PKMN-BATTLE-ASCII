@@ -1,10 +1,11 @@
 <?php
+
 function managerShop(&$save){
     while(true){
         clearInGame();
         displayBoiteDialogue();
         limitSentence('Which item do you want to buy?');
-        $itemsAvailable = listItemsBuyable(); // info item + price
+        $itemsAvailable = listItemsBuyable($save['Money']); // info item + price
         $choice = waitForInput([31,0], $itemsAvailable[1]);
         if($choice == 'c'){
             limitSentence('Are you sure to leave the shop? ');
@@ -16,10 +17,14 @@ function managerShop(&$save){
                 continue;
             }
         }
+        $quantity = waitForInput([31,0], '', 'quantity? ');
+        buyItem($save, $itemsAvailable[0][$choice], $quantity);
         giveItemByItem($save['Bag'], $itemsAvailable[0][$choice]);
     }
 }
-function displayShop($items){
+function displayShop($items, $currentMoney){
+    displayBox([5,20],[4,35]);
+    writeSentence('Money : '.$currentMoney, [6,37]);
     $i = 0;
     $y = 0;
     $choice = [];
@@ -41,18 +46,26 @@ function displayShop($items){
     return $choice;
 }
 
-function listItemsBuyable(){
+function listItemsBuyable($currentMoney){
     $file = file_get_contents('json/items.json');
     $array = json_decode($file, true);
-    $list = displayShop($array);
+    $list = displayShop($array, $currentMoney);
     $choice = ['c'];
     for($i=1;$i<count($list)+1;++$i){
-        $choice[$i] = $i-1;
+        if($currentMoney >= $list[$i-1]['price']){
+            $choice[$i] = $i-1;
+        }
     }
     return [$list, $choice];
 }
 
-function buyItem(&$save, $itemToBuy){
+function buyItem(&$save, $itemToBuy, $quantity = 1){
     $money = &$save['Money'];
+    if($money < $itemToBuy['price']*$quantity){
+        messageBoiteDialogue("You can't buy ".$itemToBuy['name'].' x '.$quantity.' times.');
+        return;
+    }
+    $money -= $itemToBuy['price'] * $quantity;
+    messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.');
 }
 ?>

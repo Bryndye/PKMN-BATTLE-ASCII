@@ -95,7 +95,7 @@ function useItem(&$bag, &$item, &$pkmn){
 function healPkmn($item, &$pkmn){
     if(strpos($item['effect'], '%') ){
         if(isPkmnDead_simple($pkmn)){
-            $parts = explode("%", $str);
+            $parts = explode("%", $item['effect']);
             $value = intval($parts[0]);
             $pkmn['Stats']['Health'] = $value * $pkmn['Stats']['Health Max'];
             messageBoiteDialogue($pkmn['Name'] . " revives!");

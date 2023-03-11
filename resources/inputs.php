@@ -16,12 +16,19 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
         }
     }
     else{
-        for($i=0;$i<count($options);++$i){
-            $sentence .= $options[$i];
-            if($i < count($options)-1){
+        $last = end($options);
+        foreach($options as $key=>$option){
+            $sentence .= $option;
+            if($option != $last){
                 $sentence .= ' | ';
             }
-        };
+        }
+        // for($i=0;$i<count($options);++$i){
+        //     $sentence .= $options[$i];
+        //     if($i < count($options)-1){
+        //         $sentence .= ' | ';
+        //     }
+        // };
         $sentence .= ' : ';
     }
     moveCursor($pos);
@@ -46,6 +53,16 @@ function enterToContinue($pos, $showMessage){
     clearArea([1,60], $pos);
     return $choice;
 }
+
+// function sureToLeave(){
+//     $choice2 = waitForInput([31,0], ['y','n']);
+//     if($choice2 == 'y'){
+//         break stop;
+//     }
+//     else{
+//         continue;
+//     }
+// }
 
 function choice(){
     // echo "\033[31;0H";

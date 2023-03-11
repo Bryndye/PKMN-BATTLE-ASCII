@@ -21,8 +21,10 @@ function startFight(&$joueur, &$pnj){
     // animation pokeball
     pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
-    pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
-    sleep(1);
+    if($pnj['type'] == 'trainer'){
+        pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
+        sleep(1);
+    }
 
     gameplayLoop($joueur, $pnj);
 }

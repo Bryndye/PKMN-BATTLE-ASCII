@@ -92,7 +92,7 @@ function generatePkmnBattle($index, $level, $exp = 0){
         ],
         'Stats' => [
             'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
-            'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
+            'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),//error 
             'Atk' => calculateStats($pkmn['StatsBase']['Atk'], $level, $ivs['Atk']),
             'Def' => calculateStats($pkmn['StatsBase']['Def'], $level, $ivs['Def']),
             'Atk Spe' => calculateStats($pkmn['StatsBase']['Atk Spe'], $level, $ivs['Atk Spe']),
