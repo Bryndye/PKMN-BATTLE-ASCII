@@ -281,6 +281,8 @@ function searchNewPkmnInTeam(&$teamPkmn){
     return null;
 }
 function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false){
+    displayPkmnTeam($pkmnTeam);
+    // messageBoiteDialogue('Which Pokemon do you want?');
     $arrayChoice = [];
     array_push($arrayChoice, 'c');
     for($i=$startIndex;$i<count($pkmnTeam);++$i){
@@ -341,6 +343,57 @@ function status($nameStatus){
             return 'BRN';       
     }
 }
+
+function getStatusEffect($status, $mode) {
+    $effect = 0;
+    
+    switch($status) {
+        case "burn":
+            if($mode == "battle") {
+                $effect = 0.06;
+            } else if($mode == "capture") {
+                $effect = 12;
+            }
+            break;
+        case "poison":
+            if($mode == "battle") {
+                $effect = 0.1;
+            } else if($mode == "capture") {
+                $effect = 12;
+            }
+            break;
+        case "paralysis":
+            if($mode == "battle") {
+                $effect = 'stun temp';
+            } else if($mode == "capture") {
+                $effect = 12;
+            }
+            break;
+        case "sleep":
+            if($mode == "battle") {
+                $effect = 'stun';
+            } else if($mode == "capture") {
+                $effect = 25;
+            }
+            break;
+        case "frozen":
+            if($mode == "battle") {
+                $effect = 'stun';
+            } else if($mode == "capture") {
+                $effect = 25;
+            }
+            break;
+        default:
+            if($mode == "battle") {
+                $effect = '';
+            } else if($mode == "capture") {
+                $effect = 1;
+            }
+    }
+    
+    return $effect;
+}
+
 function damageTurn(&$pkmn, $isJoueur){
     if($pkmn['Status'] == 'BRN' || $pkmn['Status'] == 'PSN'){
 

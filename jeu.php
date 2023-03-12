@@ -46,6 +46,7 @@ while(true){
     giveItemFromResources($save["Bag"], 'Revive', 5);
     giveItemFromResources($save["Bag"], 'Super potion', 5);
     giveItemFromResources($save["Bag"], 'PokeBall', 5);
+    giveItemFromResources($save["Bag"], 'MasterBall', 5);
 
     while(true){
         // Passage au shop

@@ -41,6 +41,13 @@
 		"effect": "2",
 		"price" : "1200"
 	},
+	"MasterBall":
+	{
+		"name":"MasterBall",
+		"type": "capture",
+		"effect": "255",
+		"price" : "1000000"
+	},
     "Revive":
 	{
 		"name":"Revive",

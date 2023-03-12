@@ -196,12 +196,16 @@ function levelUpWindow($oldStats, $newStats){
 function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE){
     displayGameHUD($currentPkmnJ,$currentPkmnE);
 }
-function displayPkmnTeam(&$pkmnTeam){
+
+function displayPkmnTeam($pkmnTeam){
     clearInGame();
-    createPkmnHUD([13,3], $pkmnTeam[0]);
+    // createPkmnHUD([13,3], $pkmnTeam[0]);
     
-    for($i=1;$i<count($pkmnTeam);++$i){
-        $pos = [($i * 5) - 2,33];
+    for($i=0;$i<count($pkmnTeam);++$i){
+        // $pos = [($i * 5) - 2,33];
+        $x = ($i % 2 == 0) ? 3 : 33;
+        $y = ($i+1) * 3;
+        $pos = [$y,$x];
         createPkmnHUD($pos, $pkmnTeam[$i]);
     }
 }

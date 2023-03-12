@@ -34,6 +34,11 @@ function chooseItems(&$bag, &$pkmnTeam, $type = ''){
         displayBoiteDialogue();
         limitSentence('Use '.$bag[(int)$choice1]['name'] .' on?');
 
+        // Si item pokeball, pas bsoin de choisir un pokemon de la team
+        if($bag[(int)$choice1]['type'] == 'capture'){
+            return "$choice1 $choice2";
+        }
+        // Select Pkmn to heal
         $choice2 = selectPkmn($pkmnTeam, 0, true);
         if($choice2 == 'c'){
             continue;
@@ -76,7 +81,8 @@ function manageBag(&$bag, &$item){
         remove($item, $bag);
     }
 }
-
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function useItem(&$bag, &$item, &$pkmn){
     --$item['quantity'];
     manageBag($bag, $item);
@@ -87,7 +93,7 @@ function useItem(&$bag, &$item, &$pkmn){
             healPkmn($item, $pkmn);
             break;
         case 'capture':
-            captureItem($item, $pkmn);
+            return captureItem($item, $pkmn);
             break;
     }
 }
@@ -97,7 +103,7 @@ function healPkmn($item, &$pkmn){
         if(isPkmnDead_simple($pkmn)){
             $parts = explode("%", $item['effect']);
             $value = intval($parts[0]);
-            $pkmn['Stats']['Health'] = $value * $pkmn['Stats']['Health Max'];
+            $pkmn['Stats']['Health'] = intval(($value/100) * $pkmn['Stats']['Health Max']);
             messageBoiteDialogue($pkmn['Name'] . " revives!");
         }
         else{
@@ -112,13 +118,29 @@ function healPkmn($item, &$pkmn){
     }
 }
 
-function captureItem($item, $pkmn){
-    // chance sur ...
-    // si var < chance = capture
-    // pkmn to json ?
+function captureItem($pokeball, $pkmn){
+    include 'visuals/sprites.php';
+    displaySprite($sprites['Pokeball'], getPosSpritePkmn(false));
+
+    $f = floor(($pkmn['Stats']['Health Max'] * 255 * 4) / ($pkmn['Stats']['Health'] * $pokeball['effect']));
+
+    $captureRate = (((3 * $pkmn['Stats']['Health Max'] - 2 * $pkmn['Stats']['Health']) * 0.5 * $pokeball['effect']) 
+    / (3 * $pkmn['Stats']['Health Max'])) * getStatusEffect('', 'capture');
+
+    $randomNumber = rand(0, 100) / 100; // Génère un nombre aléatoire entre 0 et 1
+    sleep(1);
+    if($randomNumber <= $captureRate) {
+        messageBoiteDialogue('The Pokemon has been captured!');
+        return true;
+    } else {
+        messageBoiteDialogue('Oh no! The Pokemon escapes the ball!');
+        displaySpritePkmn($pkmn, false);
+        return false;
+    }
 }
 
-// Pas tester
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function giveItemFromResources(&$bag, $itemName, $quantity = 1){
     $file = file_get_contents('json/items.json');
     $array = json_decode($file, true);

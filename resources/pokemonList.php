@@ -180,9 +180,6 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false){
     getExp($pkmn, $expLeft, true);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
-
 function getExp(&$pkmn, $exp, $inThisFct = false){
     if($pkmn['Level'] >= 100){
         return;
@@ -329,5 +326,29 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
         }
     }
     // charmeleon evole into charmeleon
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+function getPokemonFromCapture(&$pkmnTeam, $pkmn){
+    if(count($pkmnTeam)>=6){
+        // too much pokemon, fired one
+        while(true){
+            $choice = selectPkmn($pkmnTeam, 0, true);
+            limitSentence('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
+            $choice2 = waitForInput([31,0], ['y','n']);
+            if($choice2 == 'y'){
+                $pkmnTeam[$choice] = $pkmn;
+                break;
+            }
+            else{
+                continue;
+            }
+        }
+    }
+    else{
+        array_push($pkmnTeam, $pkmn);
+    }
 }
 ?>

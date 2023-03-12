@@ -23,9 +23,9 @@ function startFight(&$joueur, &$pnj){
         pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
+    messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!');
     pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
-    messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!');
 
     gameplayLoop($joueur, $pnj);
 }
@@ -42,7 +42,6 @@ function gameplayLoop(&$joueur, &$pnj){
             pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
-            displayPkmnTeam($pkmnTeamJoueur, 1);
             $choice2 = selectPkmn($pkmnTeamJoueur, 1);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
@@ -61,8 +60,7 @@ function gameplayLoop(&$joueur, &$pnj){
 
 // Selection du choix joueur et enemy
 function loopFight(&$joueur, &$pnj){
-    // print_r($joueur);
-    // sleep(5);
+
     $pkmnTeamEnemy = &$pnj['Team'];
     $pkmnTeamJoueur = &$joueur['Team'];
     while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
@@ -87,7 +85,6 @@ function loopFight(&$joueur, &$pnj){
         }
         elseif($choice == 2){
             $a = $pkmnTeamJoueur[0];
-            displayPkmnTeam($pkmnTeamJoueur);
             $choice2 = selectPkmn($pkmnTeamJoueur, 1, true);
             if($choice2 != 'c'){           
                 displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
@@ -95,6 +92,7 @@ function loopFight(&$joueur, &$pnj){
         }
         elseif($choice == 3){
             $choice2 = chooseItems($joueur['Bag'], $pkmnTeamJoueur, $pnj['type']);
+            // si item type == capture, jouer autre fonction
             displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         }
         // elseif($choice == 4){
@@ -114,8 +112,13 @@ function loopFight(&$joueur, &$pnj){
         fight($pkmnTeamJoueur, $pkmnTeamEnemy, 
         $actionJoueur, $actionEnemy, $joueur['Bag'], $pnj['Bag']); 
     } 
-    if($pkmnTeamEnemy[0]['Stats']['Health'] <= 0 ){
+    print('ALLER LA');
+    sleep(1);
+    if($pkmnTeamEnemy[0]['Stats']['Health'] == 0){
         endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
+    }
+    elseif($pkmnTeamEnemy[0]['Stats']['Health'] < 0){
+        endPkmnCaptured($pkmnTeamJoueur, $pkmnTeamEnemy[0]);
     }
 }
 
@@ -193,7 +196,18 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
         elseif($action['choice'][0] == '3'){
-            useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
+            if($action['Bag'][$action['choice'][1]]['type'] == 'capture'){
+                $didIt = useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamDef'][0]);
+                if($didIt){
+                    getPokemonFromCapture($action['teamAtk'], $action['teamDef'][0]);
+                    $action['teamDef'][0]['Stats']['Health'] = -1;
+                    return;
+                }
+                // FIN DU COMBAT SI CAPTURE
+            }
+            else{
+                useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
+            }
             refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
     }
@@ -227,6 +241,14 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
         return;
     }   
 }   
+
+function endPkmnCaptured(&$pkmnTeamJoueur, &$pkmnE){
+    // messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
+    foreach($pkmnTeamJoueur as &$pkmn){
+        getExp($pkmn, expToGive($pkmn, $pkmnE));
+        return;
+    }
+}
 
 function endBattle($pkmnTeamJoueur, $pnj){
     resetTeamStatsTemp($pkmnTeamJoueur);
