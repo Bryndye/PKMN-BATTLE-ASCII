@@ -112,8 +112,6 @@ function loopFight(&$joueur, &$pnj){
         fight($pkmnTeamJoueur, $pkmnTeamEnemy, 
         $actionJoueur, $actionEnemy, $joueur['Bag'], $pnj['Bag']); 
     } 
-    print('ALLER LA');
-    sleep(1);
     if($pkmnTeamEnemy[0]['Stats']['Health'] == 0){
         endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
     }
@@ -201,6 +199,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
                 if($didIt){
                     getPokemonFromCapture($action['teamAtk'], $action['teamDef'][0]);
                     $action['teamDef'][0]['Stats']['Health'] = -1;
+                    displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
                     return;
                 }
                 // FIN DU COMBAT SI CAPTURE

@@ -22,8 +22,8 @@ function chooseItems(&$bag, &$pkmnTeam, $type = ''){
         clearInGame();
         $choice = displayBag($bag, $type);
         displayBoiteDialogue();
-        limitSentence('Which item to use?');
-        
+        messageBoiteDialogueContinue('Which item to use?');
+
         $choice2 = "";
         $choice1 = waitForInput([31,0], $choice);
         if($choice1 == 'c'){
@@ -31,20 +31,17 @@ function chooseItems(&$bag, &$pkmnTeam, $type = ''){
         }
         
         $choicesPkmnTeam = displayPkmnTeam($pkmnTeam);
-        displayBoiteDialogue();
-        limitSentence('Use '.$bag[(int)$choice1]['name'] .' on?');
 
         // Si item pokeball, pas bsoin de choisir un pokemon de la team
         if($bag[(int)$choice1]['type'] == 'capture'){
             return "$choice1 $choice2";
         }
         // Select Pkmn to heal
-        $choice2 = selectPkmn($pkmnTeam, 0, true);
+        $choice2 = selectPkmn($pkmnTeam, 0, true, 'Use '.$bag[(int)$choice1]['name'] .' on?');
         if($choice2 == 'c'){
             continue;
         }
         break;
-        // il faut maintenant faire agir le choix
     }
     return "$choice1 $choice2";
 }
@@ -62,11 +59,12 @@ function displayBag($bag, $typeEnemy = ''){
         else{
             $name = $key;
         }
+
         if($typeEnemy == 'trainer' && $item['type'] == 'heal'){
             echo $key . '. '.$name . ' x ' . $item['quantity'];
             $choice[$y] = $key;
         }
-        else{
+        elseif($typeEnemy == 'wild'){
             echo $key . '. '.$name . ' x ' . $item['quantity'];
             $choice[$y] = $key;
         }
@@ -120,7 +118,7 @@ function healPkmn($item, &$pkmn){
 
 function captureItem($pokeball, $pkmn){
     include 'visuals/sprites.php';
-    displaySprite($sprites['Pokeball'], getPosSpritePkmn(false));
+    animationCapture();
 
     $f = floor(($pkmn['Stats']['Health Max'] * 255 * 4) / ($pkmn['Stats']['Health'] * $pokeball['effect']));
 

@@ -280,9 +280,11 @@ function searchNewPkmnInTeam(&$teamPkmn){
     }
     return null;
 }
-function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false){
+function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false, $string='Which Pokemon do you want?'){
     displayPkmnTeam($pkmnTeam);
-    // messageBoiteDialogue('Which Pokemon do you want?');
+    displayBoiteDialogue();
+    messageBoiteDialogueContinue($string);
+    
     $arrayChoice = [];
     array_push($arrayChoice, 'c');
     for($i=$startIndex;$i<count($pkmnTeam);++$i){

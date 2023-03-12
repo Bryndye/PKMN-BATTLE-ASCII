@@ -64,9 +64,10 @@ while(true){
         }
         else{
             ++$IndexFloor;
-            addData(1, 'wins', 'json/myGame.json');
-            addData($IndexFloor, 'IndexFloor', 'json/myGame.json');
-            saveData($pkmnTeamJoueur, 'Team');
+            $save['IndexFloor'] = $IndexFloor;
+            // addData(1, 'wins', 'json/myGame.json');
+            // addData($IndexFloor, 'IndexFloor', 'json/myGame.json');
+            saveFile($save);
         }
         waitForInput([31,0]);
     }

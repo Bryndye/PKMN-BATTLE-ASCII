@@ -9,7 +9,6 @@
 
 
 
-
 //// CREATE HUD INGAME //////////////////////////
 function displaySkeletonHUD(){
     displayGameCadre();
@@ -199,7 +198,6 @@ function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE){
 
 function displayPkmnTeam($pkmnTeam){
     clearInGame();
-    // createPkmnHUD([13,3], $pkmnTeam[0]);
     
     for($i=0;$i<count($pkmnTeam);++$i){
         // $pos = [($i * 5) - 2,33];
@@ -256,4 +254,19 @@ function interfaceMenu(){
     echo "\033[".($posY+3).";".($posX)."H";
     echo "4 : RUN";
 }
+
+
+function animationCapture(){
+    include 'visuals/sprites.php';
+    clearSpritePkmn(false,500000);
+    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    clearSpritePkmn(false,500000);
+    displaySprite($sprites['Pokeball_2'],getPosSpritePkmn(false));
+    clearSpritePkmn(false,500000);
+    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    clearSpritePkmn(false,500000);
+    displaySprite($sprites['Pokeball_3'],getPosSpritePkmn(false));
+    clearSpritePkmn(false,500000);
+    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+  }
 ?>

@@ -5,7 +5,7 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
         $sentence = $string;
     }
     else{
-        $sentence = 'Choose ';
+        $sentence = 'Choose : ';
     }
     if($options == null){
         if($string){

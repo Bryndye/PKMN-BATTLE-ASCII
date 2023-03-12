@@ -119,7 +119,12 @@ function clearSprite($pos){
 
 function clearSpritePkmn($isJoueur, $pauseTime = 0){
     if($pauseTime != 0){
-        sleep($pauseTime);
+        if($pauseTime > 100){
+            usleep($pauseTime);
+        }
+        else{
+            sleep($pauseTime);
+        }
     }
     $posClearSprite = getPosSpritePkmn($isJoueur);
     $posClearSprite = [$posClearSprite[0]+1,$posClearSprite[1]];
@@ -159,7 +164,8 @@ function displayBoiteDialogue(){
 }
 
 function messageBoiteDialogue($message, $pressEnter = false){
-    clearBoiteDialogue();
+    // clearBoiteDialogue();
+    displayBoiteDialogue();
     limitSentence($message);
     if($pressEnter){
         waitForInput();
@@ -167,6 +173,11 @@ function messageBoiteDialogue($message, $pressEnter = false){
     else{
         sleep(1);
     }
+}
+function messageBoiteDialogueContinue($message, $time = 0){
+    clearBoiteDialogue();
+    limitSentence($message);
+    sleep($time);
 }
 function clearBoiteDialogue(){
     $pos = getPosDialogue();

@@ -84,6 +84,12 @@ function createSaveFights(){
     file_put_contents('json/save.json', $json);
 }
 
+function saveFile($save, $path = 'json/save.json'){
+    $array = $save;
+    $json = json_encode($array, true);
+    file_put_contents($path, $json);
+}
+
 function saveData($data, $key, $path = 'json/save.json'){
     $file = file_get_contents($path);
     $array = json_decode($file, true);

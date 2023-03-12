@@ -4,11 +4,12 @@ function managerShop(&$save){
     while(true){
         clearInGame();
         displayBoiteDialogue();
-        limitSentence('Which item do you want to buy?');
-        $itemsAvailable = listItemsBuyable($save['Money']); // info item + price
+
+        $itemsAvailable = listItemsBuyable($save['Money']);
+        messageBoiteDialogueContinue('Which item do you want to buy?');
         $choice = waitForInput([31,0], $itemsAvailable[1]);
         if($choice == 'c'){
-            limitSentence('Are you sure to leave the shop? ');
+            messageBoiteDialogueContinue('Are you sure to leave the shop? ');
             $choice2 = waitForInput([31,0], ['y','n']);
             if($choice2 == 'y'){
                 break;
