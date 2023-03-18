@@ -22,16 +22,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Boulder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2),
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -43,16 +41,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Cascade Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('staryu', 18),
@@ -64,16 +60,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Thunder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('voltorb', 21),
@@ -86,16 +80,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Rainbow Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('victreebel', 29),
@@ -108,16 +100,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Soul Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('koffing', 37),
@@ -131,16 +121,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Marsh Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('kadabra', 38),
@@ -154,16 +142,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Earth Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('growlithe', 42),
@@ -177,16 +163,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Boulder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('rhyhorn', 45),
@@ -201,16 +185,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Boulder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -222,16 +204,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Boulder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -243,16 +223,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Boulder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -264,16 +242,14 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Tu vas prendre cher l'ami!",
-            'end' => "You are lucky! Next time you will lose."
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "You obtained the Boulder Badge!",
+                "Gg frero"
+            ]
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('geodude', 12),
@@ -283,9 +259,9 @@ $pnjs = [
     100 => [
         'Name' => 'mewtwo',
         'type' => 'wild',
-        'Sprite' => 'Thumbnail',
+        'Sprite' => 'thumbnail',
         'Dialogues' => [
-            'entrance' => "Mewtwo wants to fight you! The pressure is high.",
+            'entrance' => "Who is that Pokemon? The pressure is high...",
             'end' => "You've beaten the strongest Pokemon."
         ],
         'Bag' => [],
@@ -302,12 +278,7 @@ $pnjs = [
             'end' => "..."
         ],
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            itemReturn('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('pikachu', 88,0, ['thunderbolt', 'quick-attack','thunder']),

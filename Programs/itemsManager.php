@@ -174,4 +174,11 @@ function giveItemByItem(&$bag, $item, $quantity = 1){
         array_push($bag, $item);
     }
 }
+
+function itemReturn($item, $quantity = 1){
+    $file = file_get_contents('json/items.json');
+    $array = json_decode($file, true);
+    
+    return $array[$item];
+}
 ?>

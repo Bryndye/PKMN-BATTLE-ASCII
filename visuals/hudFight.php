@@ -242,17 +242,10 @@ function interfaceMenu(){
     $posY = 25;
     $posX = 48;
     displayBox([7,15],[24,46]); // display line to seperate
-    echo "\033[".($posY).";".($posX)."H";
-    echo "1 : ATTACK";
-    
-    echo "\033[".($posY+1).";".($posX)."H";
-    echo "2 : PKMN";
-    
-    echo "\033[".($posY+2).";".($posX)."H";
-    echo "3 : BAG";
-    
-    echo "\033[".($posY+3).";".($posX)."H";
-    echo "4 : RUN";
+
+    writeSentence( '1 : ATTACK', [$posY,$posX]);
+    writeSentence('2 : PKMN', [$posY+1,$posX]);
+    writeSentence('3 : BAG', [$posY+2,$posX]);
 }
 
 

@@ -252,15 +252,26 @@ function endPkmnCaptured(&$pkmnTeamJoueur, &$pkmnE){
 function endBattle($pkmnTeamJoueur, $pnj){
     resetTeamStatsTemp($pkmnTeamJoueur);
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
-        messageBoiteDialogue("You lost!");
+        messageBoiteDialogue("Your whole Team is k.o!");
+        messageBoiteDialogue("You can't fight...");
     }
     else{
-        messageBoiteDialogue("You've fainted " . $pnj['Name'].'!');
-        sleep(2);
         if(isset($pnj['Dialogues']['end'])){
-            messageBoiteDialogue($pnj['Dialogues']['end']);
+            if(count($pnj['Dialogues']['end'])>0){
+                foreach($pnj['Dialogues']['end'] as $message){
+                    messageBoiteDialogue($message);
+                    sleep(1);
+                }
+            }
+            else{
+                messageBoiteDialogue($pnj['Dialogues']['end']);
+            }
             sleep(2);
         }
+        // if($pnj['type'] == 'wild'){
+        // }
+        messageBoiteDialogue("You've defeated " . $pnj['Name'].'!');
+        sleep(2);
     }
 }
 ?>

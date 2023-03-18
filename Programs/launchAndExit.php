@@ -62,22 +62,23 @@ function exitGame(){
 
 function displayStatsFromSaveToMenu(){
     if(isSaveExist('json/myGame.json')){
-        displayBox([25,30],[3,28]);
+        displayBox([21,30],[3,28]);
         $save = getSave('json/myGame.json');
         writeSentence('Name : '.$save['name'], [5,30]);
-        writeSentence('Wins : '.$save['wins'], [7,30]);
-        writeSentence('Loses : '.$save['loses'], [9,30]);
+        writeSentence('Pokedex : '. count($save['Pokedex']), [7,30]);
+        writeSentence('Floor Max : '.$save['IndexFloor Max'], [8,30]);
+        writeSentence('Win Count : '.$save['Game wins'], [9,30]);
 
         if(isSaveExist()){
             $saveFight = getSave();
-            
-            writeSentence("Money : ".$saveFight['Money'], [11,30]);
+            writeSentence('------ Current Game ------', [11,30]);
+            writeSentence('Floor : '.$saveFight['IndexFloor'], [13,30]);
+            writeSentence("Money : ".$saveFight['Money'], [14,30]);
             
             $y = 0;
-            // writeSentence('--------- Team ----------', [11,30]);
             foreach($saveFight['Team'] as $key => $pkmn){
-                writeSentence($pkmn['Name']."  Lv: ".$pkmn['Level'], [13+$y,30]);
-                $y +=2;
+                writeSentence($pkmn['Name']."  Lv: ".$pkmn['Level'], [16+$y,30]);
+                $y +=1;
             }
         }
     }
@@ -143,17 +144,13 @@ function cinematicPresentation(){
     messageBoiteDialogue("By the way, what is your name?", true);
 
     messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", true);
-    $save = [
-        'name' => waitForInput([31,0], null, 'Choose your name : '),
-        'wins' => 0,
-        'loses' => 0
-    ];
-    $json = json_encode($save);
-    file_put_contents('json/myGame.json', $json);
+    createSaveMyGame();
+    $save = getSave('json/myGame.json');
     messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", true);
     messageBoiteDialogue("But this time, it will be different. You have 100 battles to win.", true);
     messageBoiteDialogue("You loose, you restart by choosing your 'first' Pokemon.", true);
     messageBoiteDialogue("Between your battles, you can heal your pokemon, buy items and rest", true);
+    messageBoiteDialogue("Careful with captures! You can't stock Pokemons like before. If you capture one, you have to replace one from your team.", true);
     messageBoiteDialogue("Do you see the difference? Of course you do!", true);
     messageBoiteDialogue("So, you are ready. Good luck!", true);
 }
@@ -196,14 +193,28 @@ function cinematicEnding(&$save){
     clearInGame();
     displaySprite($sprites['trainer'], [3,18]);
     messageBoiteDialogue("But it's not over!", true);
-    messageBoiteDialogue("There are challenges waiting for you!", true);
+    messageBoiteDialogue("More challenges are available!", true);
+    messageBoiteDialogue("Ready for another round?", true);
 }
 
 function endGame(){
     deleteSave();
     $gameWins = getDataFromSave('Game wins', 'json/myGame.json');
+    ++$gameWins;
     $indexFloorMax = getDataFromSave('IndexFloor Max', 'json/myGame.json');
     $floorMaxReturn = ($gameWins*10) + 100;
-    saveData($floorMaxReturn, 'Game wins', 'json/myGame.json');
+    saveData($floorMaxReturn, 'IndexFloor Max', 'json/myGame.json');
+    saveData($gameWins, 'Game wins', 'json/myGame.json');
+}
+
+function screenLose(){
+    clearInGame();
+    addData(1, 'loses', 'json/myGame.json');
+    $floor = getDataFromSave('IndexFloor');
+
+    include 'visuals/sprites.php';
+    displaySprite($sprites['Pokeball'], [3,18]);
+    messageBoiteDialogue('You lost at '. $floor . ' floor...', true);
+    deleteSave();
 }
 ?>

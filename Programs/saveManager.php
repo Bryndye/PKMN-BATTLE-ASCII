@@ -46,12 +46,14 @@ function isSaveExist($path = 'json/save.json',$inTitle = false){
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
-function createSaveMyGame(){
+
+function MyGameSaveExist(){
     if(!isSaveExist('json/myGame.json')){
         $json = [
             'name' => waitForInput([31,0], null, 'Choose your name : '),
             'Game wins' => 0,
             'IndexFloor Max' => 100,
+            'Pokedex' => [],
             'wins' => 0,
             'loses' => 0
         ];
@@ -67,6 +69,18 @@ function createSaveMyGame(){
             createSaveMyGame();
         }
     }
+}
+function createSaveMyGame(){
+    $json = [
+        'name' => waitForInput([31,0], null, 'Choose your name : '),
+        'Game wins' => 0,
+        'IndexFloor Max' => 100,
+        'Pokedex' => [],
+        'wins' => 0,
+        'loses' => 0
+    ];
+    $json = json_encode($json);
+    file_put_contents('json/myGame.json', $json);
 }
 function createSaveFights(){
     $json = [
