@@ -50,6 +50,8 @@ function createSaveMyGame(){
     if(!isSaveExist('json/myGame.json')){
         $json = [
             'name' => waitForInput([31,0], null, 'Choose your name : '),
+            'Game wins' => 0,
+            'IndexFloor Max' => 100,
             'wins' => 0,
             'loses' => 0
         ];

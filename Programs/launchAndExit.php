@@ -6,7 +6,7 @@ function intro(){
     
     // Animation de * en diagonale sur l'écran
     for ($i = 0; $i < 30; $i++) {
-        clearArea([28,58],[2,2]); // Efface l'écran
+        clearInGame();
         // echo "\033[?25l"; //hide cursor
         echo "\033[".$i.";".($i+$i)."H";
         echo "*";
@@ -28,7 +28,7 @@ function intro(){
 
 function animationIntro(){
     include 'visuals/sprites.php';
-    displaySprite($pokemonSprites['Charizard'],[1,2]);
+    displaySprite($sprites['Charizard'],[1,2]);
     sleep(2);
     displaySprite($sprites['effectTitle'],[1,2]);
     sleep(1);
@@ -95,15 +95,15 @@ function chooseFirstPokemon(){
     $team = [];
     $choice = waitForInput([31,0], [1,2,3]);
     if($choice == 1){
-        $team[0] = generatePkmnBattle('bulbasaur', 15);
+        $team[0] = generatePkmnBattle('bulbasaur', 5, 0, ['tackle', 'growl','razor-leaf']);
     }
     else if($choice == 2){
-        $team[0] = generatePkmnBattle('squirtle', 15);
+        $team[0] = generatePkmnBattle('squirtle',5, 0, ['tackle', 'growl', 'bubble']);
     }
     else if($choice == 3){
-        $team[0] = generatePkmnBattle('charmander', 15);
+        $team[0] = generatePkmnBattle('charmander', 5, 0, ['tackle', 'growl', 'ember']);
     }
-    $team[1] = generatePkmnBattle(rand(1,151), 15);
+    // $team[1] = generatePkmnBattle(rand(1,151), 15);
     return $team;
 }
 
@@ -132,10 +132,10 @@ function cinematicPresentation(){
     displaySprite($sprites['trainer'], $posSprite);
     messageBoiteDialogue("Hello, i'm Prof. Twig and welcome to the world of Pokemon!", true);
     messageBoiteDialogue("Let me show you what a pokemon is.", true);
-    displaySprite($sprites['Pokeball'],$posSprite);
     clearSprite($posSprite);
+    displaySprite($sprites['Pokeball_1'],$posSprite);
     sleep(1);
-    displaySprite($pokemonSprites["Pikachu"], $posSprite);
+    displaySprite($sprites["Pikachu"], $posSprite);
     messageBoiteDialogue("Here's Pikachu!", true);
     messageBoiteDialogue("He's an electric type. You can meet him later on your journey.", true);
     clearSprite($posSprite);
@@ -156,5 +156,54 @@ function cinematicPresentation(){
     messageBoiteDialogue("Between your battles, you can heal your pokemon, buy items and rest", true);
     messageBoiteDialogue("Do you see the difference? Of course you do!", true);
     messageBoiteDialogue("So, you are ready. Good luck!", true);
+}
+
+function cinematicLeagueEnding(&$save){
+    clearInGame();
+    messageBoiteDialogue('Congratulations! You beat the league Pokemon!', true);
+
+    include 'visuals/sprites.php';
+    foreach($save['Team'] as $pkmn){
+        displaySprite($sprites[$pkmn['Sprite']], [3,18]);
+        displayBox([4,20],[20,20]);
+        limitSentence($pkmn['Name'], 50,[21, 25]);
+        limitSentence("Lv: ".$pkmn['Level'], 50, [22, 27]);
+        waitForInput([31,0]);
+        clearSprite([3,18]);
+    }
+    clearInGame();
+    displaySprite($sprites['trainer'], [3,18]);
+    messageBoiteDialogue("But it's not over!", true);
+    messageBoiteDialogue("There are challenges waiting for you!", true);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//// ENDING //////////////////////////////////////////////////////////////////////
+function cinematicEnding(&$save){
+    clearInGame();
+    messageBoiteDialogue('Congratulations! You beat the game!', true);
+    $wins = getDataFromSave('Game wins', 'json/myGame.json');
+
+    include 'visuals/sprites.php';
+    foreach($save['Team'] as $pkmn){
+        displaySprite($sprites[$pkmn['Sprite']], [3,18]);
+        displayBox([4,20],[20,20]);
+        limitSentence($pkmn['Name'], 50,[21, 25]);
+        limitSentence("Lv: ".$pkmn['Level'], 50, [22, 27]);
+        waitForInput([31,0]);
+        clearSprite([3,18]);
+    }
+    clearInGame();
+    displaySprite($sprites['trainer'], [3,18]);
+    messageBoiteDialogue("But it's not over!", true);
+    messageBoiteDialogue("There are challenges waiting for you!", true);
+}
+
+function endGame(){
+    deleteSave();
+    $gameWins = getDataFromSave('Game wins', 'json/myGame.json');
+    $indexFloorMax = getDataFromSave('IndexFloor Max', 'json/myGame.json');
+    $floorMaxReturn = ($gameWins*10) + 100;
+    saveData($floorMaxReturn, 'Game wins', 'json/myGame.json');
 }
 ?>

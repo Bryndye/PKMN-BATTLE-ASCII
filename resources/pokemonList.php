@@ -48,10 +48,32 @@ function getPokemonByName($name){
 /////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////
 
-function generatePkmnBattle($index, $level, $exp = 0){
+function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
     $pkmn = getPokemon($index);
-    // print_r($pkmn['Name']."\n");
-    // sleep(1);
+    $newCapacites = [];
+    if(count($capacites) > 0){
+        if($index == 'geodude'){         
+            print_r($capacites);
+            sleep(1);
+        }
+        foreach($capacites as $capacite){
+            array_push($newCapacites, getCapacite($capacite));
+        }
+    }
+    else{
+        $capacitesCanLearn = $pkmn['capacites'];
+        // print_r($capacitesCanLearn);
+        // sleep(1);
+        $capTemp = getLastFourElements($capacitesCanLearn, $level, $level);
+        // print_r($capTemp);
+        // sleep(1);
+        foreach($capTemp as $capacite){
+            array_push($newCapacites, getCapacite($capacite['name']));
+        }
+        // print_r($newCapacites);
+        // sleep(1);
+    }
+
     $ivs = [
         'Health' => rand(1,31),
         'Atk' => rand(1,31),
@@ -112,12 +134,7 @@ function generatePkmnBattle($index, $level, $exp = 0){
                 'Used' => false
             ]
         ],
-        'Capacites' => [
-            '0' => getCapacite('tackle'),
-            '1' => getCapacite('flamethrower'),
-            '2' => getRandCapacites(),
-            '3' => getRandCapacites()
-        ],
+        'Capacites' => $newCapacites,
         'Sprite' => $pkmn['Sprite'],
         'Status' => '',
         'evolution' => [
@@ -351,4 +368,5 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         array_push($pkmnTeam, $pkmn);
     }
 }
+
 ?>

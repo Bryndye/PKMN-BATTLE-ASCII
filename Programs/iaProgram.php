@@ -280,6 +280,44 @@ $pnjs = [
             generatePkmnBattle('onix', 14),
         ],
     ],
+    100 => [
+        'Name' => 'mewtwo',
+        'type' => 'wild',
+        'Sprite' => 'Thumbnail',
+        'Dialogues' => [
+            'entrance' => "Mewtwo wants to fight you! The pressure is high.",
+            'end' => "You've beaten the strongest Pokemon."
+        ],
+        'Bag' => [],
+        'Team' => [
+            generatePkmnBattle('mewtwo', 70),
+        ],
+    ],
+    110 => [
+        'Name' => 'Champion Red',
+        'type' => 'trainer',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "...",
+            'end' => "..."
+        ],
+        'Bag' => [
+            [
+                "name"=>"Potion", 
+                "type"=>"heal",
+                "effect"=>"20",
+                "quantity"=>1
+            ]
+        ],
+        'Team' => [
+            generatePkmnBattle('pikachu', 88,0, ['thunderbolt', 'quick-attack','thunder']),
+            generatePkmnBattle('charizard', 77),
+            generatePkmnBattle('venusaur', 77),
+            generatePkmnBattle('blastoise', 77),
+            generatePkmnBattle('snorlax', 75),
+            generatePkmnBattle('lapras', 80)
+        ],
+    ],
 ];
 
 function generateWildPkmn($indexFloor, $level){

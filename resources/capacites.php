@@ -6,8 +6,6 @@ $capacites = json_decode($json, true);
 function getCapacite($name){
     global $capacites;
     if(isset($capacites[$name])){
-        // $capacites[$name]['PP'] = $capacites[$name]['PP Max'];
-        // unset($capacites[$name]['Pkmns Learned']);
         return setCapacitePlayable($capacites[$name]);
     }
     else return null;
@@ -61,6 +59,23 @@ function setPowerCapacityToOS($pkmnDef, $capacite){
     // print($pkmnDef['Stats']['Health']);
     // sleep(1);
     return 10000;
+}
+
+function getLastFourElements($array, $level) {
+    $lastFour = [];
+    foreach ($array as $element) {
+        if ($element['level'] < $level) {
+            $lastFour[] = $element;
+            if (count($lastFour) == 4) {
+                break;
+            }
+        }
+    }
+    // $missingElements = 4 - count($lastFour);
+    // if ($missingElements > 0) {
+    //     $lastFour = array_merge(array_fill(0, $missingElements, ['name' => '', 'level' => 0]), $lastFour);
+    // }
+    return $lastFour;
 }
 
 ?>

@@ -13,6 +13,8 @@ function managerItemsIntoMenu(&$save){
         else{
             $action = explode(" ", $choice);
             useItem($save['Bag'], $save['Bag'][$action[0]], $pkmnTeamJoueur[$action[1]]);
+            displayPkmnTeam($pkmnTeamJoueur);
+            sleep(1);
         }
     }
 }

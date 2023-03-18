@@ -55,7 +55,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         if($capacite['Power'] == 'reset'){
             // do something
         }
-        else if(is_string($ailment['ailment'])){
+        else if(is_null($ailment['ailment'])){
             ailmentChanceOnpKmn($capacite, $pkmnDef, true);
         }
         else{
