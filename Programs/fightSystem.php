@@ -199,10 +199,10 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
                 if($didIt){
                     getPokemonFromCapture($action['teamAtk'], $action['teamDef'][0]);
                     $action['teamDef'][0]['Stats']['Health'] = -1;
-                    displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+                    // displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
                     return;
+                    // FIN DU COMBAT SI CAPTURE
                 }
-                // FIN DU COMBAT SI CAPTURE
             }
             else{
                 useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
@@ -242,7 +242,6 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
 }   
 
 function endPkmnCaptured(&$pkmnTeamJoueur, &$pkmnE){
-    // messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
     foreach($pkmnTeamJoueur as &$pkmn){
         getExp($pkmn, expToGive($pkmn, $pkmnE));
         return;

@@ -56,9 +56,7 @@ function setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite){
 }
 
 function setPowerCapacityToOS($pkmnDef, $capacite){
-    // print($pkmnDef['Stats']['Health']);
-    // sleep(1);
-    return 10000;
+    return 100000000;
 }
 
 function getLastFourElements($array, $level) {

@@ -83,17 +83,16 @@ while(true){
             break;
         }
         continueToFight();
-        // SCREEN CONTINUER OU QUITTER LE JEU
     }
 }
 
 function continueToFight(){
     clearInGame();
     displayStatsFromSaveToMenu();
+    messageBoiteDialogue('Do you want to continue ?');
     displayBox([7,15],[24,46]);
     writeSentence('1: Continue',[26,48]);
     writeSentence('2: Quit',[28,48]);
-    messageBoiteDialogue('Do you want to continue ?');
     // Attend la selection entre 1 et 2
     $choice = waitForInput([31,0],[1,2]);
     if($choice == 2){
