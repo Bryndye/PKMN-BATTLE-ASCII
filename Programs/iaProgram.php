@@ -22,18 +22,17 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "I'm tougher than you think",
             'end' => [
                 "You obtained the Boulder Badge!",
-                "Gg frero"
+                "You are solid as a rock! Keep going, your journey start here!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2),
         ],
         'Team' => [
-            generatePkmnBattle('geodude', 12),
-            generatePkmnBattle('onix', 14),
+            generatePkmnBattle('geodude', 12,0,["rock-throw", "tackle","harden"]),
+            generatePkmnBattle('onix', 14,0,["rock-throw","harden","tackle"]),
         ],
     ],
     20 => [
@@ -41,18 +40,18 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "Don't run around the pool!",
             'end' => [
                 "You obtained the Cascade Badge!",
-                "Gg frero"
+                "I'm going to swim with my pokemons."
             ]
         ],
         'Bag' => [
             itemReturn('Potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('staryu', 18),
-            generatePkmnBattle('starmie', 21),
+            generatePkmnBattle('staryu', 18,0,["bubble","water-gun","tackle"]),
+            generatePkmnBattle('starmie', 21,0,["bubble","thunder-shock","amnesia","water-gun"]),
         ],
     ],
     30 => [
@@ -60,19 +59,19 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "Do you want to go to the army?",
             'end' => [
                 "You obtained the Thunder Badge!",
-                "Gg frero"
+                "The army needs guys like you!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Super potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('voltorb', 21),
-            generatePkmnBattle('pikachu', 18),
-            generatePkmnBattle('raichu', 24),
+            generatePkmnBattle('voltorb', 21,0,["thunder-shock","tackle"]),
+            generatePkmnBattle('pikachu', 18,0,["thunder-shock","quick-attack","tail-whip","surf"]),
+            generatePkmnBattle('raichu', 24,0,["thunder-shock","tail-whip","quick-attack"]),
         ],
     ],
     40 => [
@@ -80,19 +79,19 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "I'm the leader of grass type! Prepare your antidotes.",
             'end' => [
                 "You obtained the Rainbow Badge!",
-                "Gg frero"
+                "Be the sun with you!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Super potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('victreebel', 29),
-            generatePkmnBattle('tangela', 24),
-            generatePkmnBattle('vileplume', 29),
+            generatePkmnBattle('victreebel', 29,0,['vine-whip','toxic']),
+            generatePkmnBattle('tangela', 24,0,['vine-whip','absorb']),
+            generatePkmnBattle('vileplume', 29,0,['vine-whip','sleep-powder','mega-drain']),
         ],
     ],
     50 => [
@@ -100,20 +99,20 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "I'm a ninja! Could you see me?",
             'end' => [
                 "You obtained the Soul Badge!",
-                "Gg frero"
+                "I'm not as fast as I used to be. I need to train with the team more often!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Super potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('koffing', 37),
-            generatePkmnBattle('muk', 39),
-            generatePkmnBattle('koffing', 37),
-            generatePkmnBattle('weezing', 43),
+            generatePkmnBattle('koffing', 37,0,['sludge','sludge-bomb']),
+            generatePkmnBattle('muk', 39,0,['sludge','sludge-bomb']),
+            generatePkmnBattle('koffing', 37,0,['sludge','sludge-bomb']),
+            generatePkmnBattle('weezing', 43,0,['sludge','sludge-bomb']),
         ],
     ],
     60 => [
@@ -121,20 +120,20 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "What are you looking at?",
             'end' => [
                 "You obtained the Marsh Badge!",
-                "Gg frero"
+                "Get out!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Super potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('kadabra', 38),
-            generatePkmnBattle('mr-mime', 37),
-            generatePkmnBattle('venomoth', 38),
-            generatePkmnBattle('alakazam', 43),
+            generatePkmnBattle('kadabra', 38,0,['recover','psychic']),
+            generatePkmnBattle('mr-mime', 37,0,['confusion','barrier','light-screen']),
+            generatePkmnBattle('venomoth', 38,0,['psybeam','leech-life']),
+            generatePkmnBattle('alakazam', 43,0,['recover','psychic','amnesia']),
         ],
     ],
     70 => [
@@ -144,18 +143,18 @@ $pnjs = [
         'Dialogues' => [
             'entrance' => "Do you like short pants?",
             'end' => [
-                "You obtained the Earth Badge!",
-                "Gg frero"
+                "You obtained the Flame Badge!",
+                "Well done! Just one Badge and you will be in the Pokemons League!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('growlithe', 42),
-            generatePkmnBattle('ponyta', 40),
-            generatePkmnBattle('rapidash', 42),
-            generatePkmnBattle('arcanine', 47),
+            generatePkmnBattle('growlithe', 42,0,['ember','growl','take-down']),
+            generatePkmnBattle('ponyta', 40,0,['tail-whip','growl','stomp','fire-spin']),
+            generatePkmnBattle('rapidash', 42,0,['tail-whip','growl','stomp','fire-spin']),
+            generatePkmnBattle('arcanine', 47,0,['flamethrower','growl','take-down','fire-blast']),
         ],
     ],
     80 => [
@@ -163,21 +162,21 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "I will have my revenge.",
             'end' => [
-                "You obtained the Boulder Badge!",
-                "Gg frero"
+                "You obtained the Earth Badge!",
+                "..."
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',2)
         ],
         'Team' => [
-            generatePkmnBattle('rhyhorn', 45),
-            generatePkmnBattle('dugtrio', 42),
-            generatePkmnBattle('nidoqueen', 44),
-            generatePkmnBattle('nidoking', 45),
-            generatePkmnBattle('rhydon', 50),
+            generatePkmnBattle('rhyhorn', 45,0,['earthquake','tail-whip','stomp','fissure']),
+            generatePkmnBattle('dugtrio', 42,0,['earthquake','trash']),
+            generatePkmnBattle('nidoqueen', 44,0,['earthquake','tail-whip','poison-sting','thunder']),
+            generatePkmnBattle('nidoking', 45,0,['earthquake','tail-whip','poison-sting','thunder']),
+            generatePkmnBattle('rhydon', 50,0,['earthquake','tail-whip','stomp','fissure']),
         ],
     ],
     90 => [
@@ -185,18 +184,21 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "...",
             'end' => [
-                "You obtained the Boulder Badge!",
-                "Gg frero"
+                "You are colder than I imagined"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
         ],
         'Team' => [
-            generatePkmnBattle('geodude', 12),
-            generatePkmnBattle('onix', 14),
+            generatePkmnBattle('dewgong', 54,0, ['growl', 'take-down','rest','aurora-beam']),
+            generatePkmnBattle('cloyster', 53,0,['aurora-beam','clamp','spike-cannon']),
+            generatePkmnBattle('slowbro', 54,0,['water-gun','amnesia','growl','withdraw']),
+            generatePkmnBattle('jynx', 56,0,['body-slam','ice-punch','double-slap','trash']),
+            generatePkmnBattle('lapras', 56,0,['body-slam','hydro-pump','blizzard','confuse-ray'])
         ],
     ],
     91 => [
@@ -204,18 +206,21 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "Let the training session start!",
             'end' => [
-                "You obtained the Boulder Badge!",
-                "Gg frero"
+                "We're not trained enough!"
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
         ],
         'Team' => [
-            generatePkmnBattle('geodude', 12),
-            generatePkmnBattle('onix', 14),
+            generatePkmnBattle('onyx', 53,0, ['rage', 'rock-throw','slam','harden']),
+            generatePkmnBattle('hitmonchan', 55,0,['ice-punch','fire-punch','thunder-punch','quick-attack']),
+            generatePkmnBattle('hitmonlee', 55,0,['jump-kick', 'high-jump-kick','mega-kick','focus-energy']),
+            generatePkmnBattle('onyx', 56,0,['rage', 'rock-throw','slam','harden']),
+            generatePkmnBattle('machamp', 58,0,['leer','focus-energy','sacrifice','fissure']),
         ],
     ],
     92 => [
@@ -223,18 +228,23 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "I am not old! Get ready to loose brat!",
             'end' => [
-                "You obtained the Boulder Badge!",
-                "Gg frero"
+                "I see that you are the trainer trained by Prof. Twig.",
+                "One Elite four left! He's the strongest from us. Good luck!",
+                "Maybe i'm too old to do this..."
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
         ],
         'Team' => [
-            generatePkmnBattle('geodude', 12),
-            generatePkmnBattle('onix', 14),
+            generatePkmnBattle('gengar', 56,0, ['hypnosis', 'night-shade','dream-eater']),
+            generatePkmnBattle('golbat', 56,0,['confuse-ray','wing-attack','haze']),
+            generatePkmnBattle('haunter', 55,0,['amnesia','toxic','sludge-bomb','night-shade']),
+            generatePkmnBattle('arbok', 58,0,['hypnosis','bite','screech','acid']),
+            generatePkmnBattle('gengar', 60,0,['hypnosis','night-shade','toxic','dream-eater']),
         ],
     ],
     93 => [
@@ -242,18 +252,46 @@ $pnjs = [
         'type' => 'trainer',
         'Sprite' => 'trainer',
         'Dialogues' => [
-            'entrance' => "Do you like short pants?",
+            'entrance' => "I'm the master of Pokemons Dragon! Prepare you!",
             'end' => [
-                "You obtained the Boulder Badge!",
-                "Gg frero"
+                "Congratulation! You deafeat Elites 4 but there is more challenge.",
+                "He's waiting for you..."
             ]
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
         ],
         'Team' => [
-            generatePkmnBattle('geodude', 12),
-            generatePkmnBattle('onix', 14),
+            generatePkmnBattle('gyarados', 58,0, ['dragon-rage', 'slam','thunder','hyper-beam']),
+            generatePkmnBattle('dragonair', 56,0,['dragon-rage','slam','hyper-beam']),
+            generatePkmnBattle('dragonair', 56,0,['dragon-rage','slam','sludge-bomb','solar-beam']),
+            generatePkmnBattle('aerodactyl', 60,0,['bite','take-down','surf','take-down']),
+            generatePkmnBattle('dragonite', 62,0,['hyper-beam','earthquake','thunder','trash']),
+        ],
+    ],
+    94 => [
+        'Name' => 'Champion Blue',
+        'type' => 'trainer',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "What?! You here?! Anyway, you will lose!",
+            'end' => [
+                "How?! Impossible!",
+                "Congratulation! You are the new Champion!"
+            ]
+        ],
+        'Bag' => [
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
+        ],
+        'Team' => [           
+            generatePkmnBattle('pidgeot', 56,0, ['quick-attack', 'wing-attack','growl','hyper-beam']),
+            generatePkmnBattle('exeggutor', 58,0,['egg-bomb','slam','psychic','solar-beam']),
+            generatePkmnBattle('arcanine', 56,0,['extreme-speed','flamethrower','swift','growl']),
+            generatePkmnBattle('gyarados', 58,0, ['hydro-pum', 'twister','thunder','hyper-beam']),
+            generatePkmnBattle('rhydon', 56,0,['rock-slide','earthquake','hyper-beam','fury-attack']),
+            generatePkmnBattle('alakazam', 54,0,['psychic','recover','amnesia','barrier']),
         ],
     ],
     100 => [
@@ -266,7 +304,7 @@ $pnjs = [
         ],
         'Bag' => [],
         'Team' => [
-            generatePkmnBattle('mewtwo', 70),
+            generatePkmnBattle('mewtwo', 70,0,["psychic","flamethrower","amnesia","hyper-beam"]),
         ],
     ],
     110 => [
@@ -278,15 +316,40 @@ $pnjs = [
             'end' => "..."
         ],
         'Bag' => [
-            itemReturn('Potion',2)
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('pikachu', 88,0, ['thunderbolt', 'quick-attack','thunder']),
-            generatePkmnBattle('charizard', 77),
-            generatePkmnBattle('venusaur', 77),
-            generatePkmnBattle('blastoise', 77),
-            generatePkmnBattle('snorlax', 75),
-            generatePkmnBattle('lapras', 80)
+            generatePkmnBattle('charizard', 77,0,['hyper-beam','flamethrower','wing-attack']),
+            generatePkmnBattle('venusaur', 77,0,['razor-leaf','toxic','sludge-bomb','solar-beam']),
+            generatePkmnBattle('blastoise', 77,0,['hydro-pump','hyper-beam','surf','take-down']),
+            generatePkmnBattle('snorlax', 75,0,['hyper-beam','earthquake','rest','trash']),
+            generatePkmnBattle('lapras', 80,0,['surf','hydro-pump','ice-beam','take-down'])
+        ],
+    ],
+    120 => [
+        'Name' => 'Prof. Twig',
+        'type' => 'trainer',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Hehe! What do you think? That i'm not a trainer? Of course i'm!",
+            'end' => [
+                "...",
+                "I'm going back to my development. this game needs some updates..."
+            ]
+        ],
+        'Bag' => [
+            itemReturn('Hyper potion',5),
+            itemReturn('Revive',5),
+        ],
+        'Team' => [
+            generatePkmnBattle('pidgeot', 85,0, ['quick-attack', 'wing-attack','swords-dance','hyper-beam']),
+            generatePkmnBattle('gengar', 86,0,['hyper-beam','flamethrower','psychic','amnesia']),
+            generatePkmnBattle("farfetch'd", 100,0,['razor-leaf','trash','hyper-beam','swords-dance']),
+            generatePkmnBattle('alakazam', 90,0,['psychic','hydro-pump','flamethrower','amnesia']),
+            generatePkmnBattle('tauros', 90,0,['hyper-beam','earthquake','rest','trash']),
+            generatePkmnBattle('mew', 80,0,['psychic','hydro-pump','ice-beam','amnesia'])
         ],
     ],
 ];
