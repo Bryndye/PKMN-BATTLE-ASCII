@@ -50,28 +50,22 @@ function getPokemonByName($name){
 
 function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
     $pkmn = getPokemon($index);
+    if(is_null($pkmn)){
+        print_r($pkmn);
+        sleep(5);
+    }
     $newCapacites = [];
     if(count($capacites) > 0){
-        if($index == 'geodude'){         
-            print_r($capacites);
-            sleep(1);
-        }
         foreach($capacites as $capacite){
             array_push($newCapacites, getCapacite($capacite));
         }
     }
     else{
         $capacitesCanLearn = $pkmn['capacites'];
-        // print_r($capacitesCanLearn);
-        // sleep(1);
         $capTemp = getLastFourElements($capacitesCanLearn, $level, $level);
-        // print_r($capTemp);
-        // sleep(1);
         foreach($capTemp as $capacite){
             array_push($newCapacites, getCapacite($capacite['name']));
         }
-        // print_r($newCapacites);
-        // sleep(1);
     }
 
     $ivs = [
@@ -191,9 +185,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false){
         }
     }
     levelUpWindow($oldStats, $newStats);
-    
-    // print_r($pkmn['ivs']);
-    // sleep(5);
+    checkThingsToDoLevelUp($pkmn);
     getExp($pkmn, $expLeft, true);
 }
 
@@ -211,7 +203,6 @@ function getExp(&$pkmn, $exp, $inThisFct = false){
     if($pkmn['exp'] >= $pkmn['expToLevel']){
         $expLeft = $pkmn['exp'] - $pkmn['expToLevel'];
         levelUp($pkmn, $expLeft, $inThisFct);
-        checkThingsToDoLevelUp($pkmn);
     }
 }
 
@@ -282,9 +273,16 @@ function resetStatsTemp(&$pkmn){
 ////////////////////////////////////////////////////////////////////////////////////////
 
 function checkThingsToDoLevelUp(&$pkmn){
-    $capArray = getPokemon($pkmn['Name'])['capacites'];
-    if($pkmn['Level'] >= $capArray[0]){
-        print('bouh');
+    $pkmnCapaList = getPokemon($pkmn['Name'])['capacites'];
+    // print_r($pkmnCapaList);
+    // sleep(2);
+    $newCapa = getLastElements($pkmnCapaList, $pkmn['Level']);
+    // print(!is_null($newCapa));
+    // sleep(2);
+    if(!is_null($newCapa)){
+        // print('bouhg');
+        // sleep(2);
+        setCapacityToPkmn($pkmn, getCapacite($newCapa['name']));
     }
     if(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){
         evolution($pkmn);

@@ -131,7 +131,7 @@ $pnjs = [
         ],
         'Team' => [
             generatePkmnBattle('kadabra', 38,0,['recover','psychic']),
-            generatePkmnBattle('mr-mime', 37,0,['confusion','barrier','light-screen']),
+            generatePkmnBattle('mr-mime', 37,0,['confusion','protect','light-screen']),
             generatePkmnBattle('venomoth', 38,0,['psybeam','leech-life']),
             generatePkmnBattle('alakazam', 43,0,['recover','psychic','amnesia']),
         ],
@@ -216,10 +216,10 @@ $pnjs = [
             itemReturn('Revive',5),
         ],
         'Team' => [
-            generatePkmnBattle('onyx', 53,0, ['rage', 'rock-throw','slam','harden']),
+            generatePkmnBattle('onix', 53,0, ['rage', 'rock-throw','slam','harden']),
             generatePkmnBattle('hitmonchan', 55,0,['ice-punch','fire-punch','thunder-punch','quick-attack']),
             generatePkmnBattle('hitmonlee', 55,0,['jump-kick', 'high-jump-kick','mega-kick','focus-energy']),
-            generatePkmnBattle('onyx', 56,0,['rage', 'rock-throw','slam','harden']),
+            generatePkmnBattle('onix', 56,0,['rage', 'rock-throw','slam','harden']),
             generatePkmnBattle('machamp', 58,0,['leer','focus-energy','sacrifice','fissure']),
         ],
     ],
@@ -291,7 +291,7 @@ $pnjs = [
             generatePkmnBattle('arcanine', 56,0,['extreme-speed','flamethrower','swift','growl']),
             generatePkmnBattle('gyarados', 58,0, ['hydro-pum', 'twister','thunder','hyper-beam']),
             generatePkmnBattle('rhydon', 56,0,['rock-slide','earthquake','hyper-beam','fury-attack']),
-            generatePkmnBattle('alakazam', 54,0,['psychic','recover','amnesia','barrier']),
+            generatePkmnBattle('alakazam', 54,0,['psychic','recover','amnesia','protect']),
         ],
     ],
     100 => [
@@ -346,7 +346,7 @@ $pnjs = [
         'Team' => [
             generatePkmnBattle('pidgeot', 85,0, ['quick-attack', 'wing-attack','swords-dance','hyper-beam']),
             generatePkmnBattle('gengar', 86,0,['hyper-beam','flamethrower','psychic','amnesia']),
-            generatePkmnBattle("farfetch'd", 100,0,['razor-leaf','trash','hyper-beam','swords-dance']),
+            generatePkmnBattle("farfetchd", 100,0,['razor-leaf','trash','hyper-beam','swords-dance']),
             generatePkmnBattle('alakazam', 90,0,['psychic','hydro-pump','flamethrower','amnesia']),
             generatePkmnBattle('tauros', 90,0,['hyper-beam','earthquake','rest','trash']),
             generatePkmnBattle('mew', 80,0,['psychic','hydro-pump','ice-beam','amnesia'])

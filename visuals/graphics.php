@@ -73,7 +73,6 @@ function limitSentence($string, $scale = 50, $pos = [26,4]){
     $lines = explode("\n", $texteDecoupe);
     for ($i = 0; $i < count($lines); $i++) {
         moveCursorIndex($pos, $i);
-        // echo "\033[".$pos[0]+$i.";".$pos[1]."H";
         echo $lines[$i]; // affiche la ligne de texte
     }
 }

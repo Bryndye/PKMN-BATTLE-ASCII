@@ -96,13 +96,13 @@ function chooseFirstPokemon(){
     $team = [];
     $choice = waitForInput([31,0], [1,2,3]);
     if($choice == 1){
-        $team[0] = generatePkmnBattle('bulbasaur', 5, 0, ['tackle', 'growl','razor-leaf']);
+        $team[0] = generatePkmnBattle('bulbasaur', 5);
     }
     else if($choice == 2){
-        $team[0] = generatePkmnBattle('squirtle',5, 0, ['tackle', 'growl', 'bubble']);
+        $team[0] = generatePkmnBattle('squirtle',5);
     }
     else if($choice == 3){
-        $team[0] = generatePkmnBattle('charmander', 5, 0, ['tackle', 'growl', 'ember']);
+        $team[0] = generatePkmnBattle('charmander', 5);
     }
     // $team[1] = generatePkmnBattle(rand(1,151), 15);
     return $team;

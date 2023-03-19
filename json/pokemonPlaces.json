@@ -1,0 +1,42 @@
+{
+    "routes": [
+      {
+        "name": "Route 1",
+        "pokemon": [
+          {
+            "name": "Pikachu",
+            "spawn_rate": 0.2
+          },
+          {
+            "name": "Rattata",
+            "spawn_rate": 0.5
+          },
+          {
+            "name": "Caterpie",
+            "spawn_rate": 0.3
+          }
+        ]
+      },
+      {
+        "name": "Route 2",
+        "pokemon": [
+          {
+            "name": "Pidgey",
+            "spawn_rate": 0.4
+          },
+          {
+            "name": "Nidoran♀",
+            "spawn_rate": 0.2
+          },
+          {
+            "name": "Nidoran♂",
+            "spawn_rate": 0.2
+          },
+          {
+            "name": "Jigglypuff",
+            "spawn_rate": 0.2
+          }
+        ]
+      }
+    ]
+  }

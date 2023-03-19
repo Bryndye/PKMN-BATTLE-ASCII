@@ -70,7 +70,7 @@ function displayPkmnTeamHUD($pkmnTeam, $pos){
 function pkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/){
     include 'visuals/sprites.php';
     clearSpritePkmn($isJoueur);
-    displaySprite($sprites['Pokeball'], getPosSpritePkmn($isJoueur));
+    displaySprite($sprites['Pokeball_1'], getPosSpritePkmn($isJoueur));
     usleep(500000);
     clearSpritePkmn($isJoueur, 1);
     displaySpritePkmn($pkmn, $isJoueur);
@@ -188,6 +188,8 @@ function levelUpWindow($oldStats, $newStats){
         echo $phrase_alignee;
         ++$i;
     }
+    sleep(2);
+    clearArea([10,20], [7,39]);
 }
     
 
@@ -225,15 +227,8 @@ function interfaceCapacities($capacites){
                 $posY = $posYInit +3;
                 $posX = $posXInit +20;
             }
-            $stringName = $i . ' : ';
-            $stringPP = 'PP : ' ;
-            if(isset($capacites[$i]['PP'])){
-                $stringPP .= $capacites[$i]['PP'] . "/";
-            }
-            echo "\033[".($posY).";".($posX)."H";
-            echo $stringName.$capacites[$i]['Name'];
-            echo "\033[".($posY+1).";".($posX)."H";
-            echo $stringPP.$capacites[$i]['PP Max'];
+            limitSentence($i.' : '.$capacites[$i]['Name'],23,[$posY,$posX]);
+            limitSentence('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
         }
     }
 }

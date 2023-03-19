@@ -52,7 +52,12 @@ while(true){
     giveItemFromResources($save["Bag"], 'Super potion', 5);
     giveItemFromResources($save["Bag"], 'PokeBall', 5);
     giveItemFromResources($save["Bag"], 'MasterBall', 5);
-    
+
+
+    // setCapacityToPkmn($pkmnTeamJoueur[0], getCapacite('flamethrower'));
+    // setCapacityToPkmn($pkmnTeamJoueur[0], getCapacite('tackle'));
+    // setCapacityToPkmn($pkmnTeamJoueur[0], getCapacite('growl'));
+
     // Loop gameplay if team alive
     while(true){
         // Passage au shop

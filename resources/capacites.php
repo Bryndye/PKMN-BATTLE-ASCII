@@ -69,11 +69,70 @@ function getLastFourElements($array, $level) {
             }
         }
     }
-    // $missingElements = 4 - count($lastFour);
-    // if ($missingElements > 0) {
-    //     $lastFour = array_merge(array_fill(0, $missingElements, ['name' => '', 'level' => 0]), $lastFour);
-    // }
     return $lastFour;
 }
 
+function getLastElements($array, $level) {
+    $capacity = null;
+    foreach ($array as $element) {
+        if ($element['level'] == $level) {
+            $capacity = $element;
+            break;
+        }
+    }
+    return $capacity;
+}
+
+function setCapacityToPkmn(&$pkmn, $capacite){
+    if(count($pkmn['Capacites']) == 4){
+
+        clearInGame();
+        include 'visuals/sprites.php';
+        displaySprite($sprites[$pkmn['Sprite']], [5,3]);
+        limitSentence($pkmn['Name'],30,[3,5]);
+        limitSentence('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
+
+        $i = 0;
+        foreach($pkmn['Capacites'] as $capacitePkmn){
+            displayBox([5,25],[2+$i,30]);
+            limitSentence($capacitePkmn['Name'],23,[3+$i,32]);
+            limitSentence('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
+            $i += 5;
+        }
+
+        // Premiere boucle : vouloir apprendre la capacite ?
+        $replace = false;
+        while(!$replace){
+            messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
+            $choice = waitForInput([31,0], ['y','n']);
+            if($choice == 'n'){
+                messageBoiteDialogue($pkmn['Name']." didn'y learned " .$capacite['Name'].'...');
+                break;
+            }
+            // Deuxieme boucle : remplacer par quelle capacite ?
+            while(true){
+                messageBoiteDialogue('Which capacity to removes?');
+                $choice = waitForInput([31,0], ['c',0,1,2,3]);
+                if($choice == 'c'){
+                    break;
+                }
+                messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');
+                $choice2 = waitForInput([31,0], ['y','n']);
+                if($choice2 == 'y'){
+                    $pkmn['Capacites'][$choice] = $capacite;
+                    $replace = true;
+                    break;
+                }
+                else{
+                    continue;
+                }
+            }
+        }
+        clearInGame();
+    }
+    else{
+        array_push($pkmn['Capacites'], $capacite);
+        messageBoiteDialogue($pkmn['Name'].' has learned ' .$capacite['Name'].'!');
+    }
+}
 ?>
