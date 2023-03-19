@@ -17,6 +17,24 @@ function managerPNJGenerate($indexFloor, $level){
     return $pnj;
 }
 $pnjs = [
+    1 => [
+        'Name' => 'Tony',
+        'type' => 'trainer',
+        'Sprite' => 'trainer',
+        'Dialogues' => [
+            'entrance' => "Do you like short pants?",
+            'end' => [
+                "It's ok if you don't like it."
+            ]
+        ],
+        'Reward' => 150,
+        'Bag' => [
+        ],
+        'Team' => [
+            generatePkmnBattle('rattata', 1),
+            // generatePkmnBattle('rattata', 4),
+        ]
+    ],
     10 => [
         'Name' => 'Gym Leader Brock',
         'type' => 'trainer',
@@ -28,6 +46,7 @@ $pnjs = [
                 "You are solid as a rock! Keep going, your journey start here!"
             ]
         ],
+        'Reward' => 1000,
         'Bag' => [
         ],
         'Team' => [
@@ -46,6 +65,7 @@ $pnjs = [
                 "I'm going to swim with my pokemons."
             ]
         ],
+        'Reward' => 1000,
         'Bag' => [
             itemReturn('Potion',2)
         ],
@@ -65,6 +85,7 @@ $pnjs = [
                 "The army needs guys like you!"
             ]
         ],
+        'Reward' => 1500,
         'Bag' => [
             itemReturn('Super potion',2)
         ],
@@ -85,6 +106,7 @@ $pnjs = [
                 "Be the sun with you!"
             ]
         ],
+        'Reward' => 1500,
         'Bag' => [
             itemReturn('Super potion',2)
         ],
@@ -105,6 +127,7 @@ $pnjs = [
                 "I'm not as fast as I used to be. I need to train with the team more often!"
             ]
         ],
+        'Reward' => 1500,
         'Bag' => [
             itemReturn('Super potion',2)
         ],
@@ -126,6 +149,7 @@ $pnjs = [
                 "Get out!"
             ]
         ],
+        'Reward' => 2000,
         'Bag' => [
             itemReturn('Super potion',2)
         ],
@@ -147,6 +171,7 @@ $pnjs = [
                 "Well done! Just one Badge and you will be in the Pokemons League!"
             ]
         ],
+        'Reward' => 2000,
         'Bag' => [
             itemReturn('Hyper potion',2)
         ],
@@ -168,6 +193,7 @@ $pnjs = [
                 "..."
             ]
         ],
+        'Reward' => 2000,
         'Bag' => [
             itemReturn('Hyper potion',2)
         ],
@@ -189,6 +215,7 @@ $pnjs = [
                 "You are colder than I imagined"
             ]
         ],
+        'Reward' => 3500,
         'Bag' => [
             itemReturn('Hyper potion',5),
             itemReturn('Revive',5),
@@ -211,6 +238,7 @@ $pnjs = [
                 "We're not trained enough!"
             ]
         ],
+        'Reward' => 3500,
         'Bag' => [
             itemReturn('Hyper potion',5),
             itemReturn('Revive',5),
@@ -235,6 +263,7 @@ $pnjs = [
                 "Maybe i'm too old to do this..."
             ]
         ],
+        'Reward' => 3500,
         'Bag' => [
             itemReturn('Hyper potion',5),
             itemReturn('Revive',5),
@@ -258,6 +287,7 @@ $pnjs = [
                 "He's waiting for you..."
             ]
         ],
+        'Reward' => 3500,
         'Bag' => [
             itemReturn('Hyper potion',5),
             itemReturn('Revive',5),
@@ -281,6 +311,7 @@ $pnjs = [
                 "Congratulation! You are the new Champion!"
             ]
         ],
+        'Reward' => 4000,
         'Bag' => [
             itemReturn('Hyper potion',5),
             itemReturn('Revive',5),
@@ -302,6 +333,7 @@ $pnjs = [
             'entrance' => "Who is that Pokemon? The pressure is high...",
             'end' => "You've beaten the strongest Pokemon."
         ],
+        'Reward' => 0,
         'Bag' => [],
         'Team' => [
             generatePkmnBattle('mewtwo', 70,0,["psychic","flamethrower","amnesia","hyper-beam"]),
@@ -315,6 +347,7 @@ $pnjs = [
             'entrance' => "...",
             'end' => "..."
         ],
+        'Reward' => 15000,
         'Bag' => [
             itemReturn('Hyper potion',5),
             itemReturn('Revive',5),

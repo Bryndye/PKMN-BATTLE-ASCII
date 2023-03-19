@@ -39,18 +39,31 @@ function animationIntro(){
 }
 function menuStart(){
     displayGameCadre();
-    displayBox([7,20],[5,5]);
+    
+    $choiceBefore = [];
+    if(isSaveExist('json/save.json',true)){
+        displayBox([9,20],[5,5]);
+        writeSentence('1 : CONTINUE', [7,7]);
+        writeSentence("2 : DELETE", [9,7]);
+        writeSentence("3 : QUIT", [11,7]);
+        $choiceBefore = [1,2,3];
+    }
+    else{
+        displayBox([7,20],[5,5]);
+        writeSentence('1 : NEW GAME', [7,7]);
+        writeSentence("3 : QUIT", [9,7]);
+        $choiceBefore = [1,3];
+    }
 
-    echo "\033[7;7H";
-    echo isSaveExist('json/save.json',true) ? '1 : CONTINUE' : "1 : NEW GAME";
-    echo "\033[9;7H";
-    echo "2 : QUIT";
     displayStatsFromSaveToMenu();
 
     // Attend la selection entre 1 et 2
-    $choice = waitForInput([31,0],[1,2]);
-    if($choice == 2){
+    $choice = waitForInput([31,0],$choiceBefore);
+    if($choice == 3){
         exitGame();
+    }
+    elseif($choice == 2){
+        deleteSave();
     }
     displayBox([29,60],[1,1]); // Cadre du jeu
     clearArea([27,58],[2,2]); // Efface l'écran

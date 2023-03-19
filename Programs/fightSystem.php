@@ -55,7 +55,7 @@ function gameplayLoop(&$joueur, &$pnj){
     }
 
     // fct after battle
-    endBattle($pkmnTeamJoueur, $pnj);
+    endBattle($joueur, $pnj);
 }
 
 // Selection du choix joueur et enemy
@@ -248,7 +248,8 @@ function endPkmnCaptured(&$pkmnTeamJoueur, &$pkmnE){
     }
 }
 
-function endBattle($pkmnTeamJoueur, $pnj){
+function endBattle(&$joueur, $pnj){
+    $pkmnTeamJoueur = $joueur['Team'];
     resetTeamStatsTemp($pkmnTeamJoueur);
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
         messageBoiteDialogue("Your whole Team is k.o!");
@@ -271,6 +272,10 @@ function endBattle($pkmnTeamJoueur, $pnj){
         // }
         messageBoiteDialogue("You've defeated " . $pnj['Name'].'!');
         sleep(2);
+    }
+    if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
+        $joueur['Money'] += $pnj['Reward'];
+        messageBoiteDialogue("You get " . $pnj['Reward'].' pokedollars.');
     }
 }
 ?>

@@ -1134,7 +1134,7 @@
             "stade":2
         }
     },
-    "Sprite":"thumbnail",
+    "Sprite":"Rattata",
     "capacites":[
         {
             "name":"tackle",
@@ -1183,7 +1183,7 @@
         "before":"",
         "after":""
     },
-    "Sprite":"thumbnail",
+    "Sprite":"Rattatac",
     "capacites":[
         {
             "name":"tackle",

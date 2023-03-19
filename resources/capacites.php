@@ -62,7 +62,7 @@ function setPowerCapacityToOS($pkmnDef, $capacite){
 function getLastFourElements($array, $level) {
     $lastFour = [];
     foreach ($array as $element) {
-        if ($element['level'] < $level) {
+        if ($element['level'] <= $level) {
             $lastFour[] = $element;
             if (count($lastFour) == 4) {
                 break;
