@@ -523,6 +523,14 @@
         {
             "name":"hydro-pump",
             "level":36
+        },
+        {
+            "name":"ice-beam",
+            "level":40
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -596,6 +604,14 @@
         {
             "name":"hydro-pump",
             "level":36
+        },
+        {
+            "name":"ice-beam",
+            "level":40
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -665,6 +681,14 @@
         {
             "name":"hydro-pump",
             "level":36
+        },
+        {
+            "name":"ice-beam",
+            "level":40
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -700,12 +724,8 @@
             "level":1
         },
         {
-            "name":"growl",
+            "name":"string-shot",
             "level":1
-        },
-        {
-            "name":"razor-leaf",
-            "level":6
         }
     ]
     },
@@ -737,16 +757,8 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"harden",
             "level":1
-        },
-        {
-            "name":"growl",
-            "level":1
-        },
-        {
-            "name":"razor-leaf",
-            "level":6
         }
     ]
     },
@@ -778,12 +790,44 @@
             "level":1
         },
         {
-            "name":"growl",
+            "name":"string-shot",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"gust",
+            "level":10
+        },
+        {
+            "name":"confusion",
+            "level":12
+        },
+        {
+            "name":"stun-spore",
+            "level":15
+        },
+        {
+            "name":"sleep-powder",
+            "level":15
+        },
+        {
+            "name":"poison-powder",
+            "level":15
+        },
+        {
+            "name":"psybeam",
+            "level":20
+        },
+        {
+            "name":"wing-attack",
+            "level":25
+        },
+        {
+            "name":"hyper-beam",
+            "level":30
+        },
+        {
+            "name":"psychic",
+            "level":40
         }
     ]
     },
@@ -819,12 +863,12 @@
             "level":1
         },
         {
-            "name":"growl",
+            "name":"string-shot",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"poison-sting",
+            "level":1
         }
     ]
     },
@@ -856,16 +900,8 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"harden",
             "level":1
-        },
-        {
-            "name":"growl",
-            "level":1
-        },
-        {
-            "name":"razor-leaf",
-            "level":6
         }
     ]
     },
@@ -893,16 +929,28 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
-            "level":1
+            "name":"poison-sting",
+            "level":9
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"fury-swipes",
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wing-attack",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":20
+        },
+        {
+            "name":"fly",
+            "level":30
+        },
+        {
+            "name":"hyper-beam",
+            "level":40
         }
     ]
     },
@@ -934,16 +982,24 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"gust",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sand-attack",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":10
+        },
+        {
+            "name":"wing-attack",
+            "level":25
+        },
+        {
+            "name":"agility",
+            "level":36
         }
     ]
     },
@@ -975,16 +1031,28 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"gust",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sand-attack",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":10
+        },
+        {
+            "name":"wing-attack",
+            "level":25
+        },
+        {
+            "name":"agility",
+            "level":30
+        },
+        {
+            "name":"hyper-beam",
+            "level":30
         }
     ]
     },
@@ -1012,16 +1080,32 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"gust",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sand-attack",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":10
+        },
+        {
+            "name":"wing-attack",
+            "level":25
+        },
+        {
+            "name":"agility",
+            "level":30
+        },
+        {
+            "name":"slash",
+            "level":36
+        },
+        {
+            "name":"hyper-beam",
+            "level":40
         }
     ]
     },
@@ -1057,12 +1141,24 @@
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":7
+        },
+        {
+            "name":"hyper-fang",
+            "level":14
+        },
+        {
+            "name":"focus-energy",
+            "level":23
+        },
+        {
+            "name":"super-fang",
+            "level":34
         }
     ]
     },
@@ -1094,12 +1190,24 @@
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":7
+        },
+        {
+            "name":"hyper-fang",
+            "level":14
+        },
+        {
+            "name":"focus-energy",
+            "level":23
+        },
+        {
+            "name":"super-fang",
+            "level":34
         }
     ]
     },
@@ -1131,7 +1239,7 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"peck",
             "level":1
         },
         {
@@ -1139,8 +1247,24 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"leer",
+            "level":5
+        },
+        {
+            "name":"fury-swipes",
+            "level":15
+        },
+        {
+            "name":"drill-peck",
+            "level":22
+        },
+        {
+            "name":"slash",
+            "level":30
+        },
+        {
+            "name":"hyper-beam",
+            "level":40
         }
     ]
     },
@@ -1168,7 +1292,7 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"peck",
             "level":1
         },
         {
@@ -1176,8 +1300,24 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"leer",
+            "level":5
+        },
+        {
+            "name":"fury-swipes",
+            "level":15
+        },
+        {
+            "name":"drill-peck",
+            "level":22
+        },
+        {
+            "name":"slash",
+            "level":30
+        },
+        {
+            "name":"hyper-beam",
+            "level":40
         }
     ]
     },
@@ -1209,16 +1349,44 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"wrap",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"leer",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"poison-sting",
             "level":6
+        },
+        {
+            "name":"bite",
+            "level":10
+        },
+        {
+            "name":"acid",
+            "level":20
+        },
+        {
+            "name":"toxic",
+            "level":25
+        },
+        {
+            "name":"take-down",
+            "level":30
+        },
+        {
+            "name":"body-slam",
+            "level":35
+        },
+        {
+            "name":"rock-slide",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":45
         }
     ]
     },
@@ -1246,16 +1414,44 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"wrap",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"leer",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"poison-sting",
             "level":6
+        },
+        {
+            "name":"bite",
+            "level":10
+        },
+        {
+            "name":"acid",
+            "level":20
+        },
+        {
+            "name":"toxic",
+            "level":25
+        },
+        {
+            "name":"take-down",
+            "level":30
+        },
+        {
+            "name":"body-slam",
+            "level":35
+        },
+        {
+            "name":"rock-slide",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":45
         }
     ]
     },
@@ -1278,12 +1474,16 @@
     },
     "evolution":{
         "before":"",
-        "after":""
+        "after":{
+            "Name":"raichu",
+            "min level":30,
+            "stade":2
+        }
     },
     "Sprite":"Pikachu",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"thundershock",
             "level":1
         },
         {
@@ -1291,8 +1491,48 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"tail-whip",
+            "level":5
+        },
+        {
+            "name":"thunder-wave",
+            "level":8
+        },
+        {
+            "name":"double-team",
+            "level":10
+        },
+        {
+            "name":"quick-attack",
+            "level":15
+        },
+        {
+            "name":"slam",
+            "level":20
+        },
+        {
+            "name":"swift",
+            "level":24
+        },
+        {
+            "name":"thunderbolt",
+            "level":28
+        },
+        {
+            "name":"thunder",
+            "level":34
+        },
+        {
+            "name":"body-slam",
+            "level":38
+        },
+        {
+            "name":"submission",
+            "level":40
+        },
+        {
+            "name":"take-down",
+            "level":45
         }
     ]
     },
@@ -1320,7 +1560,7 @@
     "Sprite":"Pikachu",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"thundershock",
             "level":1
         },
         {
@@ -1328,8 +1568,48 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"tail-whip",
+            "level":5
+        },
+        {
+            "name":"thunder-wave",
+            "level":8
+        },
+        {
+            "name":"double-team",
+            "level":10
+        },
+        {
+            "name":"quick-attack",
+            "level":15
+        },
+        {
+            "name":"slam",
+            "level":20
+        },
+        {
+            "name":"swift",
+            "level":24
+        },
+        {
+            "name":"thunderbolt",
+            "level":28
+        },
+        {
+            "name":"thunder",
+            "level":34
+        },
+        {
+            "name":"body-slam",
+            "level":38
+        },
+        {
+            "name":"submission",
+            "level":40
+        },
+        {
+            "name":"take-down",
+            "level":45
         }
     ]
     },
@@ -1361,16 +1641,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"sand-attack",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"poison-sting",
+            "level":7
+        },
+        {
+            "name":"swift",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":20
+        },
+        {
+            "name":"dig",
+            "level":22
+        },
+        {
+            "name":"fury-swipes",
+            "level":25
+        },
+        {
+            "name":"take-down",
+            "level":28
+        },
+        {
+            "name":"earthquake",
+            "level":30
+        },
+        {
+            "name":"fissure",
+            "level":40
+        },
+        {
+            "name":"body-slam",
+            "level":36
+        },
+        {
+            "name":"slam",
+            "level":44
         }
     ]
     },
@@ -1398,16 +1714,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"sand-attack",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"poison-sting",
+            "level":7
+        },
+        {
+            "name":"swift",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":20
+        },
+        {
+            "name":"dig",
+            "level":22
+        },
+        {
+            "name":"fury-swipes",
+            "level":25
+        },
+        {
+            "name":"take-down",
+            "level":28
+        },
+        {
+            "name":"earthquake",
+            "level":30
+        },
+        {
+            "name":"fissure",
+            "level":40
+        },
+        {
+            "name":"body-slam",
+            "level":36
+        },
+        {
+            "name":"slam",
+            "level":44
         }
     ]
     },
@@ -1447,8 +1799,52 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"scratch",
             "level":6
+        },
+        {
+            "name":"poison-sting",
+            "level":8
+        },
+        {
+            "name":"tail-whip",
+            "level":10
+        },
+        {
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"double-kick",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"slam",
+            "level":34
+        },
+        {
+            "name":"earthquake",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"thunder",
+            "level":50
         }
     ]
     },
@@ -1488,8 +1884,52 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"scratch",
             "level":6
+        },
+        {
+            "name":"poison-sting",
+            "level":8
+        },
+        {
+            "name":"tail-whip",
+            "level":10
+        },
+        {
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"double-kick",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"slam",
+            "level":34
+        },
+        {
+            "name":"earthquake",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"thunder",
+            "level":50
         }
     ]
     },
@@ -1525,8 +1965,52 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"scratch",
             "level":6
+        },
+        {
+            "name":"poison-sting",
+            "level":8
+        },
+        {
+            "name":"tail-whip",
+            "level":10
+        },
+        {
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"double-kick",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"slam",
+            "level":34
+        },
+        {
+            "name":"earthquake",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"thunder",
+            "level":50
         }
     ]
     },
@@ -1566,8 +2050,52 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"scratch",
             "level":6
+        },
+        {
+            "name":"poison-sting",
+            "level":8
+        },
+        {
+            "name":"tail-whip",
+            "level":10
+        },
+        {
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"double-kick",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"slam",
+            "level":34
+        },
+        {
+            "name":"earthquake",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"thunder",
+            "level":50
         }
     ]
     },
@@ -1607,8 +2135,52 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"scratch",
             "level":6
+        },
+        {
+            "name":"poison-sting",
+            "level":8
+        },
+        {
+            "name":"tail-whip",
+            "level":10
+        },
+        {
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"double-kick",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"slam",
+            "level":34
+        },
+        {
+            "name":"earthquake",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"thunder",
+            "level":50
         }
     ]
     },
@@ -1644,8 +2216,52 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"scratch",
             "level":6
+        },
+        {
+            "name":"poison-sting",
+            "level":8
+        },
+        {
+            "name":"tail-whip",
+            "level":10
+        },
+        {
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"double-kick",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"slam",
+            "level":34
+        },
+        {
+            "name":"earthquake",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"thunder",
+            "level":50
         }
     ]
     },
@@ -1673,7 +2289,7 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"pound",
             "level":1
         },
         {
@@ -1681,8 +2297,48 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"sing",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":13
+        },
+        {
+            "name":"minimize",
+            "level":16
+        },
+        {
+            "name":"metronome",
+            "level":20
+        },
+        {
+            "name":"defense-curl",
+            "level":25
+        },
+        {
+            "name":"body-slam",
+            "level":28
+        },
+        {
+            "name":"light-screen",
+            "level":32
+        },
+        {
+            "name":"tri-attack",
+            "level":36
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"fire-blast",
+            "level":50
+        },
+        {
+            "name":"thunder",
+            "level":60
         }
     ]
     },
@@ -1710,7 +2366,7 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"pound",
             "level":1
         },
         {
@@ -1718,8 +2374,48 @@
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"sing",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":13
+        },
+        {
+            "name":"minimize",
+            "level":16
+        },
+        {
+            "name":"metronome",
+            "level":20
+        },
+        {
+            "name":"defense-curl",
+            "level":25
+        },
+        {
+            "name":"body-slam",
+            "level":28
+        },
+        {
+            "name":"light-screen",
+            "level":32
+        },
+        {
+            "name":"tri-attack",
+            "level":36
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"fire-blast",
+            "level":50
+        },
+        {
+            "name":"thunder",
+            "level":60
         }
     ]
     },
@@ -1751,16 +2447,32 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"ember",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":16
+        },
+        {
+            "name":"confuse-ray",
+            "level":28
+        },
+        {
+            "name":"flamethrower",
+            "level":35
+        },
+        {
+            "name":"fire-spin",
+            "level":38
+        },
+        {
+            "name":"hyper-beam",
+            "level":42
         }
     ]
     },
@@ -1788,16 +2500,32 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"ember",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":16
+        },
+        {
+            "name":"confuse-ray",
+            "level":28
+        },
+        {
+            "name":"flamethrower",
+            "level":35
+        },
+        {
+            "name":"fire-spin",
+            "level":38
+        },
+        {
+            "name":"hyper-beam",
+            "level":42
         }
     ]
     },
@@ -1825,16 +2553,60 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"sing",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"pound",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"defense-curl",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":12
+        },
+        {
+            "name":"rest",
+            "level":15
+        },
+        {
+            "name":"body-slam",
+            "level":20
+        },
+        {
+            "name":"double-edge",
+            "level":25
+        },
+        {
+            "name":"tri-attack",
+            "level":33
+        },
+        {
+            "name":"psychic",
+            "level":35
+        },
+        {
+            "name":"fire-blast",
+            "level":40
+        },
+        {
+            "name":"mega-punch",
+            "level":50
+        },
+        {
+            "name":"thunder",
+            "level":50
+        },
+        {
+            "name":"mega-kick",
+            "level":50
+        },
+        {
+            "name":"blizzard",
+            "level":60
         }
     ]
     },
@@ -1862,16 +2634,60 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"sing",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"pound",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"defense-curl",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":12
+        },
+        {
+            "name":"rest",
+            "level":15
+        },
+        {
+            "name":"body-slam",
+            "level":20
+        },
+        {
+            "name":"double-edge",
+            "level":25
+        },
+        {
+            "name":"tri-attack",
+            "level":33
+        },
+        {
+            "name":"psychic",
+            "level":35
+        },
+        {
+            "name":"fire-blast",
+            "level":40
+        },
+        {
+            "name":"mega-punch",
+            "level":50
+        },
+        {
+            "name":"thunder",
+            "level":50
+        },
+        {
+            "name":"mega-kick",
+            "level":50
+        },
+        {
+            "name":"blizzard",
+            "level":60
         }
     ]
     },
@@ -1903,16 +2719,48 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"leech-life",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bite",
+            "level":12
+        },
+        {
+            "name":"confuse-ray",
+            "level":17
+        },
+        {
+            "name":"double-team",
+            "level":22
+        },
+        {
+            "name":"wing-attack",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"haze",
+            "level":30
+        },
+        {
+            "name":"fly",
+            "level":32
+        },
+        {
+            "name":"take-down",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -1940,16 +2788,48 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"leech-life",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bite",
+            "level":12
+        },
+        {
+            "name":"confuse-ray",
+            "level":17
+        },
+        {
+            "name":"double-team",
+            "level":22
+        },
+        {
+            "name":"wing-attack",
+            "level":25
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"haze",
+            "level":30
+        },
+        {
+            "name":"fly",
+            "level":32
+        },
+        {
+            "name":"take-down",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -1981,16 +2861,44 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"absorb",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"poison-powder",
+            "level":15
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"sleep-powder",
+            "level":15
+        },
+        {
+            "name":"stun-spore",
+            "level":15
+        },
+        {
+            "name":"acid",
+            "level":22
+        },
+        {
+            "name":"petal-dance",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"sword-dance",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2022,16 +2930,44 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"absorb",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"poison-powder",
+            "level":15
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"sleep-powder",
+            "level":15
+        },
+        {
+            "name":"stun-spore",
+            "level":15
+        },
+        {
+            "name":"acid",
+            "level":22
+        },
+        {
+            "name":"petal-dance",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"sword-dance",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2059,16 +2995,44 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"absorb",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"poison-powder",
+            "level":15
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"sleep-powder",
+            "level":15
+        },
+        {
+            "name":"stun-spore",
+            "level":15
+        },
+        {
+            "name":"acid",
+            "level":22
+        },
+        {
+            "name":"petal-dance",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"sword-dance",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2100,16 +3064,48 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"absorb",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"leech-life",
+            "level":5
+        },
+        {
+            "name":"spore",
+            "level":10
+        },
+        {
+            "name":"focus-energy",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":22
+        },
+        {
+            "name":"take-down",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"sword-dance",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2137,16 +3133,48 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"absorb",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"leech-life",
+            "level":5
+        },
+        {
+            "name":"spore",
+            "level":10
+        },
+        {
+            "name":"focus-energy",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":22
+        },
+        {
+            "name":"take-down",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"sword-dance",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2182,12 +3210,40 @@
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"leech-life",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"poison-powder",
+            "level":10
+        },
+        {
+            "name":"psybeam",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":22
+        },
+        {
+            "name":"psychic",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"hyper-beam",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2219,12 +3275,40 @@
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"leech-life",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"poison-powder",
+            "level":10
+        },
+        {
+            "name":"psybeam",
+            "level":15
+        },
+        {
+            "name":"slash",
+            "level":22
+        },
+        {
+            "name":"psychic",
+            "level":27
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"solar-beam",
+            "level":34
+        },
+        {
+            "name":"hyper-beam",
+            "level":36
+        },
+        {
+            "name":"mega-drain",
+            "level":38
         }
     ]
     },
@@ -2256,16 +3340,40 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"dig",
+            "level":15
+        },
+        {
+            "name":"body-slam",
+            "level":20
+        },
+        {
+            "name":"sand-attack",
+            "level":24
+        },
+        {
+            "name":"slash",
+            "level":26
+        },
+        {
+            "name":"earthquake",
+            "level":30
+        },
+        {
+            "name":"rock-slide",
+            "level":36
+        },
+        {
+            "name":"fissure",
+            "level":40
         }
     ]
     },
@@ -2293,16 +3401,44 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"dig",
+            "level":15
+        },
+        {
+            "name":"body-slam",
+            "level":20
+        },
+        {
+            "name":"sand-attack",
+            "level":24
+        },
+        {
+            "name":"slash",
+            "level":26
+        },
+        {
+            "name":"tri-attack",
+            "level":26
+        },
+        {
+            "name":"earthquake",
+            "level":30
+        },
+        {
+            "name":"rock-slide",
+            "level":36
+        },
+        {
+            "name":"fissure",
+            "level":40
         }
     ]
     },
@@ -2334,16 +3470,44 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"pay-day",
+            "level":20
+        },
+        {
+            "name":"fury-swipes",
+            "level":25
+        },
+        {
+            "name":"slash",
+            "level":30
+        },
+        {
+            "name":"take-down",
+            "level":32
+        },
+        {
+            "name":"pay-day",
+            "level":34
+        },
+        {
+            "name":"water-gun",
+            "level":38
+        },
+        {
+            "name":"double-edge",
+            "level":44
         }
     ]
     },
@@ -2371,16 +3535,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bite",
+            "level":15
+        },
+        {
+            "name":"pay-day",
+            "level":20
+        },
+        {
+            "name":"fury-swipes",
+            "level":25
+        },
+        {
+            "name":"slash",
+            "level":30
+        },
+        {
+            "name":"take-down",
+            "level":32
+        },
+        {
+            "name":"pay-day",
+            "level":34
+        },
+        {
+            "name":"water-gun",
+            "level":38
+        },
+        {
+            "name":"double-edge",
+            "level":44
+        },
+        {
+            "name":"hyper-beam",
+            "level":50
         }
     ]
     },
@@ -2412,16 +3608,44 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble",
+            "level":9
+        },
+        {
+            "name":"confusion",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"surf",
+            "level":26
+        },
+        {
+            "name":"ice-beam",
+            "level":30
+        },
+        {
+            "name":"mega-punch",
+            "level":34
+        },
+        {
+            "name":"hydro-pump",
+            "level":40
         }
     ]
     },
@@ -2449,16 +3673,44 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble",
+            "level":9
+        },
+        {
+            "name":"confusion",
+            "level":15
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"fury-swipes",
+            "level":20
+        },
+        {
+            "name":"surf",
+            "level":26
+        },
+        {
+            "name":"ice-beam",
+            "level":30
+        },
+        {
+            "name":"mega-punch",
+            "level":34
+        },
+        {
+            "name":"hydro-pump",
+            "level":40
         }
     ]
     },
@@ -2490,16 +3742,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"leer",
+            "level":3
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"low-kick",
+            "level":8
+        },
+        {
+            "name":"karate-chop",
+            "level":12
+        },
+        {
+            "name":"fury-swipes",
+            "level":15
+        },
+        {
+            "name":"seismic-toss",
+            "level":20
+        },
+        {
+            "name":"trash",
+            "level":26
+        },
+        {
+            "name":"mega-kick",
+            "level":30
+        },
+        {
+            "name":"body-slam",
+            "level":34
+        },
+        {
+            "name":"rock-slide",
+            "level":37
+        },
+        {
+            "name":"mega-punch",
+            "level":40
+        },
+        {
+            "name":"dig",
+            "level":44
         }
     ]
     },
@@ -2527,16 +3815,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"leer",
+            "level":3
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"low-kick",
+            "level":8
+        },
+        {
+            "name":"karate-chop",
+            "level":12
+        },
+        {
+            "name":"fury-swipes",
+            "level":15
+        },
+        {
+            "name":"seismic-toss",
+            "level":20
+        },
+        {
+            "name":"trash",
+            "level":26
+        },
+        {
+            "name":"mega-kick",
+            "level":30
+        },
+        {
+            "name":"body-slam",
+            "level":34
+        },
+        {
+            "name":"rock-slide",
+            "level":37
+        },
+        {
+            "name":"mega-punch",
+            "level":40
+        },
+        {
+            "name":"dig",
+            "level":44
         }
     ]
     },
@@ -2568,16 +3892,32 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"ember",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":16
+        },
+        {
+            "name":"confuse-ray",
+            "level":28
+        },
+        {
+            "name":"flamethrower",
+            "level":35
+        },
+        {
+            "name":"fire-spin",
+            "level":38
+        },
+        {
+            "name":"hyper-beam",
+            "level":42
         }
     ]
     },
@@ -2605,16 +3945,32 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"ember",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":16
+        },
+        {
+            "name":"confuse-ray",
+            "level":28
+        },
+        {
+            "name":"flamethrower",
+            "level":35
+        },
+        {
+            "name":"fire-spin",
+            "level":38
+        },
+        {
+            "name":"hyper-beam",
+            "level":42
         }
     ]
     },
@@ -2646,16 +4002,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"bubble",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"hypnosis",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"water-gun",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":10
+        },
+        {
+            "name":"body-slam",
+            "level":16
+        },
+        {
+            "name":"ice-beam",
+            "level":20
+        },
+        {
+            "name":"amnesia",
+            "level":24
+        },
+        {
+            "name":"hydro-pump",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":34
+        },
+        {
+            "name":"waterfall",
+            "level":36
+        },
+        {
+            "name":"mega-punch",
+            "level":40
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"earthquake",
+            "level":50
         }
     ]
     },
@@ -2687,16 +4083,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"bubble",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"hypnosis",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"water-gun",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":10
+        },
+        {
+            "name":"body-slam",
+            "level":16
+        },
+        {
+            "name":"ice-beam",
+            "level":20
+        },
+        {
+            "name":"amnesia",
+            "level":24
+        },
+        {
+            "name":"hydro-pump",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":34
+        },
+        {
+            "name":"waterfall",
+            "level":36
+        },
+        {
+            "name":"mega-punch",
+            "level":40
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"earthquake",
+            "level":50
         }
     ]
     },
@@ -2724,16 +4160,60 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"bubble",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"hypnosis",
             "level":1
         },
         {
-            "name":"razor-leaf",
+            "name":"water-gun",
             "level":6
+        },
+        {
+            "name":"double-slap",
+            "level":10
+        },
+        {
+            "name":"body-slam",
+            "level":16
+        },
+        {
+            "name":"ice-beam",
+            "level":20
+        },
+        {
+            "name":"amnesia",
+            "level":24
+        },
+        {
+            "name":"hydro-pump",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":34
+        },
+        {
+            "name":"waterfall",
+            "level":36
+        },
+        {
+            "name":"mega-punch",
+            "level":40
+        },
+        {
+            "name":"blizzard",
+            "level":44
+        },
+        {
+            "name":"earthquake",
+            "level":50
+        },
+        {
+            "name":"hyper-beam",
+            "level":60
         }
     ]
     },
@@ -2765,16 +4245,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"confusion",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"confuse-ray",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"tail-whip",
+            "level":3
+        },
+        {
+            "name":"psybeam",
+            "level":10
+        },
+        {
+            "name":"recover",
+            "level":18
+        },
+        {
+            "name":"thunderbolt",
+            "level":25
+        },
+        {
+            "name":"amnesia",
+            "level":32
+        },
+        {
+            "name":"rest",
+            "level":36
+        },
+        {
+            "name":"psychic",
+            "level":40
+        },
+        {
+            "name":"ice-beam",
+            "level":44
+        },
+        {
+            "name":"fire-blast",
+            "level":50
         }
     ]
     },
@@ -2806,16 +4318,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"confusion",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"confuse-ray",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"tail-whip",
+            "level":3
+        },
+        {
+            "name":"psybeam",
+            "level":10
+        },
+        {
+            "name":"recover",
+            "level":18
+        },
+        {
+            "name":"thunderbolt",
+            "level":25
+        },
+        {
+            "name":"amnesia",
+            "level":32
+        },
+        {
+            "name":"rest",
+            "level":36
+        },
+        {
+            "name":"psychic",
+            "level":40
+        },
+        {
+            "name":"ice-beam",
+            "level":44
+        },
+        {
+            "name":"fire-blast",
+            "level":50
         }
     ]
     },
@@ -2843,16 +4387,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"confusion",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"confuse-ray",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"tail-whip",
+            "level":3
+        },
+        {
+            "name":"psybeam",
+            "level":10
+        },
+        {
+            "name":"recover",
+            "level":18
+        },
+        {
+            "name":"thunderbolt",
+            "level":25
+        },
+        {
+            "name":"amnesia",
+            "level":32
+        },
+        {
+            "name":"rest",
+            "level":36
+        },
+        {
+            "name":"psychic",
+            "level":40
+        },
+        {
+            "name":"ice-beam",
+            "level":44
+        },
+        {
+            "name":"fire-blast",
+            "level":50
         }
     ]
     },
@@ -2884,16 +4460,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"karate-chop",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"low-kick",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"dig",
+            "level":10
+        },
+        {
+            "name":"leer",
+            "level":12
+        },
+        {
+            "name":"focus-energy",
+            "level":16
+        },
+        {
+            "name":"submission",
+            "level":26
+        },
+        {
+            "name":"seismic-toss",
+            "level":32
+        },
+        {
+            "name":"mega-punch",
+            "level":38
+        },
+        {
+            "name":"take-down",
+            "level":40
+        },
+        {
+            "name":"fissure",
+            "level":46
+        },
+        {
+            "name":"earthquake",
+            "level":52
         }
     ]
     },
@@ -2925,16 +4533,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"karate-chop",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"low-kick",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"dig",
+            "level":10
+        },
+        {
+            "name":"leer",
+            "level":12
+        },
+        {
+            "name":"focus-energy",
+            "level":16
+        },
+        {
+            "name":"submission",
+            "level":26
+        },
+        {
+            "name":"seismic-toss",
+            "level":32
+        },
+        {
+            "name":"mega-punch",
+            "level":38
+        },
+        {
+            "name":"take-down",
+            "level":40
+        },
+        {
+            "name":"fissure",
+            "level":46
+        },
+        {
+            "name":"earthquake",
+            "level":52
         }
     ]
     },
@@ -2962,16 +4602,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"karate-chop",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"low-kick",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"dig",
+            "level":10
+        },
+        {
+            "name":"leer",
+            "level":12
+        },
+        {
+            "name":"focus-energy",
+            "level":16
+        },
+        {
+            "name":"submission",
+            "level":26
+        },
+        {
+            "name":"seismic-toss",
+            "level":32
+        },
+        {
+            "name":"mega-punch",
+            "level":38
+        },
+        {
+            "name":"take-down",
+            "level":40
+        },
+        {
+            "name":"fissure",
+            "level":46
+        },
+        {
+            "name":"earthquake",
+            "level":52
         }
     ]
     },
@@ -3003,16 +4675,56 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"focus-energy",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"vine-whip",
             "level":1
+        },
+        {
+            "name":"wrap",
+            "level":1
+        },
+        {
+            "name":"poison-powder",
+            "level":5
+        },
+        {
+            "name":"sleep-powder",
+            "level":10
+        },
+        {
+            "name":"poison-powder",
+            "level":12
+        },
+        {
+            "name":"stun-spore",
+            "level":16
+        },
+        {
+            "name":"acid",
+            "level":26
         },
         {
             "name":"razor-leaf",
-            "level":6
+            "level":32
+        },
+        {
+            "name":"body-slam",
+            "level":38
+        },
+        {
+            "name":"take-down",
+            "level":40
+        },
+        {
+            "name":"mega-drain",
+            "level":46
+        },
+        {
+            "name":"solar-beam",
+            "level":52
         }
     ]
     },
@@ -3044,16 +4756,56 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"focus-energy",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"vine-whip",
             "level":1
+        },
+        {
+            "name":"wrap",
+            "level":1
+        },
+        {
+            "name":"poison-powder",
+            "level":5
+        },
+        {
+            "name":"sleep-powder",
+            "level":10
+        },
+        {
+            "name":"poison-powder",
+            "level":12
+        },
+        {
+            "name":"stun-spore",
+            "level":16
+        },
+        {
+            "name":"acid",
+            "level":26
         },
         {
             "name":"razor-leaf",
-            "level":6
+            "level":32
+        },
+        {
+            "name":"body-slam",
+            "level":38
+        },
+        {
+            "name":"take-down",
+            "level":40
+        },
+        {
+            "name":"mega-drain",
+            "level":46
+        },
+        {
+            "name":"solar-beam",
+            "level":52
         }
     ]
     },
@@ -3081,16 +4833,56 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"focus-energy",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"vine-whip",
             "level":1
+        },
+        {
+            "name":"wrap",
+            "level":1
+        },
+        {
+            "name":"poison-powder",
+            "level":5
+        },
+        {
+            "name":"sleep-powder",
+            "level":10
+        },
+        {
+            "name":"poison-powder",
+            "level":12
+        },
+        {
+            "name":"stun-spore",
+            "level":16
+        },
+        {
+            "name":"acid",
+            "level":26
         },
         {
             "name":"razor-leaf",
-            "level":6
+            "level":32
+        },
+        {
+            "name":"body-slam",
+            "level":38
+        },
+        {
+            "name":"take-down",
+            "level":40
+        },
+        {
+            "name":"mega-drain",
+            "level":46
+        },
+        {
+            "name":"solar-beam",
+            "level":52
         }
     ]
     },
@@ -3122,16 +4914,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"hyper-beam",
+            "level":46
         }
     ]
     },
@@ -3159,16 +4987,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -3204,12 +5072,52 @@
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"defense-curl",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"sand-attack",
+            "level":10
+        },
+        {
+            "name":"rock-throw",
+            "level":18
+        },
+        {
+            "name":"self-destruct",
+            "level":20
+        },
+        {
+            "name":"harden",
+            "level":24
+        },
+        {
+            "name":"earthquake",
+            "level":28
+        },
+        {
+            "name":"explosion",
+            "level":30
+        },
+        {
+            "name":"mega-punch",
+            "level":32
+        },
+        {
+            "name":"rock-slide",
+            "level":38
+        },
+        {
+            "name":"dig",
+            "level":40
+        },
+        {
+            "name":"submission",
+            "level":46
+        },
+        {
+            "name":"fissure",
+            "level":52
         }
     ]
     },
@@ -3245,12 +5153,52 @@
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"defense-curl",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"sand-attack",
+            "level":10
+        },
+        {
+            "name":"rock-throw",
+            "level":18
+        },
+        {
+            "name":"self-destruct",
+            "level":20
+        },
+        {
+            "name":"harden",
+            "level":24
+        },
+        {
+            "name":"earthquake",
+            "level":28
+        },
+        {
+            "name":"explosion",
+            "level":30
+        },
+        {
+            "name":"mega-punch",
+            "level":32
+        },
+        {
+            "name":"rock-slide",
+            "level":38
+        },
+        {
+            "name":"dig",
+            "level":40
+        },
+        {
+            "name":"submission",
+            "level":46
+        },
+        {
+            "name":"fissure",
+            "level":52
         }
     ]
     },
@@ -3282,12 +5230,52 @@
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"defense-curl",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"sand-attack",
+            "level":10
+        },
+        {
+            "name":"rock-throw",
+            "level":18
+        },
+        {
+            "name":"self-destruct",
+            "level":20
+        },
+        {
+            "name":"harden",
+            "level":24
+        },
+        {
+            "name":"earthquake",
+            "level":28
+        },
+        {
+            "name":"explosion",
+            "level":30
+        },
+        {
+            "name":"mega-punch",
+            "level":32
+        },
+        {
+            "name":"rock-slide",
+            "level":38
+        },
+        {
+            "name":"dig",
+            "level":40
+        },
+        {
+            "name":"submission",
+            "level":46
+        },
+        {
+            "name":"fissure",
+            "level":52
         }
     ]
     },
@@ -3319,16 +5307,32 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"ember",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":16
+        },
+        {
+            "name":"confuse-ray",
+            "level":28
+        },
+        {
+            "name":"flamethrower",
+            "level":35
+        },
+        {
+            "name":"fire-spin",
+            "level":38
+        },
+        {
+            "name":"hyper-beam",
+            "level":42
         }
     ]
     },
@@ -3356,16 +5360,32 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"ember",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"quick-attack",
+            "level":16
+        },
+        {
+            "name":"confuse-ray",
+            "level":28
+        },
+        {
+            "name":"flamethrower",
+            "level":35
+        },
+        {
+            "name":"fire-spin",
+            "level":38
+        },
+        {
+            "name":"hyper-beam",
+            "level":42
         }
     ]
     },
@@ -3397,16 +5417,48 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble",
+            "level":9
+        },
+        {
+            "name":"confusion",
+            "level":15
+        },
+        {
+            "name":"headbutt",
+            "level":20
+        },
+        {
+            "name":"body-slam",
+            "level":20
+        },
+        {
+            "name":"surf",
+            "level":26
+        },
+        {
+            "name":"ice-beam",
+            "level":30
+        },
+        {
+            "name":"psychic",
+            "level":34
+        },
+        {
+            "name":"hydro-pump",
+            "level":40
+        },
+        {
+            "name":"fire-blast",
+            "level":40
         }
     ]
     },
@@ -3434,16 +5486,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"scratch",
             "level":1
         },
         {
-            "name":"growl",
+            "name":"tail-whip",
             "level":1
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble",
+            "level":9
+        },
+        {
+            "name":"confusion",
+            "level":15
+        },
+        {
+            "name":"headbutt",
+            "level":20
+        },
+        {
+            "name":"body-slam",
+            "level":20
+        },
+        {
+            "name":"surf",
+            "level":26
+        },
+        {
+            "name":"ice-beam",
+            "level":30
+        },
+        {
+            "name":"psychic",
+            "level":34
+        },
+        {
+            "name":"hydro-pump",
+            "level":40
+        },
+        {
+            "name":"fire-blast",
+            "level":40
         }
     ]
     },
@@ -3475,16 +5559,44 @@
     "Sprite":"ball",
     "capacites":[
         {
+            "name":"thundershock",
+            "level":1
+        },
+        {
             "name":"tackle",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sonic-boom",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"thunder-wave",
+            "level":8
+        },
+        {
+            "name":"supersonic",
+            "level":10
+        },
+        {
+            "name":"swift",
+            "level":15
+        },
+        {
+            "name":"screech",
+            "level":20
+        },
+        {
+            "name":"thunderbolt",
+            "level":28
+        },
+        {
+            "name":"thunder",
+            "level":34
+        },
+        {
+            "name":"double-team",
+            "level":38
         }
     ]
     },
@@ -3512,16 +5624,44 @@
     "Sprite":"ball",
     "capacites":[
         {
+            "name":"thundershock",
+            "level":1
+        },
+        {
             "name":"tackle",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sonic-boom",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"thunder-wave",
+            "level":8
+        },
+        {
+            "name":"supersonic",
+            "level":10
+        },
+        {
+            "name":"swift",
+            "level":15
+        },
+        {
+            "name":"screech",
+            "level":20
+        },
+        {
+            "name":"thunderbolt",
+            "level":28
+        },
+        {
+            "name":"thunder",
+            "level":34
+        },
+        {
+            "name":"double-team",
+            "level":38
         }
     ]
     },
@@ -3549,16 +5689,40 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"sand-attack",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"peck",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"leer",
+            "level":10
+        },
+        {
+            "name":"fury-swipes",
+            "level":18
+        },
+        {
+            "name":"sword-dance",
+            "level":20
+        },
+        {
+            "name":"agility",
+            "level":24
+        },
+        {
+            "name":"slash",
+            "level":28
+        },
+        {
+            "name":"razor-wind",
+            "level":30
+        },
+        {
+            "name":"fly",
+            "level":32
         }
     ]
     },
@@ -3590,16 +5754,48 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"sand-attack",
+            "level":1
+        },
+        {
+            "name":"peck",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"take-down",
+            "level":10
+        },
+        {
+            "name":"fury-swipes",
+            "level":18
+        },
+        {
+            "name":"sword-dance",
+            "level":20
+        },
+        {
+            "name":"double-team",
+            "level":24
+        },
+        {
+            "name":"fly",
+            "level":28
+        },
+        {
+            "name":"razor-wind",
+            "level":30
+        },
+        {
+            "name":"tri-attack",
+            "level":36
+        },
+        {
+            "name":"sky-attack",
+            "level":44
         }
     ]
     },
@@ -3627,16 +5823,48 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"sand-attack",
+            "level":1
+        },
+        {
+            "name":"peck",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"take-down",
+            "level":10
+        },
+        {
+            "name":"fury-swipes",
+            "level":18
+        },
+        {
+            "name":"sword-dance",
+            "level":20
+        },
+        {
+            "name":"double-team",
+            "level":24
+        },
+        {
+            "name":"fly",
+            "level":28
+        },
+        {
+            "name":"razor-wind",
+            "level":30
+        },
+        {
+            "name":"tri-attack",
+            "level":36
+        },
+        {
+            "name":"sky-attack",
+            "level":44
         }
     ]
     },
@@ -3668,16 +5896,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"headbutt",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble-beam",
+            "level":8
+        },
+        {
+            "name":"aurora-beam",
+            "level":10
+        },
+        {
+            "name":"rest",
+            "level":18
+        },
+        {
+            "name":"take-down",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":36
+        },
+        {
+            "name":"hydro-pump",
+            "level":44
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -3705,16 +5965,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"headbutt",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble-beam",
+            "level":8
+        },
+        {
+            "name":"aurora-beam",
+            "level":10
+        },
+        {
+            "name":"rest",
+            "level":18
+        },
+        {
+            "name":"take-down",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":36
+        },
+        {
+            "name":"hydro-pump",
+            "level":44
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -3746,16 +6038,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"pound",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"poison-gas",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"minimize",
+            "level":10
+        },
+        {
+            "name":"sludge",
+            "level":18
+        },
+        {
+            "name":"harden",
+            "level":20
+        },
+        {
+            "name":"screech",
+            "level":24
+        },
+        {
+            "name":"acid-armor",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"self-destruct",
+            "level":32
+        },
+        {
+            "name":"toxic",
+            "level":38
+        },
+        {
+            "name":"fire-blast",
+            "level":40
+        },
+        {
+            "name":"thunderbolt",
+            "level":46
         }
     ]
     },
@@ -3783,16 +6111,52 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"pound",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"poison-gas",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"minimize",
+            "level":10
+        },
+        {
+            "name":"sludge",
+            "level":18
+        },
+        {
+            "name":"harden",
+            "level":20
+        },
+        {
+            "name":"screech",
+            "level":24
+        },
+        {
+            "name":"acid-armor",
+            "level":28
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"self-destruct",
+            "level":32
+        },
+        {
+            "name":"toxic",
+            "level":38
+        },
+        {
+            "name":"fire-blast",
+            "level":40
+        },
+        {
+            "name":"thunderbolt",
+            "level":46
         }
     ]
     },
@@ -3824,16 +6188,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"headbutt",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble-beam",
+            "level":8
+        },
+        {
+            "name":"aurora-beam",
+            "level":10
+        },
+        {
+            "name":"rest",
+            "level":18
+        },
+        {
+            "name":"take-down",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":36
+        },
+        {
+            "name":"hydro-pump",
+            "level":44
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -3861,16 +6257,48 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"headbutt",
             "level":1
         },
         {
             "name":"growl",
-            "level":1
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"bubble-beam",
+            "level":8
+        },
+        {
+            "name":"aurora-beam",
+            "level":10
+        },
+        {
+            "name":"rest",
+            "level":18
+        },
+        {
+            "name":"take-down",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"body-slam",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":36
+        },
+        {
+            "name":"hydro-pump",
+            "level":44
+        },
+        {
+            "name":"blizzard",
+            "level":50
         }
     ]
     },
@@ -3902,16 +6330,40 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"lick",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"confuse-ray",
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"psybeam",
+            "level":30
+        },
+        {
+            "name":"amnesia",
+            "level":32
+        },
+        {
+            "name":"hypnosis",
+            "level":18
+        },
+        {
+            "name":"dream-eater",
+            "level":20
+        },
+        {
+            "name":"night-shade",
+            "level":40
+        },
+        {
+            "name":"psychic",
+            "level":30
         }
     ]
     },
@@ -3943,16 +6395,40 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"lick",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"confuse-ray",
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"psybeam",
+            "level":30
+        },
+        {
+            "name":"amnesia",
+            "level":32
+        },
+        {
+            "name":"hypnosis",
+            "level":18
+        },
+        {
+            "name":"dream-eater",
+            "level":20
+        },
+        {
+            "name":"night-shade",
+            "level":40
+        },
+        {
+            "name":"psychic",
+            "level":30
         }
     ]
     },
@@ -3980,16 +6456,40 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"lick",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"confuse-ray",
+            "level":10
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"psybeam",
+            "level":30
+        },
+        {
+            "name":"amnesia",
+            "level":32
+        },
+        {
+            "name":"hypnosis",
+            "level":18
+        },
+        {
+            "name":"dream-eater",
+            "level":20
+        },
+        {
+            "name":"night-shade",
+            "level":40
+        },
+        {
+            "name":"psychic",
+            "level":30
         }
     ]
     },
@@ -4021,12 +6521,52 @@
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4058,16 +6598,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4095,16 +6675,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4136,16 +6756,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4173,16 +6833,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4214,16 +6914,44 @@
     "Sprite":"ball",
     "capacites":[
         {
+            "name":"thundershock",
+            "level":1
+        },
+        {
             "name":"tackle",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sonic-boom",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"thunder-wave",
+            "level":8
+        },
+        {
+            "name":"self-destruct",
+            "level":10
+        },
+        {
+            "name":"swift",
+            "level":15
+        },
+        {
+            "name":"screech",
+            "level":20
+        },
+        {
+            "name":"thunderbolt",
+            "level":28
+        },
+        {
+            "name":"thunder",
+            "level":34
+        },
+        {
+            "name":"double-team",
+            "level":38
         }
     ]
     },
@@ -4251,16 +6979,44 @@
     "Sprite":"ball",
     "capacites":[
         {
+            "name":"thundershock",
+            "level":1
+        },
+        {
             "name":"tackle",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"sonic-boom",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"thunder-wave",
+            "level":8
+        },
+        {
+            "name":"self-destruct",
+            "level":10
+        },
+        {
+            "name":"swift",
+            "level":15
+        },
+        {
+            "name":"screech",
+            "level":20
+        },
+        {
+            "name":"thunderbolt",
+            "level":28
+        },
+        {
+            "name":"thunder",
+            "level":34
+        },
+        {
+            "name":"double-team",
+            "level":38
         }
     ]
     },
@@ -4292,16 +7048,56 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4329,16 +7125,56 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4370,16 +7206,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4407,16 +7283,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4444,16 +7360,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4481,16 +7437,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4518,16 +7514,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4559,16 +7595,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4596,16 +7672,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4637,16 +7753,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4674,16 +7830,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4711,16 +7907,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4748,16 +7984,56 @@
     "Sprite":"Grass",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4785,16 +8061,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4826,16 +8142,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4863,16 +8219,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4904,16 +8300,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4941,16 +8377,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -4982,16 +8458,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5019,16 +8535,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5056,16 +8612,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5093,16 +8689,56 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5130,16 +8766,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5167,16 +8843,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5204,16 +8920,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5241,16 +8997,56 @@
     "Sprite":"Bug",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5278,16 +9074,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5319,16 +9155,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5356,16 +9232,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5393,16 +9309,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5430,16 +9386,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5471,16 +9467,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5508,16 +9544,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5545,16 +9621,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5582,16 +9698,56 @@
     "Sprite":"thumbnail",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5619,16 +9775,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5660,16 +9856,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5697,16 +9933,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5738,16 +10014,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5775,16 +10091,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5812,16 +10168,56 @@
     "Sprite":"Wazo",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5849,16 +10245,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5886,16 +10322,56 @@
     "Sprite":"Wazo legendary",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5923,16 +10399,56 @@
     "Sprite":"Wazo legendary",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -5960,16 +10476,56 @@
     "Sprite":"Wazo legendary",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -6001,16 +10557,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -6042,16 +10638,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -6079,16 +10715,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -6116,16 +10792,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     },
@@ -6153,16 +10869,56 @@
     "Sprite":"standard",
     "capacites":[
         {
-            "name":"tackle",
+            "name":"acid",
             "level":1
         },
         {
-            "name":"growl",
-            "level":1
+            "name":"supersonic",
+            "level":5
         },
         {
-            "name":"razor-leaf",
-            "level":6
+            "name":"wrap",
+            "level":10
+        },
+        {
+            "name":"poison-sting",
+            "level":18
+        },
+        {
+            "name":"water-gun",
+            "level":20
+        },
+        {
+            "name":"ice-beam",
+            "level":24
+        },
+        {
+            "name":"toxic",
+            "level":28
+        },
+        {
+            "name":"rest",
+            "level":30
+        },
+        {
+            "name":"surf",
+            "level":32
+        },
+        {
+            "name":"mega-drain",
+            "level":38
+        },
+        {
+            "name":"blizzard",
+            "level":40
+        },
+        {
+            "name":"earthquake",
+            "level":46
+        },
+        {
+            "name":"hyper-beam",
+            "level":52
         }
     ]
     }
