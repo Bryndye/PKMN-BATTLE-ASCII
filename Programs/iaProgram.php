@@ -31,8 +31,8 @@ $pnjs = [
         'Bag' => [
         ],
         'Team' => [
-            generatePkmnBattle('rattata', 1),
-            // generatePkmnBattle('rattata', 4),
+            generatePkmnBattle('rattata', 3),
+            generatePkmnBattle('rattata', 4),
         ]
     ],
     10 => [
@@ -397,6 +397,7 @@ function generateWildPkmn($indexFloor, $level){
         'Dialogues' => [
             'entrance' => 'A wild Pokemon appears. '
         ],
+        'Reward' => null,
         'Bag' => [],
         'Team' => $pkmn
     ];
@@ -424,7 +425,9 @@ function iaChoice(&$pkmnTeamJ, &$pkmnTeamE){
         $meilleureCapacite = "";
         $maxEfficacite = 0;
         $maxPuissance = 0;
-
+        // print_r($currentPkmnE);
+        // print_r($currentPkmnE['Capacites']);
+        // sleep(5);
         for($i=0; $i<count($currentPkmnE['Capacites']); ++$i){
             $puissance = $currentPkmnE['Capacites'][$i]['Power'];
             // $efficacite = $currentPkmnE['Capacites'][$i]['Type'];

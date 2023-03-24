@@ -60,6 +60,8 @@ while(true){
 
     // Loop gameplay if team alive
     while(true){
+        // Creer un HUB avec POKECENTER : SHOP : BAG : CONTINUE FLOOR
+        // Function pour savoir choice sont disponibles dans le floor ou est le joueur
         // Passage au shop
         managerShop($save);
         managerItemsIntoMenu($save);

@@ -76,65 +76,47 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
         'Def Spe' => rand(1,31),
         'Vit' => rand(1,31),
     ];
-    $pokemonBattle = [
-        'Name'=> $pkmn['Name'],
-        'N Pokedex' => $pkmn['N Pokedex'],
-        'Level' => $level,
-        'exp' => $exp,
-        'expToLevel' => getNextLevelExp($level),
-        'exp base' => 64,
-        'Type 1' => $pkmn['Type 1'],
-        'Type 2' => $pkmn['Type 2'],
-        'scale' => [
-            $pkmn['scale']['weight'],
-            $pkmn['scale']['height'],
-        ],
-        'StatsBase' => [
-            'Health' => $pkmn['StatsBase']['Health'],
-            'Atk' => $pkmn['StatsBase']['Atk'],
-            'Def' => $pkmn['StatsBase']['Def'],
-            'Atk Spe' => $pkmn['StatsBase']['Atk Spe'],
-            'Def Spe' => $pkmn['StatsBase']['Def Spe'],
-            'Vit' => $pkmn['StatsBase']['Vit'],
-        ],
-        'ivs' => $ivs,
-        'evs' =>[
+    $pokemonBattle = $pkmn;
+    unset($pokemonBattle['capacites']);
+    $pokemonBattle['Level'] = $level;
+    $pokemonBattle['exp'] = $exp;
+    $pokemonBattle['expToLevel'] = getNextLevelExp($level);
+    $pokemonBattle['Stats'] = [
+        'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
+        'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),//error 
+        'Atk' => calculateStats($pkmn['StatsBase']['Atk'], $level, $ivs['Atk']),
+        'Def' => calculateStats($pkmn['StatsBase']['Def'], $level, $ivs['Def']),
+        'Atk Spe' => calculateStats($pkmn['StatsBase']['Atk Spe'], $level, $ivs['Atk Spe']),
+        'Def Spe' => calculateStats($pkmn['StatsBase']['Def Spe'], $level, $ivs['Def Spe']),
+        'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level, $ivs['Vit']),
+    ];
+    $pokemonBattle['ivs'] = $ivs;
+    $pokemonBattle['evs'] = [
+        'Health' => 0,
+        'Atk' => 0,
+        'Def' => 0,
+        'Atk Spe' => 0,
+        'Def Spe' => 0,
+        'Vit' => 0,
+    ];
+    $pokemonBattle['Stats Temp'] = [
+        'Atk' => 0,
+        'Def' => 0,
+        'Atk Spe' => 0,
+        'Def Spe' => 0,
+        'Vit' => 0,
+        'protected' => false,
+        'Substitute' => [
+            'Health Max' => 3,
             'Health' => 0,
-            'Atk' => 0,
-            'Def' => 0,
-            'Atk Spe' => 0,
-            'Def Spe' => 0,
-            'Vit' => 0,
-        ],
-        'Stats' => [
-            'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
-            'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),//error 
-            'Atk' => calculateStats($pkmn['StatsBase']['Atk'], $level, $ivs['Atk']),
-            'Def' => calculateStats($pkmn['StatsBase']['Def'], $level, $ivs['Def']),
-            'Atk Spe' => calculateStats($pkmn['StatsBase']['Atk Spe'], $level, $ivs['Atk Spe']),
-            'Def Spe' => calculateStats($pkmn['StatsBase']['Def Spe'], $level, $ivs['Def Spe']),
-            'Vit' => calculateStats($pkmn['StatsBase']['Vit'], $level, $ivs['Vit']),
-        ],
-        'Stats Temp' => [
-            'Atk' => 0,
-            'Def' => 0,
-            'Atk Spe' => 0,
-            'Def Spe' => 0,
-            'Vit' => 0,
-            'protected' => false,
-            'Substitute' => [
-                'Health Max' => 3,
-                'Health' => 0,
-                'Used' => false
-            ]
-        ],
-        'Capacites' => $newCapacites,
-        'Sprite' => $pkmn['Sprite'],
-        'Status' => '',
-        'evolution' => [
-            'Name' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['Name'] : null,
-            'Level' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['min level'] : null
+            'Used' => false
         ]
+    ];
+    $pokemonBattle['Capacites'] = $newCapacites;
+    $pokemonBattle['Status'] = '';
+    $pokemonBattle['evolution'] = [
+        'Name' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['Name'] : null,
+        'Level' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['min level'] : null
     ];
 
     return $pokemonBattle;
@@ -151,7 +133,7 @@ function calculateStats($statBase, $level, $iv, $ev = 0){
 
 
 //// EXPERIENCE FCTS ////////////////////////////////////////////////////////////////////
-function levelUp(&$pkmn, $expLeft, $inThisFct = false){
+function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
     $pkmn['Level']++;
     if($pkmn['Level'] >= 100){
         $pkmn['Level'] = 100;
@@ -161,6 +143,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false){
     }
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
+
     messageBoiteDialogue($pkmn['Name'].' levels up to '.$pkmn['Level'].'!');
     sleep(1);
 
@@ -186,23 +169,23 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false){
     }
     levelUpWindow($oldStats, $newStats);
     checkThingsToDoLevelUp($pkmn);
-    getExp($pkmn, $expLeft, true);
+    getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
 
-function getExp(&$pkmn, $exp, $inThisFct = false){
+function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
     if($pkmn['Level'] >= 100){
         return;
     }
 
     $pkmn['exp'] += $exp;
-    if(!$inThisFct){
+    if(!$inThisFct && !$notFirstPkmn){
         messageBoiteDialogue($pkmn['Name'].' gets '.$exp.' exp!');
     }
 
     sleep(1);
     if($pkmn['exp'] >= $pkmn['expToLevel']){
         $expLeft = $pkmn['exp'] - $pkmn['expToLevel'];
-        levelUp($pkmn, $expLeft, $inThisFct);
+        levelUp($pkmn, $expLeft, $inThisFct, $notFirstPkmn);
     }
 }
 
@@ -213,7 +196,7 @@ function getNextLevelExp($currentLevel) {
 }
 
 function expToGive($pkmnAtk, $pkmnDef){
-    $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['exp base'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
+    $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
     return intval($exp) * 10;
 }
 ////////////////////////////////////////////////////////////////////////////////////////

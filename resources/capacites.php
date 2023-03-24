@@ -93,10 +93,12 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         limitSentence('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
 
         $i = 0;
+        $y = 0;
         foreach($pkmn['Capacites'] as $capacitePkmn){
             displayBox([5,25],[2+$i,30]);
-            limitSentence($capacitePkmn['Name'],23,[3+$i,32]);
+            limitSentence($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
             limitSentence('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
+            ++$y;
             $i += 5;
         }
 

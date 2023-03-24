@@ -235,16 +235,24 @@ function isActionBePriority($pkmn, $action){
 
 function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
     messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
-    foreach($pkmnTeamJoueur as &$pkmn){
-        getExp($pkmn, expToGive($pkmn, $pkmnE));
-        return;
-    }   
+    // foreach($pkmnTeamJoueur as &$pkmn){
+    //     getExp($pkmn, expToGive($pkmn, $pkmnE, false));
+    //     // return;
+    // }   
+    for($i=0;$i<count($pkmnTeamJoueur);++$i){
+        $firstPkmn = $i == 0;
+        getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE, false, $firstPkmn));
+    }
 }   
 
 function endPkmnCaptured(&$pkmnTeamJoueur, &$pkmnE){
-    foreach($pkmnTeamJoueur as &$pkmn){
-        getExp($pkmn, expToGive($pkmn, $pkmnE));
-        return;
+    // foreach($pkmnTeamJoueur as &$pkmn){
+    //     getExp($pkmn, expToGive($pkmn, $pkmnE, false));
+    //     // return;
+    // }
+    for($i=0;$i<count($pkmnTeamJoueur);++$i){
+        $notFirstPkmn = $i != 0;
+        getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE, false, $notFirstPkmn));
     }
 }
 
@@ -256,6 +264,10 @@ function endBattle(&$joueur, $pnj){
         messageBoiteDialogue("You can't fight...");
     }
     else{
+        if($pnj['type'] == 'trainer'){
+            include 'visuals/sprites.php';
+            displaySprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
+        }
         if(isset($pnj['Dialogues']['end'])){
             if(count($pnj['Dialogues']['end'])>0){
                 foreach($pnj['Dialogues']['end'] as $message){
@@ -268,8 +280,6 @@ function endBattle(&$joueur, $pnj){
             }
             sleep(2);
         }
-        // if($pnj['type'] == 'wild'){
-        // }
         messageBoiteDialogue("You've defeated " . $pnj['Name'].'!');
         sleep(2);
     }
