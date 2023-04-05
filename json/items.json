@@ -20,6 +20,13 @@
 		"effect": "120",
 		"price" : "1200"
 	},
+	"Total Heal":
+	{
+		"name":"Total Heal",
+		"type": "status",
+		"effect": "all",
+		"price" : "1000"
+	},
     "PokeBall":
 	{
 		"name":"PokeBall",

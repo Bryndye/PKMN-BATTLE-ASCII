@@ -30,21 +30,24 @@ function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamag
 
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capacite){
     $ailmentParalysis = false;
-    if($pkmnAtk['Status'] == 'PAR'){
-        $ailmentParalysis = rand(0,100) < 20;
-        if($ailmentParalysis){
-            messageBoiteDialogue($pkmnAtk['Name'] . ' is paralysed');
-            return;
-        }
+    $cantPlay = ailmentStartTurnEffect($pkmnAtk);
+    if($cantPlay){
+        return;
     }
+    
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
     // failed capacity
     usleep(500000);
-    $chance = rand(0,100);
-    if($chance > $capacite['Accuracy']){
+    $chanceAccuracy = rand(0,100);
+    if($chanceAccuracy > $capacite['Accuracy']){
         messageBoiteDialogue('But it failed!');
+        return;
+    }
+    $chanceEvasion = rand(0,100);
+    if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
+        messageBoiteDialogue($pkmnDef['Name'].' misses the attack!');
         return;
     }
 
@@ -53,7 +56,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
 
         $ailment = $capacite['effects']['Ailment'];
         if($capacite['Power'] == 'reset'){
-            // do something
+            resetAllStatsTempToPkmn($pkmnDef);
         }
         else if(is_null($ailment['ailment'])){
             ailmentChanceOnpKmn($capacite, $pkmnDef, true);
@@ -111,10 +114,10 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     if($capacite['Type'] == $pkmnAtk['Type 1'] || $capacite['Type'] == $pkmnAtk['Type 2']){
         $stab = 1.5;
     }
-    $isCrit = false; // doit creer le crit avec capacite
+    $isCrit = rand(0,100) <= ($pkmnAtk['Stats Temp']['critical']+$capacite['crit_rate']*12.5); // doit creer le crit avec capacite
     $efficace = checkTypeMatchup($capacite['Type'], $pkmnDef['Type 1']) * checkTypeMatchup($capacite['Type'], $pkmnDef['Type 2']);
     $random = rand(85,100) / 100;
-    $c = $power * $stab * $efficace * $isBurned * $random;
+    $c = $power * $stab * $efficace * $isBurned * $random * ($isCrit ? 2 :1);
     // c = Capacite Base atk* STAB(1-2)* Type(0.5-4)* Critical(1-2)* random([0.85,1]}
 
     $finalDamage = ceil($a * $b * $c); // final damage
@@ -151,7 +154,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
         pkmnTakesDmg($pkmnAtk, -ceil(($capacite['effects']['Drain']/100) * $finalDamage), $isJoueur);
 
         if($capacite['effects']['Drain'] <= 0){
-            messageBoiteDialogue($pkmnAtk['Name']." has recoil!");
+            messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!");
 
             // update health pkmn atk after drain
             createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
@@ -172,7 +175,7 @@ function boostStatsTemp(&$pkmnAtk, $pkmnDef, $capacite){
                     6:  $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
             }
 
-            messageBoiteDialogue($pkmnAtk['Name']." has boost for ". $stat[1]."!");
+            messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!");
         }
     }
     if(isset($effects['Stats Target'])){
@@ -183,7 +186,7 @@ function boostStatsTemp(&$pkmnAtk, $pkmnDef, $capacite){
                     -6:  $pkmnDef['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
             }
 
-            messageBoiteDialogue($pkmnDef['Name']." gets down on ". $stat[1]."!");
+            messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
         }
     }
 }
@@ -202,6 +205,17 @@ function calculateBoostTemps($pkmn, $stat){
     }
     
     return $varTop / $varBot;
+}
+
+function resetAllStatsTempToPkmn(&$pkmn){
+    $pkmn['Stats Temp']['Atk'] = 0;
+    $pkmn['Stats Temp']['Def'] = 0;
+    $pkmn['Stats Temp']['Atk Spe'] = 0;
+    $pkmn['Stats Temp']['Def Spe'] = 0;
+    $pkmn['Stats Temp']['Vit'] = 0;
+    $pkmn['Stats Temp']['evasion'] = 0;
+    $pkmn['Stats Temp']['critical'] = 12.5;
+    messageBoiteDialogue($pkmn['Name'] . ' reset all changes.');
 }
 
 function getHits($minHits, $maxHits) {
@@ -310,10 +324,10 @@ function switchPkmn(&$pkmnTeam ,$index){
 ///////////////////////////////////////////////////////////
 
 
-//// STATUS DAMAGES ///////////////////////////////////////
+//// AILMENT PROBLEM ///////////////////////////////////////
 function ailmentChanceOnpKmn(&$capacite, &$pkmnDef, $isStatusCap = false){
     $ailment = $capacite['effects']['Ailment'];
-    if($pkmnDef['Status'] == $ailment['ailment']){
+    if(!is_null($pkmnDef['Status'])){
         return;
     }
 
@@ -335,6 +349,41 @@ function ailmentChanceOnpKmn(&$capacite, &$pkmnDef, $isStatusCap = false){
     }
 }
 
+function ailmentStartTurnEffect(&$pkmn){
+    if($pkmn['Status'] == 'PAR'){
+        $ailmentParalysis = rand(0,100) < 20;
+        if($ailmentParalysis){
+            messageBoiteDialogue($pkmn['Name'] . ' is paralysed...');
+            return true;
+        }
+    }
+    else if($pkmn['Status'] == 'FRZ'){
+        $ailment = rand(0,100) < 50;
+        if($ailment){
+            messageBoiteDialogue($pkmn['Name'] . ' is frozen...');
+            return true;
+        }
+        else{
+            messageBoiteDialogue($pkmn['Name'] . ' is up!');
+            $pkmn['Status'] = null;
+            return false;
+        }
+    }
+    else if($pkmn['Status'] == 'SLP'){
+        $ailment = rand(0,100) < 50;
+        if($ailment){
+            messageBoiteDialogue($pkmn['Name'] . ' is sleeping...');
+            return true;
+        }
+        else{
+            messageBoiteDialogue($pkmn['Name'] . ' is awake!');
+            $pkmn['Status'] = null;
+            return false;
+        }
+    }
+    return false;
+}
+
 function status($nameStatus){
     switch($nameStatus){
         case 'paralysis':
@@ -343,6 +392,10 @@ function status($nameStatus){
             return 'PSN'; 
         case 'burn':
             return 'BRN';       
+        case 'frozen':
+            return 'FRZ';
+        case 'sleep':
+            return 'SLP';
     }
 }
 

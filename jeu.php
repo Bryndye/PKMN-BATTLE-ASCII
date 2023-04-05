@@ -13,7 +13,6 @@ include_once 'visuals/hudfight.php';
 include_once 'Programs/programFight.php';
 include_once 'Programs/itemsManager.php';
 include_once 'Programs/iaProgram.php';
-include_once 'Programs/shopEchange.php';
 include_once 'Programs/shop.php';
 
 //// SET THE GAME ////

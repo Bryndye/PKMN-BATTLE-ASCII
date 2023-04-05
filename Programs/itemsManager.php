@@ -62,7 +62,7 @@ function displayBag($bag, $typeEnemy = ''){
             $name = $key;
         }
 
-        if($typeEnemy == 'trainer' && $item['type'] == 'heal'){
+        if($typeEnemy == 'trainer' && ($item['type'] == 'heal' || $item['type'] == 'status')){
             echo $key . '. '.$name . ' x ' . $item['quantity'];
             $choice[$y] = $key;
         }
@@ -94,6 +94,8 @@ function useItem(&$bag, &$item, &$pkmn){
             break;
         case 'capture':
             return captureItem($item, $pkmn);
+        case 'status':
+            healStatusToPkmn($pkmn);
             break;
     }
 }
@@ -116,6 +118,11 @@ function healPkmn($item, &$pkmn){
         messageBoiteDialogue("Use ". $item['name'].' on '.$pkmn['Name'] . "!");
         print($pkmn['Stats']['Health']);
     }
+}
+
+function healStatusToPkmn(&$pkmn){
+    $pkmn['Status'] = null;
+    messageBoiteDialogue($pkmn['Name'] . ' is cured of its ailment!');
 }
 
 function captureItem($pokeball, $pkmn){

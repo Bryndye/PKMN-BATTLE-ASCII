@@ -110,7 +110,9 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
             'Health Max' => 3,
             'Health' => 0,
             'Used' => false
-        ]
+        ],
+        'evasion' => 10,
+        'critical' => 12.5
     ];
     $pokemonBattle['Capacites'] = $newCapacites;
     $pokemonBattle['Status'] = '';
@@ -218,7 +220,6 @@ function healthInBloc(&$pkmn){
 }
 
 function isPkmnDead_simple(&$pkmn){
-    // sleep(5);
     if($pkmn['Stats']['Health'] <= 0){
         return true;
     }
