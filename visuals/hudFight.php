@@ -67,19 +67,7 @@ function displayPkmnTeamHUD($pkmnTeam, $pos){
     echo $message;
 }
 
-function pkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/){
-    include 'visuals/sprites.php';
-    clearSpritePkmn($isJoueur);
-    displaySprite($sprites['Pokeball_1'], getPosSpritePkmn($isJoueur));
-    usleep(500000);
-    clearSpritePkmn($isJoueur, 1);
-    displaySpritePkmn($pkmn, $isJoueur);
-}
 
-function displayEntirePkmnBattle($pkmnTeam, $isJoueur){
-    displayPkmnTeamHUD($pkmnTeam, getPosTeam($isJoueur));
-    createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
-}
 
 function clearPkmnHUD($isJoueur){
     clearArea(getScaleHUDPkmn(),getPosHealthPkmn($isJoueur));
@@ -242,19 +230,4 @@ function interfaceMenu(){
     writeSentence('2 : PKMN', [$posY+1,$posX]);
     writeSentence('3 : BAG', [$posY+2,$posX]);
 }
-
-
-function animationCapture(){
-    include 'visuals/sprites.php';
-    clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
-    clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_2'],getPosSpritePkmn(false));
-    clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
-    clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_3'],getPosSpritePkmn(false));
-    clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
-  }
 ?>

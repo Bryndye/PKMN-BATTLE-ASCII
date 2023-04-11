@@ -23,9 +23,8 @@ function managerShop(&$save){
         giveItemByItem($save['Bag'], $itemsAvailable[0][$choice]);
     }
 }
-function displayShop($items, $currentMoney){
-    displayBox([5,20],[4,35]);
-    writeSentence('Money : '.$currentMoney, [6,37]);
+function displayShop($items){
+    displayMoney();
     $i = 0;
     $y = 0;
     $choice = [];
@@ -50,7 +49,7 @@ function displayShop($items, $currentMoney){
 function listItemsBuyable($currentMoney){
     $file = file_get_contents('json/items.json');
     $array = json_decode($file, true);
-    $list = displayShop($array, $currentMoney);
+    $list = displayShop($array);
     $choice = ['c'];
     for($i=1;$i<count($list)+1;++$i){
         if($currentMoney >= $list[$i-1]['price']){

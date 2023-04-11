@@ -20,11 +20,11 @@ function startFight(&$joueur, &$pnj){
 
     // animation pokeball
     if($pnj['type'] == 'trainer'){
-        pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
+        animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
     messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!');
-    pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+    animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
 
     gameplayLoop($joueur, $pnj);
@@ -39,7 +39,7 @@ function gameplayLoop(&$joueur, &$pnj){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
         if(isPkmnDead_simple($pkmnTeamEnemy[0])){
             choosePkmn($pkmnTeamEnemy);
-            pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
+            animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
             $choice2 = selectPkmn($pkmnTeamJoueur, 1);
@@ -47,7 +47,7 @@ function gameplayLoop(&$joueur, &$pnj){
             switchPkmn($pkmnTeamJoueur ,$choice2);
             displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             interfaceMenu();
-            pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+            animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
     
         // lance le combat quand les pkmns sont en combat
@@ -189,7 +189,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             switchPkmn($action['teamAtk'], $action['choice'][1]);
 
             clearPkmnHUD($action['teamAtk'], $action['isjoueur']);
-            pkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
+            animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
             usleep(500000);
             refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
         }

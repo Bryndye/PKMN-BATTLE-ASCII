@@ -2,6 +2,8 @@
 // INIT SCRIPTS
 include_once 'Programs/saveManager.php';
 include_once 'Programs/launchAndExit.php';
+include_once 'Programs/hub.php';
+include_once 'resources/animations.php';
 include_once 'resources/inputs.php';
 include_once 'resources/config.php';
 include_once 'resources/pokemonList.php';
@@ -31,7 +33,7 @@ while(true){
     $save = getSaveIfExist();
     $pkmnTeamJoueur = &$save['Team'];
     saveData($pkmnTeamJoueur, 'Team');
-    // array_push($pkmnTeamJoueur, generatePkmnBattle('mewtwo', 100,0,['psychic', 'thunder','flamethrower']));
+
     if(array_key_exists('IndexFloor', $save)){
         $IndexFloor = $save['IndexFloor'];
     }
@@ -53,17 +55,10 @@ while(true){
     giveItemFromResources($save["Bag"], 'MasterBall', 5);
 
 
-    // setCapacityToPkmn($pkmnTeamJoueur[0], getCapacite('flamethrower'));
-    // setCapacityToPkmn($pkmnTeamJoueur[0], getCapacite('tackle'));
-    // setCapacityToPkmn($pkmnTeamJoueur[0], getCapacite('growl'));
-
     // Loop gameplay if team alive
     while(true){
-        // Creer un HUB avec POKECENTER : SHOP : BAG : CONTINUE FLOOR
-        // Function pour savoir choice sont disponibles dans le floor ou est le joueur
-        // Passage au shop
-        managerShop($save);
-        managerItemsIntoMenu($save);
+        // HUB
+        drawHub($save);
 
         // generer IA pkmn team
         $pnj = generatePNJ($IndexFloor, $pkmnTeamJoueur[0]['Level']);
@@ -91,29 +86,4 @@ while(true){
         continueToFight();
     }
 }
-
-function continueToFight(){
-    clearInGame();
-    displayStatsFromSaveToMenu();
-    messageBoiteDialogue('Do you want to continue ?');
-    displayBox([7,15],[24,46]);
-    writeSentence('1: Continue',[26,48]);
-    writeSentence('2: Quit',[28,48]);
-    // Attend la selection entre 1 et 2
-    $choice = waitForInput([31,0],[1,2]);
-    if($choice == 2){
-        exitGame();
-    }
-}
-
-
-// FIN DU JEU 
-// clear();
-
-// displayBox([5,30],[12,25]);
-// echo "\033[14;35H";
-// echo "END";
-// sleep(2);
-// echo "\033c";
-
 ?>

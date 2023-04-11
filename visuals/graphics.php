@@ -51,6 +51,24 @@ function displayBox($scale, $pos, $styleH='*', $styleL='*'){
     }
 }
 
+function displayFullBox($scale, $pos, $styleH='*', $styleL='*'){
+    moveCursor($pos);
+    
+    for ($i = 0; $i < $scale[0]; $i++) {
+        moveCursorIndex($pos, $i);
+        // echo "\033[".$pos[0]+$i.";".$pos[1]."H";
+        for ($j = 0; $j < $scale[1]; $j++) {
+            if ($i == 0 || $i == $scale[0] - 1) {
+                echo $styleL;
+            } elseif ($j == 0 || $j == $scale[1] - 1) {
+                echo $styleH;
+            } else {
+                echo '*';
+            }
+        }
+    }
+}
+
 function displayGameCadre(){
     displayBox([30,60],[1,1]);
 }
@@ -200,5 +218,17 @@ function debugLog($pos, $msg){
     else{
         echo 'Debug : ' . $msg;
     }
+}
+
+function displayBoxTitle($pos, $scale, $title){
+    displayBox($scale,$pos);
+    writeSentence($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
+    // $pos[1]+intval($scale[1]/2) -> pos x title
+}
+
+function displayMoney(){
+    $money = getDataFromSave('Money');
+    displayBox([5,20],[4,35]);
+    writeSentence('Money : '.$money, [6,38]);
 }
 ?>
