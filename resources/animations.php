@@ -1,30 +1,30 @@
 <?php 
 function animationPkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/){
-    include 'visuals/sprites.php';
+    include 'Resources/sprites.php';
     clearSpritePkmn($isJoueur);
-    displaySprite($sprites['Pokeball_1'], getPosSpritePkmn($isJoueur));
+    drawSprite($sprites['Pokeball_1'], getPosSpritePkmn($isJoueur));
     usleep(500000);
     clearSpritePkmn($isJoueur, 1);
-    displaySpritePkmn($pkmn, $isJoueur);
+    drawSpritePkmn($pkmn, $isJoueur);
 }
 
-function displayEntirePkmnBattle($pkmnTeam, $isJoueur){
-    displayPkmnTeamHUD($pkmnTeam, getPosTeam($isJoueur));
+function drawEntirePkmnBattle($pkmnTeam, $isJoueur){
+    drawPkmnTeamHUD($pkmnTeam, getPosTeam($isJoueur));
     createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
 }
 
 function animationCapture(){
-    include 'visuals/sprites.php';
+    include 'Resources/sprites.php';
     clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_2'],getPosSpritePkmn(false));
+    drawSprite($sprites['Pokeball_2'],getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_3'],getPosSpritePkmn(false));
+    drawSprite($sprites['Pokeball_3'],getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    displaySprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
 }
 
 function animationEnterBattle(){
@@ -34,7 +34,7 @@ function animationEnterBattle(){
 function animationEnterRowByRow(){
     for($i=0;$i<6;++$i){
         for($y=0;$y<6;++$y){
-            displayFullBox([5,10],[1+$i*5,1+$y*10]);
+            drawFullBox([5,10],[1+$i*5,1+$y*10]);
             usleep(50000);
         }
     } 
@@ -53,26 +53,26 @@ function animationEnterSpirale(){
     for ($i = 0; $i < 3; ++$i) {
         // Mouvement vers la droite
         for ($y = 0; $y < ($terminalWidth/$boxWidth)-$i; ++$y) {
-            displayFullBox([$boxHeight, $boxWidth], [$boxHeight*$i, $y*$boxWidth]);
+            drawFullBox([$boxHeight, $boxWidth], [$boxHeight*$i, $y*$boxWidth]);
             usleep(25000);
             $lastPos = [$boxHeight*$i, $y*$boxWidth];
         }
 
         // Mouvement vers le bas
         for ($y = 0; $y < ($terminalHeight/$boxHeight)-$i; ++$y) {
-            displayFullBox([$boxHeight, $boxWidth], [$boxHeight*$y, $terminalWidth-($i+1)*$boxWidth]);
+            drawFullBox([$boxHeight, $boxWidth], [$boxHeight*$y, $terminalWidth-($i+1)*$boxWidth]);
             usleep(25000);
         }
 
         // Mouvement vers la gauche
         for ($y = 0; $y < ($terminalWidth/$boxWidth)-$i; ++$y) {
-            displayFullBox([$boxHeight, $boxWidth], [$terminalHeight-($i+1)*$boxHeight, $terminalWidth-$boxWidth*($y+1)]);
+            drawFullBox([$boxHeight, $boxWidth], [$terminalHeight-($i+1)*$boxHeight, $terminalWidth-$boxWidth*($y+1)]);
             usleep(25000);
         }
 
         // Mouvement vers le haut
         for ($y = 0; $y < ($terminalHeight/$boxHeight)-$i; ++$y) {
-            displayFullBox([$boxHeight, $boxWidth], [$terminalHeight-$boxHeight*($y+1), $i*$boxWidth]);
+            drawFullBox([$boxHeight, $boxWidth], [$terminalHeight-$boxHeight*($y+1), $i*$boxWidth]);
             usleep(25000);
         }
     }

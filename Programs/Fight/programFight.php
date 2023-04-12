@@ -235,7 +235,7 @@ function pkmnTakesDmg(&$pkmn, $damage, $isJoueur){
     usleep(500000);
     clearSpritePkmn($isJoueur);
     usleep(500000);
-    displaySpritePkmn($pkmn, $isJoueur);
+    drawSpritePkmn($pkmn, $isJoueur);
     usleep(500000);
     if($damage < 0){
         messageBoiteDialogue($pkmn['Name'] . ' heals ' . -$damage . ' Hp.');
@@ -295,8 +295,8 @@ function searchNewPkmnInTeam(&$teamPkmn){
     return null;
 }
 function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false, $string='Which Pokemon do you want?'){
-    displayPkmnTeam($pkmnTeam);
-    displayBoiteDialogue();
+    drawPkmnTeam($pkmnTeam);
+    drawBoiteDialogue();
     messageBoiteDialogueContinue($string);
     
     $arrayChoice = [];

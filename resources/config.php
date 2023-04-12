@@ -1,77 +1,62 @@
 <?php
-// -- POSITIONS --------------------------------------------
-$posSpritePkmnEnemy = [1,31];
-$posSpritePkmnJoueur = [8,2];
+
+//// POSITIONS ///////////////////////////////////////////////
 function getPosSpritePkmn($isJoueur){
-    // Pour get une var global d'un script il faut créer le global dans la function
-    global $posSpritePkmnEnemy, $posSpritePkmnJoueur;
-    
     if($isJoueur){
-        $posFinal = $posSpritePkmnJoueur;
+        return [8,2]; // joueur
     }
     else{
-        $posFinal = $posSpritePkmnEnemy;
+        return [1,31]; // enemy
+    }
+}
+
+function getPosHealthPkmn($isJoueur){    
+    if($isJoueur){
+        return [18,34]; // joueur
+    }
+    else{
+        return [2,3]; // enemy
+    }
+}
+
+function getPosTeam($isJoueur){    
+    if($isJoueur){
+        $posFinal = [17,34]; // joueur
+    }
+    else{
+        $posFinal = [7,3]; // enemy
     }
     return $posFinal;
 }
 
-$scaleSpritePkmn = [15,28];
-function getScaleSpritePkmn(){
-    global $scaleSpritePkmn;
-    return $scaleSpritePkmn;
-}
-$posHealthPkmnEnemy = [2,3];
-$posHealthPkmnJoueur = [18,34];
-function getPosHealthPkmn($isJoueur){
-    global $posHealthPkmnJoueur, $posHealthPkmnEnemy;
-    
-    if($isJoueur){
-        $posFinal = $posHealthPkmnJoueur;
-    }
-    else{
-        $posFinal = $posHealthPkmnEnemy;
-    }
-    return $posFinal;
-}
-
-$posTeamE = [7,3];
-$posTeamJ = [17,34];
-function getPosTeam($isJoueur){
-    global $posTeamJ, $posTeamE;
-    
-    if($isJoueur){
-        $posFinal = $posTeamJ;
-    }
-    else{
-        $posFinal = $posTeamE;
-    }
-    return $posFinal;
-}
-
-$scaleHUDPkmn = [5,25];
-function getScaleHUDPkmn(){
-    global $scaleHUDPkmn;
-    return $scaleHUDPkmn;
-}
-
-$scaleBoiteDialogue = [7,60];
-function getScaleDialogue(){
-    global $scaleBoiteDialogue;
-    return $scaleBoiteDialogue;
-}
-
-$posBoiteDialogue = [24,1];
 function getPosDialogue(){
-    global $posBoiteDialogue;
-    return $posBoiteDialogue;
+    return [24,1];
 }
 
-$posCHocie = [31,0];
 function getPosChoice(){
-    global $posCHocie;
-    return $posCHocie;
+    return [31,0];
 }
+//// SCALE ///////////////////////////////////////////////
+function screenScale(){
+    return [30,60];
+}
+
+function getScaleSpritePkmn(){
+    return [15,28];
+}
+
+
+function getScaleHUDPkmn(){
+    return [5,25];
+}
+
+function getScaleDialogue(){
+    return [7,60];
+}
+
+
 ///////////////////////////////////////////////////////
+//// CUSTOM FUNCTIONS /////////////////////////////////
 
 function multipleOf($number, $multiple) {
     $result = bcdiv($number, $multiple, 0); // 0 decimal places

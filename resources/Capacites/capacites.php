@@ -1,5 +1,5 @@
 <?php
-$json = file_get_contents('json/capacitesv5.json');
+$json = file_get_contents('Resources/Capacites/capacitesv5.json');
 $capacites = json_decode($json, true);
 
 
@@ -87,15 +87,15 @@ function setCapacityToPkmn(&$pkmn, $capacite){
     if(count($pkmn['Capacites']) == 4){
 
         clearInGame();
-        include 'visuals/sprites.php';
-        displaySprite($sprites[$pkmn['Sprite']], [5,3]);
+        include 'Resources/sprites.php';
+        drawSprite($sprites[$pkmn['Sprite']], [5,3]);
         limitSentence($pkmn['Name'],30,[3,5]);
         limitSentence('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
 
         $i = 0;
         $y = 0;
         foreach($pkmn['Capacites'] as $capacitePkmn){
-            displayBox([5,25],[2+$i,30]);
+            drawBox([5,25],[2+$i,30]);
             limitSentence($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
             limitSentence('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
             ++$y;

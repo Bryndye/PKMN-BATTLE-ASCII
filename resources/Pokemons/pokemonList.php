@@ -1,7 +1,7 @@
 <?php 
-include 'resources/capacites.php';
+include 'Resources/Capacites/capacites.php';
 
-$json = file_get_contents('json/pokemonsv2.json');
+$json = file_get_contents('Resources/Pokemons/pokemonsv2.json');
 $pokemonPokedex = json_decode($json, true);
 
 
@@ -275,16 +275,16 @@ function checkThingsToDoLevelUp(&$pkmn){
 
 function evolution(&$pkmn){
     clearInGame();
-    displayBoiteDialogue();
+    drawBoiteDialogue();
     messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
     $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
 
-    include 'visuals/sprites.php';
-    displaySprite($sprites[$pkmn['Sprite']], [5,16]);
+    include 'Resources/sprites.php';
+    drawSprite($sprites[$pkmn['Sprite']], [5,16]);
     sleep(1);
     clearSprite([5,16]);
     sleep(1);
-    displaySprite($sprites[$pkmnEvol['Sprite']], [5,16]);
+    drawSprite($sprites[$pkmnEvol['Sprite']], [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     sleep(1);
     messageBoiteDialogue('Tadadaa...');

@@ -4,14 +4,14 @@ $statOpen = false;
 $stopLoop = false;
 // Animations de lancement de combat
 function startFight(&$joueur, &$pnj){
-    displaySkeletonHUD();
+    drawSkeletonHUD();
     $pkmnTeamEnemy = &$pnj['Team'];
     $pkmnTeamJoueur = &$joueur['Team'];
 
     // animation entrer dresseurs
-    include 'visuals/sprites.php';
-    displaySprite($sprites['trainerBack'], getPosSpritePkmn(true));
-    displaySprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
+    include 'Resources/sprites.php';
+    drawSprite($sprites['trainerBack'], getPosSpritePkmn(true));
+    drawSprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
 
     messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
     sleep(1);
@@ -45,7 +45,7 @@ function gameplayLoop(&$joueur, &$pnj){
             $choice2 = selectPkmn($pkmnTeamJoueur, 1);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
-            displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+            drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             interfaceMenu();
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
@@ -65,7 +65,7 @@ function loopFight(&$joueur, &$pnj){
     $pkmnTeamJoueur = &$joueur['Team'];
     while($pkmnTeamJoueur[0]['Stats']['Health'] > 0 && $pkmnTeamEnemy[0]['Stats']['Health'] > 0 ){
 
-        displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+        drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         interfaceMenu();
 
         // init var choice of Player
@@ -87,13 +87,13 @@ function loopFight(&$joueur, &$pnj){
             $a = $pkmnTeamJoueur[0];
             $choice2 = selectPkmn($pkmnTeamJoueur, 1, true);
             if($choice2 != 'c'){           
-                displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+                drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }
         }
         elseif($choice == 3){
             $choice2 = chooseItems($joueur['Bag'], $pkmnTeamJoueur, $pnj['type']);
             // si item type == capture, jouer autre fonction
-            displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+            drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         }
         // elseif($choice == 4){
         //     exitGame();
@@ -191,7 +191,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             clearPkmnHUD($action['teamAtk'], $action['isjoueur']);
             animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
             usleep(500000);
-            refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
+            refreshdrawOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
         elseif($action['choice'][0] == '3'){
             if($action['Bag'][$action['choice'][1]]['type'] == 'capture'){
@@ -199,7 +199,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
                 if($didIt){
                     getPokemonFromCapture($action['teamAtk'], $action['teamDef'][0]);
                     $action['teamDef'][0]['Stats']['Health'] = -1;
-                    // displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+                    // drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
                     return;
                     // FIN DU COMBAT SI CAPTURE
                 }
@@ -207,7 +207,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             else{
                 useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
             }
-            refreshDisplayOnePkmn($action['teamAtk'], $action['isjoueur']);
+            refreshdrawOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
     }
     if(!isPkmnDead_simple($pkmnTeamJoueur[0])){
@@ -265,8 +265,8 @@ function endBattle(&$joueur, $pnj){
     }
     else{
         if($pnj['type'] == 'trainer'){
-            include 'visuals/sprites.php';
-            displaySprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
+            include 'Resources/sprites.php';
+            drawSprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
         }
         if(isset($pnj['Dialogues']['end'])){
             if(count($pnj['Dialogues']['end'])>0){

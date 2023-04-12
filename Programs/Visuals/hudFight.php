@@ -2,54 +2,54 @@
 // -- HUD PKMN--
 // - Afficher HUD du pkmn joueur -
 // createPkmnHUD(17,34, $pkmn1);
-// displaySprite($sprites[$pkmn1['Sprite']], 9, 3); 
+// drawSprite($sprites[$pkmn1['Sprite']], 9, 3); 
 // - Afficher HUD du pkmn ennemi -
 // createPkmnHUD(2,3, $pkmn2);
-// displaySprite($sprites[$pkmn2['Sprite']], 1, 35);
+// drawSprite($sprites[$pkmn2['Sprite']], 1, 35);
 
 
 
 //// CREATE HUD INGAME //////////////////////////
-function displaySkeletonHUD(){
-    displayGameCadre();
-    displayBoiteDialogue();
+function drawSkeletonHUD(){
+    drawGameCadre();
+    drawBoiteDialogue();
 }
 
 
-function displayGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
+function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
     clearInGame();
-    displaySkeletonHUD();
-    include 'visuals/sprites.php';
+    drawSkeletonHUD();
+    include 'Resources/sprites.php';
     
     // Afficher HUD du pkmn joueur
-    refreshDisplayOnePkmn($pkmnTeamJoueur, true);
+    refreshdrawOnePkmn($pkmnTeamJoueur, true);
     
     // Afficher HUD du pkmn ennemi
-    refreshDisplayOnePkmn($pkmnTeamEnemy, false);
+    refreshdrawOnePkmn($pkmnTeamEnemy, false);
 }
 
 
-//// DISPLAY INFO PKMN ///////////////////////////////////////////
-function refreshDisplayOnePkmn(&$pkmnTeam, $isJoueur){
-    include 'visuals/sprites.php';
+//// draw INFO PKMN ///////////////////////////////////////////
+function refreshdrawOnePkmn(&$pkmnTeam, $isJoueur){
+    include 'Resources/sprites.php';
     
     createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
-    displaySprite($sprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn($isJoueur));
-    displayPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
+    drawSprite($sprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn($isJoueur));
+    drawPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
 }
 function refreshHUDloopFight(&$pkmnTeamJoueur ,&$pkmnTeamEnemy){
-    displayPkmnTeamHUD($pkmnTeamJoueur, getPosTeam(true));
-    displayPkmnTeamHUD($pkmnTeamEnemy, getPosTeam(false));
+    drawPkmnTeamHUD($pkmnTeamJoueur, getPosTeam(true));
+    drawPkmnTeamHUD($pkmnTeamEnemy, getPosTeam(false));
     createPkmnHUD(getPosHealthPkmn(true), $pkmnTeamJoueur[0]);
     createPkmnHUD(getPosHealthPkmn(false), $pkmnTeamEnemy[0], false);
 }
 
-function displayPkmnTeams(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
-    displayPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
-    displayPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
+function drawPkmnTeams(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
+    drawPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
+    drawPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
 }
 
-function displayPkmnTeamHUD($pkmnTeam, $pos){
+function drawPkmnTeamHUD($pkmnTeam, $pos){
     moveCursor($pos);
     $message = '<';
     for($i = 0; $i < 6; $i++){
@@ -74,7 +74,7 @@ function clearPkmnHUD($isJoueur){
 }
 function createPkmnHUD($pos, $pkmn, $showExp = true){
     clearArea(getScaleHUDPkmn(),$pos);
-    displayBox(getScaleHUDPkmn(),$pos,'|','-');
+    drawBox(getScaleHUDPkmn(),$pos,'|','-');
     echo "\033[".($pos[0]+1).";".($pos[1]+2)."H";
     echo $pkmn['Name'];
     echo "\033[".($pos[0]+1).";".($pos[1]+19)."H";
@@ -141,7 +141,7 @@ function updateExpPkmn($pos,$exp, $expMax){
 }
 
 function levelUpWindow($oldStats, $newStats){
-    displayBox([10,20], [7,39], '|', '-');
+    drawBox([10,20], [7,39], '|', '-');
     $pos = [7,39];
 
     $keys = array_keys($oldStats);
@@ -181,12 +181,12 @@ function levelUpWindow($oldStats, $newStats){
 }
     
 
-//// DISPLAY MENU ///////////////////////////////////
-function displayOffMenuTeam(&$currentPkmnJ,&$currentPkmnE){
-    displayGameHUD($currentPkmnJ,$currentPkmnE);
+//// draw MENU ///////////////////////////////////
+function drawOffMenuTeam(&$currentPkmnJ,&$currentPkmnE){
+    drawGameHUD($currentPkmnJ,$currentPkmnE);
 }
 
-function displayPkmnTeam($pkmnTeam){
+function drawPkmnTeam($pkmnTeam){
     clearInGame();
     
     for($i=0;$i<count($pkmnTeam);++$i){
@@ -224,7 +224,7 @@ function interfaceCapacities($capacites){
 function interfaceMenu(){
     $posY = 25;
     $posX = 48;
-    displayBox([7,15],[24,46]); // display line to seperate
+    drawBox([7,15],[24,46]); // draw line to seperate
 
     writeSentence( '1 : ATTACK', [$posY,$posX]);
     writeSentence('2 : PKMN', [$posY+1,$posX]);

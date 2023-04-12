@@ -1,21 +1,26 @@
 <?php
 // INIT SCRIPTS
-include_once 'Programs/saveManager.php';
-include_once 'Programs/launchAndExit.php';
-include_once 'Programs/hub.php';
-include_once 'resources/animations.php';
-include_once 'resources/inputs.php';
-include_once 'resources/config.php';
-include_once 'resources/pokemonList.php';
-include_once 'resources/typeMatchUp.php';
-include_once 'visuals/graphics.php'; 
-include_once 'visuals/sprites.php';
-include_once 'Programs/fightSystem.php';
-include_once 'visuals/hudfight.php';
-include_once 'Programs/programFight.php';
-include_once 'Programs/itemsManager.php';
-include_once 'Programs/iaProgram.php';
-include_once 'Programs/shop.php';
+include_once 'Programs/Save/saveManager.php';
+include_once 'Resources/Pokemons/pokemonList.php';
+include_once 'Resources/Pokemons/typeMatchUp.php';
+
+include_once 'Programs/Places/SpecificScreens.php';
+include_once 'Programs/Places/hub.php';
+include_once 'Programs/Places/shop.php';
+include_once 'Programs/Places/itemsManager.php';
+
+include_once 'Programs/Fight/fightSystem.php';
+include_once 'Programs/Fight/programFight.php';
+include_once 'Programs/Fight/iaProgram.php';
+
+include_once 'Programs/visuals/graphics.php'; 
+include_once 'Programs/visuals/sprites.php';
+include_once 'Programs/visuals/hudfight.php';
+
+include_once 'Resources/animations.php';
+include_once 'Resources/inputs.php';
+include_once 'Resources/config.php';
+
 
 //// SET THE GAME ////
 clear();
@@ -29,7 +34,7 @@ startGame();
 while(true){
     menuStart();
     //Sauvegardes joueur
-    $saveProfile = getSave('json/myGame.json');
+    $saveProfile = getSave('Save/myGame.json');
     $save = getSaveIfExist();
     $pkmnTeamJoueur = &$save['Team'];
     saveData($pkmnTeamJoueur, 'Team');

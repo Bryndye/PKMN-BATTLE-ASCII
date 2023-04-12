@@ -3,7 +3,7 @@
 function managerShop(&$save){
     while(true){
         clearInGame();
-        displayBoiteDialogue();
+        drawBoiteDialogue();
 
         $itemsAvailable = listItemsBuyable($save['Money']);
         messageBoiteDialogueContinue('Which item do you want to buy?');
@@ -23,8 +23,8 @@ function managerShop(&$save){
         giveItemByItem($save['Bag'], $itemsAvailable[0][$choice]);
     }
 }
-function displayShop($items){
-    displayMoney();
+function drawShop($items){
+    drawMoney();
     $i = 0;
     $y = 0;
     $choice = [];
@@ -47,9 +47,9 @@ function displayShop($items){
 }
 
 function listItemsBuyable($currentMoney){
-    $file = file_get_contents('json/items.json');
+    $file = file_get_contents('Resources/items.json');
     $array = json_decode($file, true);
-    $list = displayShop($array);
+    $list = drawShop($array);
     $choice = ['c'];
     for($i=1;$i<count($list)+1;++$i){
         if($currentMoney >= $list[$i-1]['price']){

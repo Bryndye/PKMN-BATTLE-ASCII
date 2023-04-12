@@ -1,9 +1,4 @@
 <?php
-// Affiche la structure 
-// -- [ HAUTEUR , LARGEUR] --
-// displayBox([29,60],[1,1]);
-// clearArea([27,58],[2,2]); // Efface l'écran
-
 // AIDE CODE TERMINAL
 // echo "\033[?25l"; //hide cursor
 // echo "\033[?25h"; //show cursor
@@ -32,8 +27,8 @@ function moveCursorIndex($pos, $i){
     echo "\033[".$y.";".$x."H";
 }  
 
-// DISPLAY A BOX
-function displayBox($scale, $pos, $styleH='*', $styleL='*'){
+// draw A BOX
+function drawBox($scale, $pos, $styleH='*', $styleL='*'){
     moveCursor($pos);
     
     for ($i = 0; $i < $scale[0]; $i++) {
@@ -51,7 +46,7 @@ function displayBox($scale, $pos, $styleH='*', $styleL='*'){
     }
 }
 
-function displayFullBox($scale, $pos, $styleH='*', $styleL='*'){
+function drawFullBox($scale, $pos, $styleH='*', $styleL='*'){
     moveCursor($pos);
     
     for ($i = 0; $i < $scale[0]; $i++) {
@@ -69,8 +64,8 @@ function displayFullBox($scale, $pos, $styleH='*', $styleL='*'){
     }
 }
 
-function displayGameCadre(){
-    displayBox([30,60],[1,1]);
+function drawGameCadre(){
+    drawBox([30,60],[1,1]);
 }
 
 function writeSentence($string, $pos, $scale = 0){
@@ -154,8 +149,8 @@ function clearSpritePkmn($isJoueur, $pauseTime = 0){
 
 
 
-///// DISPLAY SPRITE /////////////////////////////////////////
-function displaySprite($sprite, $pos) {
+///// draw SPRITE /////////////////////////////////////////
+function drawSprite($sprite, $pos) {
     $lines = explode("\n", $sprite); // séparer les lignes du sprite
     for ($i = 1; $i < count($lines); $i++) {
         // echo "\033[".$pos[0]+$i.";".$pos[1]."H";       
@@ -165,24 +160,24 @@ function displaySprite($sprite, $pos) {
     }
 }
 
-function displaySpritePkmn($pkmn, $isJoueur){
+function drawSpritePkmn($pkmn, $isJoueur){
     $posFinal = getPosSpritePkmn($isJoueur);
     
-    include 'visuals/sprites.php';
-    displaySprite($sprites[$pkmn['Sprite']], $posFinal);
+    include 'Resources/sprites.php';
+    drawSprite($sprites[$pkmn['Sprite']], $posFinal);
 }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
 
-//// DISPLAY DIALOGUE ///////////////////////////////////////////
-function displayBoiteDialogue(){
-    displayBox(getScaleDialogue(), getPosDialogue());
+//// draw DIALOGUE ///////////////////////////////////////////
+function drawBoiteDialogue(){
+    drawBox(getScaleDialogue(), getPosDialogue());
 }
 
 function messageBoiteDialogue($message, $pressEnter = false){
     // clearBoiteDialogue();
-    displayBoiteDialogue();
+    drawBoiteDialogue();
     limitSentence($message);
     if($pressEnter){
         waitForInput();
@@ -202,8 +197,8 @@ function clearBoiteDialogue(){
     clearArea([$scale[0]-2, $scale[1]-2],[$pos[0]+1, $pos[1]+1]); //clear boite dialogue
 }
 
-function displayChoiceMenuRight(){
-    displayBox([7,1],[23,43]);
+function drawChoiceMenuRight(){
+    drawBox([7,1],[23,43]);
 }
 
 //////////////////////////////////////////////////////////////
@@ -220,15 +215,15 @@ function debugLog($pos, $msg){
     }
 }
 
-function displayBoxTitle($pos, $scale, $title){
-    displayBox($scale,$pos);
+function drawBoxTitle($pos, $scale, $title){
+    drawBox($scale,$pos);
     writeSentence($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
     // $pos[1]+intval($scale[1]/2) -> pos x title
 }
 
-function displayMoney(){
+function drawMoney(){
     $money = getDataFromSave('Money');
-    displayBox([5,20],[4,35]);
+    drawBox([5,20],[4,35]);
     writeSentence('Money : '.$money, [6,38]);
 }
 ?>

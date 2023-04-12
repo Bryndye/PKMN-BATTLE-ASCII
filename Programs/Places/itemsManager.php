@@ -13,7 +13,7 @@ function managerItemsIntoMenu(&$save){
         else{
             $action = explode(" ", $choice);
             useItem($save['Bag'], $save['Bag'][$action[0]], $pkmnTeamJoueur[$action[1]]);
-            displayPkmnTeam($pkmnTeamJoueur);
+            drawPkmnTeam($pkmnTeamJoueur);
             sleep(1);
         }
     }
@@ -22,8 +22,8 @@ function managerItemsIntoMenu(&$save){
 function chooseItems(&$bag, &$pkmnTeam, $type = ''){
     while(true){
         clearInGame();
-        $choice = displayBag($bag, $type);
-        displayBoiteDialogue();
+        $choice = drawBag($bag, $type);
+        drawBoiteDialogue();
         messageBoiteDialogueContinue('Which item to use?');
 
         $choice2 = "";
@@ -32,7 +32,7 @@ function chooseItems(&$bag, &$pkmnTeam, $type = ''){
             break;
         }
         
-        $choicesPkmnTeam = displayPkmnTeam($pkmnTeam);
+        $choicesPkmnTeam = drawPkmnTeam($pkmnTeam);
 
         // Si item pokeball, pas bsoin de choisir un pokemon de la team
         if($bag[(int)$choice1]['type'] == 'capture'){
@@ -48,7 +48,7 @@ function chooseItems(&$bag, &$pkmnTeam, $type = ''){
     return "$choice1 $choice2";
 }
 
-function displayBag($bag, $typeEnemy = ''){
+function drawBag($bag, $typeEnemy = ''){
     $i = 0;
     $y = 1;
     $choice = ['c'];
@@ -126,7 +126,7 @@ function healStatusToPkmn(&$pkmn){
 }
 
 function captureItem($pokeball, $pkmn){
-    include 'visuals/sprites.php';
+    include 'Resources/sprites.php';
     animationCapture();
 
     $f = floor(($pkmn['Stats']['Health Max'] * 255 * 4) / ($pkmn['Stats']['Health'] * $pokeball['effect']));
@@ -141,7 +141,7 @@ function captureItem($pokeball, $pkmn){
         return true;
     } else {
         messageBoiteDialogue('Oh no! The Pokemon escapes the ball!');
-        displaySpritePkmn($pkmn, false);
+        drawSpritePkmn($pkmn, false);
         return false;
     }
 }
@@ -149,7 +149,7 @@ function captureItem($pokeball, $pkmn){
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function giveItemFromResources(&$bag, $itemName, $quantity = 1){
-    $file = file_get_contents('json/items.json');
+    $file = file_get_contents('Resources/items.json');
     $array = json_decode($file, true);
     
     $info = $array[$itemName];
@@ -183,7 +183,7 @@ function giveItemByItem(&$bag, $item, $quantity = 1){
 }
 
 function itemReturn($item, $quantity = 1){
-    $file = file_get_contents('json/items.json');
+    $file = file_get_contents('Resources/items.json');
     $array = json_decode($file, true);
     
     return $array[$item];
