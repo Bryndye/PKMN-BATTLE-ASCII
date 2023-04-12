@@ -156,6 +156,10 @@ function giveItemFromResources(&$bag, $itemName, $quantity = 1){
 
     $findPlace = false;
     foreach($bag as $key=>$itemInBag){
+        if(!key_exists('name',$itemInBag)){
+            print_r($itemInBag);
+            sleep(5);
+        }
         if($itemInBag['name'] == $itemName){
             $bag[$key]['quantity'] += $quantity;
             $findPlace = true;
@@ -182,10 +186,11 @@ function giveItemByItem(&$bag, $item, $quantity = 1){
     }
 }
 
-function itemReturn($item, $quantity = 1){
+function getItemObject($itemName, $quantity = 1){
     $file = file_get_contents('Resources/items.json');
     $array = json_decode($file, true);
-    
-    return $array[$item];
+    $item = $array[$itemName];
+    $item['quantity'] = $quantity;
+    return $item;
 }
 ?>

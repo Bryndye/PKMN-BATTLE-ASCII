@@ -6,7 +6,7 @@ function drawHub(&$save){
         
         $choiceBefore = [];
         $posY = 7;
-        drawBox([12,20],[$posY,5]);
+        drawBox([12,20],[$posY,5], '|', '-');
         writeSentence('1 : CONTINUE', [$posY+2,7]);
         writeSentence("2 : TEAM", [$posY+4,7]);
         writeSentence("3 : BAG", [$posY+6,7]);
@@ -16,7 +16,7 @@ function drawHub(&$save){
         drawBoxTitle([3,5],[3,7], 'HUB');
 
         drawMoney();
-        drawBox([10,30],[$posY+2,28]);
+        drawBox([10,30],[$posY+2,28], '|', '-');
 
         $saveFight = getSave();
         writeSentence('---------- NEXT ----------', [$posY+3,30]);

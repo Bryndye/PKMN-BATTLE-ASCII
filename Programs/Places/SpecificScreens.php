@@ -42,14 +42,14 @@ function menuStart(){
     
     $choiceBefore = [];
     if(isSaveExist('Save/save.json',true)){
-        drawBox([9,20],[5,5]);
+        drawBox([9,20],[5,5], '|', '-');
         writeSentence('1 : CONTINUE', [7,7]);
         writeSentence("2 : DELETE", [9,7]);
         writeSentence("3 : QUIT", [11,7]);
         $choiceBefore = [1,2,3];
     }
     else{
-        drawBox([7,20],[5,5]);
+        drawBox([7,20],[5,5], '|', '-');
         writeSentence('1 : NEW GAME', [7,7]);
         writeSentence("3 : QUIT", [9,7]);
         $choiceBefore = [1,3];
@@ -75,7 +75,7 @@ function exitGame(){
 
 function drawStatsFromSaveToMenu(){
     if(isSaveExist('Save/myGame.json')){
-        drawBox([21,30],[3,28]);
+        drawBox([21,30],[3,28], '|', '-');
         $save = getSave('Save/myGame.json');
         writeSentence('Name : '.$save['name'], [5,30]);
         writeSentence('Pokedex : '. count($save['Pokedex']), [7,30]);
@@ -117,7 +117,6 @@ function chooseFirstPokemon(){
     else if($choice == 3){
         $team[0] = generatePkmnBattle('charmander', 5);
     }
-    // $team[1] = generatePkmnBattle(rand(1,151), 15);
     return $team;
 }
 
@@ -157,7 +156,7 @@ function cinematicPresentation(){
     messageBoiteDialogue("By the way, what is your name?", true);
 
     messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", true);
-    createMainSave();
+    saveMainManager();
     $save = getSave('Save/myGame.json');
     messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", true);
     messageBoiteDialogue("But this time, it will be different. You have 100 battles to win.", true);

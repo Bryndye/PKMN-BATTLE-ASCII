@@ -21,12 +21,11 @@ function getPosHealthPkmn($isJoueur){
 
 function getPosTeam($isJoueur){    
     if($isJoueur){
-        $posFinal = [17,34]; // joueur
+        return [17,34]; // joueur
     }
     else{
-        $posFinal = [7,3]; // enemy
+        return [7,3]; // enemy
     }
-    return $posFinal;
 }
 
 function getPosDialogue(){

@@ -216,14 +216,14 @@ function debugLog($pos, $msg){
 }
 
 function drawBoxTitle($pos, $scale, $title){
-    drawBox($scale,$pos);
+    drawBox($scale,$pos, '|', '-');
     writeSentence($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
     // $pos[1]+intval($scale[1]/2) -> pos x title
 }
 
 function drawMoney(){
     $money = getDataFromSave('Money');
-    drawBox([5,20],[4,35]);
+    drawBox([5,20],[4,35], '|', '-');
     writeSentence('Money : '.$money, [6,38]);
 }
 ?>

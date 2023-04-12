@@ -67,7 +67,7 @@ $pnjs = [
         ],
         'Reward' => 1000,
         'Bag' => [
-            itemReturn('Potion',2)
+            getItemObject('Potion',2)
         ],
         'Team' => [
             generatePkmnBattle('staryu', 18,0,["bubble","water-gun","tackle"]),
@@ -87,7 +87,7 @@ $pnjs = [
         ],
         'Reward' => 1500,
         'Bag' => [
-            itemReturn('Super potion',2)
+            getItemObject('Super potion',2)
         ],
         'Team' => [
             generatePkmnBattle('voltorb', 21,0,["thunder-shock","tackle"]),
@@ -108,7 +108,7 @@ $pnjs = [
         ],
         'Reward' => 1500,
         'Bag' => [
-            itemReturn('Super potion',2)
+            getItemObject('Super potion',2)
         ],
         'Team' => [
             generatePkmnBattle('victreebel', 29,0,['vine-whip','toxic']),
@@ -129,7 +129,7 @@ $pnjs = [
         ],
         'Reward' => 1500,
         'Bag' => [
-            itemReturn('Super potion',2)
+            getItemObject('Super potion',2)
         ],
         'Team' => [
             generatePkmnBattle('koffing', 37,0,['sludge','sludge-bomb']),
@@ -151,7 +151,7 @@ $pnjs = [
         ],
         'Reward' => 2000,
         'Bag' => [
-            itemReturn('Super potion',2)
+            getItemObject('Super potion',2)
         ],
         'Team' => [
             generatePkmnBattle('kadabra', 38,0,['recover','psychic']),
@@ -173,7 +173,7 @@ $pnjs = [
         ],
         'Reward' => 2000,
         'Bag' => [
-            itemReturn('Hyper potion',2)
+            getItemObject('Hyper potion',2)
         ],
         'Team' => [
             generatePkmnBattle('growlithe', 42,0,['ember','growl','take-down']),
@@ -195,7 +195,7 @@ $pnjs = [
         ],
         'Reward' => 2000,
         'Bag' => [
-            itemReturn('Hyper potion',2)
+            getItemObject('Hyper potion',2)
         ],
         'Team' => [
             generatePkmnBattle('rhyhorn', 45,0,['earthquake','tail-whip','stomp','fissure']),
@@ -217,8 +217,8 @@ $pnjs = [
         ],
         'Reward' => 3500,
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('dewgong', 54,0, ['growl', 'take-down','rest','aurora-beam']),
@@ -240,8 +240,8 @@ $pnjs = [
         ],
         'Reward' => 3500,
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('onix', 53,0, ['rage', 'rock-throw','slam','harden']),
@@ -265,8 +265,8 @@ $pnjs = [
         ],
         'Reward' => 3500,
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('gengar', 56,0, ['hypnosis', 'night-shade','dream-eater']),
@@ -289,8 +289,8 @@ $pnjs = [
         ],
         'Reward' => 3500,
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('gyarados', 58,0, ['dragon-rage', 'slam','thunder','hyper-beam']),
@@ -313,8 +313,8 @@ $pnjs = [
         ],
         'Reward' => 4000,
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [           
             generatePkmnBattle('pidgeot', 56,0, ['quick-attack', 'wing-attack','growl','hyper-beam']),
@@ -349,8 +349,8 @@ $pnjs = [
         ],
         'Reward' => 15000,
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('pikachu', 88,0, ['thunderbolt', 'quick-attack','thunder']),
@@ -373,8 +373,8 @@ $pnjs = [
             ]
         ],
         'Bag' => [
-            itemReturn('Hyper potion',5),
-            itemReturn('Revive',5),
+            getItemObject('Hyper potion',5),
+            getItemObject('Revive',5),
         ],
         'Team' => [
             generatePkmnBattle('pidgeot', 85,0, ['quick-attack', 'wing-attack','swords-dance','hyper-beam']),

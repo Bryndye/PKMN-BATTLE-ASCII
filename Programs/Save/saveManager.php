@@ -1,63 +1,63 @@
 <?php
 
-function getSaveIfExist(){ 
-    if(!isSaveExist()){
-        return getMainSave();
+function saveMainManager(){
+    if(isSaveExist('Save/myGame.json')){
+        return getSave('Save/myGame.json');
     }
     else{
-        $file = file_get_contents('Save/save.json');
-        $array = json_decode($file, true);
-
-        if(!isset($array['Team'])){
-            deleteSave();
-            return getMainSave();
+        if(is_dir('Save')){
+            return createMainSave();
         }
         else{
-            return $array;
+            mkdir('Save', 0777, true);
+            return createMainSave();
         }
-    }   
-}
-
-function getMainSave($pathFile = 'Save/save.json'){ // Team JOUEUR TEMP FCT
-    createPartySave();
-    $file = file_get_contents('Save/save.json');
-    $array = json_decode($file, true);
-    $array['Team'] = chooseFirstPokemon();
-    return $array;
-}
-
-function isSaveExist($path = 'Save/save.json',$inTitle = false){
-    if(file_exists($path)){
-        // Si la sauvegarde est existe mais pas de Team alors delete et recommence
-        if($inTitle){
-            $file = file_get_contents($path);
-            $array = json_decode($file, true);
-    
-            if(!isset($array['Team'])){
-                deleteSave();
-                return false;
-            }
-        }
-        return true;
     }
-    return false;
 }
+
+function savePartyManager(){
+    if(isSaveExist('Save/save.json')){
+        $saveParty = getSave();
+        // Si la partie est créée mais sans pkmn starter, delete.
+        if(!isset($saveParty['Team'])){
+            deleteSave();
+            return createPartySave();
+        }
+        return $saveParty;
+    }
+    else{
+        if(is_dir('Save')){
+            return createPartySave();
+        }
+        else{
+            mkdir('Save', 0777, true);
+            return createPartySave();
+        }
+    }
+}
+
 
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
+
+function createMainSave(){
+    $datasMainSave = [
+        'name' => null,
+        'Game wins' => 0,
+        'IndexFloor Max' => 100,
+        'Pokedex' => [],
+        'wins' => 0,
+        'loses' => 0
+    ];
+    $datasMainSave['name'] = waitForInput([31,0], null, 'Choose your name : ');
+    $json = json_encode($datasMainSave);
+    file_put_contents('Save/myGame.json', $json);
+    return $datasMainSave;
+}
 
 function mainSaveExist(){
     if(!isSaveExist('Save/myGame.json')){
-        $json = [
-            'name' => waitForInput([31,0], null, 'Choose your name : '),
-            'Game wins' => 0,
-            'IndexFloor Max' => 100,
-            'Pokedex' => [],
-            'wins' => 0,
-            'loses' => 0
-        ];
-        $json = json_encode($json);
-        file_put_contents('Save/myGame.json', $json);
+        createMainSave();
     }
     else{
         $file = file_get_contents('Save/myGame.json');
@@ -69,37 +69,25 @@ function mainSaveExist(){
         }
     }
 }
-function createMainSave(){
-    $json = [
-        'name' => waitForInput([31,0], null, 'Choose your name : '),
-        'Game wins' => 0,
-        'IndexFloor Max' => 100,
-        'Pokedex' => [],
-        'wins' => 0,
-        'loses' => 0
-    ];
-    $json = json_encode($json);
-    file_put_contents('Save/myGame.json', $json);
-}
+
 function createPartySave(){
-    $json = [
+    $datasPartySave = [
         'Team' => null,
         'IndexFloor' => 1,
         'Money' => 1000,
         'Bag' => [
-            [
-                "name"=>"Potion", 
-                "type"=>"heal",
-                "effect"=>"20",
-                "quantity"=>1
-            ]
+            getItemObject('Potion',1),
+            getItemObject('PokeBall',5)
         ]
     ];
-    $json = json_encode($json);
+
+    $datasPartySave['Team'] = chooseFirstPokemon();
+    $json = json_encode($datasPartySave);
     file_put_contents('Save/save.json', $json);
+    return $datasPartySave;
 }
 
-
+//////////////////////////////////////////////////////////////////
 //// CUSTOM FUNCTIONS SAVE ///////////////////////////////////////
 function saveFile($save, $path = 'Save/save.json'){
     $array = $save;
@@ -138,5 +126,12 @@ function getDataFromSave($key, $path = 'Save/save.json'){
 
 function deleteSave($path = 'Save/save.json'){
     unlink($path);
+}
+
+function isSaveExist($path = 'Save/save.json'){
+    if(file_exists($path)){
+        return true;
+    }
+    return false;
 }
 ?>

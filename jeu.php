@@ -1,32 +1,34 @@
 <?php
 // INIT SCRIPTS
+include_once 'Resources/config.php';
+include_once 'Resources/inputs.php';
+include_once 'Programs/Visuals/graphics.php'; 
+include_once 'Resources/sprites.php';
+include_once 'Programs/Visuals/hudfight.php';
+
+include_once 'Programs/Places/itemsManager.php'; // item avant save
 include_once 'Programs/Save/saveManager.php';
 include_once 'Resources/Pokemons/pokemonList.php';
 include_once 'Resources/Pokemons/typeMatchUp.php';
 
+
 include_once 'Programs/Places/SpecificScreens.php';
 include_once 'Programs/Places/hub.php';
 include_once 'Programs/Places/shop.php';
-include_once 'Programs/Places/itemsManager.php';
 
 include_once 'Programs/Fight/fightSystem.php';
 include_once 'Programs/Fight/programFight.php';
 include_once 'Programs/Fight/iaProgram.php';
 
-include_once 'Programs/visuals/graphics.php'; 
-include_once 'Programs/visuals/sprites.php';
-include_once 'Programs/visuals/hudfight.php';
-
 include_once 'Resources/animations.php';
-include_once 'Resources/inputs.php';
-include_once 'Resources/config.php';
+
 
 
 //// SET THE GAME ////
 clear();
 echo "\033[?25l"; // hide cursor
-// shell_exec('mode con: cols=60 lines=32');
-// intro();
+shell_exec('mode con: cols=60 lines=32');
+intro();
 startGame();
 
 
@@ -34,13 +36,13 @@ startGame();
 while(true){
     menuStart();
     //Sauvegardes joueur
-    $saveProfile = getSave('Save/myGame.json');
-    $save = getSaveIfExist();
-    $pkmnTeamJoueur = &$save['Team'];
+    $saveProfile = saveMainManager();
+    $saveParty = savePartyManager();
+    $pkmnTeamJoueur = &$saveParty['Team'];
     saveData($pkmnTeamJoueur, 'Team');
 
-    if(array_key_exists('IndexFloor', $save)){
-        $IndexFloor = $save['IndexFloor'];
+    if(array_key_exists('IndexFloor', $saveParty)){
+        $IndexFloor = $saveParty['IndexFloor'];
     }
     else{
         $IndexFloor = 1;
@@ -53,21 +55,21 @@ while(true){
     }
     
     // item TEMP
-    giveItemFromResources($save["Bag"], 'Potion', 5);
-    giveItemFromResources($save["Bag"], 'Revive', 5);
-    giveItemFromResources($save["Bag"], 'Super potion', 5);
-    giveItemFromResources($save["Bag"], 'PokeBall', 5);
-    giveItemFromResources($save["Bag"], 'MasterBall', 5);
+    giveItemFromResources($saveParty["Bag"], 'Potion', 5);
+    giveItemFromResources($saveParty["Bag"], 'Revive', 5);
+    giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
+    giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
+    giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
 
 
     // Loop gameplay if team alive
     while(true){
         // HUB
-        drawHub($save);
+        drawHub($saveParty);
 
         // generer IA pkmn team
         $pnj = generatePNJ($IndexFloor, $pkmnTeamJoueur[0]['Level']);
-        startFight($save, $pnj);
+        startFight($saveParty, $pnj);
 
         if(!isTeamPkmnAlive($pkmnTeamJoueur)){
             screenLose();
@@ -75,16 +77,16 @@ while(true){
         }
         else{
             ++$IndexFloor;
-            $save['IndexFloor'] = $IndexFloor;
-            saveFile($save);
+            $saveParty['IndexFloor'] = $IndexFloor;
+            saveFile($saveParty);
         }
         waitForInput([31,0]);
 
         if($IndexFloor == 94){
-            cinematicLeagueEnding($save);
+            cinematicLeagueEnding($saveParty);
         }
         else if($IndexFloor > $IndexFloorMax){
-            cinematicEnding($save);
+            cinematicEnding($saveParty);
             endGame();
             break;
         }
