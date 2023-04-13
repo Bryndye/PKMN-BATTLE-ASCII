@@ -27,7 +27,7 @@ include_once 'Resources/animations.php';
 //// SET THE GAME ////
 clear();
 echo "\033[?25l"; // hide cursor
-shell_exec('mode con: cols=60 lines=32');
+// shell_exec('mode con: cols=60 lines=32');
 intro();
 startGame();
 
@@ -55,11 +55,11 @@ while(true){
     }
     
     // item TEMP
-    giveItemFromResources($saveParty["Bag"], 'Potion', 5);
-    giveItemFromResources($saveParty["Bag"], 'Revive', 5);
-    giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
-    giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
-    giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Potion', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Revive', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
+    // giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
+    // giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
 
 
     // Loop gameplay if team alive

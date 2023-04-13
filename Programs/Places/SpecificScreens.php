@@ -2,14 +2,11 @@
 // include 'graphics.php';
 function intro(){
     drawGameCadre();
-    echo "\033[?25l";
     
     // Animation de * en diagonale sur l'écran
     for ($i = 0; $i < 30; $i++) {
         clearInGame();
-        // echo "\033[?25l"; //hide cursor
-        echo "\033[".$i.";".($i+$i)."H";
-        echo "*";
+        drawFullBox([1,1],[$i,2*$i]);
         usleep(10000); // Arrête l'exécution d'un programme durant un laps de temps
     }
     

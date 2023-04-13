@@ -75,15 +75,12 @@ function clearPkmnHUD($isJoueur){
 function createPkmnHUD($pos, $pkmn, $showExp = true){
     clearArea(getScaleHUDPkmn(),$pos);
     drawBox(getScaleHUDPkmn(),$pos,'|','-');
-    echo "\033[".($pos[0]+1).";".($pos[1]+2)."H";
-    echo $pkmn['Name'];
-    echo "\033[".($pos[0]+1).";".($pos[1]+19)."H";
-    $string = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : $pkmn['Status'];
-    echo $string;
-    echo "\033[".($pos[0]+2).";".($pos[1]+10)."H";
-    echo '<';
-    echo "\033[".($pos[0]+2).";".($pos[1]+21)."H";
-    echo '>';
+
+    writeSentence($pkmn['Name'], [$pos[0]+1, $pos[1]+2]);
+    $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : $pkmn['Status'];
+    writeSentence($displayLevel, [$pos[0]+1, $pos[1]+19]);
+    writeSentence('<          >', [$pos[0]+2, $pos[1]+10]);
+
     updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max']);
     if($showExp){
         updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
@@ -102,11 +99,11 @@ function updateHealthPkmn($pos,$health, $healthMax){
     }
     //Set health text
     clearArea([1,7],[$pos[0]+2,$pos[1]+2]); //clear pour eviter 
-    echo "\033[".($pos[0]+2).";".($pos[1]+2)."H";
-    echo $health.'/'.$healthMax;
+    writeSentence($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
     
     //Set health graphic style + color
-    echo "\033[".($pos[0]+2).";".($pos[1]+11)."H";
+    moveCursor([$pos[0]+2,$pos[1]+11]);
+
     echo "\033[".$color."m";
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){
@@ -122,13 +119,10 @@ function updateExpPkmn($pos,$exp, $expMax){
 
     //Set exp text
     clearArea([1,7],[$pos[0]+3,$pos[1]+3]); //clear pour eviter 
-    echo "\033[".($pos[0]+3).";".($pos[1]+10)."H";
-    echo '<';
-    echo "\033[".($pos[0]+3).";".($pos[1]+21)."H";
-    echo '>';
-    
+    writeSentence('<          >', [$pos[0]+3, $pos[1]+10]);
+
     //Set health graphic style + color
-    echo "\033[".($pos[0]+3).";".($pos[1]+11)."H";
+    moveCursor([$pos[0]+3,$pos[1]+11]);
     echo "\033[34m";
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){

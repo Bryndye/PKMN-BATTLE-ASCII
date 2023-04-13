@@ -33,7 +33,6 @@ function drawBox($scale, $pos, $styleH='*', $styleL='*'){
     
     for ($i = 0; $i < $scale[0]; $i++) {
         moveCursorIndex($pos, $i);
-        // echo "\033[".$pos[0]+$i.";".$pos[1]."H";
         for ($j = 0; $j < $scale[1]; $j++) {
             if ($i == 0 || $i == $scale[0] - 1) {
                 echo $styleL;
@@ -51,7 +50,6 @@ function drawFullBox($scale, $pos, $styleH='*', $styleL='*'){
     
     for ($i = 0; $i < $scale[0]; $i++) {
         moveCursorIndex($pos, $i);
-        // echo "\033[".$pos[0]+$i.";".$pos[1]."H";
         for ($j = 0; $j < $scale[1]; $j++) {
             if ($i == 0 || $i == $scale[0] - 1) {
                 echo $styleL;
@@ -107,7 +105,6 @@ function alignText($string, $scale, $comble, $where){
 ///// CLEAR /////////////////////////////////////////
 function clearArea($scale, $pos){
     for ($i = 0; $i <  $scale[0]; $i++) {
-        // echo "\033[".$pos[0]+$i.";".$pos[1]."H";
         moveCursorIndex($pos, $i);
         for ($j = 0; $j <  $scale[1]; $j++) {
             echo ' ';
@@ -153,7 +150,6 @@ function clearSpritePkmn($isJoueur, $pauseTime = 0){
 function drawSprite($sprite, $pos) {
     $lines = explode("\n", $sprite); // séparer les lignes du sprite
     for ($i = 1; $i < count($lines); $i++) {
-        // echo "\033[".$pos[0]+$i.";".$pos[1]."H";       
         moveCursorIndex($pos, $i);
         echo $lines[$i]; // afficher chaque ligne du sprite
         echo "\n";
