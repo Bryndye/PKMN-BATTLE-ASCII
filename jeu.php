@@ -8,6 +8,7 @@ include_once 'Programs/Visuals/hudfight.php';
 
 include_once 'Programs/Places/itemsManager.php'; // item avant save
 include_once 'Programs/Save/saveManager.php';
+include_once 'Programs/Visuals/hud.php';
 include_once 'Resources/Pokemons/pokemonList.php';
 include_once 'Resources/Pokemons/typeMatchUp.php';
 
@@ -20,7 +21,7 @@ include_once 'Programs/Fight/fightSystem.php';
 include_once 'Programs/Fight/programFight.php';
 include_once 'Programs/Fight/iaProgram.php';
 
-include_once 'Resources/animations.php';
+include_once 'Programs/Visuals/animations.php';
 
 
 
@@ -28,8 +29,8 @@ include_once 'Resources/animations.php';
 clear();
 echo "\033[?25l"; // hide cursor
 // shell_exec('mode con: cols=60 lines=32');
-intro();
-startGame();
+// intro();
+// startGame();
 
 
 //// GAME ////

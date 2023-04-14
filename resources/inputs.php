@@ -65,7 +65,6 @@ function enterToContinue($pos, $showMessage){
 // }
 
 function choice(){
-    // echo "\033[31;0H";
     moveCursor([31,0]);
     // Get the user's input
     $input = readline();

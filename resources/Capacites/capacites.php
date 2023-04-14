@@ -86,18 +86,18 @@ function getLastElements($array, $level) {
 function setCapacityToPkmn(&$pkmn, $capacite){
     if(count($pkmn['Capacites']) == 4){
 
-        clearInGame();
+        clearGameScreen();
         include 'Resources/sprites.php';
         drawSprite($sprites[$pkmn['Sprite']], [5,3]);
-        limitSentence($pkmn['Name'],30,[3,5]);
-        limitSentence('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
+        textAreaLimited($pkmn['Name'],30,[3,5]);
+        textAreaLimited('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
 
         $i = 0;
         $y = 0;
         foreach($pkmn['Capacites'] as $capacitePkmn){
             drawBox([5,25],[2+$i,30]);
-            limitSentence($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
-            limitSentence('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
+            textAreaLimited($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
+            textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
             ++$y;
             $i += 5;
         }
@@ -130,7 +130,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                 }
             }
         }
-        clearInGame();
+        clearGameScreen();
     }
     else{
         array_push($pkmn['Capacites'], $capacite);

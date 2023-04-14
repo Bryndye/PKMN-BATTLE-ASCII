@@ -36,7 +36,7 @@ function getPosChoice(){
     return [31,0];
 }
 //// SCALE ///////////////////////////////////////////////
-function screenScale(){
+function getScreenScale(){
     return [30,60];
 }
 

@@ -274,7 +274,7 @@ function checkThingsToDoLevelUp(&$pkmn){
 }
 
 function evolution(&$pkmn){
-    clearInGame();
+    clearGameScreen();
     drawBoiteDialogue();
     messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
     $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
@@ -335,7 +335,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         // too much pokemon, fired one
         while(true){
             $choice = selectPkmn($pkmnTeam, 0, true);
-            limitSentence('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
+            textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
             $choice2 = waitForInput([31,0], ['y','n']);
             if($choice2 == 'y'){
                 $pkmnTeam[$choice] = $pkmn;

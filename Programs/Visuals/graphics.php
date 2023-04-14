@@ -2,17 +2,37 @@
 // AIDE CODE TERMINAL
 // echo "\033[?25l"; //hide cursor
 // echo "\033[?25h"; //show cursor
-// echo "\033[7;7H"; //deplace cursor
-// echo "\033[31;40mtexte rouge sur fond noir\033[0m"; // change la couleur
 
 // https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 
 
 //// STANDARD FCT DRAW ///////////////////////////////
-function selectColor(){
-    //\033[0m permet de remettre la couleur par defaut
-    //\033[31;40m 31:rouge & 40:noir
-    echo "\033[31;40mtexte rouge sur fond noir\033[0m";
+function selectColor($color = 'black'){
+    $string = '0m';
+    switch($color){
+        case 'reset':
+            $string = '0m'; //reset style text
+            break;
+        case 'black':
+            $string = '30m';
+            break;
+        case 'red':
+            $string = '31;40m';
+            break;
+        case 'blue':
+            $string = '34m';
+            break;
+        case 'green':
+            $string = '0;32m';
+            break;
+        case 'orange':
+            $string = '0;31m';
+            break;
+        case 'health':
+            $string = '38;2;255;165;0';
+            break;
+    }
+    echo "\033[".$string;
 }
 
 function moveCursor($pos){
@@ -27,7 +47,6 @@ function moveCursorIndex($pos, $i){
     echo "\033[".$y.";".$x."H";
 }  
 
-// draw A BOX
 function drawBox($scale, $pos, $styleH='*', $styleL='*'){
     moveCursor($pos);
     
@@ -66,15 +85,15 @@ function drawGameCadre(){
     drawBox([30,60],[1,1]);
 }
 
-function writeSentence($string, $pos, $scale = 0){
+function textArea($string, $pos, $scale = 0){
     if($scale != null && $scale != 0){
-        $string = limitSentence($string, $scale);
+        $string = textAreaLimited($string, $scale);
     }
     moveCursor($pos);
     echo $string;
 }
 
-function limitSentence($string, $scale = 50, $pos = [26,4]){
+function textAreaLimited($string, $scale = 50, $pos = [26,4]){ //pos dialogue default
     $x = $scale; // taille maximale du texte
 
     // Découpe le texte en plusieurs lignes en respectant une longueur maximale de x caractères par ligne
@@ -88,7 +107,7 @@ function limitSentence($string, $scale = 50, $pos = [26,4]){
     }
 }
 
-function alignText($string, $scale, $comble, $where){
+function justifyText($string, $scale, $comble, $where){
     $align = STR_PAD_LEFT;
     if($where == 'right'){
         $align = STR_PAD_RIGHT;
@@ -96,7 +115,7 @@ function alignText($string, $scale, $comble, $where){
     else if($where == 'left'){
         $align = STR_PAD_LEFT;
     }
-    $phrase_alignee = str_pad($string, 3, " ", STR_PAD_LEFT);
+    return str_pad($string, 3, " ", $align);
 }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -112,8 +131,16 @@ function clearArea($scale, $pos){
     }
 }
 
-function clearInGame(){
-    clearArea([28,58], [2,2]);
+function clearGameScreen(){
+    $screenScale = getScreenScale();
+    clearArea([$screenScale[0]-2,$screenScale[1]-2], [2,2]);
+}
+
+function clearGameplayScreen(){
+    // clear screen hors boit ede dialogue
+    $screenScale = getScreenScale();
+    $boiteDialogueScale = getScaleDialogue();
+    clearArea([$screenScale[0]-$boiteDialogueScale[0]-1,$screenScale[1]-2], [2,2]);
 }
 
 function clear(){
@@ -164,62 +191,4 @@ function drawSpritePkmn($pkmn, $isJoueur){
 }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
-
-
-//// draw DIALOGUE ///////////////////////////////////////////
-function drawBoiteDialogue(){
-    drawBox(getScaleDialogue(), getPosDialogue());
-}
-
-function messageBoiteDialogue($message, $pressEnter = false){
-    // clearBoiteDialogue();
-    drawBoiteDialogue();
-    limitSentence($message);
-    if($pressEnter){
-        waitForInput();
-    }
-    else{
-        sleep(1);
-    }
-}
-function messageBoiteDialogueContinue($message, $time = 0){
-    clearBoiteDialogue();
-    limitSentence($message);
-    sleep($time);
-}
-function clearBoiteDialogue(){
-    $pos = getPosDialogue();
-    $scale = getScaleDialogue();
-    clearArea([$scale[0]-2, $scale[1]-2],[$pos[0]+1, $pos[1]+1]); //clear boite dialogue
-}
-
-function drawChoiceMenuRight(){
-    drawBox([7,1],[23,43]);
-}
-
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
-
-function debugLog($pos, $msg){
-    moveCursor($pos);
-    if(is_array($msg)){
-        print_r($msg);
-    }
-    else{
-        echo 'Debug : ' . $msg;
-    }
-}
-
-function drawBoxTitle($pos, $scale, $title){
-    drawBox($scale,$pos, '|', '-');
-    writeSentence($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
-    // $pos[1]+intval($scale[1]/2) -> pos x title
-}
-
-function drawMoney(){
-    $money = getDataFromSave('Money');
-    drawBox([5,20],[4,35], '|', '-');
-    writeSentence('Money : '.$money, [6,38]);
-}
 ?>

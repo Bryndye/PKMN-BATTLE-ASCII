@@ -2,7 +2,7 @@
 
 function managerShop(&$save){
     while(true){
-        clearInGame();
+        clearGameScreen();
         drawBoiteDialogue();
 
         $itemsAvailable = listItemsBuyable($save['Money']);

@@ -5,7 +5,7 @@ function intro(){
     
     // Animation de * en diagonale sur l'écran
     for ($i = 0; $i < 30; $i++) {
-        clearInGame();
+        clearGameScreen();
         drawFullBox([1,1],[$i,2*$i]);
         usleep(10000); // Arrête l'exécution d'un programme durant un laps de temps
     }
@@ -40,15 +40,15 @@ function menuStart(){
     $choiceBefore = [];
     if(isSaveExist('Save/save.json',true)){
         drawBox([9,20],[5,5], '|', '-');
-        writeSentence('1 : CONTINUE', [7,7]);
-        writeSentence("2 : DELETE", [9,7]);
-        writeSentence("3 : QUIT", [11,7]);
+        textArea('1 : CONTINUE', [7,7]);
+        textArea("2 : DELETE", [9,7]);
+        textArea("3 : QUIT", [11,7]);
         $choiceBefore = [1,2,3];
     }
     else{
         drawBox([7,20],[5,5], '|', '-');
-        writeSentence('1 : NEW GAME', [7,7]);
-        writeSentence("3 : QUIT", [9,7]);
+        textArea('1 : NEW GAME', [7,7]);
+        textArea("3 : QUIT", [9,7]);
         $choiceBefore = [1,3];
     }
 
@@ -74,20 +74,20 @@ function drawStatsFromSaveToMenu(){
     if(isSaveExist('Save/myGame.json')){
         drawBox([21,30],[3,28], '|', '-');
         $save = getSave('Save/myGame.json');
-        writeSentence('Name : '.$save['name'], [5,30]);
-        writeSentence('Pokedex : '. count($save['Pokedex']), [7,30]);
-        writeSentence('Floor Max : '.$save['IndexFloor Max'], [8,30]);
-        writeSentence('Win Count : '.$save['Game wins'], [9,30]);
+        textArea('Name : '.$save['name'], [5,30]);
+        textArea('Pokedex : '. count($save['Pokedex']), [7,30]);
+        textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
+        textArea('Win Count : '.$save['Game wins'], [9,30]);
 
         if(isSaveExist()){
             $saveFight = getSave();
-            writeSentence('------ Current Game ------', [11,30]);
-            writeSentence('Floor : '.$saveFight['IndexFloor'], [13,30]);
-            writeSentence("Money : ".$saveFight['Money'], [14,30]);
+            textArea('------ Current Game ------', [11,30]);
+            textArea('Floor : '.$saveFight['IndexFloor'], [13,30]);
+            textArea("Money : ".$saveFight['Money'], [14,30]);
             
             $y = 0;
             foreach($saveFight['Team'] as $key => $pkmn){
-                writeSentence($pkmn['Name']."  Lv: ".$pkmn['Level'], [16+$y,30]);
+                textArea($pkmn['Name']."  Lv: ".$pkmn['Level'], [16+$y,30]);
                 $y +=1;
             }
         }
@@ -165,19 +165,19 @@ function cinematicPresentation(){
 }
 
 function cinematicLeagueEnding(&$save){
-    clearInGame();
+    clearGameScreen();
     messageBoiteDialogue('Congratulations! You beat the league Pokemon!', true);
 
     include 'Resources/sprites.php';
     foreach($save['Team'] as $pkmn){
         drawSprite($sprites[$pkmn['Sprite']], [3,18]);
         drawBox([4,20],[20,20]);
-        limitSentence($pkmn['Name'], 50,[21, 25]);
-        limitSentence("Lv: ".$pkmn['Level'], 50, [22, 27]);
+        textAreaLimited($pkmn['Name'], 50,[21, 25]);
+        textAreaLimited("Lv: ".$pkmn['Level'], 50, [22, 27]);
         waitForInput([31,0]);
         clearSprite([3,18]);
     }
-    clearInGame();
+    clearGameScreen();
     drawSprite($sprites['trainer'], [3,18]);
     messageBoiteDialogue("But it's not over!", true);
     messageBoiteDialogue("There are challenges waiting for you!", true);
@@ -186,7 +186,7 @@ function cinematicLeagueEnding(&$save){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// ENDING //////////////////////////////////////////////////////////////////////
 function cinematicEnding(&$save){
-    clearInGame();
+    clearGameScreen();
     messageBoiteDialogue('Congratulations! You beat the game!', true);
     $wins = getDataFromSave('Game wins', 'Save/myGame.json');
 
@@ -194,12 +194,12 @@ function cinematicEnding(&$save){
     foreach($save['Team'] as $pkmn){
         drawSprite($sprites[$pkmn['Sprite']], [3,18]);
         drawBox([4,20],[20,20]);
-        limitSentence($pkmn['Name'], 50,[21, 25]);
-        limitSentence("Lv: ".$pkmn['Level'], 50, [22, 27]);
+        textAreaLimited($pkmn['Name'], 50,[21, 25]);
+        textAreaLimited("Lv: ".$pkmn['Level'], 50, [22, 27]);
         waitForInput([31,0]);
         clearSprite([3,18]);
     }
-    clearInGame();
+    clearGameScreen();
     drawSprite($sprites['trainer'], [3,18]);
     messageBoiteDialogue("But it's not over!", true);
     messageBoiteDialogue("More challenges are available!", true);
@@ -217,7 +217,7 @@ function endGame(){
 }
 
 function screenLose(){
-    clearInGame();
+    clearGameScreen();
     addData(1, 'loses', 'Save/myGame.json');
     $floor = getDataFromSave('IndexFloor');
 

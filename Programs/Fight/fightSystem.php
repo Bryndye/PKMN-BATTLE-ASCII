@@ -1,7 +1,5 @@
 <?php
 
-$statOpen = false;
-$stopLoop = false;
 // Animations de lancement de combat
 function startFight(&$joueur, &$pnj){
     drawSkeletonHUD();
@@ -10,8 +8,8 @@ function startFight(&$joueur, &$pnj){
 
     // animation entrer dresseurs
     include 'Resources/sprites.php';
-    drawSprite($sprites['trainerBack'], getPosSpritePkmn(true));
-    drawSprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
+    drawBoiteDialogue();
+    animationCharactersEnterBattle($sprites['trainerBack'],$sprites[$pnj['Sprite']]);
 
     messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
     sleep(1);
@@ -70,7 +68,6 @@ function loopFight(&$joueur, &$pnj){
 
         // init var choice of Player
         $choice = waitForInput(getPosChoice(),[1,2,3]);
-        $choice2;
 
         $actionJoueur = null;
         if($choice == 1){
@@ -84,7 +81,6 @@ function loopFight(&$joueur, &$pnj){
             $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
         }
         elseif($choice == 2){
-            $a = $pkmnTeamJoueur[0];
             $choice2 = selectPkmn($pkmnTeamJoueur, 1, true);
             if($choice2 != 'c'){           
                 drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);

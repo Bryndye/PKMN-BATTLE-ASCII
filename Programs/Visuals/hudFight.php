@@ -17,7 +17,7 @@ function drawSkeletonHUD(){
 
 
 function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
-    clearInGame();
+    clearGameScreen();
     drawSkeletonHUD();
     include 'Resources/sprites.php';
     
@@ -76,10 +76,10 @@ function createPkmnHUD($pos, $pkmn, $showExp = true){
     clearArea(getScaleHUDPkmn(),$pos);
     drawBox(getScaleHUDPkmn(),$pos,'|','-');
 
-    writeSentence($pkmn['Name'], [$pos[0]+1, $pos[1]+2]);
+    textArea($pkmn['Name'], [$pos[0]+1, $pos[1]+2]);
     $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : $pkmn['Status'];
-    writeSentence($displayLevel, [$pos[0]+1, $pos[1]+19]);
-    writeSentence('<          >', [$pos[0]+2, $pos[1]+10]);
+    textArea($displayLevel, [$pos[0]+1, $pos[1]+19]);
+    textArea('<          >', [$pos[0]+2, $pos[1]+10]);
 
     updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max']);
     if($showExp){
@@ -88,23 +88,23 @@ function createPkmnHUD($pos, $pkmn, $showExp = true){
 }   
 function updateHealthPkmn($pos,$health, $healthMax){
     $pourcentage = $health/$healthMax;
-    $color = '0;32';
-    if($pourcentage > 0.5){
-        $color = '0;32';
-    }elseif($pourcentage < 0.2){
-        $color = '0;31';
-    }
-    else{
-        $color = '38;2;255;165;0';
-    }
+
     //Set health text
     clearArea([1,7],[$pos[0]+2,$pos[1]+2]); //clear pour eviter 
-    writeSentence($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
+    textArea($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
     
     //Set health graphic style + color
     moveCursor([$pos[0]+2,$pos[1]+11]);
-
-    echo "\033[".$color."m";
+    
+    
+    if($pourcentage > 0.5){
+        selectColor('green');
+    }elseif($pourcentage < 0.2){
+        selectColor('orange');
+    }
+    else{
+        selectColor('red');
+    }
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){
             echo '=';
@@ -112,18 +112,18 @@ function updateHealthPkmn($pos,$health, $healthMax){
             echo ' ';
         }
     }
-    echo "\033[0m";
+    selectColor('reset');
 }
 function updateExpPkmn($pos,$exp, $expMax){
     $pourcentage = $exp/$expMax;
 
     //Set exp text
     clearArea([1,7],[$pos[0]+3,$pos[1]+3]); //clear pour eviter 
-    writeSentence('<          >', [$pos[0]+3, $pos[1]+10]);
+    textArea('<          >', [$pos[0]+3, $pos[1]+10]);
 
     //Set health graphic style + color
     moveCursor([$pos[0]+3,$pos[1]+11]);
-    echo "\033[34m";
+    selectColor('blue');
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){
             echo '=';
@@ -131,7 +131,7 @@ function updateExpPkmn($pos,$exp, $expMax){
             echo ' ';
         }
     }
-    echo "\033[0m";
+    selectColor('reset');
 }
 
 function levelUpWindow($oldStats, $newStats){
@@ -146,7 +146,7 @@ function levelUpWindow($oldStats, $newStats){
     }
     $i = 1;
     foreach($oldStats as $key=>$stat){
-        writeSentence($key, [$pos[0]+$i,$pos[1]+2]);
+        textArea($key, [$pos[0]+$i,$pos[1]+2]);
         $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
         moveCursor([$pos[0]+$i,$pos[1]+15]);
     
@@ -163,7 +163,7 @@ function levelUpWindow($oldStats, $newStats){
     sleep(2);
     $i = 1;
     foreach($newStats as $key=>$stat){
-        writeSentence($key, [$pos[0]+$i,$pos[1]+2]);
+        textArea($key, [$pos[0]+$i,$pos[1]+2]);
         $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
         moveCursor([$pos[0]+$i,$pos[1]+15]);
     
@@ -176,15 +176,11 @@ function levelUpWindow($oldStats, $newStats){
     
 
 //// draw MENU ///////////////////////////////////
-function drawOffMenuTeam(&$currentPkmnJ,&$currentPkmnE){
-    drawGameHUD($currentPkmnJ,$currentPkmnE);
-}
 
 function drawPkmnTeam($pkmnTeam){
-    clearInGame();
+    clearGameScreen();
     
     for($i=0;$i<count($pkmnTeam);++$i){
-        // $pos = [($i * 5) - 2,33];
         $x = ($i % 2 == 0) ? 3 : 33;
         $y = ($i+1) * 3;
         $pos = [$y,$x];
@@ -209,8 +205,8 @@ function interfaceCapacities($capacites){
                 $posY = $posYInit +3;
                 $posX = $posXInit +20;
             }
-            limitSentence($i.' : '.$capacites[$i]['Name'],23,[$posY,$posX]);
-            limitSentence('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
+            textAreaLimited($i.' : '.$capacites[$i]['Name'],23,[$posY,$posX]);
+            textAreaLimited('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
         }
     }
 }
@@ -220,8 +216,8 @@ function interfaceMenu(){
     $posX = 48;
     drawBox([7,15],[24,46]); // draw line to seperate
 
-    writeSentence( '1 : ATTACK', [$posY,$posX]);
-    writeSentence('2 : PKMN', [$posY+1,$posX]);
-    writeSentence('3 : BAG', [$posY+2,$posX]);
+    textArea( '1 : ATTACK', [$posY,$posX]);
+    textArea('2 : PKMN', [$posY+1,$posX]);
+    textArea('3 : BAG', [$posY+2,$posX]);
 }
 ?>

@@ -27,6 +27,8 @@ function animationCapture(){
     drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
 }
 
+
+//// ANIAMTIONS BATTLE //////////////////////////////////////////////////
 function animationEnterBattle(){
     animationEnterSpirale();
 }
@@ -76,5 +78,24 @@ function animationEnterSpirale(){
             usleep(25000);
         }
     }
+}
+
+function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
+    // include 'Resources/sprites.php';
+    $screenScale = getScreenScale();
+    $posJoueur = getPosSpritePkmn(true);
+    $posEnemy = getPosSpritePkmn(false);
+
+    $distance = $screenScale[1]-1-getScaleSpritePkmn()[1];
+
+    for($i=0;$i<$distance;++$i){
+        drawSprite($spriteEnemy, [$posEnemy[0], 2+$i]);
+        drawSprite($spriteJoueur, [$posJoueur[0], $screenScale[1]-$i-getScaleSpritePkmn()[1]]);
+        usleep(1000);
+        clearGameplayScreen();
+    }
+
+    drawSprite($spriteJoueur, getPosSpritePkmn(true));
+    drawSprite($spriteEnemy, getPosSpritePkmn(false));
 }
 ?>

@@ -21,7 +21,7 @@ function managerItemsIntoMenu(&$save){
 
 function chooseItems(&$bag, &$pkmnTeam, $type = ''){
     while(true){
-        clearInGame();
+        clearGameScreen();
         $choice = drawBag($bag, $type);
         drawBoiteDialogue();
         messageBoiteDialogueContinue('Which item to use?');
