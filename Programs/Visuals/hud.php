@@ -28,7 +28,7 @@ function drawNextFloor($pos){
     $saveFight = getSave();
     textArea('NEXT', [$posY+3,$posX+13]);
     textArea('Floor : '.$saveFight['IndexFloor']+1, [$posY+4,$posX+2]);
-    textArea('Route : INDISPONIBLE', [$posY+6,$posX+2]);
+    textArea('Route : '.getRouteFromIndex($saveFight['IndexFloor'], true), [$posY+6,$posX+2]);
 }
 
 //// DRAW DIALOGUE ///////////////////////////////////////////

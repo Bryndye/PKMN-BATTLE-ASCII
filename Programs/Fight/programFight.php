@@ -38,16 +38,17 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     $capacite['PP'] -= 1;
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
 
-    // failed capacity
-    usleep(500000);
+    // Accuracy capacity
+    usleep(250000);
     $chanceAccuracy = rand(0,100);
-    if($chanceAccuracy > $capacite['Accuracy']){
-        messageBoiteDialogue('But it failed!');
+    if($chanceAccuracy > $capacite['Accuracy']*calculateBoostTemps($pkmnAtk, 'Accuracy')){
+        messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!');
         return;
     }
+
     $chanceEvasion = rand(0,100);
     if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
-        messageBoiteDialogue($pkmnDef['Name'].' misses the attack!');
+        messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!');
         return;
     }
 
@@ -75,6 +76,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
 
 // fct calculator dmg capacite + stats
 function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){  
+    //// Capacity Special ¨Power /////////////////////////////////////////////////////////////////////
     $power = $capacite['Power'];
     if(is_string($capacite['Power'])){
         if($capacite['Power'] == 'ko'){
@@ -89,10 +91,10 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             $capacite = getRandCapacites();
         }
     }
-    // 1ere etape
+    //// 1ere etape //////////////////////////////////////////////////////////////////////////////////
     $a = (2 * $pkmnAtk['Level'] +10)/250;
 
-    // 2eme etape -> Category d'atk
+    // 2eme etape = Category d'atk ///////////////////////////////////////////////////////////////////
     // b = stat Atk utilisé pour la capacite / stat def utilisé contre la capacité
     $isBurned = 1;
     if($capacite['Category'] == 'physical'){
@@ -109,12 +111,12 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     }
     $b = $statAtkToUsed / $statDefToUsed;
 
-    // 3eme etape = all modifier
+    //// 3eme etape = all modifier //////////////////////////////////////////////////////////////////
     $stab = 1;
     if($capacite['Type'] == $pkmnAtk['Type 1'] || $capacite['Type'] == $pkmnAtk['Type 2']){
         $stab = 1.5;
     }
-    $isCrit = rand(0,100) <= ($pkmnAtk['Stats Temp']['critical']+$capacite['crit_rate']*12.5); // doit creer le crit avec capacite
+    $isCrit = rand(0,100) <= ($pkmnAtk['Stats Temp']['critical']*12.5+$capacite['crit_rate']*12.5+12.5); // doit creer le crit avec capacite
     $efficace = checkTypeMatchup($capacite['Type'], $pkmnDef['Type 1']) * checkTypeMatchup($capacite['Type'], $pkmnDef['Type 2']);
     $random = rand(85,100) / 100;
     $c = $power * $stab * $efficace * $isBurned * $random * ($isCrit ? 2 :1);
@@ -122,7 +124,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
 
     $finalDamage = ceil($a * $b * $c); // final damage
 
-    //  check if its multiple hits
+    //// check if its multiple hits /////////////////////////////////////////////////////////////////
     $timesHit = 1;
     if($capacite['effects']['hits']['min hits'] != null && $capacite['effects']['hits']['max hits']){
         $timesHit = getHits($capacite['effects']['hits']['min hits'], $capacite['effects']['hits']['max hits']);
@@ -130,11 +132,11 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     }
     takeDamagePkmn($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
-    // update health pkmn def before drain
+    //// update health pkmn def before drain ////////////////////////////////////////////////////////
     createPkmnHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
     usleep(500000);
     
-    // MESSAGE CONDITION
+    //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
     if($finalDamage == 0){
         messageBoiteDialogue("It didn't affect ".$pkmnDef['Name']);
         return;
@@ -165,56 +167,81 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function boostStatsTemp(&$pkmnAtk, $pkmnDef, $capacite){
+function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
     $effects = $capacite['effects'];
     if(isset($effects['Stats Self'])){
         foreach($effects['Stats Self'] as $stat){
             $chance = rand(0,100);
             if($chance < $stat[2]){ 
-                $pkmnAtk['Stats Temp'][$stat[1]] > 6 ?
-                    6:  $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
+                if($pkmnAtk['Stats Temp'][$stat[1]] < 6){
+                    $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0];
+                    messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!");
+                }
+                else{
+                    messageBoiteDialogue("Can't modify ". $stat[1]."!");
+                }
+                // $pkmnAtk['Stats Temp'][$stat[1]] > 6 ?
+                //     6:  $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
             }
-
-            messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!");
         }
     }
     if(isset($effects['Stats Target'])){
         foreach($effects['Stats Target'] as $stat){
             $chance = rand(0,100);
             if($chance < $stat[2]){ 
-                $pkmnDef['Stats Temp'][$stat[1]] < -6 ?
-                    -6:  $pkmnDef['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
+                // $pkmnDef['Stats Temp'][$stat[1]] < -6 ?
+                //     -6:  $pkmnDef['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
+                // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
+                if($pkmnDef['Stats Temp'][$stat[1]] > -6){
+                    $pkmnDef['Stats Temp'][$stat[1]] += $stat[0];
+                    messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
+                }
+                else{
+                    messageBoiteDialogue("Can't modify ". $stat[1]."!");
+                }
             }
-
-            messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
+            // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
         }
     }
 }
 
 function calculateBoostTemps($pkmn, $stat){
     if(!isset($stat)){
+        print('aps de stat');
         return 1;
     }
     $varTop = 3;
     $varBot = 3;
+    if(!array_key_exists($stat, $pkmn['Stats Temp'])){
+        print_r($pkmn['Stats Temp']);
+        sleep(5);
+    }
     if($pkmn['Stats Temp'][$stat] > 0){
         $varTop = $pkmn['Stats Temp'][$stat] + 3;
     }
     else{
         $varBot = abs($pkmn['Stats Temp'][$stat]) + 3;
     }
-    
     return $varTop / $varBot;
 }
 
 function resetAllStatsTempToPkmn(&$pkmn){
-    $pkmn['Stats Temp']['Atk'] = 0;
-    $pkmn['Stats Temp']['Def'] = 0;
-    $pkmn['Stats Temp']['Atk Spe'] = 0;
-    $pkmn['Stats Temp']['Def Spe'] = 0;
-    $pkmn['Stats Temp']['Vit'] = 0;
-    $pkmn['Stats Temp']['evasion'] = 0;
-    $pkmn['Stats Temp']['critical'] = 12.5;
+    $pkmn['Stats Temp'] = [
+        'Atk' => 0,
+        'Def' => 0,
+        'Atk Spe' => 0,
+        'Def Spe' => 0,
+        'Vit' => 0,
+        'evasion' => 10,
+        'critical' => 0,
+        'Accuracy' => 0,
+        'protected' => false,
+        'Substitute' => [
+            'Health Max' => 3,
+            'Health' => 0,
+            'Used' => false
+        ]
+    ];
     messageBoiteDialogue($pkmn['Name'] . ' reset all changes.');
 }
 
@@ -233,7 +260,7 @@ function getHits($minHits, $maxHits) {
 function takeDamagePkmn(&$pkmn, $damage, $isJoueur){
     animationTakeDamage($pkmn, $isJoueur);
     if($damage < 0){
-        messageBoiteDialogue($pkmn['Name'] . ' heals ' . -$damage . ' Hp.');
+        messageBoiteDialogue($pkmn['Name'] . ' drains ' . -$damage . ' Hp.');
     }
 
     $pkmn['Stats']['Health'] -= $damage;

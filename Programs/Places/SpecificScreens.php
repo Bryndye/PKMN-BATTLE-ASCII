@@ -114,7 +114,7 @@ function chooseFirstPokemon(){
     else if($choice == 3){
         $team[0] = generatePkmnBattle('charmander', 5);
     }
-    return $team;
+    return [$team, $choice];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,8 +212,8 @@ function endGame(){
     ++$gameWins;
     $indexFloorMax = getDataFromSave('IndexFloor Max', 'Save/myGame.json');
     $floorMaxReturn = ($gameWins*10) + 100;
-    saveData($floorMaxReturn, 'IndexFloor Max', 'Save/myGame.json');
-    saveData($gameWins, 'Game wins', 'Save/myGame.json');
+    setData($floorMaxReturn, 'IndexFloor Max', 'Save/myGame.json');
+    setData($gameWins, 'Game wins', 'Save/myGame.json');
 }
 
 function screenLose(){

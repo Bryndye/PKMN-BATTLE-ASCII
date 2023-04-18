@@ -25,8 +25,6 @@ function getPokemonByIndex($index = 1){
     global $pokemonPokedex;
     $keys = ["ignore this value"];
     $keys = array_merge($keys, array_keys($pokemonPokedex));
-    // print_r($pokemonPokedex[$keys[$index]]);
-    // sleep(10);
     if(isset($pokemonPokedex[$keys[$index]])){
         return $pokemonPokedex[$keys[$index]];
     }
@@ -105,14 +103,15 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
         'Atk Spe' => 0,
         'Def Spe' => 0,
         'Vit' => 0,
+        'evasion' => 10,
+        'critical' => 0,
+        'Accuracy' => 0,
         'protected' => false,
         'Substitute' => [
             'Health Max' => 3,
             'Health' => 0,
             'Used' => false
-        ],
-        'evasion' => 10,
-        'critical' => 12.5
+        ]
     ];
     $pokemonBattle['Capacites'] = $newCapacites;
     $pokemonBattle['Status'] = '';
@@ -258,14 +257,9 @@ function resetStatsTemp(&$pkmn){
 
 function checkThingsToDoLevelUp(&$pkmn){
     $pkmnCapaList = getPokemon($pkmn['Name'])['capacites'];
-    // print_r($pkmnCapaList);
-    // sleep(2);
     $newCapa = getLastElements($pkmnCapaList, $pkmn['Level']);
-    // print(!is_null($newCapa));
-    // sleep(2);
+    
     if(!is_null($newCapa)){
-        // print('bouhg');
-        // sleep(2);
         setCapacityToPkmn($pkmn, getCapacite($newCapa['name']));
     }
     if(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){

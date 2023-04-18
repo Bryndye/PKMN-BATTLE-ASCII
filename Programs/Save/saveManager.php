@@ -73,6 +73,7 @@ function mainSaveExist(){
 function createPartySave(){
     $datasPartySave = [
         'Team' => null,
+        'Starter' => null,
         'IndexFloor' => 1,
         'Money' => 1000,
         'Bag' => [
@@ -80,22 +81,23 @@ function createPartySave(){
             getItemObject('PokeBall',5)
         ]
     ];
-
-    $datasPartySave['Team'] = chooseFirstPokemon();
+    $var =  chooseFirstPokemon();
+    $datasPartySave['Team'] = $var[0];
     $json = json_encode($datasPartySave);
     file_put_contents('Save/save.json', $json);
+    setData($var[1], 'Starter');
     return $datasPartySave;
 }
 
 //////////////////////////////////////////////////////////////////
 //// CUSTOM FUNCTIONS SAVE ///////////////////////////////////////
-function saveFile($save, $path = 'Save/save.json'){
+function setFile($save, $path = 'Save/save.json'){
     $array = $save;
     $json = json_encode($array, true);
     file_put_contents($path, $json);
 }
 
-function saveData($data, $key, $path = 'Save/save.json'){
+function setData($data, $key, $path = 'Save/save.json'){
     $file = file_get_contents($path);
     $array = json_decode($file, true);
     $array[$key] = $data;

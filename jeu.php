@@ -18,6 +18,7 @@ include_once 'Programs/Places/hub.php';
 include_once 'Programs/Places/shop.php';
 
 include_once 'Programs/Fight/fightSystem.php';
+include_once 'Programs/Places/routesManager.php';
 
 include_once 'Programs/Visuals/animations.php';
 
@@ -30,7 +31,6 @@ echo "\033[?25l"; // hide cursor
 // intro();
 // startGame();
 
-
 //// GAME ////
 while(true){
     menuStart();
@@ -38,7 +38,7 @@ while(true){
     $saveProfile = saveMainManager();
     $saveParty = savePartyManager();
     $pkmnTeamJoueur = &$saveParty['Team'];
-    saveData($pkmnTeamJoueur, 'Team');
+    setData($pkmnTeamJoueur, 'Team');
 
     if(array_key_exists('IndexFloor', $saveParty)){
         $IndexFloor = $saveParty['IndexFloor'];
@@ -59,17 +59,20 @@ while(true){
     // giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
     // giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
     // giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
-
-
+    generateIAs();
     // Loop gameplay if team alive
     while(true){
         // HUB
         drawHub($saveParty);
 
         // generer IA pkmn team
+        // regarder abord si pnj script existe sinon route
+        
         $pnj = generatePNJ($IndexFloor, $pkmnTeamJoueur[0]['Level']);
         startFight($saveParty, $pnj);
 
+
+        // Screen end turn floor
         if(!isTeamPkmnAlive($pkmnTeamJoueur)){
             screenLose();
             break;
@@ -77,7 +80,7 @@ while(true){
         else{
             ++$IndexFloor;
             $saveParty['IndexFloor'] = $IndexFloor;
-            saveFile($saveParty);
+            setFile($saveParty);
         }
         waitForInput([31,0]);
 
