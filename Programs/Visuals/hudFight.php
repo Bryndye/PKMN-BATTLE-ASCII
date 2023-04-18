@@ -205,16 +205,22 @@ function interfaceCapacities($capacites){
                 $posY = $posYInit +3;
                 $posX = $posXInit +20;
             }
-            textAreaLimited($i.' : '.$capacites[$i]['Name'],23,[$posY,$posX]);
+            textAreaLimited($i.' : ',23,[$posY,$posX]);
+            getColorByType($capacites[$i]['Type']);
+            textAreaLimited($capacites[$i]['Name'],23,[$posY,$posX+4]);
+            selectColor('reset');
             textAreaLimited('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
         }
     }
 }
 
 function interfaceMenu(){
-    $posY = 25;
-    $posX = 48;
-    drawBox([7,15],[24,46]); // draw line to seperate
+    $screenScale = getScreenScale();
+    $posYInit = $screenScale[0] - 6;
+    $posXInit = $screenScale[1] - 14;
+    $posY = $screenScale[0] - 5;
+    $posX = $screenScale[1] - 12;
+    drawBox([7,15],[$posYInit,$posXInit]); // cadre des choix
 
     textArea( '1 : ATTACK', [$posY,$posX]);
     textArea('2 : PKMN', [$posY+1,$posX]);

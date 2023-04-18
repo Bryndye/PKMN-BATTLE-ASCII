@@ -36,7 +36,7 @@ function animationEnterBattle(){
 function animationEnterRowByRow(){
     for($i=0;$i<6;++$i){
         for($y=0;$y<6;++$y){
-            drawFullBox([5,10],[1+$i*5,1+$y*10]);
+            drawFullBox([5,10],[1+$i*5,1+$y*10],['█','█','█']);
             usleep(50000);
         }
     } 
@@ -97,5 +97,17 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
 
     drawSprite($spriteJoueur, getPosSpritePkmn(true));
     drawSprite($spriteEnemy, getPosSpritePkmn(false));
+}
+
+function animationTakeDamage($pkmn, $isJoueur){
+    usleep(250000);
+    clearSpritePkmn($isJoueur);
+    usleep(250000);
+    drawSpritePkmn($pkmn, $isJoueur);
+    usleep(250000);
+    clearSpritePkmn($isJoueur);
+    usleep(250000);
+    drawSpritePkmn($pkmn, $isJoueur);
+    usleep(250000);
 }
 ?>

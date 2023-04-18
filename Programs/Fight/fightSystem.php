@@ -1,5 +1,7 @@
 <?php
-
+include_once 'Programs/Fight/iaProgram.php';
+include_once 'Programs/Fight/programFight.php';
+include_once 'Programs/Fight/status.php';
 // Animations de lancement de combat
 function startFight(&$joueur, &$pnj){
     drawSkeletonHUD();

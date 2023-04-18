@@ -5,23 +5,11 @@ function drawHub(&$save){
         drawGameCadre();
         
         $choiceBefore = [];
-        $posY = 7;
-        drawBox([12,20],[$posY,5], '|', '-');
-        textArea('1 : CONTINUE', [$posY+2,7]);
-        textArea("2 : TEAM", [$posY+4,7]);
-        textArea("3 : BAG", [$posY+6,7]);
-        textArea("4 : SHOP", [$posY+8,7]);
         $choiceBefore = [1,3,4];
-
+        drawMenuSelectionHub([7,7]);
         drawBoxTitle([3,5],[3,7], 'HUB');
-
-        drawMoney();
-        drawBox([10,30],[$posY+2,28], '|', '-');
-
-        $saveFight = getSave();
-        textArea('---------- NEXT ----------', [$posY+3,30]);
-        textArea('Floor : '.$saveFight['IndexFloor']+1, [$posY+5,30]);
-        textArea('Route : INDISPONIBLE', [$posY+7,30]);
+        drawMoney([4,35]);
+        drawNextFloor([7,28]);
 
         messageBoiteDialogue('What do you want to do?');
 

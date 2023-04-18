@@ -18,8 +18,6 @@ include_once 'Programs/Places/hub.php';
 include_once 'Programs/Places/shop.php';
 
 include_once 'Programs/Fight/fightSystem.php';
-include_once 'Programs/Fight/programFight.php';
-include_once 'Programs/Fight/iaProgram.php';
 
 include_once 'Programs/Visuals/animations.php';
 

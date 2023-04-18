@@ -8,6 +8,11 @@
 
 //// STANDARD FCT DRAW ///////////////////////////////
 function selectColor($color = 'black'){
+    if(is_int($color)){
+        echo "\033[".$color;
+        return;
+    }
+
     $string = '0m';
     switch($color){
         case 'reset':
@@ -28,11 +33,82 @@ function selectColor($color = 'black'){
         case 'orange':
             $string = '0;31m';
             break;
+        case 'yellow':
+            $string = '14';
+            break;
+        case 'grey':
+            $string = '8';
+            break;
+        case 'purple':
+            $string = '5';
+            break;
+        case 'pink':
+            $string = '12';
+            break;
         case 'health':
             $string = '38;2;255;165;0';
             break;
     }
     echo "\033[".$string;
+}
+
+function getColorByType($type = 'normal'){
+    switch($type){
+        case 'normal':
+            selectColor(0);
+            break;
+        case 'grass':
+            selectColor('green');
+            break;
+        case 'water':
+            selectColor('blue');
+            break;
+        case 'fire':
+            selectColor('red');
+            break;
+        case 'electric':
+            selectColor('yellow');
+            break;
+        case 'rock':
+            selectColor(6);
+            break;
+        case 'ground':
+            selectColor(3);
+            break;
+        case 'bug':
+            selectColor(10);
+            break;
+        case 'ice':
+            selectColor('ice');
+            break;
+        case 'fighting':
+            selectColor('brown');
+            break;
+        case 'poison':
+            selectColor('purple');
+            break;
+        case 'flying':
+            selectColor(11);
+            break;
+        case 'psychic':
+            selectColor('pink');
+            break;
+        case 'ghost':
+            selectColor('purple');
+            break;
+        case 'fairy':
+            selectColor('pink');
+            break;
+        case 'dark':
+            selectColor('black');
+            break;
+        case 'steel':
+            selectColor('grey');
+            break;
+        case 'dragon':
+            selectColor(1);
+            break;
+    }
 }
 
 function moveCursor($pos){
@@ -64,18 +140,18 @@ function drawBox($scale, $pos, $styleH='*', $styleL='*'){
     }
 }
 
-function drawFullBox($scale, $pos, $styleH='*', $styleL='*'){
+function drawFullBox($scale, $pos, $style=['*','*','*']){
     moveCursor($pos);
     
     for ($i = 0; $i < $scale[0]; $i++) {
         moveCursorIndex($pos, $i);
         for ($j = 0; $j < $scale[1]; $j++) {
             if ($i == 0 || $i == $scale[0] - 1) {
-                echo $styleL;
+                echo $style[0];
             } elseif ($j == 0 || $j == $scale[1] - 1) {
-                echo $styleH;
+                echo $style[1];
             } else {
-                echo '*';
+                echo $style[2];
             }
         }
     }
