@@ -37,17 +37,6 @@ function refreshdrawOnePkmn(&$pkmnTeam, $isJoueur){
     drawSprite($sprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn($isJoueur));
     drawPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
 }
-function refreshHUDloopFight(&$pkmnTeamJoueur ,&$pkmnTeamEnemy){
-    drawPkmnTeamHUD($pkmnTeamJoueur, getPosTeam(true));
-    drawPkmnTeamHUD($pkmnTeamEnemy, getPosTeam(false));
-    createPkmnHUD(getPosHealthPkmn(true), $pkmnTeamJoueur[0]);
-    createPkmnHUD(getPosHealthPkmn(false), $pkmnTeamEnemy[0], false);
-}
-
-function drawPkmnTeams(&$pkmnTeamJoueur, &$pkmnTeamEnemy){
-    drawPkmnTeamHUD($pkmnTeamJoueur, [17,34]);
-    drawPkmnTeamHUD($pkmnTeamEnemy, [7,3]);
-}
 
 function drawPkmnTeamHUD($pkmnTeam, $pos){
     moveCursor($pos);
@@ -72,7 +61,8 @@ function drawPkmnTeamHUD($pkmnTeam, $pos){
 function clearPkmnHUD($isJoueur){
     clearArea(getScaleHUDPkmn(),getPosHealthPkmn($isJoueur));
 }
-function createPkmnHUD($pos, $pkmn, $showExp = true){
+
+function createPkmnHUD($pos, $pkmn, $isJoueur = true){
     clearArea(getScaleHUDPkmn(),$pos);
     drawBox(getScaleHUDPkmn(),$pos,'|','-');
 
@@ -81,17 +71,20 @@ function createPkmnHUD($pos, $pkmn, $showExp = true){
     textArea($displayLevel, [$pos[0]+1, $pos[1]+19]);
     textArea('<          >', [$pos[0]+2, $pos[1]+10]);
 
-    updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max']);
-    if($showExp){
+    updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur);
+    if($isJoueur){
         updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
     }
-}   
-function updateHealthPkmn($pos,$health, $healthMax){
+} 
+
+function updateHealthPkmn($pos,$health, $healthMax, $isjoueur = true){
     $pourcentage = $health/$healthMax;
 
     //Set health text
     clearArea([1,7],[$pos[0]+2,$pos[1]+2]); //clear pour eviter 
-    textArea($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
+    if($isjoueur){
+        textArea($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
+    }
     
     //Set health graphic style + color
     moveCursor([$pos[0]+2,$pos[1]+11]);
