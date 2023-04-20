@@ -24,7 +24,7 @@ function managerShop(&$save){
     }
 }
 function drawShop($items){
-    drawMoney();
+    drawMoney([4,35]);
     $i = 0;
     $y = 0;
     $choice = [];

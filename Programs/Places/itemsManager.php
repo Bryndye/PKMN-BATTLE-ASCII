@@ -126,7 +126,6 @@ function healStatusToPkmn(&$pkmn){
 }
 
 function captureItem($pokeball, $pkmn){
-    include 'Resources/sprites.php';
     animationCapture();
 
     $f = floor(($pkmn['Stats']['Health Max'] * 255 * 4) / ($pkmn['Stats']['Health'] * $pokeball['effect']));

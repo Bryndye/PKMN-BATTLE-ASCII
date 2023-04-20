@@ -7,6 +7,7 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
     else{
         $sentence = 'Choose : ';
     }
+
     if($options == null){
         if($string){
             $sentence = $string;
@@ -16,19 +17,16 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
         }
     }
     else{
+        if(!is_array($options)){
+            $options = [$options];
+        }
         $last = end($options);
-        foreach($options as $key=>$option){
+        foreach($options as$option){
             $sentence .= $option;
             if($option != $last){
                 $sentence .= ' | ';
             }
         }
-        // for($i=0;$i<count($options);++$i){
-        //     $sentence .= $options[$i];
-        //     if($i < count($options)-1){
-        //         $sentence .= ' | ';
-        //     }
-        // };
         $sentence .= ' : ';
     }
     moveCursor($pos);

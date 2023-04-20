@@ -11,27 +11,25 @@ function intro(){
     }
     
     // Fait apparaitre un Charizard au milieu de l'écran pendant x TEMPS
-    include 'Resources/sprites.php';
     animationIntro();
 
 
     // Menu titre + press pour joueur
     drawGameCadre();
-    drawSprite($sprites['title'],[10,6]);
+    drawSprite(getSprites(['title']),[10,6]);
     
     // echo 'Press any to enter';
     waitForInput([25,20]);
 }
 
 function animationIntro(){
-    include 'Resources/sprites.php';
-    drawSprite($sprites['Charizard'],[1,2]);
+    drawSprite(getSprites(['Charizard']),[1,2]);
     sleep(2);
-    drawSprite($sprites['effectTitle'],[1,2]);
+    drawSprite(getSprites(['effectTitle']),[1,2]);
     sleep(1);
-    drawSprite($sprites['effectFireTitle'],[22,53]);
+    drawSprite(getSprites(['effectFireTitle']),[22,53]);
     sleep(1);
-    drawSprite($sprites['effectFireTitle2'],[21,4]);
+    drawSprite(getSprites(['effectFireTitle2']),[21,4]);
     sleep(1);
 }
 function menuStart(){
@@ -96,10 +94,9 @@ function drawStatsFromSaveToMenu(){
 
 function chooseFirstPokemon(){
     drawBoiteDialogue();
-    include 'Resources/sprites.php';
-    drawSprite($sprites["Pokeball"], [8,2]);
-    drawSprite($sprites["Pokeball"], [8,32]);
-    drawSprite($sprites["Pokeball"], [1,17]);
+    drawSprite(getSprites('Pokeball'), [8,2]);
+    drawSprite(getSprites('Pokeball'), [8,32]);
+    drawSprite(getSprites('Pokeball'), [1,17]);
     messageBoiteDialogue('Choose your first Pokemon : 
        
 1 : Bulbasaur  2 : Squirtle  3 : Charmander');
@@ -138,18 +135,17 @@ function cinematicPresentation(){
     $posSprite = [5,16];
     drawGameCadre();
     drawBoiteDialogue();
-    include 'Resources/sprites.php';
-    drawSprite($sprites['trainer'], $posSprite);
+    drawSprite(getSprites('trainer'), $posSprite);
     messageBoiteDialogue("Hello, i'm Prof. Twig and welcome to the world of Pokemon!", true);
     messageBoiteDialogue("Let me show you what a pokemon is.", true);
     clearSprite($posSprite);
-    drawSprite($sprites['Pokeball_1'],$posSprite);
+    drawSprite(getSprites('Pokeball_1'),$posSprite);
     sleep(1);
-    drawSprite($sprites["Pikachu"], $posSprite);
+    drawSprite(getSprites("Pikachu"), $posSprite);
     messageBoiteDialogue("Here's Pikachu!", true);
     messageBoiteDialogue("He's an electric type. You can meet him later on your journey.", true);
     clearSprite($posSprite);
-    drawSprite($sprites['trainer'], $posSprite);
+    drawSprite(getSprites('trainer'), $posSprite);
     messageBoiteDialogue("By the way, what is your name?", true);
 
     messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", true);
@@ -168,9 +164,8 @@ function cinematicLeagueEnding(&$save){
     clearGameScreen();
     messageBoiteDialogue('Congratulations! You beat the league Pokemon!', true);
 
-    include 'Resources/sprites.php';
     foreach($save['Team'] as $pkmn){
-        drawSprite($sprites[$pkmn['Sprite']], [3,18]);
+        drawSprite(getSprites($pkmn['Sprite']), [3,18]);
         drawBox([4,20],[20,20]);
         textAreaLimited($pkmn['Name'], 50,[21, 25]);
         textAreaLimited("Lv: ".$pkmn['Level'], 50, [22, 27]);
@@ -178,7 +173,7 @@ function cinematicLeagueEnding(&$save){
         clearSprite([3,18]);
     }
     clearGameScreen();
-    drawSprite($sprites['trainer'], [3,18]);
+    drawSprite(getSprites('trainer'), [3,18]);
     messageBoiteDialogue("But it's not over!", true);
     messageBoiteDialogue("There are challenges waiting for you!", true);
 }
@@ -190,9 +185,8 @@ function cinematicEnding(&$save){
     messageBoiteDialogue('Congratulations! You beat the game!', true);
     $wins = getDataFromSave('Game wins', 'Save/myGame.json');
 
-    include 'Resources/sprites.php';
     foreach($save['Team'] as $pkmn){
-        drawSprite($sprites[$pkmn['Sprite']], [3,18]);
+        drawSprite(getSprites($pkmn['Sprite']), [3,18]);
         drawBox([4,20],[20,20]);
         textAreaLimited($pkmn['Name'], 50,[21, 25]);
         textAreaLimited("Lv: ".$pkmn['Level'], 50, [22, 27]);
@@ -200,7 +194,7 @@ function cinematicEnding(&$save){
         clearSprite([3,18]);
     }
     clearGameScreen();
-    drawSprite($sprites['trainer'], [3,18]);
+    drawSprite(getSprites('trainer'), [3,18]);
     messageBoiteDialogue("But it's not over!", true);
     messageBoiteDialogue("More challenges are available!", true);
     messageBoiteDialogue("Ready for another round?", true);
@@ -210,7 +204,6 @@ function endGame(){
     deleteSave();
     $gameWins = getDataFromSave('Game wins', 'Save/myGame.json');
     ++$gameWins;
-    $indexFloorMax = getDataFromSave('IndexFloor Max', 'Save/myGame.json');
     $floorMaxReturn = ($gameWins*10) + 100;
     setData($floorMaxReturn, 'IndexFloor Max', 'Save/myGame.json');
     setData($gameWins, 'Game wins', 'Save/myGame.json');
@@ -221,8 +214,7 @@ function screenLose(){
     addData(1, 'loses', 'Save/myGame.json');
     $floor = getDataFromSave('IndexFloor');
 
-    include 'Resources/sprites.php';
-    drawSprite($sprites['Pokeball'], [3,18]);
+    drawSprite(getSprites('Pokeball'), [3,18]);
     messageBoiteDialogue('You lost at '. $floor . ' floor...', true);
     deleteSave();
 }

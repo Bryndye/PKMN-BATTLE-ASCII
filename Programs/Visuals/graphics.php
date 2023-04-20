@@ -252,7 +252,7 @@ function clearSpritePkmn($isJoueur, $pauseTime = 0){
 ///// draw SPRITE /////////////////////////////////////////
 function drawSprite($sprite, $pos) {
     $lines = explode("\n", $sprite); // séparer les lignes du sprite
-    for ($i = 1; $i < count($lines); $i++) {
+    for ($i = 0; $i < count($lines); $i++) {
         moveCursorIndex($pos, $i);
         echo $lines[$i]; // afficher chaque ligne du sprite
         echo "\n";
@@ -262,8 +262,7 @@ function drawSprite($sprite, $pos) {
 function drawSpritePkmn($pkmn, $isJoueur){
     $posFinal = getPosSpritePkmn($isJoueur);
     
-    include 'Resources/sprites.php';
-    drawSprite($sprites[$pkmn['Sprite']], $posFinal);
+    drawSprite(getSprites($pkmn['Sprite']), $posFinal);
 }
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////

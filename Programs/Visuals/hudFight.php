@@ -19,8 +19,7 @@ function drawSkeletonHUD(){
 function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
     clearGameScreen();
     drawSkeletonHUD();
-    include 'Resources/sprites.php';
-    
+
     // Afficher HUD du pkmn joueur
     refreshdrawOnePkmn($pkmnTeamJoueur, true);
     
@@ -31,10 +30,9 @@ function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
 
 //// draw INFO PKMN ///////////////////////////////////////////
 function refreshdrawOnePkmn(&$pkmnTeam, $isJoueur){
-    include 'Resources/sprites.php';
     
     createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
-    drawSprite($sprites[$pkmnTeam[0]['Sprite']], getPosSpritePkmn($isJoueur));
+    drawSprite(getSprites($pkmnTeam[0]['Sprite']), getPosSpritePkmn($isJoueur));
     drawPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
 }
 

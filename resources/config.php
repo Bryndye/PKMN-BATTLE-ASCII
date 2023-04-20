@@ -1,5 +1,27 @@
 <?php
+//// PARAMETRE APP ///////////////////////////////////////////////
+function onDevice(){
+    return 'cmd';
+}
 
+function colorOn(){
+    return false;
+}
+
+function styleBox(){
+    return '*';
+}
+
+function getPathScript($script){
+    $link = '';
+    switch($script){
+        case 'sprites':
+            $link = 'Resources/sprites.php';
+            break;
+    }
+
+    return $link;
+}
 //// POSITIONS ///////////////////////////////////////////////
 function getPosSpritePkmn($isJoueur){
     if($isJoueur){
@@ -74,6 +96,52 @@ function add($name, &$array, $value){
         $array[$name] += $value;
     } else {
         $array[$name] = $value;
+    }
+}
+
+function Vector2Distance($arrayA, $arrayB){
+    return [$arrayB[0]-$arrayA[0],$arrayB[1]-$arrayA[1]];
+}
+
+function countLinesAndColumns($text, $screenWidth =0) {
+    if($screenWidth != 0){
+        // Wrap text into lines based on screen width
+        $text = wordwrap($text, $screenWidth, "\n");
+
+    }
+    // Count number of lines
+    $numLines = substr_count($text, "\n") + 1;
+
+    // Count number of columns (characters per line)
+    $lines = explode("\n", $text);
+
+    $maxColumns = 0;
+    $longestLine = '';
+    foreach ($lines as $line) {
+        $numColumns = countChar($line);
+        if ($numColumns > $maxColumns) {
+            $maxColumns = $numColumns;
+            $longestLine = $line;
+        }
+    }
+        // $numColumns = countChar($lines[0]);
+    return array($numLines, $maxColumns);
+}
+
+function countChar($text){
+    $chars = str_split($text, 1);
+    return count($chars);
+}
+
+function debugLog($message, $time = 5){
+    if(is_array($message)){
+        print_r($message);
+    }
+    else{
+        print($message);
+    }
+    if(is_int($time) && $time >0){
+        sleep($time);
     }
 }
 ?>

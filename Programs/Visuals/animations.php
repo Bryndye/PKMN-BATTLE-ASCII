@@ -1,8 +1,33 @@
 <?php 
+
+function translate($sprite, $posInit, $posFinal, $time=1, $laps=0.01){
+    $distance = array_map(function($a, $b) { 
+        return $a - $b; 
+    }, $posFinal, $posInit);
+    $countToExecuteAnimation = intval($time/$laps);
+
+    $moveXPerLaps = $distance[1]/ $countToExecuteAnimation;
+    $moveYPerLaps = $distance[0]/ $countToExecuteAnimation;;
+
+    $posY = $posInit[0];
+    $posX = $posInit[1];
+    for($i=0;$i<$countToExecuteAnimation; ++$i){
+        $posX += $moveXPerLaps;
+        $posY += $moveYPerLaps;
+        // debugLog("x:$posX y:$posY \n", 0);
+        textArea("x:$posX y:$posY \n",[0,0]);
+        // clearGameScreen();
+        drawSprite($sprite, [$posY,$posX]);
+        usleep($laps*1000);
+        if($i != $countToExecuteAnimation-1){
+            clearArea(countLinesAndColumns($sprite),[$posY,$posX]);
+        }
+    }
+}
+
 function animationPkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/){
-    include 'Resources/sprites.php';
     clearSpritePkmn($isJoueur);
-    drawSprite($sprites['Pokeball_1'], getPosSpritePkmn($isJoueur));
+    drawSprite(getSprites('Pokeball_1'), getPosSpritePkmn($isJoueur));
     usleep(500000);
     clearSpritePkmn($isJoueur, 1);
     drawSpritePkmn($pkmn, $isJoueur);
@@ -14,17 +39,16 @@ function drawEntirePkmnBattle($pkmnTeam, $isJoueur){
 }
 
 function animationCapture(){
-    include 'Resources/sprites.php';
     clearSpritePkmn(false,500000);
-    drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    drawSprite(getSprites('Pokeball_1'),getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    drawSprite($sprites['Pokeball_2'],getPosSpritePkmn(false));
+    drawSprite(getSprites('Pokeball_2'),getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    drawSprite(getSprites('Pokeball_1'),getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    drawSprite($sprites['Pokeball_3'],getPosSpritePkmn(false));
+    drawSprite(getSprites('Pokeball_3'),getPosSpritePkmn(false));
     clearSpritePkmn(false,500000);
-    drawSprite($sprites['Pokeball_1'],getPosSpritePkmn(false));
+    drawSprite(getSprites('Pokeball_1'),getPosSpritePkmn(false));
 }
 
 
@@ -80,8 +104,26 @@ function animationEnterSpirale(){
     }
 }
 
+function animationVersusLeader(){
+    clearGameScreen();
+    drawGameCadre();
+    $screenScale = getScreenScale();
+    $posY = 8;
+    drawBox([getScaleSpritePkmn()[0]+2,$screenScale[1]],[$posY,1]);
+
+    $scaleSprite = countLinesAndColumns(getSprites('rival'));
+
+    $posInit = [$posY+1, $screenScale[1]-$scaleSprite[1]];
+    $posFinal = [$posY+1, $screenScale[1]-$scaleSprite[1]-10];
+    drawSprite(getSprites('Versus'),[$posY+3,3]);
+    drawSprite(getSprites('rival'),[$posY+1,30]);
+
+    translate(getSprites('rival'), $posInit, $posFinal, 2);
+
+    sleep(5);
+}
+
 function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
-    // include 'Resources/sprites.php';
     $screenScale = getScreenScale();
     $posJoueur = getPosSpritePkmn(true);
     $posEnemy = getPosSpritePkmn(false);

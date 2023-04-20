@@ -5,7 +5,7 @@ function drawHub(&$save){
         drawGameCadre();
         
         $choiceBefore = [];
-        $choiceBefore = [1,3,4];
+        $choiceBefore = [1,2,3,4];
         drawMenuSelectionHub([7,7]);
         drawBoxTitle([3,5],[3,7], 'HUB');
         drawMoney([4,35]);
@@ -17,6 +17,11 @@ function drawHub(&$save){
         $choice = waitForInput([31,0],$choiceBefore);
         if($choice == 3){
             managerItemsIntoMenu($save);
+        }
+        elseif($choice == 2){
+            // debugLog($save);
+            drawPkmnTeam($save['Team']);
+            waitForInput([31,0], 'c');
         }
         elseif($choice == 4){
             managerShop($save);

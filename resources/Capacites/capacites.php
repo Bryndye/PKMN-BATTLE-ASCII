@@ -87,8 +87,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
     if(count($pkmn['Capacites']) == 4){
 
         clearGameScreen();
-        include 'Resources/sprites.php';
-        drawSprite($sprites[$pkmn['Sprite']], [5,3]);
+        drawSprite(getSprites('Sprite'), [5,3]);
         textAreaLimited($pkmn['Name'],30,[3,5]);
         textAreaLimited('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
 

@@ -273,12 +273,11 @@ function evolution(&$pkmn){
     messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
     $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
 
-    include 'Resources/sprites.php';
-    drawSprite($sprites[$pkmn['Sprite']], [5,16]);
+    drawSprite(getSprites(getSprites('Sprite')), [5,16]);
     sleep(1);
     clearSprite([5,16]);
     sleep(1);
-    drawSprite($sprites[$pkmnEvol['Sprite']], [5,16]);
+    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     sleep(1);
     messageBoiteDialogue('Tadadaa...');

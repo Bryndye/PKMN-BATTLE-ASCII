@@ -9,9 +9,8 @@ function startFight(&$joueur, &$pnj){
     $pkmnTeamJoueur = &$joueur['Team'];
 
     // animation entrer dresseurs
-    include 'Resources/sprites.php';
     drawBoiteDialogue();
-    animationCharactersEnterBattle($sprites['trainerBack'],$sprites[$pnj['Sprite']]);
+    animationCharactersEnterBattle(getSprites('trainerBack'),getSprites($pnj['Sprite']));
 
     messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
     sleep(1);
@@ -263,8 +262,7 @@ function endBattle(&$joueur, $pnj){
     }
     else{
         if($pnj['type'] == 'trainer'){
-            include 'Resources/sprites.php';
-            drawSprite($sprites[$pnj['Sprite']], getPosSpritePkmn(false));
+            drawSprite(getSprites($pnj['Sprite']), getPosSpritePkmn(false));
         }
         if(isset($pnj['Dialogues']['end'])){
             if(count($pnj['Dialogues']['end'])>0){
