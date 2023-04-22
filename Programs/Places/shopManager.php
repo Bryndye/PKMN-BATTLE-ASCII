@@ -10,8 +10,8 @@ function managerShop(&$save){
         $choice = waitForInput([31,0], $itemsAvailable[1]);
         if($choice == 'c'){
             messageBoiteDialogueContinue('Are you sure to leave the shop? ');
-            $choice2 = waitForInput([31,0], ['y','n']);
-            if($choice2 == 'y'){
+            $choice2 = sureToLeave();
+            if($choice2){
                 break;
             }
             else{

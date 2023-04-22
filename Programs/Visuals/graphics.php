@@ -123,17 +123,37 @@ function moveCursorIndex($pos, $i){
     echo "\033[".$y.";".$x."H";
 }  
 
-function drawBox($scale, $pos, $styleH='*', $styleL='*'){
+function drawBox($scale, $pos, $styleH='*', $styleL='*', $corner = false){
     moveCursor($pos);
     
     for ($i = 0; $i < $scale[0]; $i++) {
         moveCursorIndex($pos, $i);
         for ($j = 0; $j < $scale[1]; $j++) {
-            if ($i == 0 || $i == $scale[0] - 1) {
+            if($corner){
+                if ($i == 0 && $j == 0) {
+                    echo '+';
+                } elseif ($i == 0 && $j == $scale[1] - 1) {
+                    echo '+';
+                } elseif ($i == $scale[0] - 1 && $j == 0) {
+                    echo '+';
+                } elseif ($i == $scale[0] - 1 && $j == $scale[1] - 1) {
+                    echo '+';
+                }
+                else if ($i == 0 || $i == $scale[0] - 1) {
+                    echo $styleL;
+                } elseif ($j == 0 || $j == $scale[1] - 1) {
+                    echo $styleH;
+                } 
+                else {
+                    echo ' ';
+                }
+            }
+            else if ($i == 0 || $i == $scale[0] - 1) {
                 echo $styleL;
             } elseif ($j == 0 || $j == $scale[1] - 1) {
                 echo $styleH;
-            } else {
+            } 
+            else {
                 echo ' ';
             }
         }
@@ -152,6 +172,19 @@ function drawFullBox($scale, $pos, $style=['*','*','*']){
                 echo $style[1];
             } else {
                 echo $style[2];
+            }
+        }
+    }
+}
+
+function drawDiagonal($scale, $pos) {
+    $height = $scale[0];
+    $width = $scale[1];
+    for ($i = 1; $i <= $height; $i++) {
+        for ($j = 1; $j <= $width; $j++) {
+            if ($i == $j) {
+                moveCursor([$pos[0]+$i, $pos[1]+$j]);
+                echo "*";
             }
         }
     }
@@ -239,7 +272,7 @@ function clearSpritePkmn($isJoueur, $pauseTime = 0){
         }
     }
     $posClearSprite = getPosSpritePkmn($isJoueur);
-    $posClearSprite = [$posClearSprite[0]+1,$posClearSprite[1]];
+    $posClearSprite = [$posClearSprite[0],$posClearSprite[1]];
     $scaleClear = getScaleSpritePkmn();
     clearArea($scaleClear,$posClearSprite);
 }
@@ -255,7 +288,9 @@ function drawSprite($sprite, $pos) {
     for ($i = 0; $i < count($lines); $i++) {
         moveCursorIndex($pos, $i);
         echo $lines[$i]; // afficher chaque ligne du sprite
-        echo "\n";
+        if($i < count($lines)-1){
+            echo "\n";
+        }
     }
 }
 

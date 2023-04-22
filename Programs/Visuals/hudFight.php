@@ -37,7 +37,6 @@ function refreshdrawOnePkmn(&$pkmnTeam, $isJoueur){
 }
 
 function drawPkmnTeamHUD($pkmnTeam, $pos){
-    moveCursor($pos);
     $message = '<';
     for($i = 0; $i < 6; $i++){
         if($i < count($pkmnTeam)){
@@ -51,7 +50,7 @@ function drawPkmnTeamHUD($pkmnTeam, $pos){
         }
     }
     $message .= '>';
-    echo $message;
+    textArea($message, $pos);
 }
 
 
@@ -62,7 +61,7 @@ function clearPkmnHUD($isJoueur){
 
 function createPkmnHUD($pos, $pkmn, $isJoueur = true){
     clearArea(getScaleHUDPkmn(),$pos);
-    drawBox(getScaleHUDPkmn(),$pos,'|','-');
+    drawBox(getScaleHUDPkmn(),$pos,'|','-', true);
 
     textArea($pkmn['Name'], [$pos[0]+1, $pos[1]+2]);
     $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : $pkmn['Status'];
@@ -126,7 +125,7 @@ function updateExpPkmn($pos,$exp, $expMax){
 }
 
 function levelUpWindow($oldStats, $newStats){
-    drawBox([10,20], [7,39], '|', '-');
+    drawBox([10,20], [7,39], '|', '-', true);
     $pos = [7,39];
 
     $keys = array_keys($oldStats);
@@ -139,26 +138,21 @@ function levelUpWindow($oldStats, $newStats){
     foreach($oldStats as $key=>$stat){
         textArea($key, [$pos[0]+$i,$pos[1]+2]);
         $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
-        moveCursor([$pos[0]+$i,$pos[1]+15]);
-    
-        echo $phrase_alignee;
+        textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
         ++$i;
     }
     sleep(2);
     for($i=0;$i<count($newStats);++$i){
         $phrase_alignee = str_pad($differences[$i].'->', 4, " ", STR_PAD_LEFT);
-        moveCursor([$pos[0]+$i+1,$pos[1]+10]);
-
-        echo $phrase_alignee;
+        textArea($phrase_alignee, [$pos[0]+$i+1,$pos[1]+10]);
     }
     sleep(2);
     $i = 1;
+    clearArea([6,4], [$pos[0]+1,$pos[1]+10]);
     foreach($newStats as $key=>$stat){
         textArea($key, [$pos[0]+$i,$pos[1]+2]);
         $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
-        moveCursor([$pos[0]+$i,$pos[1]+15]);
-    
-        echo $phrase_alignee;
+        textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
         ++$i;
     }
     sleep(2);

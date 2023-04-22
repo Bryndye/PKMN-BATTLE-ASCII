@@ -14,6 +14,7 @@ function drawHub(&$save){
         messageBoiteDialogue('What do you want to do?');
 
         // Attend la selection entre 1 et 2
+
         $choice = waitForInput([31,0],$choiceBefore);
         if($choice == 3){
             managerItemsIntoMenu($save);

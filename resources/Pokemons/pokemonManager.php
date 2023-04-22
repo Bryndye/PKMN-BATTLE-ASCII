@@ -179,7 +179,7 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
     }
 
     $pkmn['exp'] += $exp;
-    if(!$inThisFct && !$notFirstPkmn){
+    if(!$inThisFct && $notFirstPkmn){
         messageBoiteDialogue($pkmn['Name'].' gets '.$exp.' exp!');
     }
 
@@ -192,13 +192,12 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
 
 function getNextLevelExp($currentLevel) {
     $expToNextLevel = (int)((4 * $currentLevel * $currentLevel * $currentLevel) / 5);
-    // $result = pow(2, $currentLevel / 7) * 50;
     return intval($expToNextLevel);
 }
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) * 10;
+    return intval($exp);
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -329,8 +328,8 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         while(true){
             $choice = selectPkmn($pkmnTeam, 0, true);
             textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
-            $choice2 = waitForInput([31,0], ['y','n']);
-            if($choice2 == 'y'){
+            $choice2 = sureToLeave();
+            if($choice2){
                 $pkmnTeam[$choice] = $pkmn;
                 break;
             }

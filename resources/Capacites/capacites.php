@@ -87,7 +87,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
     if(count($pkmn['Capacites']) == 4){
 
         clearGameScreen();
-        drawSprite(getSprites('Sprite'), [5,3]);
+        drawSprite(getSprites($pkmn['Sprite']), [5,3]);
         textAreaLimited($pkmn['Name'],30,[3,5]);
         textAreaLimited('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
 
@@ -105,9 +105,9 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         $replace = false;
         while(!$replace){
             messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
-            $choice = waitForInput([31,0], ['y','n']);
-            if($choice == 'n'){
-                messageBoiteDialogue($pkmn['Name']." didn'y learned " .$capacite['Name'].'...');
+            $choice = sureToLeave();
+            if(!$choice){
+                messageBoiteDialogue($pkmn['Name']." didn't learned " .$capacite['Name'].'...');
                 break;
             }
             // Deuxieme boucle : remplacer par quelle capacite ?
@@ -118,8 +118,8 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                     break;
                 }
                 messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');
-                $choice2 = waitForInput([31,0], ['y','n']);
-                if($choice2 == 'y'){
+                $choice2 = sureToLeave();
+                if($choice2){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
                     break;

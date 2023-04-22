@@ -238,7 +238,7 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
     // }   
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $firstPkmn = $i == 0;
-        getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE, false, $firstPkmn));
+        getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE),false, $firstPkmn);
     }
 }   
 

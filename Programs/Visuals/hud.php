@@ -23,11 +23,11 @@ function drawMenuSelectionHub($pos){
 function drawNextFloor($pos){
     $posY = $pos[0];
     $posX = $pos[1];
-    drawBox([10,30],[$posY+2,$posX], '|', '-');
+    drawBox([10,30],[$posY+2,$posX], '|', '-', true);
 
     $saveFight = getSave();
     textArea('NEXT', [$posY+3,$posX+13]);
-    textArea('Floor : '.$saveFight['IndexFloor']+1, [$posY+4,$posX+2]);
+    textArea('Floor : '.$saveFight['IndexFloor'], [$posY+4,$posX+2]);
     textArea('Route : '.getRouteFromIndex($saveFight['IndexFloor'], true), [$posY+6,$posX+2]);
 }
 
@@ -79,7 +79,7 @@ function textColoredByType($text, $color) {
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 function drawBoxTitle($pos, $scale, $title){
-    drawBox($scale,$pos, '|', '-');
+    drawBox($scale,$pos, '|', '-', true);
     textArea($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
 }
 

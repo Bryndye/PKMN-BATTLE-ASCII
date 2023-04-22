@@ -32,7 +32,7 @@ function chooseItems(&$bag, &$pkmnTeam, $type = ''){
             break;
         }
         
-        $choicesPkmnTeam = drawPkmnTeam($pkmnTeam);
+        drawPkmnTeam($pkmnTeam);
 
         // Si item pokeball, pas bsoin de choisir un pokemon de la team
         if($bag[(int)$choice1]['type'] == 'capture'){
@@ -95,6 +95,12 @@ function useItem(&$bag, &$item, &$pkmn){
         case 'capture':
             return captureItem($item, $pkmn);
         case 'status':
+            healStatusToPkmn($pkmn);
+            break;
+        case 'TM':
+            healStatusToPkmn($pkmn);
+            break;
+        case 'evolution':
             healStatusToPkmn($pkmn);
             break;
     }

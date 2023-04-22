@@ -286,7 +286,7 @@ function animatePkmnKo($pkmn, $isJoueur){
 
     // Clear sprite pkmn
     $posClearSprite = getPosSpritePkmn($isJoueur);
-    $posClearSprite = [$posClearSprite[0]+1,$posClearSprite[1]];
+    $posClearSprite = [$posClearSprite[0],$posClearSprite[1]];
     $scaleClear = getScaleSpritePkmn();
     clearArea($scaleClear,$posClearSprite);
 

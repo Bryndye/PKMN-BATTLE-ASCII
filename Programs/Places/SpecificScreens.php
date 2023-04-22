@@ -4,32 +4,44 @@ function intro(){
     drawGameCadre();
     
     // Animation de * en diagonale sur l'écran
-    for ($i = 0; $i < 30; $i++) {
+    $height = getScreenScale();
+    for ($i = 0; $i < $height[0]; $i++) {
         clearGameScreen();
-        drawFullBox([1,1],[$i,2*$i]);
+        // drawFullBox([1,1],[$i,2*$i+4]);
+        if($i != ($height[0]-1)){
+            drawFullBox([3,3],[$i,2*$i]);
+        }
+        if($i>4){
+            drawDiagonal([4,4], [$i-6,2*($i-3)]);
+            // drawFullBox([1,1],[($i-6)+4,2*($i-3)]);
+            drawDiagonal([3,3],[$i-5,2*($i-1)]);
+            drawDiagonal([3,3],[$i-3,2*($i-3)]);
+        }
         usleep(10000); // Arrête l'exécution d'un programme durant un laps de temps
     }
-    
+    clearGameScreen();
+
     // Fait apparaitre un Charizard au milieu de l'écran pendant x TEMPS
     animationIntro();
 
 
     // Menu titre + press pour joueur
     drawGameCadre();
-    drawSprite(getSprites(['title']),[10,6]);
-    
+    drawSprite(getSprites('title'),[3,2]);
+    drawSprite(getSprites('Pikachu'),[15,15]);
+
     // echo 'Press any to enter';
-    waitForInput([25,20]);
+    waitForInput();
 }
 
 function animationIntro(){
-    drawSprite(getSprites(['Charizard']),[1,2]);
+    drawSprite(getSprites('Charizard'),[3,2]);
     sleep(2);
-    drawSprite(getSprites(['effectTitle']),[1,2]);
+    drawSprite(getSprites('effectTitle'),[3,2]);
     sleep(1);
-    drawSprite(getSprites(['effectFireTitle']),[22,53]);
+    drawSprite(getSprites('effectFireTitle'),[22,53]);
     sleep(1);
-    drawSprite(getSprites(['effectFireTitle2']),[21,4]);
+    drawSprite(getSprites('effectFireTitle2'),[21,4]);
     sleep(1);
 }
 function menuStart(){
@@ -37,14 +49,14 @@ function menuStart(){
     
     $choiceBefore = [];
     if(isSaveExist('Save/save.json',true)){
-        drawBox([9,20],[5,5], '|', '-');
+        drawBox([9,20],[5,5], '|', '-', true);
         textArea('1 : CONTINUE', [7,7]);
         textArea("2 : DELETE", [9,7]);
         textArea("3 : QUIT", [11,7]);
         $choiceBefore = [1,2,3];
     }
     else{
-        drawBox([7,20],[5,5], '|', '-');
+        drawBox([7,20],[5,5], '|', '-', true);
         textArea('1 : NEW GAME', [7,7]);
         textArea("3 : QUIT", [9,7]);
         $choiceBefore = [1,3];
@@ -70,7 +82,7 @@ function exitGame(){
 
 function drawStatsFromSaveToMenu(){
     if(isSaveExist('Save/myGame.json')){
-        drawBox([21,30],[3,28], '|', '-');
+        drawBox([21,30],[3,28], '|', '-', true);
         $save = getSave('Save/myGame.json');
         textArea('Name : '.$save['name'], [5,30]);
         textArea('Pokedex : '. count($save['Pokedex']), [7,30]);

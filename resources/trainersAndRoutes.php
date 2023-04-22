@@ -554,8 +554,10 @@ function generateIAs(){
                 ],
                 1000,
                 [],
-                generatePkmnBattle('pidgey', 6),
-                generatePkmnBattle(selectStarterRival(0), 8),
+                [
+                    generatePkmnBattle('pidgey', 6),
+                    generatePkmnBattle(selectStarterRival(0), 8),
+                ],
                 1
             ),
         10 => [

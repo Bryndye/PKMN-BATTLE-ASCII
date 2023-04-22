@@ -24,11 +24,12 @@ function getPathScript($script){
 }
 //// POSITIONS ///////////////////////////////////////////////
 function getPosSpritePkmn($isJoueur){
-    if($isJoueur){
-        return [8,2]; // joueur
+    if($isJoueur)
+    {
+        return [9,2]; // joueur
     }
     else{
-        return [1,31]; // enemy
+        return [2,31]; // enemy
     }
 }
 
@@ -57,6 +58,13 @@ function getPosDialogue(){
 function getPosChoice(){
     return [31,0];
 }
+
+function getPosYesOrNo(){
+    $scaleDialogue = getScaleDialogue();
+    $screenScale = getScreenScale();
+    $scale = getScaleYesOrNo();
+    return [$screenScale[0]-($scaleDialogue[0]+$scale[0]), $screenScale[1]-2-$scale[1]];
+}
 //// SCALE ///////////////////////////////////////////////
 function getScreenScale(){
     return [30,60];
@@ -75,7 +83,9 @@ function getScaleDialogue(){
     return [7,60];
 }
 
-
+function getScaleYesOrNo(){
+    return [5,10];
+}
 ///////////////////////////////////////////////////////
 //// CUSTOM FUNCTIONS /////////////////////////////////
 

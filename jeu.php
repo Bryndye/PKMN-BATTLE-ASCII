@@ -9,9 +9,9 @@ include_once 'Resources/sprites.php';
 include_once 'Programs/Visuals/hudfight.php';
 include_once 'Programs/Visuals/hud.php';
 
-include_once 'Programs/Places/itemsManager.php'; // item avant save
+include_once 'Programs/Places/bagManager.php'; // item avant save
 include_once 'Programs/Save/saveManager.php';
-include_once 'Resources/Pokemons/pokemonList.php';
+include_once 'Resources/Pokemons/pokemonManager.php';
 include_once 'Resources/Pokemons/typeMatchUp.php';
 include_once 'Programs/Places/routesManager.php';
 include_once 'Programs/Fight/fightSystem.php';
@@ -19,7 +19,7 @@ include_once 'Programs/Fight/fightSystem.php';
 // PLACES
 include_once 'Programs/Places/SpecificScreens.php';
 include_once 'Programs/Places/hub.php';
-include_once 'Programs/Places/shop.php';
+include_once 'Programs/Places/shopManager.php';
 
 
 // Init Resources
@@ -36,7 +36,7 @@ echo "\033[?25l"; // hide cursor
 // startGame();
 
 // translate($sprites['trainer_test'], [0,0], [30,60], 2);
-animationVersusLeader();
+// animationVersusLeader();
 
 //// GAME ////
 while(true){

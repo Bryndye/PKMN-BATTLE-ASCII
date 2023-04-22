@@ -67,9 +67,10 @@ function animationEnterRowByRow(){
 }
 
 function animationEnterSpirale(){
+    $screenScale = getScreenScale();
     // Configuration de la taille du terminal
-    $terminalHeight = 30;
-    $terminalWidth = 60;
+    $terminalHeight = $screenScale[0];
+    $terminalWidth = $screenScale[1];
 
     // Position initiale de la boîte
     $boxHeight = 5;

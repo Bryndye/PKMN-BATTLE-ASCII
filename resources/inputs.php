@@ -52,15 +52,21 @@ function enterToContinue($pos, $showMessage){
     return $choice;
 }
 
-// function sureToLeave(){
-//     $choice2 = waitForInput([31,0], ['y','n']);
-//     if($choice2 == 'y'){
-//         break stop;
-//     }
-//     else{
-//         continue;
-//     }
-// }
+function sureToLeave(){
+    $pos = getPosYesOrNo();
+    drawBox(getScaleYesOrNo(),$pos, '|','-',true);
+    // debugLog(getPosYesOrNo());
+    textArea('YES', [$pos[0]+1,$pos[1]+2]);
+    textArea('NO', [$pos[0]+3,$pos[1]+2]);
+
+    $choice2 = waitForInput([31,0], ['y','n']);
+    if($choice2 == 'y'){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 function choice(){
     moveCursor([31,0]);
