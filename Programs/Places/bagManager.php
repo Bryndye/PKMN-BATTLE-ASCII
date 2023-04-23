@@ -34,15 +34,16 @@ function enterIntoBag(&$save, $type = 'hub'){
             $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
         }
         elseif($type == 'hub'){
-            if(getCategoryName($categories, $categories[$indexCategory]) != 'PokeBalls'){
+            if(getCategoryName($categories, $indexCategory) != 'PokeBalls'){
                 $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
+                // debugLog(inputsNavigate($categories, $currentListItemTEMP));
             }
             else{
                 $moveChoice = inputsNavigate($categories, $currentListItemTEMP, false);
             }
         }
         // debugLog($currentListItemTEMP);
-        messageBoiteDialogue('Which item to use?');
+        messageBoiteDialogue("Which item to use?\n   z   \n<q   d> Use=v\n   s");
         drawBag2($currentListItemTEMP, $currentIndexItemTEMP);
         drawCategoryBag($categories, $indexCategory);
 

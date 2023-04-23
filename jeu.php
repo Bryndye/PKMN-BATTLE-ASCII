@@ -58,11 +58,11 @@ while(true){
     }
     
     // item TEMP
-    // giveItemFromResources($saveParty["Bag"], 'Potion', 5);
-    // giveItemFromResources($saveParty["Bag"], 'Revive', 5);
-    // giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
-    // giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
-    // giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
+    giveItemFromResources($saveParty["Bag"], 'Potion', 5);
+    giveItemFromResources($saveParty["Bag"], 'Revive', 5);
+    giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
+    giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
+    giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
 
     // Need to reload Trainers because Rival's starter
     generateIAs();
