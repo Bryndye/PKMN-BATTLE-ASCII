@@ -2,27 +2,27 @@
 	"Potion":
 	{
 		"name":"Potion",
-		"type": "heal",
+		"type": "Heals",
 		"effect": "20",
 		"price" : "200"
 	},
     "Super potion":
 	{
 		"name":"Super potion",
-		"type": "heal",
+		"type": "Heals",
 		"effect": "50",
 		"price" : "500"
 	},
     "Hyper potion":
 	{
 		"name":"Hyper potion",
-		"type": "heal",
+		"type": "Heals",
 		"effect": "120",
 		"price" : "1200"
 	},
-	"Total Heal":
+	"Total Heals":
 	{
-		"name":"Total Heal",
+		"name":"Total Heals",
 		"type": "status",
 		"effect": "all",
 		"price" : "1000"
@@ -30,36 +30,50 @@
     "PokeBall":
 	{
 		"name":"PokeBall",
-		"type": "capture",
+		"type": "PokeBalls",
 		"effect": "1",
 		"price" : "300"
 	},
     "SuperBall":
 	{
 		"name":"SuperBall",
-		"type": "capture",
+		"type": "PokeBalls",
 		"effect": "1.5",
 		"price" : "600"
 	},
     "HyperBall":
 	{
 		"name":"HyperBall",
-		"type": "capture",
+		"type": "PokeBalls",
 		"effect": "2",
 		"price" : "1200"
 	},
 	"MasterBall":
 	{
 		"name":"MasterBall",
-		"type": "capture",
+		"type": "PokeBalls",
 		"effect": "255",
 		"price" : "1000000"
 	},
     "Revive":
 	{
 		"name":"Revive",
-		"type": "heal",
+		"type": "Heals",
 		"effect": "50%",
 		"price" : "2400"
+	},
+    "Surf":
+	{
+		"name":"Surf",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "0"
+	},
+    "Firestone":
+	{
+		"name":"Firestone",
+		"type": "Items",
+		"effect": "evolution",
+		"price" : "0"
 	}
 }

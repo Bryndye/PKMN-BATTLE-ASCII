@@ -7,9 +7,7 @@ function generatePNJ($indexFloor, $level){
 
 function managerPNJGenerate($indexFloor, $level){
     global $pnjs;
-    if(array_key_exists($indexFloor, $pnjs)){
-        $pnj = $pnjs[$indexFloor];
-    }
+    $pnj = checkPNJExist($indexFloor);
 
     if(!isset($pnj)){
         $route = getRouteFromIndex($indexFloor);  
@@ -51,6 +49,16 @@ function checkAllTrainersAvailable($trainersData) {
         $trainerIndex++;
     }
     return false; // Retourne -1 si tous les dresseurs sont déjà utilisés
+}
+
+function checkPNJExist($indexFloor){
+    global $pnjs;
+    if(array_key_exists($indexFloor, $pnjs)){
+        return $pnjs[$indexFloor];
+    }
+    else{
+        return null;
+    }
 }
 
 function createWildPkmn($level, $name){

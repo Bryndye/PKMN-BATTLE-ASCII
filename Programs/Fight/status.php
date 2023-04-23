@@ -8,14 +8,14 @@ function ailmentChanceOnpKmn(&$capacite, &$pkmnDef, $isStatusCap = false){
 
     if($capacite['Category'] == 'status'){
         $pkmnDef['Status'] = status($ailment['ailment']);
-        messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment']);
+        messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment'],1);
         return;
     }
     else if(isset($ailment['ailment_chance']) && $ailment['ailment_chance'] != 0){
         $chance = rand(0,100);
         if($chance <= $ailment['ailment_chance']){
             $pkmnDef['Status'] = status($ailment['ailment']);
-            messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment']);
+            messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment'],1);
             return;
         }
     }
@@ -75,7 +75,12 @@ function status($nameStatus){
 }
 
 function getStatusEffect($status, $mode) {
-    $effect = 0;
+    if($mode == "capture"){
+        $effect = 1;
+    }
+    else{
+        $effect = 0;
+    }
     
     switch($status) {
         case "burn":
@@ -134,8 +139,7 @@ function damageTurn(&$pkmn, $isJoueur){
         else if($pkmn['Status'] == 'PSN'){
             takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * 0.10), $isJoueur);
         }
-        messageBoiteDialogue($pkmn['Name'] . ' takes damage from its status!');
-        sleep(1);
+        messageBoiteDialogue($pkmn['Name'] . ' takes damage from its status!',1);
         updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmn['Stats']['Health'], $pkmn['Stats']['Health Max']);
         clearBoiteDialogue();
         sleep(1);

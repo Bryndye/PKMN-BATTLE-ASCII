@@ -86,30 +86,31 @@ function getLastElements($array, $level) {
 function setCapacityToPkmn(&$pkmn, $capacite){
     if(count($pkmn['Capacites']) == 4){
 
-        clearGameScreen();
-        drawSprite(getSprites($pkmn['Sprite']), [5,3]);
-        textAreaLimited($pkmn['Name'],30,[3,5]);
-        textAreaLimited('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
-
-        $i = 0;
-        $y = 0;
-        foreach($pkmn['Capacites'] as $capacitePkmn){
-            drawBox([5,25],[2+$i,30]);
-            textAreaLimited($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
-            textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
-            ++$y;
-            $i += 5;
-        }
-
         // Premiere boucle : vouloir apprendre la capacite ?
         $replace = false;
         while(!$replace){
+            messageBoiteDialogue($pkmn['Name'].' wants to learn '.$capacite['Name'].'.');
             messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
             $choice = sureToLeave();
             if(!$choice){
                 messageBoiteDialogue($pkmn['Name']." didn't learned " .$capacite['Name'].'...');
                 break;
             }
+            clearGameScreen();
+            drawSprite(getSprites($pkmn['Sprite']), [5,3]);
+            textAreaLimited($pkmn['Name'],30,[3,5]);
+            textAreaLimited('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
+    
+            $i = 0;
+            $y = 0;
+            foreach($pkmn['Capacites'] as $capacitePkmn){
+                drawBox([5,25],[2+$i,30]);
+                textAreaLimited($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
+                textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
+                ++$y;
+                $i += 5;
+            }
+    
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
                 messageBoiteDialogue('Which capacity to removes?');
@@ -128,8 +129,8 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                     continue;
                 }
             }
+            clearGameScreen();
         }
-        clearGameScreen();
     }
     else{
         array_push($pkmn['Capacites'], $capacite);

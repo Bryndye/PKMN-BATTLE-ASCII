@@ -123,7 +123,7 @@ function moveCursorIndex($pos, $i){
     echo "\033[".$y.";".$x."H";
 }  
 
-function drawBox($scale, $pos, $styleH='*', $styleL='*', $corner = false){
+function drawBox($scale, $pos, $styleH='*', $styleL='*', $corner = false, $cornerStyle = ['+','+','+','+']){
     moveCursor($pos);
     
     for ($i = 0; $i < $scale[0]; $i++) {
@@ -131,13 +131,13 @@ function drawBox($scale, $pos, $styleH='*', $styleL='*', $corner = false){
         for ($j = 0; $j < $scale[1]; $j++) {
             if($corner){
                 if ($i == 0 && $j == 0) {
-                    echo '+';
+                    echo $cornerStyle[0];
                 } elseif ($i == 0 && $j == $scale[1] - 1) {
-                    echo '+';
+                    echo $cornerStyle[1];
                 } elseif ($i == $scale[0] - 1 && $j == 0) {
-                    echo '+';
+                    echo $cornerStyle[3];
                 } elseif ($i == $scale[0] - 1 && $j == $scale[1] - 1) {
-                    echo '+';
+                    echo $cornerStyle[2];
                 }
                 else if ($i == 0 || $i == $scale[0] - 1) {
                     echo $styleL;
@@ -191,7 +191,7 @@ function drawDiagonal($scale, $pos) {
 }
 
 function drawGameCadre(){
-    drawBox([30,60],[1,1]);
+    drawBox(getScreenScale(),[1,1]);
 }
 
 function textArea($string, $pos, $scale = 0){
@@ -227,10 +227,7 @@ function justifyText($string, $scale, $comble, $where){
     return str_pad($string, 3, " ", $align);
 }
 //////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
-
-///// CLEAR /////////////////////////////////////////
+///// CLEAR //////////////////////////////////////////////////
 function clearArea($scale, $pos){
     for ($i = 0; $i <  $scale[0]; $i++) {
         moveCursorIndex($pos, $i);
@@ -278,10 +275,6 @@ function clearSpritePkmn($isJoueur, $pauseTime = 0){
 }
 
 //////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
-
-
 ///// draw SPRITE /////////////////////////////////////////
 function drawSprite($sprite, $pos) {
     $lines = explode("\n", $sprite); // séparer les lignes du sprite

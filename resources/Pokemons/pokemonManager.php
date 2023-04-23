@@ -197,7 +197,7 @@ function getNextLevelExp($currentLevel) {
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp);
+    return intval($exp) * 3;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

@@ -13,11 +13,12 @@ function drawMoney($pos){
 function drawMenuSelectionHub($pos){
     $posY = $pos[0];
     $posX = $pos[1];
-    drawBox([12,20],[$posY,5], '|', '-');
+    drawBox([13,20],[$posY,5], '|', '-');
     textArea('1 : CONTINUE', [$posY+2,$posX]);
     textArea("2 : TEAM", [$posY+4,$posX]);
     textArea("3 : BAG", [$posY+6,$posX]);
     textArea("4 : SHOP", [$posY+8,$posX]);
+    textArea("5 : QUIT", [$posY+10,$posX]);
 }
 
 function drawNextFloor($pos){
@@ -29,27 +30,46 @@ function drawNextFloor($pos){
     textArea('NEXT', [$posY+3,$posX+13]);
     textArea('Floor : '.$saveFight['IndexFloor'], [$posY+4,$posX+2]);
     textArea('Route : '.getRouteFromIndex($saveFight['IndexFloor'], true), [$posY+6,$posX+2]);
+
+    $pnj = checkPNJExist($saveFight['IndexFloor']);
+    if(!is_null($pnj)){
+        textArea('Trainer : '.$pnj['Name'], [$posY+8,$posX+2]);
+    }
 }
 
+function drawCategorySelected($categories, $caterogySelected, $pos){
+    // pos = 4,2
+    drawBox([1,getScreenScale()[1]-2],$pos,'-','-'); // pos pour mettre la ligne en dessous des categories
+
+    $newPosX = $pos[1]+1;
+    $posYCategory = $pos[0]-1;
+    foreach($categories as $category){
+        // debugLog($category == $caterogySelected);
+        if($category == $caterogySelected){
+            $scale = countLinesAndColumns($category);
+            drawBox([$scale[0]+2,$scale[1]+2],[$posYCategory-1,$newPosX-1],'|','-',true);
+            clearArea([1,$scale[1]], [$posYCategory+1,$newPosX]);
+            // textArea($category,[$posYCategory,$newPosX]);
+        }
+        textArea($category,[$posYCategory,$newPosX]);
+        $newPosX = countLinesAndColumns($category)[1]+2+$newPosX;
+    }
+}
 //// DRAW DIALOGUE ///////////////////////////////////////////
 function drawBoiteDialogue(){
     drawBox(getScaleDialogue(), getPosDialogue());
 }
 
-function messageBoiteDialogue($message, $pressEnter = false){
+function messageBoiteDialogue($message, $time = 0){
     drawBoiteDialogue();
-    textAreaLimited($message);
-    if($pressEnter){
-        waitForInput();
-    }
-    else{
-        sleep(1);
-    }
-}
-function messageBoiteDialogueContinue($message, $time = 0){
     clearBoiteDialogue();
     textAreaLimited($message);
-    sleep($time);
+    if($time >= 0){
+        sleep($time);
+    }
+    elseif($time < 0){
+        waitForInput();
+    }
 }
 
 

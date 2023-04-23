@@ -148,33 +148,33 @@ function cinematicPresentation(){
     drawGameCadre();
     drawBoiteDialogue();
     drawSprite(getSprites('trainer'), $posSprite);
-    messageBoiteDialogue("Hello, i'm Prof. Twig and welcome to the world of Pokemon!", true);
-    messageBoiteDialogue("Let me show you what a pokemon is.", true);
+    messageBoiteDialogue("Hello, i'm Prof. Twig and welcome to the world of Pokemon!", -1);
+    messageBoiteDialogue("Let me show you what a pokemon is.", -1);
     clearSprite($posSprite);
     drawSprite(getSprites('Pokeball_1'),$posSprite);
     sleep(1);
     drawSprite(getSprites("Pikachu"), $posSprite);
-    messageBoiteDialogue("Here's Pikachu!", true);
-    messageBoiteDialogue("He's an electric type. You can meet him later on your journey.", true);
+    messageBoiteDialogue("Here's Pikachu!", -1);
+    messageBoiteDialogue("He's an electric type. You can meet him later on your journey.", -1);
     clearSprite($posSprite);
     drawSprite(getSprites('trainer'), $posSprite);
-    messageBoiteDialogue("By the way, what is your name?", true);
+    messageBoiteDialogue("By the way, what is your name?", -1);
 
-    messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", true);
+    messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", -1);
     saveMainManager();
     $save = getSave('Save/myGame.json');
-    messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", true);
-    messageBoiteDialogue("But this time, it will be different. You have 100 battles to win.", true);
-    messageBoiteDialogue("You loose, you restart by choosing your 'first' Pokemon.", true);
-    messageBoiteDialogue("Between your battles, you can heal your pokemon, buy items and rest", true);
-    messageBoiteDialogue("Careful with captures! You can't stock Pokemons like before. If you capture one, you have to replace one from your team.", true);
-    messageBoiteDialogue("Do you see the difference? Of course you do!", true);
-    messageBoiteDialogue("So, you are ready. Good luck!", true);
+    messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", -1);
+    messageBoiteDialogue("But this time, it will be different. You have 100 battles to win.", -1);
+    messageBoiteDialogue("You loose, you restart by choosing your 'first' Pokemon.", -1);
+    messageBoiteDialogue("Between your battles, you can heal your pokemon, buy items and rest", -1);
+    messageBoiteDialogue("Careful with captures! You can't stock Pokemons like before. If you capture one, you have to replace one from your team.", -1);
+    messageBoiteDialogue("Do you see the difference? Of course you do!", -1);
+    messageBoiteDialogue("So, you are ready. Good luck!", -1);
 }
 
 function cinematicLeagueEnding(&$save){
     clearGameScreen();
-    messageBoiteDialogue('Congratulations! You beat the league Pokemon!', true);
+    messageBoiteDialogue('Congratulations! You beat the league Pokemon!', -1);
 
     foreach($save['Team'] as $pkmn){
         drawSprite(getSprites($pkmn['Sprite']), [3,18]);
@@ -186,15 +186,17 @@ function cinematicLeagueEnding(&$save){
     }
     clearGameScreen();
     drawSprite(getSprites('trainer'), [3,18]);
-    messageBoiteDialogue("But it's not over!", true);
-    messageBoiteDialogue("There are challenges waiting for you!", true);
+    sleep(1);
+
+    messageBoiteDialogue("But it's not over!", -1);
+    messageBoiteDialogue("There are more challenges waiting for you!", -1);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// ENDING //////////////////////////////////////////////////////////////////////
 function cinematicEnding(&$save){
     clearGameScreen();
-    messageBoiteDialogue('Congratulations! You beat the game!', true);
+    messageBoiteDialogue('Congratulations! You beat the game!', -1);
     $wins = getDataFromSave('Game wins', 'Save/myGame.json');
 
     foreach($save['Team'] as $pkmn){
@@ -207,9 +209,10 @@ function cinematicEnding(&$save){
     }
     clearGameScreen();
     drawSprite(getSprites('trainer'), [3,18]);
-    messageBoiteDialogue("But it's not over!", true);
-    messageBoiteDialogue("More challenges are available!", true);
-    messageBoiteDialogue("Ready for another round?", true);
+    messageBoiteDialogue("But it's not over!", -1);
+    messageBoiteDialogue("But the adventure does not end there!", -1);
+    messageBoiteDialogue("New challenges await you!", -1);
+    messageBoiteDialogue("Are you ready?", -1);
 }
 
 function endGame(){
@@ -227,7 +230,7 @@ function screenLose(){
     $floor = getDataFromSave('IndexFloor');
 
     drawSprite(getSprites('Pokeball'), [3,18]);
-    messageBoiteDialogue('You lost at '. $floor . ' floor...', true);
+    messageBoiteDialogue('You lost at '. $floor . ' floor...', -1);
     deleteSave();
 }
 ?>

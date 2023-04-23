@@ -6,10 +6,10 @@ function managerShop(&$save){
         drawBoiteDialogue();
 
         $itemsAvailable = listItemsBuyable($save['Money']);
-        messageBoiteDialogueContinue('Which item do you want to buy?');
+        messageBoiteDialogue('Which item do you want to buy?');
         $choice = waitForInput([31,0], $itemsAvailable[1]);
         if($choice == 'c'){
-            messageBoiteDialogueContinue('Are you sure to leave the shop? ');
+            messageBoiteDialogue('Are you sure to leave the shop? ');
             $choice2 = sureToLeave();
             if($choice2){
                 break;
@@ -66,6 +66,6 @@ function buyItem(&$save, $itemToBuy, $quantity = 1){
         return;
     }
     $money -= $itemToBuy['price'] * $quantity;
-    messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.');
+    messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.',1);
 }
 ?>

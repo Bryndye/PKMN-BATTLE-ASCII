@@ -12,17 +12,15 @@ function startFight(&$joueur, &$pnj){
     drawBoiteDialogue();
     animationCharactersEnterBattle(getSprites('trainerBack'),getSprites($pnj['Sprite']));
 
-    messageBoiteDialogue($pnj['Dialogues']['entrance']); // message trainer 
-    sleep(1);
-    messageBoiteDialogue($pnj['Name'].' wants to fight!'); // message trainer 
-    sleep(1);
+    messageBoiteDialogue($pnj['Dialogues']['entrance'], 1); // message trainer 
+    messageBoiteDialogue($pnj['Name'].' wants to fight!',1); // message trainer 
 
     // animation pokeball
     if($pnj['type'] == 'trainer'){
         animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
-    messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!');
+    messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!',1);
     animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
 
@@ -88,13 +86,10 @@ function loopFight(&$joueur, &$pnj){
             }
         }
         elseif($choice == 3){
-            $choice2 = chooseItems($joueur['Bag'], $pkmnTeamJoueur, $pnj['type']);
+            $choice2 = enterIntoBag($joueur, $pnj['type']);
             // si item type == capture, jouer autre fonction
             drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         }
-        // elseif($choice == 4){
-        //     exitGame();
-        // }
         $actionJoueur = "$choice $choice2";
 
         // Si aucune action choisie, retour au début
@@ -191,7 +186,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             refreshdrawOnePkmn($action['teamAtk'], $action['isjoueur']);
         }
         elseif($action['choice'][0] == '3'){
-            if($action['Bag'][$action['choice'][1]]['type'] == 'capture'){
+            if($action['Bag'][$action['choice'][1]]['type'] == 'PokeBalls'){
                 $didIt = useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamDef'][0]);
                 if($didIt){
                     getPokemonFromCapture($action['teamAtk'], $action['teamDef'][0]);
@@ -257,8 +252,8 @@ function endBattle(&$joueur, $pnj){
     $pkmnTeamJoueur = $joueur['Team'];
     resetTeamStatsTemp($pkmnTeamJoueur);
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
-        messageBoiteDialogue("Your whole Team is k.o!");
-        messageBoiteDialogue("You can't fight...");
+        messageBoiteDialogue("Your whole Team is k.o!",1);
+        messageBoiteDialogue("You can't fight...",1);
     }
     else{
         if($pnj['type'] == 'trainer'){
@@ -267,21 +262,18 @@ function endBattle(&$joueur, $pnj){
         if(isset($pnj['Dialogues']['end'])){
             if(count($pnj['Dialogues']['end'])>0){
                 foreach($pnj['Dialogues']['end'] as $message){
-                    messageBoiteDialogue($message);
-                    sleep(1);
+                    messageBoiteDialogue($message,-1);
                 }
             }
             else{
-                messageBoiteDialogue($pnj['Dialogues']['end']);
+                messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
-            sleep(2);
         }
-        messageBoiteDialogue("You've defeated " . $pnj['Name'].'!');
-        sleep(2);
+        messageBoiteDialogue("You've defeated " . $pnj['Name'].'!',-1);
     }
     if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
         $joueur['Money'] += $pnj['Reward'];
-        messageBoiteDialogue("You get " . $pnj['Reward'].' pokedollars.');
+        messageBoiteDialogue("You get " . $pnj['Reward'].' pokedollars.',1);
     }
 }
 ?>

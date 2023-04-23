@@ -5,7 +5,8 @@ function drawHub(&$save){
         drawGameCadre();
         
         $choiceBefore = [];
-        $choiceBefore = [1,2,3,4];
+        // choice change si shop disponible ou pokecenter
+        $choiceBefore = [1,2,3,4,5];
         drawMenuSelectionHub([7,7]);
         drawBoxTitle([3,5],[3,7], 'HUB');
         drawMoney([4,35]);
@@ -14,10 +15,15 @@ function drawHub(&$save){
         messageBoiteDialogue('What do you want to do?');
 
         // Attend la selection entre 1 et 2
-
         $choice = waitForInput([31,0],$choiceBefore);
         if($choice == 3){
-            managerItemsIntoMenu($save);
+            $action = enterIntoBag($save);
+            if(str_contains($action, 'c')){
+                continue;
+            }
+            else{
+                actionBagHub($save, $save['Team'], $action);
+            }
         }
         elseif($choice == 2){
             // debugLog($save);
@@ -30,11 +36,14 @@ function drawHub(&$save){
         elseif($choice == 1){
             break;
         }
+        elseif($choice == 5){
+            exitGame();
+        }
     }
     animationEnterBattle();
 
-    drawBox([30,60],[1,1]); // Cadre du jeu
-    clearArea([28,58],[2,2]); // Efface l'écran
+    drawGameCadre();
+    clearGameScreen();
 }
 
 function continueToFight(){

@@ -36,19 +36,19 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     }
     
     $capacite['PP'] -= 1;
-    messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!');
+    messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!',1);
 
     // Accuracy capacity
     usleep(250000);
     $chanceAccuracy = rand(0,100);
     if($chanceAccuracy > $capacite['Accuracy']*calculateBoostTemps($pkmnAtk, 'Accuracy')){
-        messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!');
+        messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!',1);
         return;
     }
 
     $chanceEvasion = rand(0,100);
     if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
-        messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!');
+        messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
         return;
     }
 
@@ -128,7 +128,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     $timesHit = 1;
     if($capacite['effects']['hits']['min hits'] != null && $capacite['effects']['hits']['max hits']){
         $timesHit = getHits($capacite['effects']['hits']['min hits'], $capacite['effects']['hits']['max hits']);
-        messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit.'.');
+        messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit.'.',1);
     }
     takeDamagePkmn($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
@@ -138,17 +138,17 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     
     //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
     if($finalDamage == 0){
-        messageBoiteDialogue("It didn't affect ".$pkmnDef['Name']);
+        messageBoiteDialogue("It didn't affect ".$pkmnDef['Name'],1);
         return;
     }
     else if($isCrit){
-        messageBoiteDialogue("Critical hit!");
+        messageBoiteDialogue("Critical hit!",1);
     }
     else if($efficace > 1){
-        messageBoiteDialogue("It's super effective!");
+        messageBoiteDialogue("It's super effective!",1);
     }
     else if($efficace < 1){
-        messageBoiteDialogue("It's not very effective!");
+        messageBoiteDialogue("It's not very effective!",1);
     }
 
     ailmentChanceOnpKmn($capacite, $pkmnDef);
@@ -156,7 +156,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
         takeDamagePkmn($pkmnAtk, -ceil(($capacite['effects']['Drain']/100) * $finalDamage), $isJoueur);
 
         if($capacite['effects']['Drain'] <= 0){
-            messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!");
+            messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
 
             // update health pkmn atk after drain
             createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
@@ -175,13 +175,11 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
             if($chance < $stat[2]){ 
                 if($pkmnAtk['Stats Temp'][$stat[1]] < 6){
                     $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0];
-                    messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!");
+                    messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
                 }
                 else{
-                    messageBoiteDialogue("Can't modify ". $stat[1]."!");
+                    messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
                 }
-                // $pkmnAtk['Stats Temp'][$stat[1]] > 6 ?
-                //     6:  $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
             }
         }
     }
@@ -189,18 +187,14 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
         foreach($effects['Stats Target'] as $stat){
             $chance = rand(0,100);
             if($chance < $stat[2]){ 
-                // $pkmnDef['Stats Temp'][$stat[1]] < -6 ?
-                //     -6:  $pkmnDef['Stats Temp'][$stat[1]] += $stat[0]; // nom de la stat edit
-                // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
                 if($pkmnDef['Stats Temp'][$stat[1]] > -6){
                     $pkmnDef['Stats Temp'][$stat[1]] += $stat[0];
-                    messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
+                    messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                 }
                 else{
-                    messageBoiteDialogue("Can't modify ". $stat[1]."!");
+                    messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
                 }
             }
-            // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!");
         }
     }
 }
@@ -242,7 +236,7 @@ function resetAllStatsTempToPkmn(&$pkmn){
             'Used' => false
         ]
     ];
-    messageBoiteDialogue($pkmn['Name'] . ' reset all changes.');
+    messageBoiteDialogue($pkmn['Name'] . ' reset all changes.',1);
 }
 
 function getHits($minHits, $maxHits) {
@@ -260,7 +254,7 @@ function getHits($minHits, $maxHits) {
 function takeDamagePkmn(&$pkmn, $damage, $isJoueur){
     animationTakeDamage($pkmn, $isJoueur);
     if($damage < 0){
-        messageBoiteDialogue($pkmn['Name'] . ' drains ' . -$damage . ' Hp.');
+        messageBoiteDialogue($pkmn['Name'] . ' drains ' . -$damage . ' Hp.',1);
     }
 
     $pkmn['Stats']['Health'] -= $damage;
@@ -290,7 +284,7 @@ function animatePkmnKo($pkmn, $isJoueur){
     $scaleClear = getScaleSpritePkmn();
     clearArea($scaleClear,$posClearSprite);
 
-    messageBoiteDialogue($pkmn['Name'] . ' is K.O.');
+    messageBoiteDialogue($pkmn['Name'] . ' is K.O.',1);
 }
 
 function isTeamPkmnAlive($teamPkmn){
@@ -319,7 +313,7 @@ function searchNewPkmnInTeam(&$teamPkmn){
 function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false, $string='Which Pokemon do you want?'){
     drawPkmnTeam($pkmnTeam);
     drawBoiteDialogue();
-    messageBoiteDialogueContinue($string);
+    messageBoiteDialogue($string);
     
     $arrayChoice = [];
     array_push($arrayChoice, 'c');
@@ -340,7 +334,7 @@ function switchPkmn(&$pkmnTeam ,$index){
             array_splice($pkmnTeam, $i, 1);
         }
     }
-    messageBoiteDialogue("Go ". $pkmnTeam[0]['Name'].'!');
+    messageBoiteDialogue("Go ". $pkmnTeam[0]['Name'].'!',1);
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

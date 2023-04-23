@@ -540,8 +540,8 @@ function generateIAs(){
             'Bag' => [
             ],
             'Team' => [
+                generatePkmnBattle('rattata', 2),
                 generatePkmnBattle('rattata', 3),
-                generatePkmnBattle('rattata', 4),
             ]
         ],
         5 =>  createTrainer('???', 

@@ -104,7 +104,7 @@ while(true){
             endGame();
             break;
         }
-        continueToFight();
+        // continueToFight();
     }
 }
 ?>

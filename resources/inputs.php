@@ -5,7 +5,7 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
         $sentence = $string;
     }
     else{
-        $sentence = 'Choose : ';
+        $sentence = ' Select ';
     }
 
     if($options == null){
@@ -73,5 +73,20 @@ function choice(){
     // Get the user's input
     $input = readline();
     return $input;
+}
+
+//// List inputs /////
+function inputsNavigate($categories, $listItems, $canUse = true){
+    $choice = ['c'];
+    if(count($categories) > 0){
+        array_push($choice, 'q','d');
+    }
+    if(count($listItems)>0){
+        array_push($choice, 'z','s');
+        if($canUse){
+            array_push($choice, 'v');
+        }
+    }
+    return $choice;
 }
 ?>

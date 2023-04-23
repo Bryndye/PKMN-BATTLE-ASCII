@@ -22,6 +22,28 @@ function getPathScript($script){
 
     return $link;
 }
+
+function getAllCategoriesItem(){
+    return [getTypeItemBag('Items'),getTypeItemBag('Heals'),getTypeItemBag('PokeBalls'),getTypeItemBag('TMs')];
+}
+function getTypeItemBag($type = 'Heals'){
+    switch($type){
+        case 'PokeBalls':
+            return 'PokeBalls';
+        case 'TMs':
+            return 'TMs';   
+        case 'Heals':
+            return 'Heals';
+        case 'Items':
+            return 'Items';     
+    }
+}
+
+function getCategoryName($categories, $actualCategory){
+    if(is_int($actualCategory)){
+        return $categories[$actualCategory];
+    }
+}
 //// POSITIONS ///////////////////////////////////////////////
 function getPosSpritePkmn($isJoueur){
     if($isJoueur)
