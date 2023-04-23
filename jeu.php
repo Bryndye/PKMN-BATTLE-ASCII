@@ -35,9 +35,6 @@ echo "\033[?25l"; // hide cursor
 // intro();
 // startGame();
 
-// translate($sprites['trainer_test'], [0,0], [30,60], 2);
-// animationVersusLeader();
-
 //// GAME ////
 while(true){
     menuStart();

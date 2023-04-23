@@ -1,4 +1,42 @@
 <?php
+
+function createTrainer($name, $sprite, $dialogues, $reward, $bag, $team, $iaLevel=0, $title=''){
+    $pnj = [
+        'Name' => $name,
+        'type' => 'trainer',
+        'title' => $title,
+        'level' => $iaLevel,
+        'Sprite' => $sprite,
+        'Dialogues' => [
+            'entrance' => $dialogues['entrance'],
+            'end' => $dialogues['end']
+        ],
+        'Reward' => $reward,
+        'Bag' => $bag,
+        'Team' => $team,
+        'used' => false
+    ];
+    return $pnj;
+}
+
+function createWildPkmn($level, $name, $dialogues = null, $title = null){
+    // prendre un pokemon dans une list par rapport indexFloor
+    $pkmn = generatePkmnTeam($level, $name);
+    $wildPkmn = [
+        'Name' => $pkmn[0]['Name'],
+        'type' => 'wild',
+        'title' => $title,
+        'Sprite' => $pkmn[0]['Sprite'],
+        'Dialogues' => [
+            'entrance' => isset($dialogues['entrance']) ? $dialogues['entrance'] : 'A wild Pokemon appears.',
+            'end' => isset($dialogues['end']) ? $dialogues['end'] : ''
+        ],
+        'Reward' => null,
+        'Bag' => [],
+        'Team' => $pkmn
+    ];
+    return $wildPkmn;
+}
 //// GENERATION D'UN PNJ //////////////////////////////////
 function generatePNJ($indexFloor, $level){
     $pnj = managerPNJGenerate($indexFloor, $level);
@@ -6,7 +44,6 @@ function generatePNJ($indexFloor, $level){
 }
 
 function managerPNJGenerate($indexFloor, $level){
-    global $pnjs;
     $pnj = checkPNJExist($indexFloor);
 
     if(!isset($pnj)){
@@ -22,22 +59,14 @@ function managerPNJGenerate($indexFloor, $level){
     return $pnj;
 }
 
-function createTrainer($name, $sprite, $dialogues, $reward, $bag, $team, $iaLevel=0){
-    $pnj = [
-        'Name' => $name,
-        'type' => 'trainer',
-        'level' => $iaLevel,
-        'Sprite' => $sprite,
-        'Dialogues' => [
-            'entrance' => $dialogues['entrance'],
-            'end' => $dialogues['end']
-        ],
-        'Reward' => $reward,
-        'Bag' => $bag,
-        'Team' => $team,
-        'used' => false
-    ];
-    return $pnj;
+function checkPNJExist($indexFloor){
+    global $pnjs;
+    if(array_key_exists($indexFloor, $pnjs)){
+        return $pnjs[$indexFloor];
+    }
+    else{
+        return null;
+    }
 }
 
 function checkAllTrainersAvailable($trainersData) {
@@ -49,33 +78,6 @@ function checkAllTrainersAvailable($trainersData) {
         $trainerIndex++;
     }
     return false; // Retourne -1 si tous les dresseurs sont déjà utilisés
-}
-
-function checkPNJExist($indexFloor){
-    global $pnjs;
-    if(array_key_exists($indexFloor, $pnjs)){
-        return $pnjs[$indexFloor];
-    }
-    else{
-        return null;
-    }
-}
-
-function createWildPkmn($level, $name){
-    // prendre un pokemon dans une list par rapport indexFloor
-    $pkmn = generatePkmnTeam($level, $name);
-    $wildPkmn = [
-        'Name' => $pkmn[0]['Name'],
-        'type' => 'wild',
-        'Sprite' => $pkmn[0]['Sprite'],
-        'Dialogues' => [
-            'entrance' => 'A wild Pokemon appears.'
-        ],
-        'Reward' => null,
-        'Bag' => [],
-        'Team' => $pkmn
-    ];
-    return $wildPkmn;
 }
 
 function generatePkmnTeam($level = 1, $pkmnName = null, $count = 1){

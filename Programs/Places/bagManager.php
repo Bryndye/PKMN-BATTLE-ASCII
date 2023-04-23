@@ -123,10 +123,10 @@ function drawBag2(&$listItems, $indexItem = 0){
             $name = $key;
         }
         if($key == $indexItem){
-            textArea('-> '.$key . '. keyBag:'.$keyBag.' '.$name . ' x ' . $itemBag['quantity'], [4+$i,5]);
+            textArea('-> '/*.$key . '. keyBag:'.$keyBag.' '*/.$name . ' x ' . $itemBag['quantity'], [4+$i,5]);
         }
         else{
-            textArea($key . '. keyBag:'.$keyBag.' '.$name . ' x ' . $itemBag['quantity'], [4+$i,5]);
+            textArea(/*$key . '. keyBag:'.$keyBag.' '.*/$name . ' x ' . $itemBag['quantity'], [4+$i,5]);
         }
         $i += 2;
         $y++;
@@ -186,71 +186,6 @@ function useItem(&$bag, &$item, &$pkmn){
             healStatusToPkmn($pkmn);
             break;
     }
-}
-
-function healPkmn($item, &$pkmn){
-    if(strpos($item['effect'], '%') ){
-        if(isPkmnDead_simple($pkmn)){
-            $parts = explode("%", $item['effect']);
-            $value = intval($parts[0]);
-            $pkmn['Stats']['Health'] = intval(($value/100) * $pkmn['Stats']['Health Max']);
-            messageBoiteDialogue($pkmn['Name'] . " revives!",1);
-        }
-        else{
-            messageBoiteDialogue($pkmn['Name'] . " is already alive!",1);
-        }
-    }
-    elseif(!isPkmnDead_simple($pkmn)){    
-        $pkmn['Stats']['Health'] += $item['effect'];
-        healthInBloc($pkmn);
-        messageBoiteDialogue("Use ". $item['name'].' on '.$pkmn['Name'] . "!",1);
-        print($pkmn['Stats']['Health']);
-    }
-}
-
-function healStatusToPkmn(&$pkmn){
-    $pkmn['Status'] = null;
-    messageBoiteDialogue($pkmn['Name'] . ' is cured of its ailment!',1);
-}
-
-function captureItem($pokeball, $pkmn){
-    animationCapture();
-    // $a = (1 - (2/3)*($pkmn['Stats']['Health']/$pkmn['Stats']['Health Max'])) * 200 *  $pokeball['effect'] * getStatusEffect($pkmn['Status'], 'capture');
-    // // a >= 255 -> captured
-    // // debugLog((1 - (2/3)*($pkmn['Stats']['Health']/$pkmn['Stats']['Health Max'])));
-    // // debugLog(200 *  $pokeball['effect'] * getStatusEffect($pkmn['Status'], 'capture'));
-    // debugLog($a);
-    // if($a < 255){
-
-    // }
-
-    $f = floor(($pkmn['Stats']['Health Max'] * 255 * 4) / ($pkmn['Stats']['Health'] * $pokeball['effect']));
-
-    $captureRate = (((3 * $pkmn['Stats']['Health Max'] - 2 * $pkmn['Stats']['Health']) * 0.5 * $pokeball['effect']) 
-    / (3 * $pkmn['Stats']['Health Max'])) * getStatusEffect('', 'PokeBalls');
-
-    $randomNumber = rand(0, 100) / 100; // Génère un nombre aléatoire entre 0 et 1
-    sleep(1);
-    if($randomNumber <= $captureRate || $pokeball['effect'] >= 255) {
-        messageBoiteDialogue('The Pokemon has been captured!',1);
-        return true;
-    } else {
-        messageBoiteDialogue('Oh no! The Pokemon escapes the ball!',1);
-        drawSpritePkmn($pkmn, false);
-        return false;
-    }
-
-}
-
-// $probabilite = probaCapture(20, 20, 255, 1, 1);
-// echo "La probabilité d'attraper le Chenipan est de : " . round($probabilite * 100, 2) . "%";
-// sleep(10);
-function probaCapture($pvActuels, $pvMax, $tauxCapture, $bonusStatut, $bonusBall) {
-    $a = (3 * $pvMax - 2 * $pvActuels) * $tauxCapture * $bonusStatut / (3 * $pvMax) * $bonusBall;
-    $a = min(max($a, 1), 255);
-    $b = 65536 / pow(255 / $a, 0.1875);
-    $probCapture = (pow($b, 0.3) * $tauxCapture * $bonusStatut) / (pow(255, 0.3) * $bonusBall);
-    return $probCapture;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////

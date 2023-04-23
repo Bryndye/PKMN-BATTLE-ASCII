@@ -260,7 +260,7 @@ function endBattle(&$joueur, $pnj){
             drawSprite(getSprites($pnj['Sprite']), getPosSpritePkmn(false));
         }
         if(isset($pnj['Dialogues']['end'])){
-            if(count($pnj['Dialogues']['end'])>0){
+            if(is_array($pnj['Dialogues']['end']) && count($pnj['Dialogues']['end'])>0){
                 foreach($pnj['Dialogues']['end'] as $message){
                     messageBoiteDialogue($message,-1);
                 }
