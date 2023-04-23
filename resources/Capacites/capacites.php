@@ -5,6 +5,7 @@ $capacites = json_decode($json, true);
 
 function getCapacite($name){
     global $capacites;
+    $name = strtolower($name);
     if(isset($capacites[$name])){
         return setCapacitePlayable($capacites[$name]);
     }
@@ -97,18 +98,28 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                 break;
             }
             clearGameScreen();
-            drawSprite(getSprites($pkmn['Sprite']), [5,3]);
+            drawSprite(getSprites($pkmn['Sprite']), [8,3]);
             textAreaLimited($pkmn['Name'],30,[3,5]);
-            textAreaLimited('Lv:'.$pkmn['Level'].'  '.$pkmn['Type 1'] .'  '.$pkmn['Type 2'],30,[4,5]);
+            textAreaLimited('Lv:'.$pkmn['Level'],30,[4,5]);
+
+            getColorByType($pkmn['Type 1']);
+            textAreaLimited($pkmn['Type 1'],30,[5,5]);
+
+            getColorByType($pkmn['Type 2']);
+            textAreaLimited($pkmn['Type 2'],30,[5,10]);
+            selectColor('reset');
     
             $i = 0;
             $y = 0;
+            $x = 35;
             foreach($pkmn['Capacites'] as $capacitePkmn){
-                drawBox([5,25],[2+$i,30]);
-                textAreaLimited($y.' '.$capacitePkmn['Name'],23,[3+$i,32]);
-                textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,32]);
+                getColorByType($capacitePkmn['Type']);
+                drawBox([4,20],[2+$i,$x],'|','-',true);
+                selectColor('reset');
+                textAreaLimited($y.' '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
+                textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
                 ++$y;
-                $i += 5;
+                $i += 4;
             }
     
             // Deuxieme boucle : remplacer par quelle capacite ?
@@ -123,6 +134,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                 if($choice2){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
+                    messageBoiteDialogue($pkmn['Name'].' has learned ' .$capacite['Name'].'!');
                     break;
                 }
                 else{

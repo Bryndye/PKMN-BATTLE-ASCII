@@ -17,12 +17,14 @@ function drawHub(&$save){
         // Attend la selection entre 1 et 2
         $choice = waitForInput([31,0],$choiceBefore);
         if($choice == 3){
-            $action = enterIntoBag($save);
-            if(str_contains($action, 'c')){
-                continue;
-            }
-            else{
-                actionBagHub($save, $save['Team'], $action);
+            while(true){
+                $action = enterIntoBag($save);
+                if(str_contains($action, 'c')){
+                    break;
+                }
+                else{
+                    actionBagHub($save, $save['Team'], $action);
+                }
             }
         }
         elseif($choice == 2){

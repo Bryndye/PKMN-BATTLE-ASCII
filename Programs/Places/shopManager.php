@@ -20,7 +20,7 @@ function managerShop(&$save){
         }
         $quantity = waitForInput([31,0], '', 'quantity? ');
         buyItem($save, $itemsAvailable[0][$choice], $quantity);
-        giveItemByItem($save['Bag'], $itemsAvailable[0][$choice]);
+        giveItemByItem($save['Bag'], $itemsAvailable[0][$choice], $quantity);
     }
 }
 function drawShop($items){

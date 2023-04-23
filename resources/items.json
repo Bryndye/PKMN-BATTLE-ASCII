@@ -69,6 +69,20 @@
 		"effect": "capacity",
 		"price" : "0"
 	},
+	"HyperBeam":
+	{
+		"name":"Hyper-Beam",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "0"
+	},
+	"Flamethrower":
+	{
+		"name":"Flamethrower",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "0"
+	},
     "Firestone":
 	{
 		"name":"Firestone",

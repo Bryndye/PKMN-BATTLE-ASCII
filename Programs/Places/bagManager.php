@@ -180,8 +180,9 @@ function useItem(&$bag, &$item, &$pkmn){
         case 'status':
             healStatusToPkmn($pkmn);
             break;
-        case 'TM':
-            healStatusToPkmn($pkmn);
+        case 'TMs':
+            // debugLog($item);
+            setCapacityToPkmn($pkmn, getCapacite($item['name']));
             break;
         case 'evolution':
             healStatusToPkmn($pkmn);
