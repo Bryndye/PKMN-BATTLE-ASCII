@@ -7509,56 +7509,48 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "stomp",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "harden",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "body-slam",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "screech",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "take-down",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "water-gun",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "hyper-beam",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "seismic-toss",
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "earthquake",
           "level": 38
         },
         {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 77
@@ -7591,27 +7583,27 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "smog",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "sludge",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "smokescreen",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "self-destruct",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "explosion",
           "level": 24
         },
         {
@@ -7619,28 +7611,16 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "sludge-bomb",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "thunderbolt",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
+          "name": "fire-blast",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 68
@@ -7669,27 +7649,27 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "smog",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "sludge",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "smokescreen",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "self-destruct",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "explosion",
           "level": 24
         },
         {
@@ -7697,19 +7677,15 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "sludge-bomb",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "thunderbolt",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
+          "name": "fire-blast",
           "level": 40
         },
         {
@@ -7751,52 +7727,56 @@
       "Sprite": "thumbnail",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
+          "level": 7
+        },
+        {
+          "name": "sand-attack",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "fury-swipes",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "stomp",
+          "level": 18
+        },
+        {
+          "name": "body-slam",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "earthquake",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "rock-throw",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "horn-drill",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "take-down",
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "dig",
           "level": 38
         },
         {
-          "name": "blizzard",
+          "name": "rock-slide",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -7829,52 +7809,56 @@
       "Sprite": "thumbnail",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
+          "level": 7
+        },
+        {
+          "name": "sand-attack",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "fury-swipes",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "stomp",
+          "level": 18
+        },
+        {
+          "name": "body-slam",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "earthquake",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "rock-throw",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "horn-drill",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "take-down",
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "dig",
           "level": 38
         },
         {
-          "name": "blizzard",
+          "name": "rock-slide",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -7907,56 +7891,44 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "tail-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "double-slap",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "sing",
+          "level": 15
+        },
+        {
+          "name": "growl",
           "level": 18
         },
         {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
+          "name": "double-edge",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "mega-punch",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "egg-bomb",
           "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
         },
         {
           "name": "blizzard",
           "level": 40
         },
         {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
           "name": "hyper-beam",
-          "level": 52
+          "level": 44
         }
       ],
       "base experience": 395
@@ -7985,15 +7957,15 @@
       "Sprite": "Grass",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "vine-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
           "level": 10
         },
         {
@@ -8001,11 +7973,11 @@
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "razor-leaf",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "absorb",
           "level": 24
         },
         {
@@ -8017,24 +7989,12 @@
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "solar-beam",
           "level": 32
         },
         {
           "name": "mega-drain",
           "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 87
@@ -8063,52 +8023,56 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
+          "level": 7
+        },
+        {
+          "name": "sand-attack",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "fury-swipes",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "stomp",
+          "level": 18
+        },
+        {
+          "name": "body-slam",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "earthquake",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "rock-throw",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "horn-drill",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "take-down",
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "dig",
           "level": 38
         },
         {
-          "name": "blizzard",
+          "name": "rock-slide",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8145,23 +8109,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "water-gun",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "hydro-pump",
           "level": 20
         },
         {
@@ -8169,28 +8133,12 @@
           "level": 24
         },
         {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
           "name": "surf",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8223,23 +8171,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "water-gun",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "hydro-pump",
           "level": 20
         },
         {
@@ -8247,28 +8195,12 @@
           "level": 24
         },
         {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
           "name": "surf",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8305,23 +8237,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "water-gun",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "hydro-pump",
           "level": 20
         },
         {
@@ -8329,28 +8261,12 @@
           "level": 24
         },
         {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
           "name": "surf",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8383,23 +8299,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "water-gun",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "hydro-pump",
           "level": 20
         },
         {
@@ -8407,28 +8323,12 @@
           "level": 24
         },
         {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
           "name": "surf",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8465,23 +8365,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "water-gun",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "hydro-pump",
           "level": 20
         },
         {
@@ -8489,28 +8389,12 @@
           "level": 24
         },
         {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
           "name": "surf",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8543,23 +8427,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "confusion",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "hydro-pump",
           "level": 20
         },
         {
@@ -8567,28 +8451,16 @@
           "level": 24
         },
         {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
           "name": "surf",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
+          "name": "psychic",
+          "level": 34
         },
         {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
         },
         {
           "name": "hyper-beam",
@@ -8699,7 +8571,7 @@
       "Sprite": "Bug",
       "capacites": [
         {
-          "name": "acid",
+          "name": "scratch",
           "level": 1
         },
         {
@@ -8707,48 +8579,28 @@
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "fury-swipes",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "slash",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "fly",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "growl",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "sword-dance",
           "level": 28
         },
         {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
           "name": "hyper-beam",
-          "level": 52
+          "level": 30
         }
       ],
       "base experience": 100
@@ -8777,31 +8629,31 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "growl",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "confusion",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "water-gun",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "ice-beam",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "ice-punch",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "psybeam",
           "level": 28
         },
         {
@@ -8813,20 +8665,12 @@
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "psychic",
           "level": 38
         },
         {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 159
@@ -8855,31 +8699,31 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "pound",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "thundershock",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "take-down",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "thunder-wave",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "thunderbolt",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "thunder-punch",
           "level": 28
         },
         {
@@ -8891,20 +8735,8 @@
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "thunder",
           "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 172
@@ -8933,31 +8765,31 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "scratch",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "ember",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "fire-punch",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "fire-spin",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "amnesia",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "smog",
           "level": 28
         },
         {
@@ -8965,24 +8797,12 @@
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "fire-blast",
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
           "name": "hyper-beam",
-          "level": 52
+          "level": 38
         }
       ],
       "base experience": 173
@@ -9011,7 +8831,7 @@
       "Sprite": "Bug",
       "capacites": [
         {
-          "name": "acid",
+          "name": "scratch",
           "level": 1
         },
         {
@@ -9019,48 +8839,28 @@
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "fury-swipes",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "slash",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "fly",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "growl",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "sword-dance",
           "level": 28
         },
         {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
           "name": "hyper-beam",
-          "level": 52
+          "level": 30
         }
       ],
       "base experience": 175
@@ -9089,48 +8889,44 @@
       "Sprite": "thumbnail",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "tail-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "growth",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "horn-drill",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "take-down",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "rock-slide",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "body-slam",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "slam",
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "slash",
           "level": 32
         },
         {
-          "name": "mega-drain",
+          "name": "rest",
           "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
         },
         {
           "name": "earthquake",
@@ -9171,56 +8967,12 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "splash",
           "level": 1
         },
         {
-          "name": "supersonic",
-          "level": 5
-        },
-        {
-          "name": "wrap",
+          "name": "tackle",
           "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 40
@@ -9249,19 +9001,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "tail-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "dragon-rage",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "bite",
           "level": 18
         },
         {
@@ -9273,20 +9025,16 @@
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "dragon-rage",
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "bite",
           "level": 30
         },
         {
           "name": "surf",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
         },
         {
           "name": "blizzard",
@@ -9327,20 +9075,12 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "bubble",
           "level": 5
-        },
-        {
-          "name": "wrap",
-          "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
         },
         {
           "name": "water-gun",
@@ -9363,20 +9103,8 @@
           "level": 32
         },
         {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
           "name": "blizzard",
           "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 187
@@ -9405,51 +9133,23 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "splash",
           "level": 5
         },
         {
-          "name": "wrap",
-          "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
+          "name": "solar-beam",
+          "level": 42
         },
         {
           "name": "blizzard",
-          "level": 40
+          "level": 44
         },
         {
-          "name": "earthquake",
+          "name": "fire-blast",
           "level": 46
         },
         {
@@ -9479,59 +9179,47 @@
       "evolution": {
         "before": "",
         "after": {
-          "Name": "vaporeon",
-          "min level": 16,
-          "stade": 2
-        }
+          "0":{
+            "Name": "vaporeon",
+            "min level": 16,
+            "stade": 2
+          },
+          "1":{
+            "Name": "flareon",
+            "min level": 16,
+            "stade": 2
+          },
+          "2":{
+            "Name": "jolteon",
+            "min level": 16,
+            "stade": 2
+          }
+      }
       },
       "Sprite": "thumbnail",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "splash",
           "level": 5
         },
         {
-          "name": "wrap",
-          "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
+          "name": "solar-beam",
           "level": 40
         },
         {
-          "name": "earthquake",
+          "name": "thunderbolt",
+          "level": 42
+        },
+        {
+          "name": "blizzard",
+          "level": 44
+        },
+        {
+          "name": "fire-blast",
           "level": 46
         },
         {
@@ -9599,22 +9287,6 @@
         {
           "name": "surf",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 184
@@ -9643,56 +9315,32 @@
       "Sprite": "thumbnail",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "thundershock",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "take-down",
           "level": 18
         },
         {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
+          "name": "thunder-wave",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "thunderbolt",
           "level": 28
         },
         {
           "name": "rest",
           "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 184
@@ -9721,31 +9369,31 @@
       "Sprite": "thumbnail",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "ember",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "tail-whip",
           "level": 10
         },
         {
-          "name": "poison-sting",
-          "level": 18
+          "name": "take-down",
+          "level": 16
         },
         {
           "name": "water-gun",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "fire-punch",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "flamethrower",
           "level": 28
         },
         {
@@ -9753,24 +9401,8 @@
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "fire-blast",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 184
@@ -9799,7 +9431,7 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
@@ -9815,40 +9447,16 @@
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "tri-attack",
           "level": 20
         },
         {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
+          "name": "blizzard",
           "level": 30
         },
         {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
           "name": "hyper-beam",
-          "level": 52
+          "level": 44
         }
       ],
       "base experience": 79
@@ -9881,19 +9489,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "bubble-beam",
           "level": 18
         },
         {
@@ -9915,22 +9523,6 @@
         {
           "name": "surf",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 71
@@ -9959,19 +9551,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "bubble-beam",
           "level": 18
         },
         {
@@ -9993,22 +9585,6 @@
         {
           "name": "surf",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 173
@@ -10041,19 +9617,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "slash",
           "level": 18
         },
         {
@@ -10065,7 +9641,7 @@
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "hyper-beam",
           "level": 28
         },
         {
@@ -10075,22 +9651,6 @@
         {
           "name": "surf",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 71
@@ -10119,19 +9679,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "harden",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "bubble",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "slash",
           "level": 18
         },
         {
@@ -10143,7 +9703,7 @@
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "hyper-beam",
           "level": 28
         },
         {
@@ -10153,22 +9713,6 @@
         {
           "name": "surf",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 173
@@ -10197,7 +9741,7 @@
       "Sprite": "Wazo",
       "capacites": [
         {
-          "name": "acid",
+          "name": "scratch",
           "level": 1
         },
         {
@@ -10205,7 +9749,7 @@
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "wing-attack",
           "level": 10
         },
         {
@@ -10213,28 +9757,12 @@
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "fly",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "screech",
           "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
         },
         {
           "name": "blizzard",
@@ -10275,19 +9803,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "growl",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "stomp",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "take-down",
           "level": 18
         },
         {
@@ -10295,28 +9823,12 @@
           "level": 20
         },
         {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
+          "name": "body-slam",
           "level": 28
         },
         {
           "name": "rest",
           "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
         },
         {
           "name": "earthquake",
@@ -10353,56 +9865,20 @@
       "Sprite": "Wazo legendary",
       "capacites": [
         {
-          "name": "acid",
+          "name": "ice-beam",
           "level": 1
         },
         {
-          "name": "supersonic",
-          "level": 5
-        },
-        {
-          "name": "wrap",
-          "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
           "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
+          "level": 1
         },
         {
           "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
+          "level": 1
         },
         {
           "name": "hyper-beam",
-          "level": 52
+          "level": 1
         }
       ],
       "base experience": 290
@@ -10431,56 +9907,20 @@
       "Sprite": "Wazo legendary",
       "capacites": [
         {
-          "name": "acid",
+          "name": "thunder",
           "level": 1
         },
         {
-          "name": "supersonic",
-          "level": 5
-        },
-        {
-          "name": "wrap",
-          "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
           "name": "rest",
-          "level": 30
+          "level": 1
         },
         {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
+          "name": "thunderbolt",
+          "level": 1
         },
         {
           "name": "hyper-beam",
-          "level": 52
+          "level": 1
         }
       ],
       "base experience": 290
@@ -10509,56 +9949,20 @@
       "Sprite": "Wazo legendary",
       "capacites": [
         {
-          "name": "acid",
+          "name": "fire-blast",
           "level": 1
         },
         {
-          "name": "supersonic",
-          "level": 5
-        },
-        {
-          "name": "wrap",
-          "level": 10
-        },
-        {
-          "name": "poison-sting",
-          "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
           "name": "rest",
-          "level": 30
+          "level": 1
         },
         {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
+          "name": "flamethrower",
+          "level": 1
         },
         {
           "name": "hyper-beam",
-          "level": 52
+          "level": 1
         }
       ],
       "base experience": 290
@@ -10591,19 +9995,19 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "tail-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "dragon-rage",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "screech",
           "level": 18
         },
         {
@@ -10611,7 +10015,7 @@
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "fissure",
           "level": 24
         },
         {
@@ -10673,31 +10077,31 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "tail-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "dragon-rage",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "screech",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "slash",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "fissure",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "slam",
           "level": 28
         },
         {
@@ -10705,16 +10109,8 @@
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "fly",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
         },
         {
           "name": "earthquake",
@@ -10751,31 +10147,31 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "tail-whip",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "dragon-rage",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "screech",
           "level": 18
         },
         {
-          "name": "water-gun",
+          "name": "slash",
           "level": 20
         },
         {
-          "name": "ice-beam",
+          "name": "fissure",
           "level": 24
         },
         {
-          "name": "toxic",
+          "name": "slam",
           "level": 28
         },
         {
@@ -10783,16 +10179,8 @@
           "level": 30
         },
         {
-          "name": "surf",
+          "name": "fly",
           "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
         },
         {
           "name": "earthquake",
@@ -10829,56 +10217,20 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "psychic",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "hyper-beam",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "amnesia",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "recover",
           "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 340
@@ -10907,56 +10259,20 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "acid",
+          "name": "psychic",
           "level": 1
         },
         {
-          "name": "supersonic",
+          "name": "hyper-beam",
           "level": 5
         },
         {
-          "name": "wrap",
+          "name": "amnesia",
           "level": 10
         },
         {
-          "name": "poison-sting",
+          "name": "recover",
           "level": 18
-        },
-        {
-          "name": "water-gun",
-          "level": 20
-        },
-        {
-          "name": "ice-beam",
-          "level": 24
-        },
-        {
-          "name": "toxic",
-          "level": 28
-        },
-        {
-          "name": "rest",
-          "level": 30
-        },
-        {
-          "name": "surf",
-          "level": 32
-        },
-        {
-          "name": "mega-drain",
-          "level": 38
-        },
-        {
-          "name": "blizzard",
-          "level": 40
-        },
-        {
-          "name": "earthquake",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
         }
       ],
       "base experience": 300
