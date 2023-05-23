@@ -31,8 +31,8 @@ include_once 'Resources/trainersAndRoutes.php';
 //// SET THE GAME ////
 clear();
 echo "\033[?25l"; // hide cursor
-shell_exec('mode con: cols=60 lines=33');
-intro();
+// shell_exec('mode con: cols=60 lines=33');
+// intro();
 startGame();
 
 //// GAME ////

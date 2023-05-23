@@ -87,35 +87,35 @@ function getStatusEffect($status, $mode) {
             if($mode == "battle") {
                 $effect = 0.06;
             } else if($mode == "capture") {
-                $effect = 12;
+                $effect = 1.5;
             }
             break;
         case "poison":
             if($mode == "battle") {
                 $effect = 0.1;
             } else if($mode == "capture") {
-                $effect = 12;
+                $effect = 1.5;
             }
             break;
         case "paralysis":
             if($mode == "battle") {
                 $effect = 'stun temp';
             } else if($mode == "capture") {
-                $effect = 12;
+                $effect = 2;
             }
             break;
         case "sleep":
             if($mode == "battle") {
                 $effect = 'stun';
             } else if($mode == "capture") {
-                $effect = 25;
+                $effect = 2;
             }
             break;
         case "frozen":
             if($mode == "battle") {
                 $effect = 'stun';
             } else if($mode == "capture") {
-                $effect = 25;
+                $effect = 2;
             }
             break;
         default:

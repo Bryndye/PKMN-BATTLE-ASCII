@@ -116,7 +116,8 @@ function animationVersusLeader($spriteName){
 
     $screenScale = getScreenScale();
     $posY = 8;
-    drawBox([getScaleSpritePkmn()[0]+2,$screenScale[1]],[$posY,1]);
+    drawBox([getScaleSpritePkmn()[0]+4,$screenScale[1]],[$posY-1,1], '|','-', true);
+    drawBox([getScaleSpritePkmn()[0]+2,$screenScale[1]],[$posY,1], '|','-', true);
 
     $scaleSprite = countLinesAndColumns($sprite);
 

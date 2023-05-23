@@ -98,17 +98,22 @@ function loopFight(&$joueur, &$pnj){
         }
 
         //  CHOIX DE IA SUR ATK
-        $actionEnemy = iaChoice($pkmnTeamJoueur, $pkmnTeamEnemy, $pnj['Bag']);
+        $actionEnemy = iaChoice($pkmnTeamJoueur, $pnj, $pnj['Bag']);
         
         // COMBAT AVEC ACTION JOUEUR ET ACTION ENEMY
-        fight($pkmnTeamJoueur, $pkmnTeamEnemy, 
+        $var = fight($pkmnTeamJoueur, $pkmnTeamEnemy, 
         $actionJoueur, $actionEnemy, $joueur['Bag'], $pnj['Bag']); 
+
+        if($var == 'captured'){
+            break;
+        }
     } 
     if($pkmnTeamEnemy[0]['Stats']['Health'] == 0){
         endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
     }
-    elseif($pkmnTeamEnemy[0]['Stats']['Health'] < 0){
-        endPkmnCaptured($pkmnTeamJoueur, $pkmnTeamEnemy[0]);
+    elseif($var == 'captured'){
+        endPkmnCaptured($joueur, $pkmnTeamEnemy[0]);
+        $pkmnTeamEnemy[0]['Stats']['Health'] = 0;
     }
 }
 
@@ -188,12 +193,10 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
         elseif($action['choice'][0] == '3'){
             if($action['Bag'][$action['choice'][1]]['type'] == 'PokeBalls'){
                 $didIt = useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamDef'][0]);
+                // FIN DU COMBAT SI CAPTURE
                 if($didIt){
-                    getPokemonFromCapture($action['teamAtk'], $action['teamDef'][0]);
-                    $action['teamDef'][0]['Stats']['Health'] = -1;
-                    // drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
-                    return;
-                    // FIN DU COMBAT SI CAPTURE
+                    // $action['teamDef'][0]['Stats']['Health'] = -1;
+                    return 'captured';
                 }
             }
             else{
@@ -221,31 +224,24 @@ function isActionBePriority($pkmn, $action){
     return $priority;
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
     messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
-    // foreach($pkmnTeamJoueur as &$pkmn){
-    //     getExp($pkmn, expToGive($pkmn, $pkmnE, false));
-    //     // return;
-    // }   
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $firstPkmn = $i == 0;
         getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE),false, $firstPkmn);
     }
 }   
 
-function endPkmnCaptured(&$pkmnTeamJoueur, &$pkmnE){
-    // foreach($pkmnTeamJoueur as &$pkmn){
-    //     getExp($pkmn, expToGive($pkmn, $pkmnE, false));
-    //     // return;
-    // }
+function endPkmnCaptured(&$joueur, &$pkmnE){
+    $pkmnTeamJoueur = &$joueur['Team'];
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $notFirstPkmn = $i != 0;
         getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE, false, $notFirstPkmn));
     }
+    getPokemonFromCapture($pkmnTeamJoueur, $pkmnE);
 }
 
 function endBattle(&$joueur, $pnj){
@@ -265,7 +261,7 @@ function endBattle(&$joueur, $pnj){
                     messageBoiteDialogue($message,-1);
                 }
             }
-            else{
+            elseif(is_array(($pnj['Dialogues']['end']) && count($pnj['Dialogues']['end']) > 0) || !is_null($pnj['Dialogues']['end']) ){
                 messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
         }

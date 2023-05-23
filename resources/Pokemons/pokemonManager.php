@@ -145,7 +145,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
 
-    messageBoiteDialogue($pkmn['Name'].' levels up to '.$pkmn['Level'].'!');
+    messageBoiteDialogue($pkmn['Name'].' level up to '.$pkmn['Level'].'!');
     sleep(1);
 
     $newStats = [];
@@ -368,26 +368,52 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         array_push($pkmnTeam, $pkmn);
     }
 }
+// Capture Rate = (( 1 + ( MaxHP × 3 - CurrentHP × 2 ) × CatchRate × BallRate × Status# ) ÷ ( MaxHP × 3 )) ÷ 256
+function capturePokemon($pokeball, $pkmn) {
+    // Si l'effet de la PokeBall est de 255, la capture est garantie
+    if ($pokeball['effect'] == 255) {
+        return true;
+    }
+
+    // Calculer le taux de capture de base
+    $ballRate = $pokeball['effect'];
+
+    // Obtenir l'effet du statut
+    $statusEffect = getStatusEffect($pkmn['Status'], 'capture');
+
+    // Variable base catch rate du pkmn : actuellement var inexistante
+    $catchRate = 122;
+
+    // Calculer le taux de capture final en prenant en compte les points de vie et l'effet de statut
+    $finalCatchRate = (( 1 + ( $pkmn['Stats']['Health Max'] * 3 - $pkmn['Stats']['Health'] * 2 ) * $catchRate * $ballRate * $statusEffect ) / ( $pkmn['Stats']['Health Max'] * 3 )) / 256;
+
+    debugLog($finalCatchRate."\n");
+    // Si le taux de capture final est supérieur à 255, la capture est garantie
+    if ($finalCatchRate*100 >= 100) {
+        return true;
+    }
+
+    // Sinon, générer un nombre aléatoire entre 0 et 100
+    $randomNumber = mt_rand(0, 100);
+    debugLog($randomNumber."\n");
+
+    // Si le nombre aléatoire est inférieur au taux de capture final, la capture réussit
+    if ($randomNumber < $finalCatchRate*100) {
+        return true;
+    }
+
+    // Sinon, la capture échoue
+    return false;
+}
+
 
 function captureItem($pokeball, $pkmn){
     animationCapture();
-    // $a = (1 - (2/3)*($pkmn['Stats']['Health']/$pkmn['Stats']['Health Max'])) * 200 *  $pokeball['effect'] * getStatusEffect($pkmn['Status'], 'capture');
-    // // a >= 255 -> captured
-    // // debugLog((1 - (2/3)*($pkmn['Stats']['Health']/$pkmn['Stats']['Health Max'])));
-    // // debugLog(200 *  $pokeball['effect'] * getStatusEffect($pkmn['Status'], 'capture'));
-    // debugLog($a);
-    // if($a < 255){
 
-    // }
+    $var = capturePokemon($pokeball, $pkmn);
 
-    $f = floor(($pkmn['Stats']['Health Max'] * 255 * 4) / ($pkmn['Stats']['Health'] * $pokeball['effect']));
-
-    $captureRate = (((3 * $pkmn['Stats']['Health Max'] - 2 * $pkmn['Stats']['Health']) * 0.5 * $pokeball['effect']) 
-    / (3 * $pkmn['Stats']['Health Max'])) * getStatusEffect('', 'PokeBalls');
-
-    $randomNumber = rand(0, 100) / 100; // Génère un nombre aléatoire entre 0 et 1
     sleep(1);
-    if($randomNumber <= $captureRate || $pokeball['effect'] >= 255) {
+    if($var) {
         messageBoiteDialogue('The Pokemon has been captured!',1);
         return true;
     } else {
@@ -397,16 +423,4 @@ function captureItem($pokeball, $pkmn){
     }
 
 }
-
-// $probabilite = probaCapture(20, 20, 255, 1, 1);
-// echo "La probabilité d'attraper le Chenipan est de : " . round($probabilite * 100, 2) . "%";
-// sleep(10);
-function probaCapture($pvActuels, $pvMax, $tauxCapture, $bonusStatut, $bonusBall) {
-    $a = (3 * $pvMax - 2 * $pvActuels) * $tauxCapture * $bonusStatut / (3 * $pvMax) * $bonusBall;
-    $a = min(max($a, 1), 255);
-    $b = 65536 / pow(255 / $a, 0.1875);
-    $probCapture = (pow($b, 0.3) * $tauxCapture * $bonusStatut) / (pow(255, 0.3) * $bonusBall);
-    return $probCapture;
-}
-
 ?>

@@ -26,6 +26,7 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
         'Name' => $pkmn[0]['Name'],
         'type' => 'wild',
         'Title' => $title,
+        'level' => 1,
         'Sprite' => $pkmn[0]['Sprite'],
         'Dialogues' => [
             'entrance' => isset($dialogues['entrance']) ? $dialogues['entrance'] : 'A wild Pokemon appears.',
@@ -93,12 +94,33 @@ function generatePkmnTeam($level = 1, $pkmnName = null, $count = 1){
 }
 
 //// FUNCTION IA CHOICE FIGHT //////////////////////////////////////////////////////////////////////////////////////////
-function iaChoice(&$pkmnTeamJ, &$pkmnTeamE){
+function iaChoice(&$pkmnTeamJ, &$pnj){
     $choice = null;
+    $pkmnTeamE = &$pnj['Team'];
     $currentPkmnJ = &$pkmnTeamJ[0];
     $currentPkmnE = &$pkmnTeamE[0];
 
-    if($pkmnTeamE[0]['Stats']['Health'] <= $pkmnTeamE[0]['Stats']['Health Max'] * 0.2){
+    switch($pnj['level']){
+        case '1':
+            return iaLevel1($currentPkmnE);
+        case '2':
+            return iaLevel2($currentPkmnJ, $currentPkmnE);
+        default:
+            return iaLevel1($currentPkmnE);
+    }
+
+}
+
+function iaLevel1(&$currentPkmn){ // -> random
+    $choice = [];
+    foreach($currentPkmn['Capacites'] as $key=>$capacite){
+        array_push($choice, $key);
+    }
+    return '1 ' .$choice[rand(0, count($choice)-1)];
+}
+
+function iaLevel2($currentPkmnJ, $currentPkmnE){
+    if($currentPkmnE['Stats']['Health'] <= $currentPkmnE['Stats']['Health Max'] * 0.2){
         // heal or switch
         $choice = '2 1'; // 1 par defaut mais il faut choisir 
     }
@@ -120,14 +142,6 @@ function iaChoice(&$pkmnTeamJ, &$pkmnTeamE){
         return "1 $meilleureCapacite";
     }
     return '1 0'; // choice default
-}
-
-function iaLevel1(&$pkmnTeam){ // -> random
-    $choice = [];
-    foreach($pkmnTeam['Team'][0]['Capacites'] as $key=>$capacite){
-        array_push($choice, $key);
-    }
-    return $choice;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
