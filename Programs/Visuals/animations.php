@@ -15,7 +15,7 @@ function translate($sprite, $posInit, $posFinal, $time=1, $laps=0.01){
         $posX += $moveXPerLaps;
         $posY += $moveYPerLaps;
         // debugLog("x:$posX y:$posY \n", 0);
-        textArea("x:$posX y:$posY \n",[0,0]);
+        // textArea("x:$posX y:$posY \n",[0,0]);
         // clearGameScreen();
         drawSprite($sprite, [$posY,$posX]);
         usleep($laps*1000);
@@ -105,23 +105,36 @@ function animationEnterSpirale(){
     }
 }
 
-function animationVersusLeader(){
+function animationVersusLeader($spriteName){
     clearGameScreen();
     drawGameCadre();
+    if(is_null($spriteName)){
+        $sprite = getSprites('rival');
+    }else{
+        $sprite = getSprites($spriteName);
+    }
+
     $screenScale = getScreenScale();
     $posY = 8;
     drawBox([getScaleSpritePkmn()[0]+2,$screenScale[1]],[$posY,1]);
 
-    $scaleSprite = countLinesAndColumns(getSprites('rival'));
+    $scaleSprite = countLinesAndColumns($sprite);
 
     $posInit = [$posY+1, $screenScale[1]-$scaleSprite[1]];
     $posFinal = [$posY+1, $screenScale[1]-$scaleSprite[1]-10];
     drawSprite(getSprites('Versus'),[$posY+3,3]);
-    drawSprite(getSprites('rival'),[$posY+1,30]);
+    drawSprite($sprite,[$posY+1,30]);
 
-    translate(getSprites('rival'), $posInit, $posFinal, 2);
+    translate($sprite, $posInit, $posFinal, 2);
 
-    sleep(5);
+    // selectColor('grey');
+    // drawSprite($sprite,[$posY+1,30]);
+    // drawSprite(getSprites('Versus'),[$posY+3,3]);
+    // selectColor('reset');
+    // sleep(1);
+    // clearArea([getScaleSpritePkmn()[0],$screenScale[1]-2],[$posY+1,2]);
+    
+    sleep(1);
 }
 
 function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){

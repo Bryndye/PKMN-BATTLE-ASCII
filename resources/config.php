@@ -44,6 +44,30 @@ function getCategoryName($categories, $actualCategory){
         return $categories[$actualCategory];
     }
 }
+
+//// SAVES ///////////////////////////////////////////////
+
+function getParameterPathSave(){
+    return 1;
+}
+
+function getSavePath($name = 'save'){
+    if($name == 'save'){
+        return getFolderSave(getParameterPathSave()).'save.json';
+    }
+    else{
+        return getFolderSave(getParameterPathSave()).'myGame.json';
+    }
+}
+
+function getFolderSave($state = 0){
+    if($state == 0){
+        return 'Save/';
+    }
+    else{
+        return '../Save/';
+    }
+}
 //// POSITIONS ///////////////////////////////////////////////
 function getPosSpritePkmn($isJoueur){
     if($isJoueur)
@@ -148,12 +172,12 @@ function countLinesAndColumns($text, $screenWidth =0) {
     $lines = explode("\n", $text);
 
     $maxColumns = 0;
-    $longestLine = '';
+    // $longestLine = '';
     foreach ($lines as $line) {
         $numColumns = countChar($line);
         if ($numColumns > $maxColumns) {
             $maxColumns = $numColumns;
-            $longestLine = $line;
+            // $longestLine = $line;
         }
     }
         // $numColumns = countChar($lines[0]);

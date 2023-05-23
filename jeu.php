@@ -33,16 +33,17 @@ clear();
 echo "\033[?25l"; // hide cursor
 // shell_exec('mode con: cols=60 lines=32');
 // intro();
-// startGame();
+startGame();
 
 //// GAME ////
 while(true){
     menuStart();
+
     //Sauvegardes joueur
     $saveProfile = saveMainManager();
     $saveParty = savePartyManager();
     $pkmnTeamJoueur = &$saveParty['Team'];
-    setData($pkmnTeamJoueur, 'Team');
+    setData($pkmnTeamJoueur, 'Team', getSavePath('save'));
 
     if(array_key_exists('IndexFloor', $saveParty)){
         $IndexFloor = $saveParty['IndexFloor'];
@@ -67,9 +68,9 @@ while(true){
     giveItemFromResources($saveParty["Bag"], 'HyperBeam', 5);
     giveItemFromResources($saveParty["Bag"], 'Flamethrower', 5);
 
-
     // Need to reload Trainers because Rival's starter
     generateIAs();
+
     // Loop gameplay if team alive
     while(true){
         // HUB
@@ -91,9 +92,9 @@ while(true){
         else{
             ++$IndexFloor;
             $saveParty['IndexFloor'] = $IndexFloor;
-            setFile($saveParty);
+            setFile($saveParty, getSavePath('save'));
         }
-        waitForInput([31,0]);
+        waitForInput(getPosChoice());
 
 
         //Ajouter condition while var global pour arreter le while

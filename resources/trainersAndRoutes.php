@@ -556,7 +556,8 @@ function generateIAs(){
                     generatePkmnBattle('pidgey', 6),
                     generatePkmnBattle(selectStarterRival(0), 8),
                 ],
-                1
+                1,
+                'Rival'
             ),
         10 =>  createTrainer('Gym Leader Brock', 
             'trainer',

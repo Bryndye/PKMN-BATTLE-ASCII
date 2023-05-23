@@ -4,7 +4,7 @@
 function drawMoney($pos){
     $posY = $pos[0];
     $posX = $pos[1];
-    $money = getDataFromSave('Money');
+    $money = getDataFromSave('Money', getSavePath('save'));
     drawBox([4,20],[$posY,$posX], '|', '-');
     textArea('Pokedols : ', [$posY+1,$posX+3]);
     textArea($money, [$posY+2,$posX+4]);
@@ -26,7 +26,7 @@ function drawNextFloor($pos){
     $posX = $pos[1];
     drawBox([10,30],[$posY+2,$posX], '|', '-', true);
 
-    $saveFight = getSave();
+    $saveFight = getSave(getSavePath('save'));
     textArea('NEXT', [$posY+3,$posX+13]);
     textArea('Floor : '.$saveFight['IndexFloor'], [$posY+4,$posX+2]);
     textArea('Route : '.getRouteFromIndex($saveFight['IndexFloor'], true), [$posY+6,$posX+2]);

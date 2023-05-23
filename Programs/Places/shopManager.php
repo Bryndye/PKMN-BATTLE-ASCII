@@ -7,7 +7,7 @@ function managerShop(&$save){
 
         $itemsAvailable = listItemsBuyable($save['Money']);
         messageBoiteDialogue('Which item do you want to buy?');
-        $choice = waitForInput([31,0], $itemsAvailable[1]);
+        $choice = waitForInput(getPosChoice(), $itemsAvailable[1]);
         if($choice == 'c'){
             messageBoiteDialogue('Are you sure to leave the shop? ');
             $choice2 = sureToLeave();
@@ -18,7 +18,7 @@ function managerShop(&$save){
                 continue;
             }
         }
-        $quantity = waitForInput([31,0], '', 'quantity? ');
+        $quantity = waitForInput(getPosChoice(), '', 'quantity? ');
         buyItem($save, $itemsAvailable[0][$choice], $quantity);
         giveItemByItem($save['Bag'], $itemsAvailable[0][$choice], $quantity);
     }

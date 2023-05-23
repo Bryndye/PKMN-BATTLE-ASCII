@@ -30,7 +30,7 @@ function drawHub(&$save){
         elseif($choice == 2){
             // debugLog($save);
             drawPkmnTeam($save['Team']);
-            waitForInput([31,0], 'c');
+            waitForInput(getPosChoice(), 'c');
         }
         elseif($choice == 4){
             managerShop($save);

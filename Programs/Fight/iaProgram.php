@@ -4,7 +4,7 @@ function createTrainer($name, $sprite, $dialogues, $reward, $bag, $team, $iaLeve
     $pnj = [
         'Name' => $name,
         'type' => 'trainer',
-        'title' => $title,
+        'Title' => $title,
         'level' => $iaLevel,
         'Sprite' => $sprite,
         'Dialogues' => [
@@ -25,7 +25,7 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
     $wildPkmn = [
         'Name' => $pkmn[0]['Name'],
         'type' => 'wild',
-        'title' => $title,
+        'Title' => $title,
         'Sprite' => $pkmn[0]['Sprite'],
         'Dialogues' => [
             'entrance' => isset($dialogues['entrance']) ? $dialogues['entrance'] : 'A wild Pokemon appears.',
@@ -40,6 +40,9 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
 //// GENERATION D'UN PNJ //////////////////////////////////
 function generatePNJ($indexFloor, $level){
     $pnj = managerPNJGenerate($indexFloor, $level);
+    if($pnj['Title'] == 'Champion' || $pnj['Title'] == 'Gym Leader' || $pnj['Title'] == 'Elite Four' || $pnj['Title'] == 'Legendary' || $pnj['Title'] == 'Rival'){
+        animationVersusLeader($pnj['Sprite']);
+    }
     return $pnj;
 }
 
@@ -141,7 +144,7 @@ function choosePkmn(&$teamPkmn){
 }
 
 function selectStarterRival($stadeEvol = 0){
-    $starter = getDataFromSave('Starter');
+    $starter = getDataFromSave('Starter', getSavePath('save'));
     switch($starter){
         case 1:
           $starter = 'bulbasaur';  

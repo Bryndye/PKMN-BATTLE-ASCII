@@ -24,7 +24,6 @@ function intro(){
     // Fait apparaitre un Charizard au milieu de l'écran pendant x TEMPS
     animationIntro();
 
-
     // Menu titre + press pour joueur
     drawGameCadre();
     drawSprite(getSprites('title'),[3,2]);
@@ -48,7 +47,7 @@ function menuStart(){
     drawGameCadre();
     
     $choiceBefore = [];
-    if(isSaveExist('Save/save.json',true)){
+    if(isSaveExist(getSavePath('save'),true)){
         drawBox([9,20],[5,5], '|', '-', true);
         textArea('1 : CONTINUE', [7,7]);
         textArea("2 : DELETE", [9,7]);
@@ -70,10 +69,10 @@ function menuStart(){
         exitGame();
     }
     elseif($choice == 2){
-        deleteSave();
+        deleteSave(getSavePath('save'));
     }
-    drawBox([29,60],[1,1]); // Cadre du jeu
-    clearArea([27,58],[2,2]); // Efface l'écran
+
+    clearGameScreen();
 }
 function exitGame(){
     echo "\033c";
@@ -81,16 +80,16 @@ function exitGame(){
 }
 
 function drawStatsFromSaveToMenu(){
-    if(isSaveExist('Save/myGame.json')){
+    if(isSaveExist(getSavePath('myGame'))){
         drawBox([21,30],[3,28], '|', '-', true);
-        $save = getSave('Save/myGame.json');
+        $save = getSave(getSavePath('myGame'));
         textArea('Name : '.$save['name'], [5,30]);
         textArea('Pokedex : '. count($save['Pokedex']), [7,30]);
         textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
         textArea('Win Count : '.$save['Game wins'], [9,30]);
 
-        if(isSaveExist()){
-            $saveFight = getSave();
+        if(isSaveExist(getSavePath('save'))){
+            $saveFight = getSave(getSavePath('save'));
             textArea('------ Current Game ------', [11,30]);
             textArea('Floor : '.$saveFight['IndexFloor'], [13,30]);
             textArea("Money : ".$saveFight['Money'], [14,30]);
@@ -129,15 +128,15 @@ function chooseFirstPokemon(){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// FIRST TIME IN GAME //////////////////////////////////////////////////////////////////////
 function startGame(){
-    if(!isSaveExist('Save/myGame.json')){
+    if(!isSaveExist(getSavePath('myGame'))){
         cinematicPresentation();
     }
     else{
-        $file = file_get_contents('Save/myGame.json');
+        $file = file_get_contents(getSavePath('myGame'));
         $array = json_decode($file, true);
 
         if(!isset($array['name'])){
-            deleteSave('Save/myGame.json');
+            deleteSave(getSavePath('myGame'));
             cinematicPresentation();
         }
     }
@@ -150,6 +149,7 @@ function cinematicPresentation(){
     drawSprite(getSprites('trainer'), $posSprite);
     messageBoiteDialogue("Hello, i'm Prof. Twig and welcome to the world of Pokemon!", -1);
     messageBoiteDialogue("Let me show you what a pokemon is.", -1);
+    clearArea([15,50],[2,2]);
     clearSprite($posSprite);
     drawSprite(getSprites('Pokeball_1'),$posSprite);
     sleep(1);
@@ -162,7 +162,7 @@ function cinematicPresentation(){
 
     messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", -1);
     saveMainManager();
-    $save = getSave('Save/myGame.json');
+    $save = getSave(getSavePath('myGame'));
     messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", -1);
     messageBoiteDialogue("But this time, it will be different. You have 100 battles to win.", -1);
     messageBoiteDialogue("You loose, you restart by choosing your 'first' Pokemon.", -1);
@@ -197,7 +197,7 @@ function cinematicLeagueEnding(&$save){
 function cinematicEnding(&$save){
     clearGameScreen();
     messageBoiteDialogue('Congratulations! You beat the game!', -1);
-    $wins = getDataFromSave('Game wins', 'Save/myGame.json');
+    // $wins = getDataFromSave('Game wins', getSavePath('myGame'));
 
     foreach($save['Team'] as $pkmn){
         drawSprite(getSprites($pkmn['Sprite']), [3,18]);
@@ -216,21 +216,21 @@ function cinematicEnding(&$save){
 }
 
 function endGame(){
-    deleteSave();
-    $gameWins = getDataFromSave('Game wins', 'Save/myGame.json');
+    deleteSave(getSavePath('save'));
+    $gameWins = getDataFromSave('Game wins', getSavePath('myGame'));
     ++$gameWins;
     $floorMaxReturn = ($gameWins*10) + 100;
-    setData($floorMaxReturn, 'IndexFloor Max', 'Save/myGame.json');
-    setData($gameWins, 'Game wins', 'Save/myGame.json');
+    setData($floorMaxReturn, 'IndexFloor Max', getSavePath('myGame'));
+    setData($gameWins, 'Game wins', getSavePath('myGame'));
 }
 
 function screenLose(){
     clearGameScreen();
-    addData(1, 'loses', 'Save/myGame.json');
-    $floor = getDataFromSave('IndexFloor');
+    addData(1, 'loses', getSavePath('myGame'));
+    $floor = getDataFromSave('IndexFloor', getSavePath('save'));
 
     drawSprite(getSprites('Pokeball'), [3,18]);
     messageBoiteDialogue('You lost at '. $floor . ' floor...', -1);
-    deleteSave();
+    deleteSave(getSavePath('save'));
 }
 ?>

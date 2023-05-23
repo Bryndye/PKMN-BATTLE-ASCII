@@ -18,6 +18,9 @@ function selectColor($color = 'black'){
         case 'reset':
             $string = '0m'; //reset style text
             break;
+        case 'white':
+            $string = '1;37m';
+            break;
         case 'black':
             $string = '30m';
             break;
@@ -37,7 +40,7 @@ function selectColor($color = 'black'){
             $string = '14';
             break;
         case 'grey':
-            $string = '8';
+            $string = '0;37m';
             break;
         case 'purple':
             $string = '5';
