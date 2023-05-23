@@ -194,7 +194,7 @@ function drawDiagonal($scale, $pos) {
 }
 
 function drawGameCadre(){
-    drawBox(getScreenScale(),[1,1]);
+    drawBox(getScreenScale(),[1,1], '|', '-', true);
 }
 
 function textArea($string, $pos, $scale = 0){

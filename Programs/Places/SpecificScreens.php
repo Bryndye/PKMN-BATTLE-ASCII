@@ -5,19 +5,19 @@ function intro(){
     
     // Animation de * en diagonale sur l'écran
     $height = getScreenScale();
-    for ($i = 0; $i < $height[0]; $i++) {
+    for ($i = 0; $i < $height[0]-2; $i++) {
         clearGameScreen();
         // drawFullBox([1,1],[$i,2*$i+4]);
-        if($i != ($height[0]-1)){
+        if($i != ($height[0]-1) && $i > 1){
             drawFullBox([3,3],[$i,2*$i]);
         }
-        if($i>4){
+        if($i>6){
             drawDiagonal([4,4], [$i-6,2*($i-3)]);
             // drawFullBox([1,1],[($i-6)+4,2*($i-3)]);
             drawDiagonal([3,3],[$i-5,2*($i-1)]);
             drawDiagonal([3,3],[$i-3,2*($i-3)]);
         }
-        usleep(10000); // Arrête l'exécution d'un programme durant un laps de temps
+        usleep(25000); // Arrête l'exécution d'un programme durant un laps de temps
     }
     clearGameScreen();
 

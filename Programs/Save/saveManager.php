@@ -24,8 +24,9 @@ function saveMainManager(){
 }
 
 function savePartyManager(){
-    if(isSaveExist('Save/save.json')){
+    if(isSaveExist(getSavePath('save'))){
         $saveParty = getSave(getSavePath('save'));
+
         // Si la partie est créée mais sans pkmn starter, delete.
         if(!isset($saveParty['Team'])){
             deleteSave(getSavePath('save'));
@@ -34,11 +35,11 @@ function savePartyManager(){
         return $saveParty;
     }
     else{
-        if(is_dir('Save')){
+        if(is_dir(getFolderSave(getParameterPathSave()))){
             return createPartySave();
         }
         else{
-            mkdir('Save', 0777, true);
+            mkdir(getFolderSave(getParameterPathSave()), 0777, true);
             return createPartySave();
         }
     }

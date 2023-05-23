@@ -127,7 +127,6 @@ function iaLevel1(&$pkmnTeam){ // -> random
     foreach($pkmnTeam['Team'][0]['Capacites'] as $key=>$capacite){
         array_push($choice, $key);
     }
-    debugLog($choice);
     return $choice;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -145,6 +144,7 @@ function choosePkmn(&$teamPkmn){
 
 function selectStarterRival($stadeEvol = 0){
     $starter = getDataFromSave('Starter', getSavePath('save'));
+
     switch($starter){
         case 1:
           $starter = 'bulbasaur';  
