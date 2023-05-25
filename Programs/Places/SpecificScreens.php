@@ -29,7 +29,6 @@ function intro(){
     drawSprite(getSprites('title'),[3,2]);
     drawSprite(getSprites('Pikachu'),[15,15]);
 
-    // echo 'Press any to enter';
     waitForInput();
 }
 
@@ -48,14 +47,14 @@ function menuStart(){
     
     $choiceBefore = [];
     if(isSaveExist(getSavePath('save'),true)){
-        drawBox([9,20],[5,5], '|', '-', true);
+        drawBox([9,20],[5,5]);
         textArea('1 : CONTINUE', [7,7]);
         textArea("2 : DELETE", [9,7]);
         textArea("3 : QUIT", [11,7]);
         $choiceBefore = [1,2,3];
     }
     else{
-        drawBox([7,20],[5,5], '|', '-', true);
+        drawBox([7,20],[5,5]);
         textArea('1 : NEW GAME', [7,7]);
         textArea("3 : QUIT", [9,7]);
         $choiceBefore = [1,3];
@@ -81,7 +80,7 @@ function exitGame(){
 
 function drawStatsFromSaveToMenu(){
     if(isSaveExist(getSavePath('myGame'))){
-        drawBox([21,30],[3,28], '|', '-', true);
+        drawBox([21,30],[3,28]);
         $save = getSave(getSavePath('myGame'));
         textArea('Name : '.$save['name'], [5,30]);
         textArea('Pokedex : '. count($save['Pokedex']), [7,30]);

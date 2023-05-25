@@ -1,5 +1,5 @@
 <?php 
-include 'Resources/Capacites/capacites.php';
+include 'Programs/Helpers/capacites.php';
 
 $json = file_get_contents('Resources/Pokemons/pokemonsv2.json');
 $pokemonPokedex = json_decode($json, true);

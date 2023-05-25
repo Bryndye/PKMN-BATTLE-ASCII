@@ -9,8 +9,8 @@ function drawHub(&$save){
         $choiceBefore = [1,2,3,4,5];
         drawMenuSelectionHub([7,7]);
         drawBoxTitle([3,5],[3,7], 'HUB');
-        drawMoney([4,35]);
-        drawNextFloor([7,28]);
+        drawMoney();
+        drawNextFloor([10,28]);
 
         messageBoiteDialogue('What do you want to do?');
 
@@ -19,7 +19,7 @@ function drawHub(&$save){
         if($choice == 3){
             while(true){
                 $action = enterIntoBag($save);
-                if(str_contains($action, 'c')){
+                if(str_contains($action, leaveInputMenu())){
                     break;
                 }
                 else{
@@ -30,7 +30,7 @@ function drawHub(&$save){
         elseif($choice == 2){
             // debugLog($save);
             drawPkmnTeam($save['Team']);
-            waitForInput(getPosChoice(), 'c');
+            waitForInput(getPosChoice(), leaveInputMenu());
         }
         elseif($choice == 4){
             managerShop($save);

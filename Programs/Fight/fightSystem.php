@@ -71,7 +71,7 @@ function loopFight(&$joueur, &$pnj){
         $actionJoueur = null;
         if($choice == 1){
             interfaceCapacities($pkmnTeamJoueur[0]['Capacites']);
-            $arrayChoise2 = ['c'];
+            $arrayChoise2 = [leaveInputMenu()];
             for($i=0;$i<4;++$i){
                 if(isset($pkmnTeamJoueur[0]['Capacites'][$i]['Name']) && $pkmnTeamJoueur[0]['Capacites'][$i]['PP'] > 0){
                     array_push($arrayChoise2, ($i));
@@ -81,7 +81,7 @@ function loopFight(&$joueur, &$pnj){
         }
         elseif($choice == 2){
             $choice2 = selectPkmn($pkmnTeamJoueur, 1, true);
-            if($choice2 != 'c'){           
+            if($choice2 != leaveInputMenu()){           
                 drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }
         }
@@ -93,7 +93,7 @@ function loopFight(&$joueur, &$pnj){
         $actionJoueur = "$choice $choice2";
 
         // Si aucune action choisie, retour au début
-        if($actionJoueur == null || substr($choice2, 0, 1) == 'c'){            
+        if($actionJoueur == null || substr($choice2, 0, 1) == leaveInputMenu()){            
             continue;
         }
 

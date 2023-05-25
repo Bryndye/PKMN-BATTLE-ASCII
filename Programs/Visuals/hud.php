@@ -1,13 +1,25 @@
 <?php
 //// DRAW HUB PLACE ///////////////////////////////////////////
 
-function drawMoney($pos){
+function drawMoney($pos = null, $currentMoney = null){
+    if($pos == null){
+        $pos = [5,38];
+    }
+    if(!is_numeric($currentMoney)){
+        $money = getDataFromSave('Money', getSavePath('save'));
+    }
+    else{
+        $money = $currentMoney;
+    }
+    // title centrer sur la longueur du cadre
+    // money aligne a droite |  Pxxxxx|
     $posY = $pos[0];
     $posX = $pos[1];
-    $money = getDataFromSave('Money', getSavePath('save'));
-    drawBox([4,20],[$posY,$posX], '|', '-');
-    textArea('Pokedols : ', [$posY+1,$posX+3]);
-    textArea($money, [$posY+2,$posX+4]);
+    $scaleX = 15;
+    drawBox([3,$scaleX],[$posY,$posX], '|', '-');
+    justifyText('Pokedols', $scaleX,[$posY,$posX], 'center');
+    justifyText(formatMoney($money), $scaleX-3,[$posY+1,$posX+1], 'right');
+    // textArea($money, [$posY+2,$posX+4]);
 }
 
 function drawMenuSelectionHub($pos){
@@ -24,16 +36,25 @@ function drawMenuSelectionHub($pos){
 function drawNextFloor($pos){
     $posY = $pos[0];
     $posX = $pos[1];
-    drawBox([10,30],[$posY+2,$posX], '|', '-', true);
+    drawBox([10,30],[$posY,$posX]);
 
     $saveFight = getSave(getSavePath('save'));
-    textArea('NEXT', [$posY+3,$posX+13]);
-    textArea('Floor : '.$saveFight['IndexFloor'], [$posY+4,$posX+2]);
-    textArea('Route : '.getRouteFromIndex($saveFight['IndexFloor'], true), [$posY+6,$posX+2]);
+    justifyText('NEXT', 30, $pos, 'center');
+    textArea('Floor : '.$saveFight['IndexFloor'], [$posY+2,$posX+2]);
 
+    $currentRoute = getRouteFromIndex($saveFight['IndexFloor'],true);
     $pnj = checkPNJExist($saveFight['IndexFloor']);
-    if(!is_null($pnj)){
-        textArea('Trainer : '.$pnj['Name'], [$posY+8,$posX+2]);
+    if(!is_null($currentRoute)){
+        textArea('Route : '.$currentRoute, [$posY+4,$posX+2]);
+
+        if(!is_null($pnj)){
+            textArea('Trainer : '.$pnj['Name'], [$posY+6,$posX+2]);
+        }
+    }
+    else{
+        if(!is_null($pnj)){
+            textArea('Trainer : '.$pnj['Name'], [$posY+4,$posX+2]);
+        }
     }
 }
 
@@ -57,7 +78,7 @@ function drawCategorySelected($categories, $caterogySelected, $pos){
 }
 //// DRAW DIALOGUE ///////////////////////////////////////////
 function drawBoiteDialogue(){
-    drawBox(getScaleDialogue(), getPosDialogue());
+    drawBox(getScaleDialogue(), getPosDialogue(), '|', '-', true);
 }
 
 function messageBoiteDialogue($message, $time = 0){
@@ -99,7 +120,7 @@ function textColoredByType($text, $color) {
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 function drawBoxTitle($pos, $scale, $title){
-    drawBox($scale,$pos, '|', '-', true);
+    drawBox($scale,$pos);
     textArea($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
 }
 

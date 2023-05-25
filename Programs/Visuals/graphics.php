@@ -1,10 +1,20 @@
 <?php
-// AIDE CODE TERMINAL
-// echo "\033[?25l"; //hide cursor
-// echo "\033[?25h"; //show cursor
-
 // https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html
 
+//// CURSOR //////////////////////////////////////////
+function hideCursor(){
+    echo "\033[?25l";
+}
+
+function showCusor(){
+    echo "\033[?25h";
+}
+
+function moveCursor($pos){
+    $x = $pos[1];
+    $y = $pos[0];
+    echo "\033[".$y.";".$x."H";
+} 
 
 //// STANDARD FCT DRAW ///////////////////////////////
 function selectColor($color = 'black'){
@@ -114,11 +124,6 @@ function getColorByType($type = 'normal'){
     }
 }
 
-function moveCursor($pos){
-    $x = $pos[1];
-    $y = $pos[0];
-    echo "\033[".$y.";".$x."H";
-} 
 
 function moveCursorIndex($pos, $i){
     $x = (int)$pos[1];
@@ -126,7 +131,7 @@ function moveCursorIndex($pos, $i){
     echo "\033[".$y.";".$x."H";
 }  
 
-function drawBox($scale, $pos, $styleH='*', $styleL='*', $corner = false, $cornerStyle = ['+','+','+','+']){
+function drawBox($scale, $pos, $styleH='|', $styleL='-', $corner = true, $cornerStyle = ['+','+','+','+']){
     moveCursor($pos);
     
     for ($i = 0; $i < $scale[0]; $i++) {
@@ -194,7 +199,7 @@ function drawDiagonal($scale, $pos) {
 }
 
 function drawGameCadre(){
-    drawBox(getScreenScale(),[1,1], '|', '-', true);
+    drawBox(getScreenScale(),[1,1]);
 }
 
 function textArea($string, $pos, $scale = 0){
@@ -219,18 +224,26 @@ function textAreaLimited($string, $scale = 50, $pos = [26,4]){ //pos dialogue de
     }
 }
 
-function justifyText($string, $scale, $comble, $where){
-    $align = STR_PAD_LEFT;
+function justifyText($string, $scale, $pos, $where){
     if($where == 'right'){
-        $align = STR_PAD_RIGHT;
+        // Aligner à droite
+        textArea(str_pad($string, $scale, " ", STR_PAD_LEFT),$pos);
     }
-    else if($where == 'left'){
-        $align = STR_PAD_LEFT;
+    elseif($where == 'center'){
+        // Centrer
+        $left = intval(($scale - strlen($string)) / 2);
+        // $right = ceil(($scale - strlen($string)) / 2);
+        $newPos = [$pos[0], $pos[1]+$left];
+        textArea($string,$newPos);
     }
-    return str_pad($string, 3, " ", $align);
 }
 //////////////////////////////////////////////////////////////
 ///// CLEAR //////////////////////////////////////////////////
+
+function clear(){
+    echo "\033c";
+}
+
 function clearArea($scale, $pos){
     for ($i = 0; $i <  $scale[0]; $i++) {
         moveCursorIndex($pos, $i);
@@ -252,9 +265,6 @@ function clearGameplayScreen(){
     clearArea([$screenScale[0]-$boiteDialogueScale[0]-1,$screenScale[1]-2], [2,2]);
 }
 
-function clear(){
-    echo "\033c";
-}
 
 function clearSprite($pos){
     $posClearSprite = [$pos[0]+1,$pos[1]];

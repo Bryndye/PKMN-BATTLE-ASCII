@@ -125,8 +125,8 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
                 messageBoiteDialogue('Which capacity to removes?');
-                $choice = waitForInput([31,0], ['c',0,1,2,3]);
-                if($choice == 'c'){
+                $choice = waitForInput([31,0], [leaveInputMenu(),0,1,2,3]);
+                if($choice == leaveInputMenu()){
                     break;
                 }
                 messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');

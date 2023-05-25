@@ -1,71 +1,126 @@
 <?php
 
 function managerShop(&$save){
+    $indexCategory = 0;
+    $currentIndexItemTEMP = 0;
+    $listIemsShop = getSave('Resources/items.json'); // TEMP
     while(true){
         clearGameScreen();
-        drawBoiteDialogue();
 
-        $itemsAvailable = listItemsBuyable($save['Money']);
-        messageBoiteDialogue('Which item do you want to buy?');
-        $choice = waitForInput(getPosChoice(), $itemsAvailable[1]);
-        if($choice == 'c'){
-            messageBoiteDialogue('Are you sure to leave the shop? ');
-            $choice2 = sureToLeave();
-            if($choice2){
-                break;
+        $categories = getAllCategoriesItem();
+
+        // Create list depends on category selected
+        $currentListItemTEMP = [];
+        foreach($listIemsShop as $key => &$item){
+            // debugLog($item);
+            if($item['type'] == getCategoryName($categories, $indexCategory)){
+                array_push($currentListItemTEMP, ['key'=>$key, 'item'=>$item]);
+            }
+        }
+        $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
+
+        // Draw & write before action
+        drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
+        drawCategoryBag(getAllCategoriesItem(), $indexCategory);
+        messageBoiteDialogue("Which item do you want to buy?\n   z   \n<q   d> Use=v\n   s");
+        drawMoney(null, $save['Money']);
+
+        // Action
+        $move = waitForInput(getPosChoice(),$moveChoice);
+        if($move == leaveInputMenu()){
+            return leaveInputMenu();
+        }
+        // Validation item
+        elseif($move == 'v'){
+            $quantity = waitForInput(getPosChoice(), '', 'quantity? ');
+            if(buyItem($save, $currentListItemTEMP[$currentIndexItemTEMP]['item'], $quantity)){
+                giveItemByItem($save['Bag'], $currentListItemTEMP[$currentIndexItemTEMP]['item'], $quantity);
+            }
+        }
+
+        // Move cursor inside list items
+        elseif($move == 'q'){
+            if($indexCategory > 0){
+                $indexCategory -= 1;
             }
             else{
-                continue;
+                $indexCategory = count($categories)-1;
+            }
+            $currentIndexItemTEMP = 0;
+        }
+        elseif($move == 'd'){
+            if($indexCategory < count($categories)-1){
+                $indexCategory += 1;
+            }
+            else{
+                $indexCategory = 0;
+            }
+            $currentIndexItemTEMP = 0;
+        }
+
+        elseif($move == 'z'){
+            if($currentIndexItemTEMP > 0){
+                $currentIndexItemTEMP -= 1;
+            }
+            else{
+                $currentIndexItemTEMP = count($currentListItemTEMP)-1;
             }
         }
-        $quantity = waitForInput(getPosChoice(), '', 'quantity? ');
-        buyItem($save, $itemsAvailable[0][$choice], $quantity);
-        giveItemByItem($save['Bag'], $itemsAvailable[0][$choice], $quantity);
-    }
-}
-function drawShop($items){
-    drawMoney([4,35]);
-    $i = 0;
-    $y = 0;
-    $choice = [];
-    foreach($items as $key => $item){
-        moveCursor([4+$i,5]);
-        $key = $y;
-        $name = '';
-        if(isset($item['name'])){
-            $name = $item['name'];
-        }
-        else{
-            $name = $key;
-        }
-        echo $y . '. '.$name . ' : ' . $item['price'];
-        $choice[$y] = $item;
-        $i += 2;
-        $y++;
-    }
-    return $choice;
-}
-
-function listItemsBuyable($currentMoney){
-    $file = file_get_contents('Resources/items.json');
-    $array = json_decode($file, true);
-    $list = drawShop($array);
-    $choice = ['c'];
-    for($i=1;$i<count($list)+1;++$i){
-        if($currentMoney >= $list[$i-1]['price']){
-            $choice[$i] = $i-1;
+        elseif($move == 's'){
+            if($currentIndexItemTEMP < count($currentListItemTEMP)-1){
+                $currentIndexItemTEMP += 1;
+            }
+            else{
+                $currentIndexItemTEMP = 0;
+            }
         }
     }
-    return [$list, $choice];
 }
 
 function buyItem(&$save, $itemToBuy, $quantity = 1){
     $money = &$save['Money'];
     if($money < $itemToBuy['price']*$quantity){
-        messageBoiteDialogue("You can't buy ".$itemToBuy['name'].' x '.$quantity.' times.');
-        return;
+        messageBoiteDialogue("You don't have enough money for ".$itemToBuy['name'].' x '.$quantity.'.');
+        waitForInput();
+        return false;
     }
     $money -= $itemToBuy['price'] * $quantity;
     messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.',1);
+    return true;
 }
+
+//// OLD
+// function drawShop($items){
+//     drawMoney();
+//     $i = 0;
+//     $y = 0;
+//     $choice = [];
+//     foreach($items as $key => $item){
+//         $key = $y;
+//         $name = '';
+//         if(isset($item['name'])){
+//             $name = $item['name'];
+//         }
+//         else{
+//             $name = $key;
+//         }
+//         textArea($y . '. '.$name . ' : ' . $item['price'], [4+$i,5]);
+
+//         $choice[$y] = $item;
+//         $i += 2;
+//         $y++;
+//     }
+//     return $choice;
+// }
+
+// function listItemsBuyable($items, $currentMoney){
+//     $list = drawShop($items);
+//     $choice = [leaveInputMenu()];
+//     for($i=1;$i<count($list)+1;++$i){
+//         if($currentMoney >= $list[$i-1]['price']){
+//             $choice[$i] = $i-1;
+//         }
+//     }
+//     return [$list, $choice];
+// }
 ?>

@@ -8,8 +8,7 @@ function enterIntoBag(&$save, $type = 'hub'){
     while(true){
         clearGameScreen();
 
-        // savoir les categoires a mettre sur interface
-        // recuperer list du premier onglet interface
+        // Set interface depends on category of items
         if($type == 'wild'){
             $categories = ['Heals','PokeBalls'];
         }
@@ -36,25 +35,26 @@ function enterIntoBag(&$save, $type = 'hub'){
         elseif($type == 'hub'){
             if(getCategoryName($categories, $indexCategory) != 'PokeBalls'){
                 $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
-                // debugLog(inputsNavigate($categories, $currentListItemTEMP));
             }
             else{
                 $moveChoice = inputsNavigate($categories, $currentListItemTEMP, false);
             }
         }
-        // debugLog($currentListItemTEMP);
+        
+        // Draw & write before action
         messageBoiteDialogue("Which item to use?\n   z   \n<q   d> Use=v\n   s");
-        drawBag2($currentListItemTEMP, $currentIndexItemTEMP);
+        drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
         drawCategoryBag($categories, $indexCategory);
 
         // Action
         $move = waitForInput(getPosChoice(),$moveChoice);
-        if($move == 'c'){
-            return 'c';
+        if($move == leaveInputMenu()){
+            return leaveInputMenu();
         }
+        // Validation item
         elseif($move == 'v'){
             $choice = useItemOn($allItemsBag, $currentListItemTEMP[$currentIndexItemTEMP]['key'], $pkmnTeam);
-            if($choice == 'c'){
+            if($choice == leaveInputMenu()){
                 continue;
             }
             else{
@@ -62,7 +62,7 @@ function enterIntoBag(&$save, $type = 'hub'){
             }
         }
 
-        // deplacement des categories
+        // Move cursor inside list items
         elseif($move == 'q'){
             if($indexCategory > 0){
                 $indexCategory -= 1;
@@ -108,26 +108,34 @@ function actionBagHub(&$save, &$pkmnTeam, $choice){
     sleep(1);
 }
 
-function drawBag2(&$listItems, $indexItem = 0){
+function drawRefreshInterfaceList($listItems, $indexItem = 0){
     $i = 2;
     $y = 1;
 
     foreach($listItems as $key => $item){
-
-        $keyBag = $item['key'];
         $itemBag = $item['item'];
-        $name = '';
-        if(isset($itemBag['name'])){
+        $isInBag = array_key_exists('quantity', $itemBag);
+        if($isInBag){
+            $valueToShow = $itemBag['quantity'];
+
+            if(isset($itemBag['name'])){
+                $name = $itemBag['name'];
+            }
+            else{
+                $name = $key;
+            }
+        }
+        else{
+            $valueToShow = formatMoney($itemBag['price']);
             $name = $itemBag['name'];
         }
-        else{
-            $name = $key;
-        }
+
+        $sign = $isInBag ? ' x ' : ' : ';
         if($key == $indexItem){
-            textArea('-> '/*.$key . '. keyBag:'.$keyBag.' '*/.$name . ' x ' . $itemBag['quantity'], [4+$i,5]);
+            textArea('-> '/*.$key . '. keyBag:'.$keyBag.' '*/.$name . $sign . $valueToShow, [4+$i,5]);
         }
         else{
-            textArea(/*$key . '. keyBag:'.$keyBag.' '.*/$name . ' x ' . $itemBag['quantity'], [4+$i,5]);
+            textArea(/*$key . '. keyBag:'.$keyBag.' '.*/$name . $sign . $valueToShow, [4+$i,5]);
         }
         $i += 2;
         $y++;
@@ -145,8 +153,8 @@ function useItemOn(&$bag, $indexItem, &$pkmnTeam){
         }
         // Select Pkmn to heal
         $choice2 = selectPkmn($pkmnTeam, 0, true, 'Use '.$itemToUse['name'] .' on?');
-        if($choice2 == 'c'){
-            return 'c';
+        if($choice2 == leaveInputMenu()){
+            return leaveInputMenu();
         }
         return "$indexItem $choice2";
     }

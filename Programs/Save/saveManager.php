@@ -98,6 +98,12 @@ function createPartySave(){
     return $datasPartySave;
 }
 
+//// MANAGER DATAS FROM SAVES ////////////////////////////////////
+
+function adaptMainSave(){
+    // add key and default value if doesnt exist
+}
+
 //////////////////////////////////////////////////////////////////
 //// CUSTOM FUNCTIONS SAVE ///////////////////////////////////////
 function setFile($save, $path){

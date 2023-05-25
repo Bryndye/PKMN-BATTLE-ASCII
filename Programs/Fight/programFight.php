@@ -316,7 +316,7 @@ function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false, $string='W
     messageBoiteDialogue($string);
     
     $arrayChoice = [];
-    array_push($arrayChoice, 'c');
+    array_push($arrayChoice, leaveInputMenu());
     for($i=$startIndex;$i<count($pkmnTeam);++$i){
         if($pkmnDeadSelect || !isPkmnDead_simple($pkmnTeam[$i])){
             array_push($arrayChoice, ($i));

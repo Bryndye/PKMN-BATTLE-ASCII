@@ -1,7 +1,7 @@
 <?php
 // INIT SCRIPTS
-include_once 'Resources/config.php';
-include_once 'Resources/inputs.php';
+include_once 'Programs/Helpers/config.php';
+include_once 'Programs/Helpers/inputs.php';
 
 // Visuals
 include_once 'Programs/Visuals/graphics.php'; 
@@ -9,10 +9,11 @@ include_once 'Resources/sprites.php';
 include_once 'Programs/Visuals/hudfight.php';
 include_once 'Programs/Visuals/hud.php';
 
+// MAIN
 include_once 'Programs/Places/bagManager.php'; // item avant save
 include_once 'Programs/Save/saveManager.php';
-include_once 'Resources/Pokemons/pokemonManager.php';
-include_once 'Resources/Pokemons/typeMatchUp.php';
+include_once 'Programs/Helpers/pokemonManager.php';
+include_once 'Programs/Helpers/typeMatchUp.php';
 include_once 'Programs/Places/routesManager.php';
 include_once 'Programs/Fight/fightSystem.php';
 
@@ -22,7 +23,7 @@ include_once 'Programs/Places/hub.php';
 include_once 'Programs/Places/shopManager.php';
 
 
-// Init Resources
+// INIT LAST PROGRAMS
 include_once 'Programs/Visuals/animations.php';
 include_once 'Resources/trainersAndRoutes.php';
 
@@ -30,7 +31,7 @@ include_once 'Resources/trainersAndRoutes.php';
 
 //// SET THE GAME ////
 clear();
-echo "\033[?25l"; // hide cursor
+hideCursor();
 // shell_exec('mode con: cols=60 lines=33');
 // intro();
 startGame();

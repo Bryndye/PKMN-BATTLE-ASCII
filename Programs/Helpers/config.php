@@ -1,16 +1,16 @@
 <?php
 //// PARAMETRE APP ///////////////////////////////////////////////
-function onDevice(){
-    return 'cmd';
-}
+// function onDevice(){
+//     return 'cmd';
+// }
 
-function colorOn(){
-    return false;
-}
+// function colorOn(){
+//     return false;
+// }
 
-function styleBox(){
-    return '*';
-}
+// function styleBox(){
+//     return '*';
+// }
 
 function getPathScript($script){
     $link = '';
@@ -153,6 +153,10 @@ function add($name, &$array, $value){
     } else {
         $array[$name] = $value;
     }
+}
+
+function formatMoney($int){
+    return number_format($int, 0, '.', ' ').'P';
 }
 
 function Vector2Distance($arrayA, $arrayB){

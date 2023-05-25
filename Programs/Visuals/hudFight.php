@@ -125,7 +125,7 @@ function updateExpPkmn($pos,$exp, $expMax){
 }
 
 function levelUpWindow($oldStats, $newStats){
-    drawBox([10,20], [7,39], '|', '-', true);
+    drawBox([10,20], [7,39]);
     $pos = [7,39];
 
     $keys = array_keys($oldStats);

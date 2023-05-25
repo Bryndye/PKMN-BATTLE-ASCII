@@ -1,5 +1,5 @@
 <?php
-function waitForInput($pos= [31,0], $options = null, $string = null){
+function waitForInput($pos= [31,0], $options = null, $string = null, $showOption = true){
     // créer la phrase choose
     if(isset($string)){
         $sentence = $string;
@@ -20,14 +20,19 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
         if(!is_array($options)){
             $options = [$options];
         }
-        $last = end($options);
-        foreach($options as$option){
-            $sentence .= $option;
-            if($option != $last){
-                $sentence .= ' | ';
+        if($showOption){
+            $last = end($options);
+            foreach($options as$option){
+                $sentence .= $option;
+                if($option != $last){
+                    $sentence .= ' | ';
+                }
             }
+            $sentence .= ' : ';
         }
-        $sentence .= ' : ';
+        else{
+            $sentence .= leaveInputMenu().' : ';
+        }
     }
     moveCursor($pos);
     $choice = readline($sentence);
@@ -38,9 +43,9 @@ function waitForInput($pos= [31,0], $options = null, $string = null){
             $choice = readline($sentence);
         }
     }
-    clearArea([1,60], $pos);
+    $scaleToClear = [getScreenScale()[0]+2,getScreenScale()[1]];
+    clearArea($scaleToClear, $pos);
     return $choice;
-    // echo "Vous avez choisi : " . $choice; 
 }
 
 function enterToContinue($pos, $showMessage){
@@ -59,7 +64,7 @@ function sureToLeave(){
     textArea('YES', [$pos[0]+1,$pos[1]+2]);
     textArea('NO', [$pos[0]+3,$pos[1]+2]);
 
-    $choice2 = waitForInput([31,0], ['y','n']);
+    $choice2 = waitForInput(getPosChoice(), ['y','n']);
     if($choice2 == 'y'){
         return true;
     }
@@ -68,16 +73,9 @@ function sureToLeave(){
     }
 }
 
-function choice(){
-    moveCursor([31,0]);
-    // Get the user's input
-    $input = readline();
-    return $input;
-}
-
-//// List inputs /////
+//// List inputs //////////////////////////////////////////////////////////
 function inputsNavigate($categories, $listItems, $canUse = true){
-    $choice = ['c'];
+    $choice = [leaveInputMenu()];
     if(count($categories) > 0){
         array_push($choice, 'q','d');
     }
@@ -88,5 +86,10 @@ function inputsNavigate($categories, $listItems, $canUse = true){
         }
     }
     return $choice;
+}
+
+////////////////////////////////////////////////////////////////////////////
+function leaveInputMenu(){
+    return 'c';
 }
 ?>
