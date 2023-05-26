@@ -387,7 +387,7 @@ function capturePokemon($pokeball, $pkmn) {
     // Calculer le taux de capture final en prenant en compte les points de vie et l'effet de statut
     $finalCatchRate = (( 1 + ( $pkmn['Stats']['Health Max'] * 3 - $pkmn['Stats']['Health'] * 2 ) * $catchRate * $ballRate * $statusEffect ) / ( $pkmn['Stats']['Health Max'] * 3 )) / 256;
 
-    debugLog($finalCatchRate."\n");
+    // debugLog($finalCatchRate."\n");
     // Si le taux de capture final est supérieur à 255, la capture est garantie
     if ($finalCatchRate*100 >= 100) {
         return true;

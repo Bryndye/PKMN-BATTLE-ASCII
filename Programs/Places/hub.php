@@ -9,7 +9,7 @@ function drawHub(&$save){
         $choiceBefore = [1,2,3,4,5];
         drawMenuSelectionHub([7,7]);
         drawBoxTitle([3,5],[3,7], 'HUB');
-        drawMoney();
+        drawMoney(null,$save['Money']);
         drawNextFloor([10,28]);
 
         messageBoiteDialogue('What do you want to do?');
