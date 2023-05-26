@@ -59,7 +59,7 @@ function enterToContinue($pos, $showMessage){
     return $choice;
 }
 
-function sureToLeave(){
+function binaryChoice(){
     $pos = getPosYesOrNo();
     drawBox(getScaleYesOrNo(),$pos, '|','-',true);
     // debugLog(getPosYesOrNo());

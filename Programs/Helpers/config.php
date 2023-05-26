@@ -97,6 +97,14 @@ function getPosTeam($isJoueur){
     }
 }
 
+function getPosPlaceHUD(){
+    return [3,5];
+}
+
+function getPosMenuHUD(){
+    return [7,7];
+}
+
 function getPosDialogue(){
     return [24,1];
 }

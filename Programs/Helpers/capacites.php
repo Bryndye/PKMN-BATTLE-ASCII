@@ -92,7 +92,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         while(!$replace){
             messageBoiteDialogue($pkmn['Name'].' wants to learn '.$capacite['Name'].'.');
             messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
-            $choice = sureToLeave();
+            $choice = binaryChoice();
             if(!$choice){
                 messageBoiteDialogue($pkmn['Name']." didn't learned " .$capacite['Name'].'...');
                 break;
@@ -130,7 +130,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                     break;
                 }
                 messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');
-                $choice2 = sureToLeave();
+                $choice2 = binaryChoice();
                 if($choice2){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;

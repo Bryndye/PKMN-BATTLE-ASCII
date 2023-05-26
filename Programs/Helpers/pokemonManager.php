@@ -356,7 +356,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         while(true){
             $choice = selectPkmn($pkmnTeam, 0, true);
             textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
-            $choice2 = sureToLeave();
+            $choice2 = binaryChoice();
             if($choice2){
                 $pkmnTeam[$choice] = $pkmn;
                 break;
