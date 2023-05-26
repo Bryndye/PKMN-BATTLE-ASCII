@@ -49,7 +49,6 @@ function generateEncounter($floorData, $chance) {
             while (isset($trainersData[$trainerIndex])) {
                 if (!isset($trainersData[$trainerIndex]['used']) || $trainersData[$trainerIndex]['used'] == false) {
                     $trainersData[$trainerIndex]['used'] = true;
-                    print($trainersData[$trainerIndex]['used']);
                     return $trainerIndex;
                 }
                 $trainerIndex++;

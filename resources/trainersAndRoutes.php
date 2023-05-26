@@ -65,10 +65,12 @@ $routes = [
                 ],
                 500,
                 [],
-                generatePkmnBattle('weedle', 6),
-                generatePkmnBattle('metapod', 6),
-                generatePkmnBattle('caterpie', 6),
-                generatePkmnBattle('kakuna', 6)
+                [
+                    generatePkmnBattle('weedle', 6),
+                    generatePkmnBattle('metapod', 6),
+                    generatePkmnBattle('caterpie', 6),
+                    generatePkmnBattle('kakuna', 6)
+                ]
             ),
             createTrainer('Bug Catcher', 
                 'trainer',
@@ -80,9 +82,11 @@ $routes = [
                 ],
                 500,
                 [],
-                generatePkmnBattle('pidgeot', 8),
-                generatePkmnBattle('pikachu', 8),
-                generatePkmnBattle('caterpie', 6)
+                [
+                    generatePkmnBattle('pidgeot', 8),
+                    generatePkmnBattle('pikachu', 8),
+                    generatePkmnBattle('caterpie', 6)
+                ]
             )
         ]
     ],

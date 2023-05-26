@@ -169,6 +169,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
         }
     }
     levelUpWindow($oldStats, $newStats);
+    drawPkmnHUD(getPosHealthPkmn(true),$pkmn);
     checkThingsToDoLevelUp($pkmn);
     getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
@@ -298,14 +299,16 @@ function evolution(&$pkmn){
     messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
     $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
 
-    drawSprite(getSprites(getSprites('Sprite')), [5,16]);
+    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     sleep(1);
-    clearSprite([5,16]);
+    clearSprite([4,16]);
     sleep(1);
     drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     sleep(1);
     messageBoiteDialogue('Tadadaa...');
+    sleep(1);
+    clearGameScreen();
 }
 
 function setStatsToEvol(&$pkmn, $pkmnToEvolve){
@@ -342,7 +345,6 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
             $stat = $newStats[$key];
         }
     }
-    // charmeleon evole into charmeleon
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////

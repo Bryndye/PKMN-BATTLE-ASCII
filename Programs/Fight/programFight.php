@@ -69,7 +69,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     else{
         damageCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
     }
-    createPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
+    drawPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
     usleep(500000);
 }
 
@@ -133,7 +133,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     takeDamagePkmn($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
     //// update health pkmn def before drain ////////////////////////////////////////////////////////
-    createPkmnHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
+    drawPkmnHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
     usleep(500000);
     
     //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
@@ -159,7 +159,7 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
 
             // update health pkmn atk after drain
-            createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
+            drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
         }
     }
 }
@@ -334,7 +334,7 @@ function switchPkmn(&$pkmnTeam ,$index){
             array_splice($pkmnTeam, $i, 1);
         }
     }
-    messageBoiteDialogue("Go ". $pkmnTeam[0]['Name'].'!',1);
+    messageBoiteDialogue($pkmnTeam[0]['Name'].', Go!',1);
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

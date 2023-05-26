@@ -66,7 +66,7 @@ while(true){
     giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
     giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
     giveItemFromResources($saveParty["Bag"], 'Surf', 5);
-    giveItemFromResources($saveParty["Bag"], 'HyperBeam', 5);
+    giveItemFromResources($saveParty["Bag"], 'Hyper-Beam', 5);
     giveItemFromResources($saveParty["Bag"], 'Flamethrower', 5);
 
     // Need to reload Trainers because Rival's starter

@@ -20,7 +20,7 @@ function startFight(&$joueur, &$pnj){
         animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
-    messageBoiteDialogue("Go ". $pkmnTeamJoueur[0]['Name'].'!',1);
+    messageBoiteDialogue($pkmnTeamJoueur[0]['Name'].', Go!',1);
     animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
 
@@ -42,8 +42,8 @@ function gameplayLoop(&$joueur, &$pnj){
             $choice2 = selectPkmn($pkmnTeamJoueur, 1);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
-            drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
-            interfaceMenu();
+            // drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+            // interfaceMenu();
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
     
@@ -188,7 +188,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             clearPkmnHUD($action['teamAtk'], $action['isjoueur']);
             animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
             usleep(500000);
-            refreshdrawOnePkmn($action['teamAtk'], $action['isjoueur']);
+            drawPkmnSideHUD($action['teamAtk'], $action['isjoueur']);
         }
         elseif($action['choice'][0] == '3'){
             if($action['Bag'][$action['choice'][1]]['type'] == 'PokeBalls'){
@@ -202,7 +202,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             else{
                 useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
             }
-            refreshdrawOnePkmn($action['teamAtk'], $action['isjoueur']);
+            drawPkmnSideHUD($action['teamAtk'], $action['isjoueur']);
         }
     }
     if(!isPkmnDead_simple($pkmnTeamJoueur[0])){

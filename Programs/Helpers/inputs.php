@@ -36,14 +36,16 @@ function waitForInput($pos= [31,0], $options = null, $string = null, $showOption
     }
     moveCursor($pos);
     $choice = readline($sentence);
+    $scaleToClear = [3,getScreenScale()[1]];
 
     if($options != null){
         while (!in_array($choice, $options)) {
+            clearArea($scaleToClear, $pos);
             moveCursor($pos);
             $choice = readline($sentence);
         }
     }
-    $scaleToClear = [getScreenScale()[0]+2,getScreenScale()[1]];
+    // drawBox($scaleToClear, $pos);
     clearArea($scaleToClear, $pos);
     return $choice;
 }

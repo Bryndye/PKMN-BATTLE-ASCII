@@ -53,8 +53,10 @@ function managerPNJGenerate($indexFloor, $level){
     if(!isset($pnj)){
         $route = getRouteFromIndex($indexFloor);  
         $data = generateEncounter($route, 50);
+        // debugLog($data);
         if(is_int($data)){
-            return $pnj;
+                    // debugLog($route['Trainers'][$data]);
+            return $route['Trainers'][$data];
         }
         else{
             return createWildPkmn(rand($data[1][0],$data[1][1]), $data[0]);
