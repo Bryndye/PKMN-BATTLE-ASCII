@@ -56,8 +56,9 @@ function inTown(&$save){
         // choice change si shop disponible ou pokecenter
         $choiceBefore = [1,2,3];
         $townName = 'INSERT NAME';
-        // drawBoxTitle(getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
+        drawBoxTitle(getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
         drawBoxChoiceMenu(getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : QUIT']);
+        drawSprite(getSprites('Town'), [8, 29]);
         messageBoiteDialogue('Welcome to '.$townName.'!');
 
         // Attend la selection entre 1 et 2
