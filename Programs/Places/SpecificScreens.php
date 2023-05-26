@@ -47,10 +47,7 @@ function menuStart(){
     
     $choiceBefore = [];
     if(isSaveExist(getSavePath('save'),true)){
-        drawBox([9,20],[5,5]);
-        textArea('1 : CONTINUE', [7,7]);
-        textArea("2 : DELETE", [9,7]);
-        textArea("3 : QUIT", [11,7]);
+        drawBoxChoiceMenu(getPosMenuHUD(), ['1 : CONTINUE', '2 : DELETE', '3 : QUIT']);
         $choiceBefore = [1,2,3];
     }
     else{

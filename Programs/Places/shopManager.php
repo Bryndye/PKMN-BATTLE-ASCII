@@ -32,7 +32,20 @@ function managerShop(&$save){
         }
         // Validation item
         elseif($move == 'v'){
-            $quantity = waitForInput(getPosChoice(), '', 'quantity? ');
+            while(true){
+                messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['key'].' do you want?');
+                $quantity = waitForInput(getPosChoice(), '', 'quantity? ');
+                if(!is_numeric($quantity)){
+                    messageBoiteDialogue('Please insert a number.',-1);
+                    continue;
+                }elseif($quantity == 0 || $quantity == null){
+                    messageBoiteDialogue('Cancel purchase',-1);
+                    break;
+                }
+                else{
+                    break;
+                }
+            }
             if(buyItem($save, $currentListItemTEMP[$currentIndexItemTEMP]['item'], $quantity)){
                 giveItemByItem($save['Bag'], $currentListItemTEMP[$currentIndexItemTEMP]['item'], $quantity);
             }

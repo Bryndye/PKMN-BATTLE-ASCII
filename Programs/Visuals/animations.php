@@ -35,7 +35,7 @@ function animationPkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/)
 
 function drawEntirePkmnBattle($pkmnTeam, $isJoueur){
     drawPkmnTeamHUD($pkmnTeam, getPosTeam($isJoueur));
-    createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
+    drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
 }
 
 function animationCapture(){

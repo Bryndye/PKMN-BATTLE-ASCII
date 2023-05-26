@@ -69,7 +69,7 @@
 		"effect": "capacity",
 		"price" : "0"
 	},
-	"HyperBeam":
+	"Hyper-Beam":
 	{
 		"name":"Hyper-Beam",
 		"type": "TMs",

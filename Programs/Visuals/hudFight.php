@@ -1,10 +1,10 @@
 <?php
 // -- HUD PKMN--
 // - Afficher HUD du pkmn joueur -
-// createPkmnHUD(17,34, $pkmn1);
+// drawPkmnHUD(17,34, $pkmn1);
 // drawSprite($sprites[$pkmn1['Sprite']], 9, 3); 
 // - Afficher HUD du pkmn ennemi -
-// createPkmnHUD(2,3, $pkmn2);
+// drawPkmnHUD(2,3, $pkmn2);
 // drawSprite($sprites[$pkmn2['Sprite']], 1, 35);
 
 
@@ -21,17 +21,16 @@ function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
     drawSkeletonHUD();
 
     // Afficher HUD du pkmn joueur
-    refreshdrawOnePkmn($pkmnTeamJoueur, true);
+    drawPkmnSideHUD($pkmnTeamJoueur, true);
     
     // Afficher HUD du pkmn ennemi
-    refreshdrawOnePkmn($pkmnTeamEnemy, false);
+    drawPkmnSideHUD($pkmnTeamEnemy, false);
 }
 
 
 //// draw INFO PKMN ///////////////////////////////////////////
-function refreshdrawOnePkmn(&$pkmnTeam, $isJoueur){
-    
-    createPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
+function drawPkmnSideHUD(&$pkmnTeam, $isJoueur){  
+    drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
     drawSprite(getSprites($pkmnTeam[0]['Sprite']), getPosSpritePkmn($isJoueur));
     drawPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
 }
@@ -59,7 +58,7 @@ function clearPkmnHUD($isJoueur){
     clearArea(getScaleHUDPkmn(),getPosHealthPkmn($isJoueur));
 }
 
-function createPkmnHUD($pos, $pkmn, $isJoueur = true){
+function drawPkmnHUD($pos, $pkmn, $isJoueur = true){
     clearArea(getScaleHUDPkmn(),$pos);
     drawBox(getScaleHUDPkmn(),$pos,'|','-', true);
 
@@ -141,14 +140,14 @@ function levelUpWindow($oldStats, $newStats){
         textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
         ++$i;
     }
-    sleep(2);
+    // sleep(2);
     for($i=0;$i<count($newStats);++$i){
         $phrase_alignee = str_pad($differences[$i].'->', 4, " ", STR_PAD_LEFT);
         textArea($phrase_alignee, [$pos[0]+$i+1,$pos[1]+10]);
     }
     sleep(2);
     $i = 1;
-    clearArea([6,4], [$pos[0]+1,$pos[1]+10]);
+    clearArea([6,6], [$pos[0]+1,$pos[1]+10]);
     foreach($newStats as $key=>$stat){
         textArea($key, [$pos[0]+$i,$pos[1]+2]);
         $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
@@ -169,7 +168,7 @@ function drawPkmnTeam($pkmnTeam){
         $x = ($i % 2 == 0) ? 3 : 33;
         $y = ($i+1) * 3;
         $pos = [$y,$x];
-        createPkmnHUD($pos, $pkmnTeam[$i]);
+        drawPkmnHUD($pos, $pkmnTeam[$i]);
     }
 }
 

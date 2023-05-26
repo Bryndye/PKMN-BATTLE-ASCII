@@ -7,9 +7,9 @@ function drawHub(&$save){
         $choiceBefore = [];
         // choice change si shop disponible ou pokecenter
         $choiceBefore = [1,2,3,4,5];
-        drawMenuSelectionHub([7,7]);
-        drawBoxTitle([3,5],[3,7], 'HUB');
-        drawMoney();
+        drawBoxChoiceMenu(getPosMenuHUD(), ['1 : CONTINUE', '2 : TEAM', '3 : BAG', '4 : TOWN', '5 : QUIT']);
+        drawBoxTitle(getPosPlaceHUD(),[3,7], 'HUB');
+        drawMoney(null,$save['Money']);
         drawNextFloor([10,28]);
 
         messageBoiteDialogue('What do you want to do?');
@@ -33,7 +33,8 @@ function drawHub(&$save){
             waitForInput(getPosChoice(), leaveInputMenu());
         }
         elseif($choice == 4){
-            managerShop($save);
+            inTown($save);
+            // managerShop($save);
         }
         elseif($choice == 1){
             break;
@@ -46,6 +47,40 @@ function drawHub(&$save){
 
     drawGameCadre();
     clearGameScreen();
+}
+
+function inTown(&$save){
+    while(true){
+        drawGameCadre();
+        $choiceBefore = [];
+        // choice change si shop disponible ou pokecenter
+        $choiceBefore = [1,2,3];
+        $townName = 'INSERT NAME';
+        drawBoxTitle(getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
+        drawBoxChoiceMenu(getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : QUIT']);
+        drawSprite(getSprites('Town'), [8, 29]);
+        messageBoiteDialogue('Welcome to '.$townName.'!');
+
+        // Attend la selection entre 1 et 2
+        $choice = waitForInput([31,0],$choiceBefore);
+        if($choice == 1){
+            // poke center heal
+            drawSprite(getSprites('healer'),[4,17]);
+            messageBoiteDialogue("Welcome to our Pokémon Center!\nWe heal your Pokémon back to perfect health!\nShall we heal your Pokémon?");
+            if(binaryChoice()){
+                fullHealTeam($save['Team']);
+                messageBoiteDialogue("Thank you! Your Pokémon are fighting fit!\nWe hope to see you again!",-1);
+            }
+        }
+        elseif($choice == 2){
+            // shop
+            managerShop($save);
+        }
+        elseif($choice == 3){
+            // out
+            break;
+        }
+    }
 }
 
 function continueToFight(){

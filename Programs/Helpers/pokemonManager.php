@@ -169,6 +169,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
         }
     }
     levelUpWindow($oldStats, $newStats);
+    drawPkmnHUD(getPosHealthPkmn(true),$pkmn);
     checkThingsToDoLevelUp($pkmn);
     getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
@@ -298,14 +299,16 @@ function evolution(&$pkmn){
     messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
     $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
 
-    drawSprite(getSprites(getSprites('Sprite')), [5,16]);
+    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     sleep(1);
-    clearSprite([5,16]);
+    clearSprite([4,16]);
     sleep(1);
     drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     sleep(1);
     messageBoiteDialogue('Tadadaa...');
+    sleep(1);
+    clearGameScreen();
 }
 
 function setStatsToEvol(&$pkmn, $pkmnToEvolve){
@@ -342,7 +345,6 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
             $stat = $newStats[$key];
         }
     }
-    // charmeleon evole into charmeleon
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -354,7 +356,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         while(true){
             $choice = selectPkmn($pkmnTeam, 0, true);
             textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
-            $choice2 = sureToLeave();
+            $choice2 = binaryChoice();
             if($choice2){
                 $pkmnTeam[$choice] = $pkmn;
                 break;
@@ -387,7 +389,7 @@ function capturePokemon($pokeball, $pkmn) {
     // Calculer le taux de capture final en prenant en compte les points de vie et l'effet de statut
     $finalCatchRate = (( 1 + ( $pkmn['Stats']['Health Max'] * 3 - $pkmn['Stats']['Health'] * 2 ) * $catchRate * $ballRate * $statusEffect ) / ( $pkmn['Stats']['Health Max'] * 3 )) / 256;
 
-    debugLog($finalCatchRate."\n");
+    // debugLog($finalCatchRate."\n");
     // Si le taux de capture final est supérieur à 255, la capture est garantie
     if ($finalCatchRate*100 >= 100) {
         return true;
