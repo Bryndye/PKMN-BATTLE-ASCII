@@ -124,7 +124,7 @@ function animationVersusLeader($spriteName){
     $posInit = [$posY+1, $screenScale[1]-$scaleSprite[1]];
     $posFinal = [$posY+1, $screenScale[1]-$scaleSprite[1]-10];
     drawSprite(getSprites('Versus'),[$posY+3,3]);
-    drawSprite($sprite,[$posY+1,30]);
+    // drawSprite($sprite,[$posY+1,30]);
 
     translate($sprite, $posInit, $posFinal, 2);
 
@@ -153,7 +153,7 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
     }
 
     drawSprite($spriteJoueur, getPosSpritePkmn(true));
-    drawSprite($spriteEnemy, getPosSpritePkmn(false));
+    drawSprite($spriteEnemy, getPosSpriteTrainer(false));
 }
 
 function animationTakeDamage($pkmn, $isJoueur){

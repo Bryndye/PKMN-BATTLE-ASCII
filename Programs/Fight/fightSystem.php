@@ -42,8 +42,6 @@ function gameplayLoop(&$joueur, &$pnj){
             $choice2 = selectPkmn($pkmnTeamJoueur, 1);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
-            // drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
-            // interfaceMenu();
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
     
@@ -256,20 +254,25 @@ function endBattle(&$joueur, $pnj){
             drawSprite(getSprites($pnj['Sprite']), getPosSpritePkmn(false));
         }
         if(isset($pnj['Dialogues']['end'])){
-            if(is_array($pnj['Dialogues']['end']) && count($pnj['Dialogues']['end'])>0){
-                foreach($pnj['Dialogues']['end'] as $message){
-                    messageBoiteDialogue($message,-1);
+            // debugLog($pnj['Dialogues']['end']);
+            if(is_array($pnj['Dialogues']['end'])){
+                if(count($pnj['Dialogues']['end'])>0){
+                    foreach($pnj['Dialogues']['end'] as $message){
+                        if(!is_null($message)){
+                            messageBoiteDialogue($message,-1);
+                        }
+                    }
                 }
             }
-            elseif(is_array(($pnj['Dialogues']['end']) && count($pnj['Dialogues']['end']) > 0) || !is_null($pnj['Dialogues']['end']) ){
+            elseif(!is_null($pnj['Dialogues']['end'])){
                 messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
         }
         messageBoiteDialogue("You've defeated " . $pnj['Name'].'!',-1);
-    }
-    if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
-        $joueur['Money'] += $pnj['Reward'];
-        messageBoiteDialogue("You get " . $pnj['Reward'].' pokedollars.',1);
+        if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
+            $joueur['Money'] += $pnj['Reward'];
+            messageBoiteDialogue("You get " . $pnj['Reward'].' pokedollars.',1);
+        }
     }
 }
 ?>

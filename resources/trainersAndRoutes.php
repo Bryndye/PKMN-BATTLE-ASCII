@@ -56,7 +56,7 @@ $routes = [
         ],
         'Trainers' => [
             createTrainer('Bug Catcher', 
-                'trainer',
+                'trainer_test',
                 [
                     'entrance' => "There is so many bugs here! This is my paradise!",
                     'end' => [
@@ -73,7 +73,7 @@ $routes = [
                 ]
             ),
             createTrainer('Bug Catcher', 
-                'trainer',
+                'trainer_test',
                 [
                     'entrance' => "There is Pikachu into this forest. Did you see one?",
                     'end' => [
@@ -531,7 +531,7 @@ function generateIAs(){
     global $pnjs;
     $pnjs = [
         1 => createTrainer('Tony', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "Do you like short pants?",
                 'end' => [
@@ -546,6 +546,19 @@ function generateIAs(){
             ],
             0
         ),
+        1 => createTrainer('TEST TRAINER', 
+        'trainer_test',
+        [
+            'entrance' => "Do you like short pants?",
+            'end' => []
+        ],
+        0,
+        [],
+        [
+            generatePkmnBattle('rattata', 1),
+        ],
+        0
+    ),
         5 =>  createTrainer('???', 
                 'rival',
                 [
@@ -564,7 +577,7 @@ function generateIAs(){
                 'Rival'
             ),
         10 =>  createTrainer('Gym Leader Brock', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I'm thougher than you think.",
                 'end' => [
@@ -581,7 +594,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         20 =>  createTrainer('Gym Leader Misty', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "Don't run around the pool!",
                 'end' => [
@@ -600,7 +613,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         30 =>  createTrainer('Gym Leader Lt. Surge', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "Do you want to go to the army?",
                 'end' => [
@@ -619,7 +632,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         40 =>  createTrainer('Gym Leader Erika', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I'm the leader of grass type! Prepare your antidotes.",
                 'end' => [
@@ -639,7 +652,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         50 =>  createTrainer('Gym Leader Koga', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I'm a ninja! Could you see me?",
                 'end' => [
@@ -660,7 +673,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         60 =>  createTrainer('Gym Leader Sabrina', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "What are you looking at?",
                 'end' => [
@@ -681,7 +694,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         70 =>  createTrainer('Gym Leader Blaine', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I hope you bring water pokemon because the sun is shining hard!",
                 'end' => [
@@ -702,7 +715,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         80 =>  createTrainer('Gym Leader Giovanni', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I will have my revenge.",
                 'end' => [
@@ -724,7 +737,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         90 =>  createTrainer('Elite Four Lorelei', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "...",
                 'end' => [
@@ -746,7 +759,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         91 =>  createTrainer('Elite Four Bruno', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "Let the training session start!",
                 'end' => [
@@ -768,7 +781,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         92 =>  createTrainer('Elite Four Olga', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I am not old! Get ready to loose brat!",
                 'end' => [
@@ -792,7 +805,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         93 =>  createTrainer('Elite Four Peter Lance', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "I'm the master of Pokemons Dragon! Prepare you!",
                 'end' => [
@@ -815,7 +828,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         94 =>  createTrainer('Champion Blue', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "What?! You here?! Anyway, you will lose!",
                 'end' => [
@@ -845,7 +858,7 @@ function generateIAs(){
             'Legendary'
         ),
         110 =>  createTrainer('Champion Red', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "...",
                 'end' => "..."
@@ -866,7 +879,7 @@ function generateIAs(){
             1,'Champion'
         ),
         110 =>  createTrainer('Prof. Twig', 
-            'trainer',
+            'trainer_test',
             [
                 'entrance' => "Hehe! What do you think? That i'm not a trainer? Of course i'm!",
                 'end' => [
@@ -891,4 +904,22 @@ function generateIAs(){
         ),
     ];
 }
+
+$towns = [
+    2 => 'Pallet Town',
+    10 => 'Pewter City',
+    20 => 'Cerulean City',
+    30 => 'Vermilion City',
+    40 => 'Celadon City',
+    50 => 'Fuchsia City',
+    60 => 'Saffron City',
+    70 => 'Cinnabar Island',
+    80 => 'Viridian City',
+    90 => 'Indigo League',
+    95 => 'Pewter City',
+    99 => 'Cinnabar Island',
+    110 => 'Pallet Town',
+    120 => 'Pallet Town',
+    130 => 'Pallet Town'
+]
 ?>

@@ -4,6 +4,7 @@ function managerShop(&$save){
     $indexCategory = 0;
     $currentIndexItemTEMP = 0;
     $listIemsShop = getSave('Resources/items.json'); // TEMP
+    $listIemsShop = listItemsBuyableInShop($save['IndexFloor']);
     while(true){
         clearGameScreen();
 
@@ -100,6 +101,17 @@ function buyItem(&$save, $itemToBuy, $quantity = 1){
     $money -= $itemToBuy['price'] * $quantity;
     messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.',1);
     return true;
+}
+
+function listItemsBuyableInShop($indexFloor){
+    $items = [];
+    $allItems = getSave('Resources/items.json');
+    foreach($allItems as $item){
+        if($item['indexFloor'] <= $indexFloor){
+            array_push($items, $item);
+        }
+    }
+    return $items;
 }
 
 //// OLD

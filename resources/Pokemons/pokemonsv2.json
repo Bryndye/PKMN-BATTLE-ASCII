@@ -9181,17 +9181,17 @@
         "after": {
           "0":{
             "Name": "vaporeon",
-            "min level": 16,
+            "item": "Waterstone",
             "stade": 2
           },
           "1":{
             "Name": "flareon",
-            "min level": 16,
+            "item": "Firestone",
             "stade": 2
           },
           "2":{
             "Name": "jolteon",
-            "min level": 16,
+            "item": "Thunderstone",
             "stade": 2
           }
       }

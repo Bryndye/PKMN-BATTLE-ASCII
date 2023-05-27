@@ -4,10 +4,16 @@ function drawHub(&$save){
     while(true){
         drawGameCadre();
         
-        $choiceBefore = [];
-        // choice change si shop disponible ou pokecenter
-        $choiceBefore = [1,2,3,4,5];
-        drawBoxChoiceMenu(getPosMenuHUD(), ['1 : CONTINUE', '2 : TEAM', '3 : BAG', '4 : TOWN', '5 : QUIT']);
+        $choiceBefore = [1, 2, 3, 5];
+        $choiceBeforeHUD = ['1 : CONTINUE', '2 : TEAM', '3 : BAG', '5 : QUIT'];
+        $townAccessibleResult = townAccessible($save['IndexFloor']);
+        if($townAccessibleResult) {
+            array_splice($choiceBefore, 3, 0, 4);
+            global $towns;
+            $townName = $towns[$save['IndexFloor']];
+            array_splice($choiceBeforeHUD, 3, 0, '4 : '.$townName);
+        }
+        drawBoxChoiceMenu(getPosMenuHUD(), $choiceBeforeHUD);
         drawBoxTitle(getPosPlaceHUD(),[3,7], 'HUB');
         drawMoney(null,$save['Money']);
         drawNextFloor([10,28]);
@@ -55,7 +61,8 @@ function inTown(&$save){
         $choiceBefore = [];
         // choice change si shop disponible ou pokecenter
         $choiceBefore = [1,2,3];
-        $townName = 'INSERT NAME';
+        global $towns;
+        $townName = $towns[$save['IndexFloor']];
         drawBoxTitle(getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
         drawBoxChoiceMenu(getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : QUIT']);
         drawSprite(getSprites('Town'), [8, 29]);
@@ -65,6 +72,7 @@ function inTown(&$save){
         $choice = waitForInput([31,0],$choiceBefore);
         if($choice == 1){
             // poke center heal
+            clearGameScreen();
             drawSprite(getSprites('healer'),[4,17]);
             messageBoiteDialogue("Welcome to our Pokémon Center!\nWe heal your Pokémon back to perfect health!\nShall we heal your Pokémon?");
             if(binaryChoice()){

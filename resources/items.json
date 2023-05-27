@@ -4,90 +4,119 @@
 		"name":"Potion",
 		"type": "Heals",
 		"effect": "20",
-		"price" : "200"
+		"price" : "200",
+		"indexFloor" : 1
 	},
     "Super potion":
 	{
 		"name":"Super potion",
 		"type": "Heals",
 		"effect": "50",
-		"price" : "500"
+		"price" : "500",
+		"indexFloor" : 20
 	},
     "Hyper potion":
 	{
 		"name":"Hyper potion",
 		"type": "Heals",
 		"effect": "120",
-		"price" : "1200"
+		"price" : "1200",
+		"indexFloor" : 50
 	},
 	"Total Heals":
 	{
 		"name":"Total Heals",
 		"type": "status",
 		"effect": "all",
-		"price" : "1000"
+		"price" : "1000",
+		"indexFloor" : 10
 	},
     "PokeBall":
 	{
 		"name":"PokeBall",
 		"type": "PokeBalls",
 		"effect": "1",
-		"price" : "300"
+		"price" : "300",
+		"indexFloor" : 1
 	},
     "SuperBall":
 	{
 		"name":"SuperBall",
 		"type": "PokeBalls",
 		"effect": "1.5",
-		"price" : "600"
+		"price" : "600",
+		"indexFloor" : 20
 	},
     "HyperBall":
 	{
 		"name":"HyperBall",
 		"type": "PokeBalls",
 		"effect": "2",
-		"price" : "1200"
+		"price" : "1200",
+		"indexFloor" : 40
 	},
 	"MasterBall":
 	{
 		"name":"MasterBall",
 		"type": "PokeBalls",
 		"effect": "255",
-		"price" : "1000000"
+		"price" : "30000",
+		"indexFloor" : 60
 	},
     "Revive":
 	{
 		"name":"Revive",
 		"type": "Heals",
 		"effect": "50%",
-		"price" : "2400"
+		"price" : "2400",
+		"indexFloor" : 10
 	},
     "Surf":
 	{
 		"name":"Surf",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0"
+		"price" : "0",
+		"indexFloor" : 60
 	},
 	"Hyper-Beam":
 	{
 		"name":"Hyper-Beam",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0"
+		"price" : "0",
+		"indexFloor" : 50
 	},
 	"Flamethrower":
 	{
 		"name":"Flamethrower",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0"
+		"price" : "0",
+		"indexFloor" : 30
 	},
     "Firestone":
 	{
 		"name":"Firestone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "0"
+		"price" : "0",
+		"indexFloor" : 1
+	},
+    "Waterstone":
+	{
+		"name":"Waterstone",
+		"type": "Items",
+		"effect": "evolution",
+		"price" : "0",
+		"indexFloor" : 1
+	},
+    "Thunderstone":
+	{
+		"name":"Thunderstone",
+		"type": "Items",
+		"effect": "evolution",
+		"price" : "0",
+		"indexFloor" : 1
 	}
 }

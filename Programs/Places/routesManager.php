@@ -58,4 +58,9 @@ function generateEncounter($floorData, $chance) {
 
     return null;
 }
+
+function townAccessible($indexFloor){
+    global $towns;
+    return array_key_exists($indexFloor, $towns);
+}
 ?>

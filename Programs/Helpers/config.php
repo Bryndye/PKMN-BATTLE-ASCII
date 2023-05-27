@@ -48,7 +48,7 @@ function getCategoryName($categories, $actualCategory){
 //// SAVES ///////////////////////////////////////////////
 
 function getParameterPathSave(){
-    return 1;
+    return 0;
 }
 
 function getSavePath($name = 'save'){
@@ -76,6 +76,16 @@ function getPosSpritePkmn($isJoueur){
     }
     else{
         return [2,31]; // enemy
+    }
+}
+
+function getPosSpriteTrainer($isJoueur){
+    if($isJoueur)
+    {
+        return [2,2]; // joueur
+    }
+    else{
+        return [2,41]; // enemy
     }
 }
 

@@ -115,10 +115,31 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
     ];
     $pokemonBattle['Capacites'] = $newCapacites;
     $pokemonBattle['Status'] = '';
-    $pokemonBattle['evolution'] = [
-        'Name' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['Name'] : null,
-        'Level' => is_array($pkmn['evolution']['after']) ? $pkmn['evolution']['after']['min level'] : null
-    ];
+    if(is_array($pkmn['evolution']['after'])){
+        if(array_key_exists('Name', $pkmn['evolution']['after'])){
+            $pokemonBattle['evolution'] = [
+                'Name' => $pkmn['evolution']['after']['Name'],
+                'Level' => $pkmn['evolution']['after']['min level'] ?? null,
+                'Item' =>  $pkmn['evolution']['after']['item'] ?? null
+            ];
+        }
+        else{
+            foreach($pkmn['evolution']['after'] as $evolPkmn){
+                array_push($pokemonBattle['evolution'], [
+                    'Name' => $evolPkmn['Name'],
+                    'Level' => $evolPkmn['min level'] ?? null,
+                    'Item' =>  $evolPkmn['item'] ?? null
+                ]);
+            }
+        }
+    }
+    else{
+        $pokemonBattle['evolution'] = [
+            'Name' => null,
+            'Level' => null,
+            'Item' =>  null
+        ];
+    }
 
     return $pokemonBattle;
 }
@@ -170,7 +191,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
     }
     levelUpWindow($oldStats, $newStats);
     drawPkmnHUD(getPosHealthPkmn(true),$pkmn);
-    checkThingsToDoLevelUp($pkmn);
+    verifyAddWhenEvolve($pkmn);
     getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
 
@@ -279,25 +300,64 @@ function resetStatsTemp(&$pkmn){
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///// EVOLUTION ////////////////////////////////////////////////////////////////////////
 
-function checkThingsToDoLevelUp(&$pkmn){
+function verifyAddWhenEvolve(&$pkmn){
     $pkmnCapaList = getPokemon($pkmn['Name'])['capacites'];
     $newCapa = getLastElements($pkmnCapaList, $pkmn['Level']);
     
     if(!is_null($newCapa)){
         setCapacityToPkmn($pkmn, getCapacite($newCapa['name']));
     }
-    if(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){
-        evolution($pkmn);
+    verifyIfPkmnCanEvolve($pkmn);
+}
+
+function verifyIfPkmnCanEvolve(&$pkmn, $item = null){
+    if(array_key_exists('Name',$pkmn['evolution'])){
+        debugLog('ONE EVOL');
+        if(!is_null($item) && isset($pkmn['evolution']['Item'])){
+            if($pkmn['evolution']['Item'] == $item['name']){
+                evolution($pkmn);
+            }
+        }
+        elseif(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){
+            evolution($pkmn);
+        }
+    }
+    else{
+        // debugLog('plusieurs');
+        foreach($pkmn['evolution']['after'] as $key=>$evolPkmn){
+            // debugLog($evolPkmn);
+            if(!is_null($item) && isset($evolPkmn['item'])){
+                // debugLog($item );
+                // debugLog($evolPkmn['item'] );
+                if($evolPkmn['item'] == $item['name']){
+                    evolution($pkmn, $key);
+                    return;
+                }
+            }
+            elseif(isset($evolPkmn['Name']) && $pkmn['Level'] >= $evolPkmn['Level']){
+                evolution($pkmn);
+            }
+        }
     }
 }
 
-function evolution(&$pkmn){
+function evolution(&$pkmn, $indexChoiceEvol = null){
     clearGameScreen();
     drawBoiteDialogue();
-    messageBoiteDialogue($pkmn['Name'] .' evolves into '. $pkmn['evolution']['Name']);
-    $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
+    messageBoiteDialogue('What?',-1);
+    messageBoiteDialogue($pkmn['Name'] .' is evolving!',-1);
+
+    $olderName = $pkmn['Name'];
+    if(!is_null($indexChoiceEvol)){
+        $pkmnEvol = getPokemon($pkmn['evolution'][$indexChoiceEvol]['Name']);
+        $newName = $pkmn['evolution'][$indexChoiceEvol]['Name'];
+    }
+    else{
+        $pkmnEvol = getPokemon($pkmn['evolution']['Name']);
+        $newName = $pkmn['evolution']['Name'];
+    }
 
     drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     sleep(1);
@@ -306,7 +366,8 @@ function evolution(&$pkmn){
     drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     sleep(1);
-    messageBoiteDialogue('Tadadaa...');
+    messageBoiteDialogue('Tadadaa...',-1);
+    messageBoiteDialogue($olderName .' evolves into '. $newName,-1);
     sleep(1);
     clearGameScreen();
 }

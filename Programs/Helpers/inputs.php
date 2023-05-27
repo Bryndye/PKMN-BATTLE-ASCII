@@ -61,12 +61,13 @@ function enterToContinue($pos, $showMessage){
 
 function binaryChoice(){
     $pos = getPosYesOrNo();
-    drawBox(getScaleYesOrNo(),$pos, '|','-',true);
-    // debugLog(getPosYesOrNo());
+    $scale = getScaleYesOrNo();
+    drawBox($scale,$pos, '|','-',true);
     textArea('YES', [$pos[0]+1,$pos[1]+2]);
     textArea('NO', [$pos[0]+3,$pos[1]+2]);
 
     $choice2 = waitForInput(getPosChoice(), ['y','n']);
+    clearArea($scale, $pos);
     if($choice2 == 'y'){
         return true;
     }

@@ -192,8 +192,8 @@ function useItem(&$bag, &$item, &$pkmn){
             // debugLog($item);
             setCapacityToPkmn($pkmn, getCapacite($item['name']));
             break;
-        case 'evolution':
-            healStatusToPkmn($pkmn);
+        case 'Items':
+            verifyIfPkmnCanEvolve($pkmn, $item);
             break;
     }
 }
