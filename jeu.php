@@ -44,10 +44,6 @@ while(true){
     $saveProfile = saveMainManager();
     $saveParty = savePartyManager();
     $pkmnTeamJoueur = &$saveParty['Team'];
-    // array_push($pkmnTeamJoueur, generatePkmnBattle('eevee',10));
-    giveItemFromResources($saveParty['Bag'], 'Firestone');
-    giveItemFromResources($saveParty['Bag'], 'Waterstone');
-    giveItemFromResources($saveParty['Bag'], 'Thunderstone');
 
     setData($pkmnTeamJoueur, 'Team', getSavePath('save'));
 

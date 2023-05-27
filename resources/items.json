@@ -71,6 +71,14 @@
 		"price" : "2400",
 		"indexFloor" : 10
 	},
+	"Metal-claw":
+	{
+		"name":"Metal-claw",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "0",
+		"indexFloor" : 10
+	},
     "Surf":
 	{
 		"name":"Surf",

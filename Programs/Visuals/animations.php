@@ -153,7 +153,7 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
     }
 
     drawSprite($spriteJoueur, getPosSpritePkmn(true));
-    drawSprite($spriteEnemy, getPosSpriteTrainer(false));
+    drawSprite($spriteEnemy, getPosSpritePkmn(false));
 }
 
 function animationTakeDamage($pkmn, $isJoueur){

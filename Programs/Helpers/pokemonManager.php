@@ -166,8 +166,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
 
-    messageBoiteDialogue($pkmn['Name'].' level up to '.$pkmn['Level'].'!');
-    sleep(1);
+    messageBoiteDialogue($pkmn['Name'].' level up to '.$pkmn['Level'].'!',-1);
 
     $newStats = [];
     $oldStats= [];
@@ -202,10 +201,9 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
 
     $pkmn['exp'] += $exp;
     if(!$inThisFct && $notFirstPkmn){
-        messageBoiteDialogue($pkmn['Name'].' gets '.$exp.' exp!');
+        messageBoiteDialogue($pkmn['Name'].' gets '.$exp.' exp!',-1);
     }
 
-    sleep(1);
     if($pkmn['exp'] >= $pkmn['expToLevel']){
         $expLeft = $pkmn['exp'] - $pkmn['expToLevel'];
         levelUp($pkmn, $expLeft, $inThisFct, $notFirstPkmn);
@@ -314,30 +312,28 @@ function verifyAddWhenEvolve(&$pkmn){
 
 function verifyIfPkmnCanEvolve(&$pkmn, $item = null){
     if(array_key_exists('Name',$pkmn['evolution'])){
-        debugLog('ONE EVOL');
         if(!is_null($item) && isset($pkmn['evolution']['Item'])){
             if($pkmn['evolution']['Item'] == $item['name']){
                 evolution($pkmn);
+                return;
             }
         }
         elseif(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){
             evolution($pkmn);
+            return;
         }
     }
     else{
-        // debugLog('plusieurs');
         foreach($pkmn['evolution']['after'] as $key=>$evolPkmn){
-            // debugLog($evolPkmn);
             if(!is_null($item) && isset($evolPkmn['item'])){
-                // debugLog($item );
-                // debugLog($evolPkmn['item'] );
                 if($evolPkmn['item'] == $item['name']){
                     evolution($pkmn, $key);
                     return;
                 }
             }
-            elseif(isset($evolPkmn['Name']) && $pkmn['Level'] >= $evolPkmn['Level']){
+            elseif(isset($evolPkmn['Name']) && array_key_exists('Level',$evolPkmn) && $pkmn['Level'] >= $evolPkmn['Level']){
                 evolution($pkmn);
+                return;
             }
         }
     }
@@ -458,7 +454,7 @@ function capturePokemon($pokeball, $pkmn) {
 
     // Sinon, générer un nombre aléatoire entre 0 et 100
     $randomNumber = mt_rand(0, 100);
-    debugLog($randomNumber."\n");
+    // debugLog($randomNumber."\n");
 
     // Si le nombre aléatoire est inférieur au taux de capture final, la capture réussit
     if ($randomNumber < $finalCatchRate*100) {

@@ -256,15 +256,15 @@ function endBattle(&$joueur, $pnj){
         if(isset($pnj['Dialogues']['end'])){
             // debugLog($pnj['Dialogues']['end']);
             if(is_array($pnj['Dialogues']['end'])){
-                if(count($pnj['Dialogues']['end'])>0){
-                    foreach($pnj['Dialogues']['end'] as $message){
-                        if(!is_null($message)){
-                            messageBoiteDialogue($message,-1);
-                        }
+                foreach($pnj['Dialogues']['end'] as $message){
+                    if(!is_null($message)){
+                                    // debugLog('1');
+                        messageBoiteDialogue($message,-1);
                     }
                 }
             }
-            elseif(!is_null($pnj['Dialogues']['end'])){
+            elseif(isset($pnj['Dialogues']['end'])){
+                // debugLog('2');
                 messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
         }

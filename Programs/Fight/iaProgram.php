@@ -29,8 +29,8 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
         'level' => 1,
         'Sprite' => $pkmn[0]['Sprite'],
         'Dialogues' => [
-            'entrance' => isset($dialogues['entrance']) ? $dialogues['entrance'] : 'A wild Pokemon appears.',
-            'end' => isset($dialogues['end']) ? $dialogues['end'] : ''
+            'entrance' => $dialogues['entrance'] ?? 'A wild Pokemon appears.',
+            'end' => $dialogues['end'] ?? null
         ],
         'Reward' => null,
         'Bag' => [],
