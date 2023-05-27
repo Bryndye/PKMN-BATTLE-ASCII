@@ -226,7 +226,7 @@ function fullHealTeam(&$teamPkmn){
         $pkmn['Stats']['Health'] = $pkmn['Stats']['Health Max'];
         $pkmn['Status'] = '';
     }
-    messageBoiteDialogue('All your pokemons has been heal!');
+    resetTeamStatsTemp($teamPkmn);
 }
 
 function checkHealthOutRange(&$pkmn){
@@ -272,7 +272,7 @@ function isPkmnDead_simple(&$pkmn){
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///// RESET STAT ///////////////////////////////////////////////////////////////////////////////////
 
 function resetTeamStatsTemp(&$pkmnTeam){
     foreach($pkmnTeam as $pkmn){
@@ -281,21 +281,23 @@ function resetTeamStatsTemp(&$pkmnTeam){
 }
 
 function resetStatsTemp(&$pkmn){
-    foreach($pkmn['Stats Temp'] as $statTemp){
-        if(is_numeric($statTemp)){
-            $statTemp = 0;
-        }
-        else if(is_bool($statTemp)){
-            $statTemp = false;
-        }
-        else if($statTemp == 'Substitute'){
-            foreach($statTemp as $stats){
-                $stats['Health Max'] =  3;
-                $stats['Health'] = 0;
-                $stats['Used'] = false;
-            }
-        }
-    }
+    messageBoiteDialogue('DEBUG : RESET STAT '.$pkmn['Name'],-1);
+    $pkmn['Stats Temp'] = [
+        'Atk' => 0,
+        'Def' => 0,
+        'Atk Spe' => 0,
+        'Def Spe' => 0,
+        'Vit' => 0,
+        'evasion' => 10,
+        'critical' => 0,
+        'Accuracy' => 0,
+        'protected' => false,
+        'Substitute' => [
+            'Health Max' => 3,
+            'Health' => 0,
+            'Used' => false
+        ]
+    ];
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ///// EVOLUTION ////////////////////////////////////////////////////////////////////////
@@ -405,7 +407,7 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
+///// CAPTURE ///////////////////////////////////////////////////////////////////////////////////
 
 function getPokemonFromCapture(&$pkmnTeam, $pkmn){
     if(count($pkmnTeam)>=6){
