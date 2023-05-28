@@ -687,7 +687,7 @@ function generateIAs(){
             ],            
             [
                 generatePkmnBattle('kadabra', 38,0,['recover','psychic']),
-                generatePkmnBattle('mr-mime', 37,0,['confusion','protect','light-screen']),
+                generatePkmnBattle('mr-mime', 37,0,['confusion','harden','light-screen']),
                 generatePkmnBattle('venomoth', 38,0,['psybeam','leech-life']),
                 generatePkmnBattle('alakazam', 43,0,['recover','psychic','amnesia']),
             ],
@@ -843,10 +843,10 @@ function generateIAs(){
             [
                 generatePkmnBattle('pidgeot', 56,0, ['quick-attack', 'wing-attack','growl','hyper-beam']),
                 generatePkmnBattle('exeggutor', 58,0,['egg-bomb','slam','psychic','solar-beam']),
-                generatePkmnBattle('arcanine', 56,0,['extreme-speed','flamethrower','swift','growl']),
-                generatePkmnBattle('gyarados', 58,0, ['hydro-pum', 'twister','thunder','hyper-beam']),
+                generatePkmnBattle('arcanine', 56,0,['hyper-beam','flamethrower','swift','growl']),
+                generatePkmnBattle('gyarados', 58,0, ['hydro-pump', 'gust','thunder','hyper-beam']),
                 generatePkmnBattle('rhydon', 56,0,['rock-slide','earthquake','hyper-beam','fury-attack']),
-                generatePkmnBattle('alakazam', 54,0,['psychic','recover','amnesia','protect']),
+                generatePkmnBattle('alakazam', 54,0,['psychic','recover','amnesia','flamethrower']),
             ],
             1,'Champion'
         ),

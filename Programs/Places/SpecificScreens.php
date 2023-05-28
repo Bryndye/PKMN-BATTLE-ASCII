@@ -170,22 +170,29 @@ function cinematicPresentation(){
 
 function cinematicLeagueEnding(&$save){
     clearGameScreen();
+    $name = getDataFromSave('name', getSavePath('myGame'));
     messageBoiteDialogue('Congratulations! You beat the league Pokemon!', -1);
 
     foreach($save['Team'] as $pkmn){
+        clearGameScreen();
         drawSprite(getSprites($pkmn['Sprite']), [3,18]);
         drawBox([4,20],[20,20]);
-        textAreaLimited($pkmn['Name'], 50,[21, 25]);
-        textAreaLimited("Lv: ".$pkmn['Level'], 50, [22, 27]);
+
+        justifyText($pkmn['Name'], 20, [21,20], 'center');
+        justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
+        messageBoiteDialogue('Bravo to '.$pkmn['Name'].'!');
+
         waitForInput([31,0]);
         clearSprite([3,18]);
     }
     clearGameScreen();
-    drawSprite(getSprites('trainer'), [3,18]);
+    drawSprite(getSprites('trainer'), [6,18]);
     sleep(1);
 
+    messageBoiteDialogue('Bravo '.$name.' and your team to defeat the league!', -1);
     messageBoiteDialogue("But it's not over!", -1);
-    messageBoiteDialogue("There are more challenges waiting for you!", -1);
+    messageBoiteDialogue("We've heard that a very strong pokemon has appeared.", -1);
+    messageBoiteDialogue("Are you ready? Go for it!", -1);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,29 +200,37 @@ function cinematicLeagueEnding(&$save){
 function cinematicEnding(&$save){
     clearGameScreen();
     messageBoiteDialogue('Congratulations! You beat the game!', -1);
-    // $wins = getDataFromSave('Game wins', getSavePath('myGame'));
-
+    $name = getDataFromSave('name', getSavePath('myGame'));
+    $win = getDataFromSave('Game wins', getSavePath('myGame'));
     foreach($save['Team'] as $pkmn){
+        clearGameScreen();
         drawSprite(getSprites($pkmn['Sprite']), [3,18]);
         drawBox([4,20],[20,20]);
-        textAreaLimited($pkmn['Name'], 50,[21, 25]);
-        textAreaLimited("Lv: ".$pkmn['Level'], 50, [22, 27]);
+
+        justifyText($pkmn['Name'], 20, [21,20], 'center');
+        justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
+        messageBoiteDialogue('Bravo to '.$pkmn['Name'].'!');
+
         waitForInput([31,0]);
         clearSprite([3,18]);
     }
     clearGameScreen();
-    drawSprite(getSprites('trainer'), [3,18]);
-    messageBoiteDialogue("But it's not over!", -1);
-    messageBoiteDialogue("But the adventure does not end there!", -1);
-    messageBoiteDialogue("New challenges await you!", -1);
-    messageBoiteDialogue("Are you ready?", -1);
+    drawSprite(getSprites('trainer'), [6,18]);
+    messageBoiteDialogue('Bravo '.$name.' and your team to defeat the game!', -1);
+    if($win == 0){
+        messageBoiteDialogue('New Pokemons have apparently appeared. New birds according to trainers', -1);
+    }
+    else if ($win < 5){
+        messageBoiteDialogue('You unlock new floors for the next time with new trainers and Pokemons.', -1);
+    }
+    // CONDITION POKEDEX UNLOCK FULL ??
 }
 
 function endGame(){
     deleteSave(getSavePath('save'));
     $gameWins = getDataFromSave('Game wins', getSavePath('myGame'));
     ++$gameWins;
-    $floorMaxReturn = ($gameWins*10) + 100;
+    $floorMaxReturn = ($gameWins*10) + 100 >= 140 ? 140 : ($gameWins*10) + 100;
     setData($floorMaxReturn, 'IndexFloor Max', getSavePath('myGame'));
     setData($gameWins, 'Game wins', getSavePath('myGame'));
 }

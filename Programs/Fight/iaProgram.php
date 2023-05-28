@@ -38,6 +38,22 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
     ];
     return $wildPkmn;
 }
+
+function createLegendaryWildPkmn($indexFloor){
+    if(getDataFromSave('Game wins', getSavePath('my Game'))> 0){
+        if(rand(0,100) >= 0){
+            $choiceLegendary = ['zapdos','moltres','articuno'];
+            return createWildPkmn($indexFloor, 
+                $choiceLegendary[rand(0, count($choiceLegendary)-1)] ,null, 'Legendary');
+        }
+        else{
+            return false;
+        }
+    }
+    else{
+        return false;
+    }
+}
 //// GENERATION D'UN PNJ //////////////////////////////////
 function generatePNJ($indexFloor, $level){
     $pnj = managerPNJGenerate($indexFloor, $level);
@@ -52,14 +68,17 @@ function managerPNJGenerate($indexFloor, $level){
 
     if(!isset($pnj)){
         $route = getRouteFromIndex($indexFloor);  
-        $data = generateEncounter($route, 50);
-        // debugLog($data);
+        $data = generateEncounter($route, 80);
         if(is_int($data)){
-                    // debugLog($route['Trainers'][$data]);
             return $route['Trainers'][$data];
         }
         else{
-            return createWildPkmn(rand($data[1][0],$data[1][1]), $data[0]);
+            // condition legendary
+            $created = createLegendaryWildPkmn($indexFloor);
+            if($created == false){
+                return createWildPkmn(rand($data[1][0],$data[1][1]), $data[0]);
+            }
+            return $created;
         }
     }
     return $pnj;

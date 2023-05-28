@@ -53,12 +53,7 @@ while(true){
     else{
         $IndexFloor = 1;
     }
-    if(array_key_exists('IndexFloor Max', $saveProfile)){
-        $IndexFloorMax = $saveProfile['IndexFloor Max'];
-    }
-    else{
-        $IndexFloorMax = 100;
-    }
+    $IndexFloorMax = $saveProfile['IndexFloor Max'];
     
     // item TEMP
     // giveItemFromResources($saveParty["Bag"], 'Potion', 5);
@@ -98,9 +93,7 @@ while(true){
         }
         waitForInput(getPosChoice());
 
-
-        //Ajouter condition while var global pour arreter le while
-        if($IndexFloor == 94){
+        if($IndexFloor == 95){
             cinematicLeagueEnding($saveParty);
         }
         else if($IndexFloor > $IndexFloorMax){

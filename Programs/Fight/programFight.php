@@ -41,10 +41,10 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     // Accuracy capacity
     usleep(250000);
     $chanceAccuracy = rand(0,100);
-    if($chanceAccuracy > $capacite['Accuracy']*calculateBoostTemps($pkmnAtk, 'Accuracy')){
-        debugLog($chanceAccuracy . ' '.$capacite['Accuracy']."\n");
-        debugLog($pkmnAtk['Stats Temp']['Accuracy']);
-        debugLog(calculateBoostTemps($pkmnAtk, 'Accuracy'));
+    if(!is_null($capacite['Accuracy']) && $chanceAccuracy > $capacite['Accuracy']*calculateBoostTemps($pkmnAtk, 'Accuracy')){
+        // debugLog($chanceAccuracy . ' '.$capacite['Accuracy']."\n");
+        // debugLog($pkmnAtk['Stats Temp']['Accuracy']);
+        // debugLog(calculateBoostTemps($pkmnAtk, 'Accuracy'));
         messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!',1);
         return;
     }

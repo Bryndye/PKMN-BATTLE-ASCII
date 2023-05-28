@@ -189,7 +189,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
         }
     }
     levelUpWindow($oldStats, $newStats);
-    drawPkmnHUD(getPosHealthPkmn(true),$pkmn);
+    // drawPkmnHUD(getPosHealthPkmn(true),$pkmn);
     verifyAddWhenEvolve($pkmn);
     getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
