@@ -80,7 +80,7 @@ function drawStatsFromSaveToMenu(){
         drawBox([21,30],[3,28]);
         $save = getSave(getSavePath('myGame'));
         textArea('Name : '.$save['name'], [5,30]);
-        textArea('Pokedex : '. count($save['Pokedex']), [7,30]);
+        textArea('Pokedex : '. countPkmnCatchFromPokedex().'/151', [7,30]);
         textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
         textArea('Win Count : '.$save['Game wins'], [9,30]);
 
@@ -118,6 +118,7 @@ function chooseFirstPokemon(){
     else if($choice == 3){
         $team[0] = generatePkmnBattle('charmander', 5);
     }
+    addPkmnToPokedex($team[0], 'catch');
     return [$team, $choice];
 }
 
@@ -218,11 +219,13 @@ function cinematicEnding(&$save){
     drawSprite(getSprites('trainer'), [6,18]);
     messageBoiteDialogue('Bravo '.$name.' and your team to defeat the game!', -1);
     if($win == 0){
-        messageBoiteDialogue('New Pokemons have apparently appeared. New birds according to trainers', -1);
+        messageBoiteDialogue('New Pokemons have apparently appeared. New birds according to trainers.', -1);
     }
     else if ($win < 5){
         messageBoiteDialogue('You unlock new floors for the next time with new trainers and Pokemons.', -1);
     }
+    messageBoiteDialogue("Your adventure isn't over yet. You must catch all the Pokemon!", -1);
+    messageBoiteDialogue("See you later.", -1);
     // CONDITION POKEDEX UNLOCK FULL ??
 }
 

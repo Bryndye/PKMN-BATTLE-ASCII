@@ -141,11 +141,12 @@ function levelUpWindow($oldStats, $newStats){
         ++$i;
     }
     // sleep(2);
+    waitForInput();
     for($i=0;$i<count($newStats);++$i){
         $phrase_alignee = str_pad($differences[$i].'->', 4, " ", STR_PAD_LEFT);
         textArea($phrase_alignee, [$pos[0]+$i+1,$pos[1]+10]);
     }
-    sleep(2);
+    waitForInput();
     $i = 1;
     clearArea([6,6], [$pos[0]+1,$pos[1]+10]);
     foreach($newStats as $key=>$stat){
@@ -154,7 +155,7 @@ function levelUpWindow($oldStats, $newStats){
         textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
         ++$i;
     }
-    sleep(2);
+    waitForInput();
     clearArea([10,20], [7,39]);
 }
     

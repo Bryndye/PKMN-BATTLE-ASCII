@@ -190,6 +190,10 @@ function selectStarterRival($stadeEvol = 0){
         case 3:
             $starter = 'charmander';  
             break;
+        case null:
+            debugLog('No Starter');
+            $starter = 'charmander';
+            break;
     }
 
     $rivalPokemonMap = array(

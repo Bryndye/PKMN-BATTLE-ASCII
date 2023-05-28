@@ -29,6 +29,7 @@ function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamag
 
 
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capacite){
+    // REVOIR LA LOGIC des capacites pour les effects !
     $ailmentParalysis = false;
     $cantPlay = ailmentStartTurnEffect($pkmnAtk);
     if($cantPlay){
@@ -64,6 +65,10 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         }
         else if(is_null($ailment['ailment'])){
             ailmentChanceOnpKmn($capacite, $pkmnDef, true);
+        }
+        else if($capacite['effects']['Healing'] != 0){
+            $pkmnAtk['Stats']['Health'] += ($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max'];
+            checkHealthOutRange($pkmnAtk);
         }
         else{
             boostStatsTemp($pkmnAtk, $pkmnDef, $capacite);           

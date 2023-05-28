@@ -26,7 +26,7 @@ include_once 'Programs/Places/shopManager.php';
 // INIT LAST PROGRAMS
 include_once 'Programs/Visuals/animations.php';
 include_once 'Resources/trainersAndRoutes.php';
-
+include_once 'Programs/Places/Pokedex.php';
 
 
 //// SET THE GAME ////

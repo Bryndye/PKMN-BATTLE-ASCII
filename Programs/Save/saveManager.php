@@ -4,6 +4,7 @@ function saveMainManager(){
     // Si joueur a deja sauvegarde
     if(isSaveExist(getSavePath('myGame'))){
         $save = getSave(getSavePath('myGame'));
+        adaptMainSave();
         if(!isset($save['name'])){
             deleteSave(getSavePath('myGame'));
             cinematicPresentation();
@@ -102,6 +103,10 @@ function createPartySave(){
 
 function adaptMainSave(){
     // add key and default value if doesnt exist
+    $main = getSave(getSavePath('myGame'));
+    if(!array_key_exists('Pokedex', $main)){
+        $main['Pokedex'] = [];
+    }
 }
 
 //////////////////////////////////////////////////////////////////

@@ -189,7 +189,6 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
         }
     }
     levelUpWindow($oldStats, $newStats);
-    // drawPkmnHUD(getPosHealthPkmn(true),$pkmn);
     verifyAddWhenEvolve($pkmn);
     getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
@@ -281,7 +280,7 @@ function resetTeamStatsTemp(&$pkmnTeam){
 }
 
 function resetStatsTemp(&$pkmn){
-    messageBoiteDialogue('DEBUG : RESET STAT '.$pkmn['Name'],-1);
+    // messageBoiteDialogue('DEBUG : RESET STAT '.$pkmn['Name'],-1);
     $pkmn['Stats Temp'] = [
         'Atk' => 0,
         'Def' => 0,
@@ -363,6 +362,7 @@ function evolution(&$pkmn, $indexChoiceEvol = null){
     sleep(1);
     drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
+    addPkmnToPokedex($pkmn, 'catch');
     sleep(1);
     messageBoiteDialogue('Tadadaa...',-1);
     messageBoiteDialogue($olderName .' evolves into '. $newName,-1);
@@ -428,6 +428,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
     else{
         array_push($pkmnTeam, $pkmn);
     }
+    addPkmnToPokedex($pkmn, 'catch');
 }
 // Capture Rate = (( 1 + ( MaxHP × 3 - CurrentHP × 2 ) × CatchRate × BallRate × Status# ) ÷ ( MaxHP × 3 )) ÷ 256
 function capturePokemon($pokeball, $pkmn) {

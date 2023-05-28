@@ -44,7 +44,7 @@ function gameplayLoop(&$joueur, &$pnj){
             switchPkmn($pkmnTeamJoueur ,$choice2);
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
-    
+        addPkmnToPokedex($pkmnTeamEnemy[0], 'see');
         // lance le combat quand les pkmns sont en combat
         loopFight($joueur, $pnj);
     }
