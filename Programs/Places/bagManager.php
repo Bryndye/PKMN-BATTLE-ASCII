@@ -152,7 +152,7 @@ function useItemOn(&$bag, $indexItem, &$pkmnTeam){
             return "$indexItem $choice2";
         }
         // Select Pkmn to heal
-        $choice2 = selectPkmn($pkmnTeam, 0, true, 'Use '.$itemToUse['name'] .' on?');
+        $choice2 = selectPkmn($pkmnTeam, null, true, 'Use '.$itemToUse['name'] .' on?');
         if($choice2 == leaveInputMenu()){
             return leaveInputMenu();
         }

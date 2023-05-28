@@ -133,13 +133,15 @@ function levelUpWindow($oldStats, $newStats){
     for($i=0;$i<count($newStats);++$i){
         array_push($differences, $newStats[$keys[$i]]-$oldStats[$keys[$i]]);
     }
-    $i = 1;
-    foreach($oldStats as $key=>$stat){
-        textArea($key, [$pos[0]+$i,$pos[1]+2]);
-        $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
-        textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
-        ++$i;
-    }
+    // $i = 1;
+    // foreach($oldStats as $key=>$stat){
+    //     textArea($key, [$pos[0]+$i,$pos[1]+2]);
+    //     $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
+    //     textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
+    //     ++$i;
+    // }
+    displayStats($oldStats, $pos);
+
     // sleep(2);
     waitForInput();
     for($i=0;$i<count($newStats);++$i){
@@ -149,16 +151,26 @@ function levelUpWindow($oldStats, $newStats){
     waitForInput();
     $i = 1;
     clearArea([6,6], [$pos[0]+1,$pos[1]+10]);
-    foreach($newStats as $key=>$stat){
+    displayStats($newStats, $pos);
+    // foreach($newStats as $key=>$stat){
+    //     textArea($key, [$pos[0]+$i,$pos[1]+2]);
+    //     $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
+    //     textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
+    //     ++$i;
+    // }
+    waitForInput();
+    clearArea([10,20], [7,39]);
+}
+ 
+function displayStats($stats, $pos){
+    $i = 1;
+    foreach($stats as $key=>$stat){
         textArea($key, [$pos[0]+$i,$pos[1]+2]);
         $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
         textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
         ++$i;
     }
-    waitForInput();
-    clearArea([10,20], [7,39]);
 }
-    
 
 //// draw MENU ///////////////////////////////////
 

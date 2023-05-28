@@ -413,7 +413,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
     if(count($pkmnTeam)>=6){
         // too much pokemon, fired one
         while(true){
-            $choice = selectPkmn($pkmnTeam, 0, true);
+            $choice = selectPkmn($pkmnTeam);
             textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
             $choice2 = binaryChoice();
             if($choice2){

@@ -98,29 +98,8 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                 break;
             }
             clearGameScreen();
-            drawSprite(getSprites($pkmn['Sprite']), [8,3]);
-            textAreaLimited($pkmn['Name'],30,[3,5]);
-            textAreaLimited('Lv:'.$pkmn['Level'],30,[4,5]);
-
-            getColorByType($pkmn['Type 1']);
-            textAreaLimited($pkmn['Type 1'],30,[5,5]);
-
-            getColorByType($pkmn['Type 2']);
-            textAreaLimited($pkmn['Type 2'],30,[5,10]);
-            selectColor('reset');
-    
-            $i = 0;
-            $y = 0;
-            $x = 35;
-            foreach($pkmn['Capacites'] as $capacitePkmn){
-                getColorByType($capacitePkmn['Type']);
-                drawBox([4,20],[2+$i,$x],'|','-',true);
-                selectColor('reset');
-                textAreaLimited($y.' '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
-                textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
-                ++$y;
-                $i += 4;
-            }
+            displayPkmnLeftMenu($pkmn);
+            displayCapacitiesMenu($pkmn);
     
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){

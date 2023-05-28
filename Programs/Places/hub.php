@@ -34,9 +34,7 @@ function drawHub(&$save){
             }
         }
         elseif($choice == 2){
-            // debugLog($save);
-            drawPkmnTeam($save['Team']);
-            waitForInput(getPosChoice(), leaveInputMenu());
+            checkTeamPkmnFromMenu($save['Team']);
         }
         elseif($choice == 4){
             inTown($save);
@@ -55,6 +53,85 @@ function drawHub(&$save){
     clearGameScreen();
 }
 
+//// TEAM MENU ///////////////////////////////////////////////////////////////////////
+function checkTeamPkmnFromMenu(&$pkmnTeam){
+    while(true){ // LOOP SELECT PKMN
+        $choice = selectPkmn($pkmnTeam, null, true, 'Choose a Pokemon.');
+        if(is_numeric($choice)){
+            while(true){ // LOOP ACTION TO A SINGLE PKMN
+                messageBoiteDialogue("1: Sheet Pkmn\n2: First Place");
+                $choice2 = waitForInput(getPosChoice(), [leaveInputMenu(),1,2]);
+                if($choice2 == 1){
+                    seeSheetPkmn($pkmnTeam[$choice]);
+                }
+                else if($choice2 == 2){
+                    messageBoiteDialogue('Switch place '.$pkmnTeam[$choice]['Name'].' where?');
+                    switchPkmn($pkmnTeam, $choice, false);
+                    break;
+                }
+                else if($choice2 == 'c'){
+                    break;
+                }
+            }
+        }
+        else if($choice == 'c'){
+            break;
+        }
+    }
+}
+
+function seeSheetPkmn($pkmn){
+    clearGameScreen();
+    displayPkmnLeftMenu($pkmn);
+    displayCapacitiesMenu($pkmn);
+    waitForInput();
+    clearArea([20,30], [2,30]);
+    dispslayStatsPkmnMenu($pkmn);
+    waitForInput();
+}
+
+function displayPkmnLeftMenu($pkmn){
+    drawSprite(getSprites($pkmn['Sprite']), [8,3]);
+    drawBox([5,24], [2,3]);
+    justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
+    textAreaLimited($pkmn['Name'],30,[3,5]);
+
+    getColorByType($pkmn['Type 1']);
+    justifyText($pkmn['Type 1'], 20, [5,5], 'right');
+    // textAreaLimited($pkmn['Type 1'],30,[5,5]);
+
+    getColorByType($pkmn['Type 2']);
+    textAreaLimited($pkmn['Type 2'],30,[5,5]);
+    selectColor('reset');
+}
+
+function displayCapacitiesMenu($pkmn){
+    $i = 4;
+    $y = 0;
+    $x = 35;
+    foreach($pkmn['Capacites'] as $capacitePkmn){
+        getColorByType($capacitePkmn['Type']);
+        drawBox([4,20],[2+$i,$x],'|','-',true);
+        selectColor('reset');
+        textAreaLimited($y.' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
+        textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
+        ++$y;
+        $i += 4;
+    }
+}
+
+function dispslayStatsPkmnMenu($pkmn){
+    $i = 6;
+    $x = 35;
+    $stats = $pkmn['Stats'];
+    drawBox([15,22],[$i,$x]);
+    foreach($stats as $key=>$stat){
+        justifyText($stat, 18 ,[1+$i,$x+2], 'right');
+        textArea($key, [1+$i,$x+2]);
+        $i += 2;
+    }
+}
+//// TOWN ////////////////////////////////////////////////////////////////////////////
 function inTown(&$save){
     while(true){
         drawGameCadre();

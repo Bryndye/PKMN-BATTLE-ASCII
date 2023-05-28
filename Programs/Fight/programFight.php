@@ -318,15 +318,29 @@ function searchNewPkmnInTeam(&$teamPkmn){
     }
     return null;
 }
-function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false, $string='Which Pokemon do you want?'){
+function selectPkmn(&$pkmnTeam, $exception = [], $pkmnDeadSelect = true, $string='Which Pokemon do you want?'){
     drawPkmnTeam($pkmnTeam);
     drawBoiteDialogue();
     messageBoiteDialogue($string);
     
     $arrayChoice = [];
     array_push($arrayChoice, leaveInputMenu());
-    for($i=$startIndex;$i<count($pkmnTeam);++$i){
-        if($pkmnDeadSelect || !isPkmnDead_simple($pkmnTeam[$i])){
+    if(!is_array($exception)){
+        $exception = is_null($exception) ? [999] : [$exception];
+    }
+    for($i=0;$i<count($pkmnTeam);++$i){
+        $nextPkmn = false;
+        for ($y = 0; $y < count($exception); $y++) {
+            if ($exception[$y] == $i) {
+                $nextPkmn = true;
+                break;
+            }
+        }
+        if($nextPkmn){
+            // debugLog($arrayChoice);
+            continue;
+        }
+        else if($pkmnDeadSelect || !isPkmnDead_simple($pkmnTeam[$i])){
             array_push($arrayChoice, ($i));
         }
     }
@@ -334,7 +348,7 @@ function selectPkmn(&$pkmnTeam, $startIndex, $pkmnDeadSelect = false, $string='W
     return $choice;
 }
 
-function switchPkmn(&$pkmnTeam ,$index){
+function switchPkmn(&$pkmnTeam ,$index, $inBattle = true){
     $a = &$pkmnTeam[$index];
     array_unshift($pkmnTeam, $a); // ajoute $a en premier index
     for($i=1;$i<count($pkmnTeam);++$i){
@@ -342,7 +356,9 @@ function switchPkmn(&$pkmnTeam ,$index){
             array_splice($pkmnTeam, $i, 1);
         }
     }
-    messageBoiteDialogue($pkmnTeam[0]['Name'].', Go!',1);
+    if($inBattle) {
+        messageBoiteDialogue($pkmnTeam[0]['Name'].', Go!',1);
+    }
 }
 ///////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////

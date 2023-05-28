@@ -41,7 +41,7 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
 
 function createLegendaryWildPkmn($indexFloor){
     if(getDataFromSave('Game wins', getSavePath('my Game'))> 0){
-        if(rand(0,100) >= 0){
+        if(rand(0,100) >= 95){
             $choiceLegendary = ['zapdos','moltres','articuno'];
             return createWildPkmn($indexFloor, 
                 $choiceLegendary[rand(0, count($choiceLegendary)-1)] ,null, 'Legendary');

@@ -56,7 +56,7 @@ function selectColor($color = 'black'){
             $string = '5';
             break;
         case 'pink':
-            $string = '12';
+            $string = '100;75;80;0';
             break;
         case 'health':
             $string = '38;2;255;165;0';
