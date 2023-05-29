@@ -4,16 +4,16 @@ function drawHub(&$save){
     while(true){
         drawGameCadre();
         
-        $choiceBefore = [1, 2, 3, 5];
-        $choiceBeforeHUD = ['1 : CONTINUE', '2 : TEAM', '3 : BAG', '5 : QUIT'];
+        $choiceBefore = [1, 2, 4, 6];
+        $choiceBeforeHUD = ['1 : CONTINUE', '2 : POKEDEX', '3 : POKEMON', '4 : BAG', '6 : QUIT'];
         $townAccessibleResult = townAccessible($save['IndexFloor']);
         if($townAccessibleResult) {
             array_splice($choiceBefore, 3, 0, 4);
             global $towns;
             $townName = $towns[$save['IndexFloor']];
-            array_splice($choiceBeforeHUD, 3, 0, '4 : '.$townName);
+            array_splice($choiceBeforeHUD, 4, 0, '5 : '.$townName);
         }
-        drawBoxChoiceMenu(getPosMenuHUD(), $choiceBeforeHUD);
+        drawBoxTextJusitfy(getPosMenuHUD(), $choiceBeforeHUD);
         drawBoxTitle(getPosPlaceHUD(),[3,7], 'HUB');
         drawMoney(null,$save['Money']);
         drawNextFloor([10,28]);
@@ -22,7 +22,16 @@ function drawHub(&$save){
 
         // Attend la selection entre 1 et 2
         $choice = waitForInput([31,0],$choiceBefore);
-        if($choice == 3){
+        if($choice == 1){
+            break;
+        }
+        elseif($choice == 2){
+            pokedexInterface();
+        }
+        elseif($choice == 3){
+            checkTeamPkmnFromMenu($save['Team']);
+        }
+        elseif($choice == 4){
             while(true){
                 $action = enterIntoBag($save);
                 if(str_contains($action, leaveInputMenu())){
@@ -33,17 +42,11 @@ function drawHub(&$save){
                 }
             }
         }
-        elseif($choice == 2){
-            checkTeamPkmnFromMenu($save['Team']);
-        }
-        elseif($choice == 4){
+        elseif($choice == 5){
             inTown($save);
             // managerShop($save);
         }
-        elseif($choice == 1){
-            break;
-        }
-        elseif($choice == 5){
+        elseif($choice == 6){
             exitGame();
         }
     }
@@ -91,17 +94,26 @@ function seeSheetPkmn($pkmn){
 }
 
 function displayPkmnLeftMenu($pkmn){
+    if(is_null($pkmn)){
+        $pkmn['N Pokedex'] = '???';
+        $pkmn['Name'] = '???';
+        $pkmn['Sprite'] = '?';
+        $pkmn['Type 1'] = '???';
+        $pkmn['Type 2'] = '???';
+    }
     drawSprite(getSprites($pkmn['Sprite']), [8,3]);
     drawBox([5,24], [2,3]);
-    justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
+    if(array_key_exists('Level', $pkmn)){
+        justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
+    }
     textAreaLimited($pkmn['Name'],30,[3,5]);
-
-    getColorByType($pkmn['Type 1']);
-    justifyText($pkmn['Type 1'], 20, [5,5], 'right');
-    // textAreaLimited($pkmn['Type 1'],30,[5,5]);
+    textAreaLimited('N° : '.$pkmn['N Pokedex'],30,[4,5]);
 
     getColorByType($pkmn['Type 2']);
-    textAreaLimited($pkmn['Type 2'],30,[5,5]);
+    justifyText($pkmn['Type 2'], 20, [5,5], 'right');
+
+    getColorByType($pkmn['Type 1']);
+    textAreaLimited($pkmn['Type 1'],30,[5,5]);
     selectColor('reset');
 }
 
@@ -141,7 +153,7 @@ function inTown(&$save){
         global $towns;
         $townName = $towns[$save['IndexFloor']];
         drawBoxTitle(getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
-        drawBoxChoiceMenu(getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : QUIT']);
+        drawBoxTextJusitfy(getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : EXIT']);
         drawSprite(getSprites('Town'), [8, 29]);
         messageBoiteDialogue('Welcome to '.$townName.'!');
 

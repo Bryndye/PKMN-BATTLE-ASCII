@@ -110,12 +110,21 @@ function drawBoxTitle($pos, $scale, $title){
     textArea($title, [$pos[0]+intval($scale[0]/2),$pos[1]+2]);
 }
 
-function drawBoxChoiceMenu($pos, $choices){
+function drawBoxTextJusitfy($pos, $choices){
     $posY = $pos[0];
     $posX = $pos[1];
-    drawBox([count($choices)*2+3,20],[$posY,5]);
+
+    // Calcul the max length to draw the box
+    $maxLength = 0;
     for($i=0; $i<count($choices);++$i){
-        textArea($choices[$i], [$posY+2*($i+1),$posX]);
+        $maxLength = strlen($choices[$i]) > $maxLength ? strlen($choices[$i]) : $maxLength;
+    }
+    drawBox([count($choices)*2+3,$maxLength+5],[$posY,$posX]);
+
+    // Draw each lines
+    for($i=0; $i<count($choices);++$i){
+        textArea($choices[$i], [$posY+2*($i+1),$posX+2]);
+        $maxLength = strlen($choices[$i]) > $maxLength ? strlen($choices[$i]) : $maxLength;
     }
 }
 

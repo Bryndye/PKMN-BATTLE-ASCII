@@ -72,9 +72,6 @@ while(true){
     while(true){
         // HUB
         drawHub($saveParty);
-
-        // Doit generer la route puis IA en fct de celle-ci
-        // Choix de route a la fin dune arene si plusieurs sont proposees
         
         // generer IA pkmn team
         $pnj = generatePNJ($IndexFloor, $pkmnTeamJoueur[0]['Level']);

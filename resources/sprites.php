@@ -430,6 +430,22 @@ x xxx x',
  \   ) \     ) \  \
   /  ) /__  /_  )( \
  (___)))__))(__))(__)))',
+ '?'=>
+ '          xxxxxxxx
+        xxxxxxxxxxxx
+      xxxxxx   xxxxxx
+      xxxx       xxxx
+      xxxx       xxxx
+               xxxx
+             xxxx
+            xxxx
+            xxxx
+            xxxx
+
+            xxxx
+            xxxx
+            xxxx
+',
 //// SPRITES TESTS //////////////////////////////////////////////////////////////////////////
 
     // les limites de 'zone' sont compris dans le sprite

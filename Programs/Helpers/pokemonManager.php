@@ -12,13 +12,8 @@ function getPokemon($pkmn){
         return getPokemonByIndex($pkmn);
     }
     elseif(is_string($pkmn)){
-        return getPkmnFromPokedex($pkmn);
+        return getPokemonByName($pkmn);
     }
-}
-
-function getPkmnFromPokedex($name){
-    global $pokemonPokedex;
-    return $pokemonPokedex[$name];
 }
 
 function getPokemonByIndex($index = 1){

@@ -23,6 +23,7 @@ function getPathScript($script){
     return $link;
 }
 
+//// MENU LIST SCROLLING ///////////////////////////////////////////
 function getAllCategoriesItem(){
     return [getTypeItemBag('Items'),getTypeItemBag('Heals'),getTypeItemBag('PokeBalls'),getTypeItemBag('TMs')];
 }
@@ -45,10 +46,24 @@ function getCategoryName($categories, $actualCategory){
     }
 }
 
+function getMessageBoiteDialogue($Mode = 'use', $sentence = 'Which item to use?'){
+    $string = $sentence."\n   z   \n<q   d>";
+    if($Mode == 'use'){
+        $string .= "  Use : v\n   s";
+    }
+    elseif($Mode == 'count'){
+        $string .= "  Find by number : ***\n   s";
+    }
+    else{
+        $string .= "\n   s";
+    }
+    return$string;
+}
+
 //// SAVES ///////////////////////////////////////////////
 
 function getParameterPathSave(){
-    return 0;
+    return 1;
 }
 
 function getSavePath($name = 'save'){
@@ -112,7 +127,7 @@ function getPosPlaceHUD(){
 }
 
 function getPosMenuHUD(){
-    return [7,7];
+    return [7,5];
 }
 
 function getPosDialogue(){

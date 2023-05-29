@@ -42,7 +42,7 @@ function enterIntoBag(&$save, $type = 'hub'){
         }
         
         // Draw & write before action
-        messageBoiteDialogue("Which item to use?\n   z   \n<q   d> Use=v\n   s");
+        messageBoiteDialogue(getMessageBoiteDialogue());
         drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
         drawCategoryBag($categories, $indexCategory);
 

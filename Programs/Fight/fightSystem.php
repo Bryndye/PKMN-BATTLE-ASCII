@@ -78,7 +78,7 @@ function loopFight(&$joueur, &$pnj){
             $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
         }
         elseif($choice == 2){
-            $choice2 = selectPkmn($pkmnTeamJoueur, 1);
+            $choice2 = selectPkmn($pkmnTeamJoueur);
             if($choice2 != leaveInputMenu()){           
                 drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }

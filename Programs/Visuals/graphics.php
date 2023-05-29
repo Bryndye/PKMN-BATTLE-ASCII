@@ -168,6 +168,7 @@ function drawBox($scale, $pos, $styleH='|', $styleL='-', $corner = true, $corner
     }
 }
 
+
 function drawFullBox($scale, $pos, $style=['*','*','*']){
     moveCursor($pos);
     
