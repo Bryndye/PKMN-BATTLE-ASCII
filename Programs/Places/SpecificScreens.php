@@ -80,7 +80,7 @@ function drawStatsFromSaveToMenu(){
         drawBox([21,30],[3,28]);
         $save = getSave(getSavePath('myGame'));
         textArea('Name : '.$save['name'], [5,30]);
-        textArea('Pokedex : '. countPkmnCatchFromPokedex().'/151', [7,30]);
+        textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
         textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
         textArea('Win Count : '.$save['Game wins'], [9,30]);
 

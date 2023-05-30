@@ -32,8 +32,8 @@ include_once 'Programs/Places/Pokedex.php';
 //// SET THE GAME ////
 clear();
 hideCursor();
-// shell_exec('mode con: cols=60 lines=33');
-// intro();
+shell_exec('mode con: cols=60 lines=33');
+intro();
 startGame();
 
 //// GAME ////

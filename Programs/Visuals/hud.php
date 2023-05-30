@@ -20,32 +20,6 @@ function drawMoney($pos = null, $currentMoney = null){
     justifyText(formatMoney($money), $scaleX-3,[$posY+1,$posX+1], 'right');
 }
 
-
-function drawNextFloor($pos){
-    $posY = $pos[0];
-    $posX = $pos[1];
-    drawBox([10,30],[$posY,$posX]);
-
-    $saveFight = getSave(getSavePath('save'));
-    justifyText('NEXT', 30, $pos, 'center');
-    textArea('Floor : '.$saveFight['IndexFloor'], [$posY+2,$posX+2]);
-
-    $currentRoute = getRouteFromIndex($saveFight['IndexFloor'],true);
-    $pnj = checkPNJExist($saveFight['IndexFloor']);
-    if(!is_null($currentRoute)){
-        textArea('Route : '.$currentRoute, [$posY+4,$posX+2]);
-
-        if(!is_null($pnj)){
-            textArea('Trainer : '.$pnj['Name'], [$posY+6,$posX+2]);
-        }
-    }
-    else{
-        if(!is_null($pnj)){
-            textArea('Trainer : '.$pnj['Name'], [$posY+4,$posX+2]);
-        }
-    }
-}
-
 function drawCategorySelected($categories, $caterogySelected, $pos){
     // pos = 4,2
     drawBox([1,getScreenScale()[1]-2],$pos,'-','-'); // pos pour mettre la ligne en dessous des categories

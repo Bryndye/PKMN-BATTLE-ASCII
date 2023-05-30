@@ -8771,7 +8771,7 @@
         ],
         "Ailment":{
             "ailment":"sleep",
-            "ailment_chance":0
+            "ailment_chance":50
         },
         "Flinch Chance":0,
         "hits":{
@@ -8837,7 +8837,7 @@
         ],
         "Ailment":{
             "ailment":"confusion",
-            "ailment_chance":0
+            "ailment_chance":50
         },
         "Flinch Chance":0,
         "hits":{
@@ -14757,7 +14757,7 @@
         ],
         "Ailment":{
             "ailment":"poison",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -14829,7 +14829,7 @@
         ],
         "Ailment":{
             "ailment":"paralysis",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -14911,7 +14911,7 @@
         ],
         "Ailment":{
             "ailment":"sleep",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -15827,7 +15827,7 @@
         ],
         "Ailment":{
             "ailment":"paralysis",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -17651,7 +17651,7 @@
         ],
         "Ailment":{
             "ailment":"poison",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -19143,7 +19143,7 @@
         ],
         "Ailment":{
             "ailment":"sleep",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -22294,7 +22294,7 @@
         ],
         "Ailment":{
             "ailment":"confusion",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -26621,7 +26621,7 @@
         ],
         "Ailment":{
             "ailment":"paralysis",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -26928,7 +26928,7 @@
         ],
         "Ailment":{
             "ailment":"poison",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -27127,7 +27127,7 @@
         ],
         "Ailment":{
             "ailment":"sleep",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -27435,7 +27435,7 @@
         ],
         "Ailment":{
             "ailment":"sleep",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -37069,7 +37069,7 @@
         ],
         "Ailment":{
             "ailment":"confusion",
-            "ailment_chance":0
+            "ailment_chance":100
         },
         "Flinch Chance":0,
         "hits":{
@@ -38422,7 +38422,7 @@
     "Power":"ko",
     "Type":"normal",
     "PP":5,
-    "Category":"status",
+    "Category":"special",
     "Accuracy":null,
     "crit_rate":0,
     "priority":0,

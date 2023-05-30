@@ -431,9 +431,9 @@ x xxx x',
   /  ) /__  /_  )( \
  (___)))__))(__))(__)))',
  '?'=>
- '          xxxxxxxx
-        xxxxxxxxxxxx
-      xxxxxx   xxxxxx
+ '         xxxxxxxxx
+       xxxxxxxxxxxxx
+      xxxxx     xxxxx
       xxxx       xxxx
       xxxx       xxxx
                xxxx

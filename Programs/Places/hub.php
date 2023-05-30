@@ -56,6 +56,30 @@ function drawHub(&$save){
     clearGameScreen();
 }
 
+function drawNextFloor($pos){
+    $posY = $pos[0];
+    $posX = $pos[1];
+    drawBox([10,30],[$posY,$posX]);
+
+    $saveFight = getSave(getSavePath('save'));
+    justifyText('NEXT', 30, $pos, 'center');
+    textArea('Floor : '.$saveFight['IndexFloor'], [$posY+2,$posX+2]);
+
+    $currentRoute = getRouteFromIndex($saveFight['IndexFloor'],true);
+    $pnj = checkPNJExist($saveFight['IndexFloor']);
+    if(!is_null($currentRoute)){
+        textArea('Route : '.$currentRoute, [$posY+4,$posX+2]);
+
+        if(!is_null($pnj)){
+            textArea('Trainer : '.$pnj['Name'], [$posY+6,$posX+2]);
+        }
+    }
+    else{
+        if(!is_null($pnj)){
+            textArea('Trainer : '.$pnj['Name'], [$posY+4,$posX+2]);
+        }
+    }
+}
 //// TEAM MENU ///////////////////////////////////////////////////////////////////////
 function checkTeamPkmnFromMenu(&$pkmnTeam){
     while(true){ // LOOP SELECT PKMN
@@ -94,7 +118,7 @@ function seeSheetPkmn($pkmn){
     waitForInput();
 }
 
-function displayPkmnLeftMenu($pkmn){
+function displayPkmnLeftMenu($pkmn, $catch = null){
     if(is_null($pkmn)){
         $pkmn['N Pokedex'] = '???';
         $pkmn['Name'] = '???';
@@ -108,6 +132,13 @@ function displayPkmnLeftMenu($pkmn){
         justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
     }
     textAreaLimited($pkmn['Name'],30,[3,5]);
+    // debugLog($catch);
+    if(!is_null($catch)){
+        justifyText($catch, 20, [4,5], 'right');
+    }
+    else{
+        justifyText('    ', 20, [4,5], 'right');
+    }
     textAreaLimited('N° : '.$pkmn['N Pokedex'],30,[4,5]);
 
     getColorByType($pkmn['Type 2']);

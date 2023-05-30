@@ -34,73 +34,79 @@ function getLastNPokedex(){
     return $pokemonPokedex[$lastKey]['N Pokedex'];
 }
 
+function getCountPokedex(){
+    global $pokemonPokedex;
+    // $lastKey = array_key_last($pokemonPokedex);
+    return count($pokemonPokedex);
+}
+
 function pokedexInterface(){
     $indexPokedex = 1;
     $lastNPokdex = getLastNPokedex();
     $pkmnSeeAndCatch = getDataFromSave('Pokedex',getSavePath('myGame'));
+
     while(true){
         clearGameScreen();
         messageBoiteDialogue(getMessageBoiteDialogue('count','Navigate into the Pokedex :'));
         $currentPkmnUsing = getPokemon($indexPokedex);
+        
         listPokedexRight($currentPkmnUsing['Name'], $pkmnSeeAndCatch);
-        $currentPokemon = getPokemon($indexPokedex);
-        $existsInException = is_array($pkmnSeeAndCatch) && array_key_exists($currentPkmnUsing['N Pokedex'], $pkmnSeeAndCatch);
-        displayPkmnLeftMenu($existsInException ? $currentPokemon : null);
 
+        $exceptionValue = $pkmnSeeAndCatch[$currentPkmnUsing['N Pokedex']] ?? null;
+        $catchInfo = $exceptionValue == 2 ? 'Catch' : ($exceptionValue == 1 ? 'See' : null);
+
+        displayPkmnLeftMenu($exceptionValue ? $currentPkmnUsing : null, $catchInfo);
 
         $choice = waitForInput(getPosChoice(), null, ' Select '. leaveInputMenu() .' : ');
-        if($choice == 's'){
-            $indexPokedex++;
-        }
-        elseif($choice == 'z'){
-            $indexPokedex--;
-        }
-        elseif(is_numeric($choice)){
+
+        if(is_numeric($choice)){
             $indexPokedex = $choice <= $lastNPokdex ? $choice : $indexPokedex;
+        } else {
+            switch ($choice){
+                case 's': $indexPokedex++; break;
+                case 'z': $indexPokedex--; break;
+                case 'c': return;
+            }
         }
-        elseif($choice == 'c'){
-            break;
-        }
-        if($indexPokedex > $lastNPokdex){
-            $indexPokedex = 0;
-        }
-        elseif($indexPokedex <= 0){
-            $indexPokedex = $lastNPokdex;
-        }
+
+        $indexPokedex = ($indexPokedex > $lastNPokdex) ? 0 : (($indexPokedex <= 0) ? $lastNPokdex : $indexPokedex);
     }
 }
 
-function listPokedexRight($startKey, $exception = null) {
+function listPokedexRight($startKey, $exception = null){
     $x = 35;
-    $y = 2;
+    $y = 5;
     global $pokemonPokedex;
 
     $keys = array_keys($pokemonPokedex);
     $startIndex = array_search($startKey, $keys);
 
-    $slice = array_slice($pokemonPokedex, $startIndex, 10, true);
+    $slice = array_slice($pokemonPokedex, $startIndex, 8, true);
+
     $newListPokemonToDraw = [];
     $pointerFlag = false;
 
-    foreach ($slice as $pkmn) {
+    $counts = array_count_values($exception);
+    drawBox([3,25],[2,$x]);
+    justifyText('C:'.$counts['2'].' S:'.($counts['1']+$counts['2']), 21, [3,$x+2], 'right');
+    textArea('Total:'.getCountPokedex(), [3,$x+2]);
+
+    foreach($slice as $pkmn){
         $pokedexNumber = $pkmn['N Pokedex'];
         $pokedexNumberString = sprintf("%03d", $pokedexNumber);
         $pokedexName = $pkmn['Name'];
 
-        $existsInException = is_array($exception) && array_key_exists($pokedexNumber, $exception);
-        $pointer = (!$pointerFlag ? ' <-' : '');
-        
-        if (!$existsInException) {
-            $string = $pokedexNumberString . ' : -----------' . $pointer;
-            $pointerFlag = true;
+        $exceptionValue = $exception[$pokedexNumber] ?? null;
+        $pointer = (!$pointerFlag ? ' <' : '');
+        $pointerFlag = true;
+
+        if ($exceptionValue){
+            $catch = $exceptionValue == 2 ? 'C ' : 'S ';
+            $newListPokemonToDraw[] = $catch . $pokedexNumberString . ' : ' . $pokedexName . $pointer;
         } else {
-            $string = $pokedexNumberString . ' : ' . $pokedexName . $pointer;
-            $pointerFlag = true;
+            $newListPokemonToDraw[] = '  ' . $pokedexNumberString . ' : --------- ' . $pointer;
         }
-
-        array_push($newListPokemonToDraw, $string);
     }
-
     drawBoxTextJusitfy([$y, $x], $newListPokemonToDraw);
 }
 

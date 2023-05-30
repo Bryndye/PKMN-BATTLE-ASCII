@@ -35,7 +35,7 @@ function managerShop(&$save){
         elseif($move == 'v'){
             while(true){
                 messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['key'].' do you want?');
-                $quantity = waitForInput(getPosChoice(), '', 'quantity? ');
+                $quantity = waitForInput(getPosChoice(), '', ' Quantity? ');
                 if(!is_numeric($quantity)){
                     messageBoiteDialogue('Please insert a number.',-1);
                     continue;

@@ -29,8 +29,6 @@ function attackByJustOnePkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurTakeDamag
 
 
 function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capacite){
-    // REVOIR LA LOGIC des capacites pour les effects !
-    $ailmentParalysis = false;
     $cantPlay = ailmentStartTurnEffect($pkmnAtk);
     if($cantPlay){
         return;
@@ -40,12 +38,8 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!',1);
 
     // Accuracy capacity
-    usleep(250000);
     $chanceAccuracy = rand(0,100);
     if(!is_null($capacite['Accuracy']) && $chanceAccuracy > $capacite['Accuracy']*calculateBoostTemps($pkmnAtk, 'Accuracy')){
-        // debugLog($chanceAccuracy . ' '.$capacite['Accuracy']."\n");
-        // debugLog($pkmnAtk['Stats Temp']['Accuracy']);
-        // debugLog(calculateBoostTemps($pkmnAtk, 'Accuracy'));
         messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!',1);
         return;
     }
@@ -58,32 +52,18 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
 
     // penser au Power="reset" et status qui applique status="PSN"
     if($capacite['Category'] == 'status'){
-
-        $ailment = $capacite['effects']['Ailment'];
-        if($capacite['Power'] == 'reset'){
-            resetAllStatsTempToPkmn($pkmnDef);
-        }
-        else if(is_null($ailment['ailment'])){
-            ailmentChanceOnpKmn($capacite, $pkmnDef, true);
-        }
-        else if($capacite['effects']['Healing'] != 0){
-            $pkmnAtk['Stats']['Health'] += ($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max'];
-            checkHealthOutRange($pkmnAtk);
-        }
-        else{
-            boostStatsTemp($pkmnAtk, $pkmnDef, $capacite);           
-        }
+        statusCapacityPkmn($pkmnAtk,$pkmnDef, $capacite);
     }
     else{
-        damageCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
+        attackPkmnCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
     }
     drawPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
-    usleep(500000);
+    sleep(1);
 }
 
 
 // fct calculator dmg capacite + stats
-function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){  
+function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){  
     //// Capacity Special ¨Power /////////////////////////////////////////////////////////////////////
     $power = $capacite['Power'];
     if(is_string($capacite['Power'])){
@@ -169,6 +149,23 @@ function damageCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             // update health pkmn atk after drain
             drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
         }
+    }
+}
+
+function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite){
+    $ailment = $capacite['effects']['Ailment'];
+    if($capacite['Power'] == 'reset'){
+        resetAllStatsTempToPkmn($pkmnDef);
+    }
+    else if(is_null($ailment['ailment'])){
+        ailmentChanceOnpKmn($capacite, $pkmnDef, true);
+    }
+    else{
+        boostStatsTemp($pkmnAtk, $pkmnDef, $capacite);           
+    }
+    if($capacite['effects']['Healing'] != 0){
+        $pkmnAtk['Stats']['Health'] += ($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max'];
+        checkHealthOutRange($pkmnAtk);
     }
 }
 
