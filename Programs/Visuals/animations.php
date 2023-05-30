@@ -109,31 +109,35 @@ function animationVersusLeader($spriteName){
     clearGameScreen();
     drawGameCadre();
     if(is_null($spriteName)){
-        $sprite = getSprites('rival');
+        $sprite = getSprites('trainer');
     }else{
         $sprite = getSprites($spriteName);
     }
 
     $screenScale = getScreenScale();
     $posY = 8;
-    drawBox([getScaleSpritePkmn()[0]+4,$screenScale[1]],[$posY-1,1], '|','-', true);
-    drawBox([getScaleSpritePkmn()[0]+2,$screenScale[1]],[$posY,1], '|','-', true);
+    drawBox([2,$screenScale[1]-2],[$screenScale[0]-6,2], '|','-',true,['-','-','-','-']);
+    drawBox([2,$screenScale[1]-2],[$screenScale[0]-23,2], '|','-',true,['-','-','-','-']);
 
     $scaleSprite = countLinesAndColumns($sprite);
+    $scaleSpriteVersus = countLinesAndColumns(getSprites('Versus'));
 
     $posInit = [$posY+1, $screenScale[1]-$scaleSprite[1]];
-    $posFinal = [$posY+1, $screenScale[1]-$scaleSprite[1]-10];
-    drawSprite(getSprites('Versus'),[$posY+3,3]);
-    // drawSprite($sprite,[$posY+1,30]);
+    $posFinal = [$posY+1, $scaleSpriteVersus[1]/2+5]; // Weird stuff
 
+    drawSprite(getSprites('Versus'),[$posY+3,3]);
+    selectColor('reset');
     translate($sprite, $posInit, $posFinal, 2);
 
-    // selectColor('grey');
-    // drawSprite($sprite,[$posY+1,30]);
-    // drawSprite(getSprites('Versus'),[$posY+3,3]);
-    // selectColor('reset');
-    // sleep(1);
-    // clearArea([getScaleSpritePkmn()[0],$screenScale[1]-2],[$posY+1,2]);
+    // TRANSITION TO GREY
+    selectColor('grey');
+    drawBox([2,$screenScale[1]-2],[$screenScale[0]-6,2], '|','-',true,['-','-','-','-']);
+    drawBox([2,$screenScale[1]-2],[$screenScale[0]-23,2], '|','-',true,['-','-','-','-']);
+    drawSprite($sprite,$posFinal);
+    drawSprite(getSprites('Versus'),[$posY+3,3]);
+    selectColor('reset');
+    sleep(1);
+    clearArea([$screenScale[0]-2,$screenScale[1]-2],[2,2]);
     
     sleep(1);
 }

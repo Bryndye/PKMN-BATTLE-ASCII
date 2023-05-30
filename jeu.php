@@ -61,7 +61,9 @@ while(true){
     // giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
     // giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
     // giveItemFromResources($saveParty["Bag"], 'MasterBall', 5);
-    // giveItemFromResources($saveParty["Bag"], 'Surf', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Thunderstone', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Firestone', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Waterstone', 5);
     // giveItemFromResources($saveParty["Bag"], 'Hyper-Beam', 5);
     // giveItemFromResources($saveParty["Bag"], 'Flamethrower', 5);
 
@@ -98,7 +100,6 @@ while(true){
             endGame();
             break;
         }
-        // continueToFight();
     }
 }
 ?>

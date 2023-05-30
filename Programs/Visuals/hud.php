@@ -64,7 +64,7 @@ function drawCategorySelected($categories, $caterogySelected, $pos){
 }
 //// DRAW DIALOGUE ///////////////////////////////////////////
 function drawBoiteDialogue(){
-    drawBox(getScaleDialogue(), getPosDialogue());
+    drawBox(getScaleDialogue(), getPosDialogue(), '|','-',true,['|','|','+','+']);
 }
 
 function messageBoiteDialogue($message, $time = 0){

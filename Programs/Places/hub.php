@@ -4,11 +4,11 @@ function drawHub(&$save){
     while(true){
         drawGameCadre();
         
-        $choiceBefore = [1, 2, 4, 6];
+        $choiceBefore = [1, 2, 3, 4, 6];
         $choiceBeforeHUD = ['1 : CONTINUE', '2 : POKEDEX', '3 : POKEMON', '4 : BAG', '6 : QUIT'];
         $townAccessibleResult = townAccessible($save['IndexFloor']);
         if($townAccessibleResult) {
-            array_splice($choiceBefore, 3, 0, 4);
+            array_splice($choiceBefore, 4, 0, 5);
             global $towns;
             $townName = $towns[$save['IndexFloor']];
             array_splice($choiceBeforeHUD, 4, 0, '5 : '.$townName);
@@ -66,6 +66,7 @@ function checkTeamPkmnFromMenu(&$pkmnTeam){
                 $choice2 = waitForInput(getPosChoice(), [leaveInputMenu(),1,2]);
                 if($choice2 == 1){
                     seeSheetPkmn($pkmnTeam[$choice]);
+                    break;
                 }
                 else if($choice2 == 2){
                     messageBoiteDialogue('Switch place '.$pkmnTeam[$choice]['Name'].' where?');
@@ -111,7 +112,7 @@ function displayPkmnLeftMenu($pkmn){
 
     getColorByType($pkmn['Type 2']);
     justifyText($pkmn['Type 2'], 20, [5,5], 'right');
-
+    
     getColorByType($pkmn['Type 1']);
     textAreaLimited($pkmn['Type 1'],30,[5,5]);
     selectColor('reset');

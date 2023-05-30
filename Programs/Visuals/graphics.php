@@ -40,23 +40,35 @@ function selectColor($color = 'black'){
         case 'blue':
             $string = '34m';
             break;
+        case 'cyan':
+            $string = '1;34m';
+            break;
         case 'green':
             $string = '0;32m';
             break;
+        case 'green light':
+            $string = '1;32m';
+            break;
+        case 'green bug':
+            $string = '38;5;118m';
+            break;     
         case 'orange':
-            $string = '0;31m';
+            $string = '38;5;208m';
+            break;
+        case 'brown':
+            $string = '38;5;202m';
             break;
         case 'yellow':
-            $string = '14';
+            $string = '0;33m';
             break;
         case 'grey':
-            $string = '0;37m';
+            $string = '1;30m';
             break;
         case 'purple':
-            $string = '5';
+            $string = '0;35m';
             break;
         case 'pink':
-            $string = '100;75;80;0';
+            $string = '1;35m';
             break;
         case 'health':
             $string = '38;2;255;165;0';
@@ -68,7 +80,7 @@ function selectColor($color = 'black'){
 function getColorByType($type = 'normal'){
     switch($type){
         case 'normal':
-            selectColor(0);
+            selectColor('white');
             break;
         case 'grass':
             selectColor('green');
@@ -83,13 +95,13 @@ function getColorByType($type = 'normal'){
             selectColor('yellow');
             break;
         case 'rock':
-            selectColor(6);
+            selectColor('brown');
             break;
         case 'ground':
-            selectColor(3);
+            selectColor('orange');
             break;
         case 'bug':
-            selectColor(10);
+            selectColor('green bug');
             break;
         case 'ice':
             selectColor('ice');
@@ -101,7 +113,7 @@ function getColorByType($type = 'normal'){
             selectColor('purple');
             break;
         case 'flying':
-            selectColor(11);
+            selectColor('cyan');
             break;
         case 'psychic':
             selectColor('pink');
@@ -119,7 +131,7 @@ function getColorByType($type = 'normal'){
             selectColor('grey');
             break;
         case 'dragon':
-            selectColor(1);
+            selectColor('blue');
             break;
     }
 }

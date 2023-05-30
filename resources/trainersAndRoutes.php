@@ -56,7 +56,7 @@ $routes = [
         ],
         'Trainers' => [
             createTrainer('Bug Catcher', 
-                'trainer_test',
+                'trainer',
                 [
                     'entrance' => "There is so many bugs here! This is my paradise!",
                     'end' => [
@@ -73,7 +73,7 @@ $routes = [
                 ]
             ),
             createTrainer('Bug Catcher', 
-                'trainer_test',
+                'trainer',
                 [
                     'entrance' => "There is Pikachu into this forest. Did you see one?",
                     'end' => [
@@ -531,7 +531,7 @@ function generateIAs(){
     global $pnjs;
     $pnjs = [
         1 => createTrainer('Tony', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "Do you like short pants?",
                 'end' => [
@@ -547,7 +547,7 @@ function generateIAs(){
             0
         ),
         1 => createTrainer('TEST TRAINER', 
-        'trainer_test',
+        'trainer',
         [
             'entrance' => "Do you like short pants?",
             'end' => []
@@ -577,7 +577,7 @@ function generateIAs(){
                 'Rival'
             ),
         10 =>  createTrainer('Gym Leader Brock', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I'm thougher than you think.",
                 'end' => [
@@ -593,8 +593,27 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
+        15 =>  createTrainer('Blue', 
+            'rival',
+            [
+                'entrance' => "You? Again?",
+                'end' => [
+                    "Tsss! Out of my sight!"
+                ]
+            ],
+            2000,
+            [],
+            [
+                generatePkmnBattle('pidgey', 12),
+                generatePkmnBattle('rattata', 10),
+                generatePkmnBattle('mankey', 11),
+                generatePkmnBattle(selectStarterRival(0), 13),
+            ],
+            1,
+            'Rival'
+        ),
         20 =>  createTrainer('Gym Leader Misty', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "Don't run around the pool!",
                 'end' => [
@@ -612,8 +631,27 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
+        25 =>  createTrainer('Blue', 
+            'rival',
+            [
+                'entrance' => "You? Again?",
+                'end' => [
+                    "Tsss! Out of my sight!"
+                ]
+            ],
+            3000,
+            [],
+            [
+                generatePkmnBattle('pidgeotto', 16),
+                generatePkmnBattle('rattata', 18),
+                generatePkmnBattle('mankey', 17),
+                generatePkmnBattle(selectStarterRival(1), 20),
+            ],
+            1,
+            'Rival'
+        ),
         30 =>  createTrainer('Gym Leader Lt. Surge', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "Do you want to go to the army?",
                 'end' => [
@@ -632,7 +670,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         40 =>  createTrainer('Gym Leader Erika', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I'm the leader of grass type! Prepare your antidotes.",
                 'end' => [
@@ -651,8 +689,28 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
+        45 =>  createTrainer('Blue', 
+            'rival',
+            [
+                'entrance' => "You? Again?",
+                'end' => [
+                    "Tsss! Out of my sight!"
+                ]
+            ],
+            3000,
+            [],
+            [
+                generatePkmnBattle('pidgeot', 30),
+                generatePkmnBattle('rattatac', 29),
+                generatePkmnBattle('kadabra', 34),
+                generatePkmnBattle('primeape', 30),
+                generatePkmnBattle(selectStarterRival(2), 32),
+            ],
+            1,
+            'Rival'
+        ),
         50 =>  createTrainer('Gym Leader Koga', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I'm a ninja! Could you see me?",
                 'end' => [
@@ -672,8 +730,28 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
+        55 =>  createTrainer('Blue', 
+            'rival',
+            [
+                'entrance' => "You? Again?",
+                'end' => [
+                    "Tsss! Out of my sight!"
+                ]
+            ],
+            4000,
+            [],
+            [
+                generatePkmnBattle('pidgeot', 36),
+                generatePkmnBattle('rattatac', 38),
+                generatePkmnBattle('alakazam', 40),
+                generatePkmnBattle('primeape', 38),
+                generatePkmnBattle(selectStarterRival(2), 40),
+            ],
+            1,
+            'Rival'
+        ),
         60 =>  createTrainer('Gym Leader Sabrina', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "What are you looking at?",
                 'end' => [
@@ -693,8 +771,29 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
+        65 =>  createTrainer('Blue', 
+            'rival',
+            [
+                'entrance' => "You? Again?",
+                'end' => [
+                    "Tsss! Out of my sight!"
+                ]
+            ],
+            4000,
+            [],
+            [
+                generatePkmnBattle('pidgeot', 46),
+                generatePkmnBattle('magikarp', 50),
+                generatePkmnBattle('exeggutor', 45),
+                generatePkmnBattle('alakazam', 42),
+                generatePkmnBattle('primeape', 45),
+                generatePkmnBattle(selectStarterRival(2), 42),
+            ],
+            1,
+            'Rival'
+        ),
         70 =>  createTrainer('Gym Leader Blaine', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I hope you bring water pokemon because the sun is shining hard!",
                 'end' => [
@@ -715,7 +814,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         80 =>  createTrainer('Gym Leader Giovanni', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I will have my revenge.",
                 'end' => [
@@ -737,7 +836,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         90 =>  createTrainer('Elite Four Lorelei', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "...",
                 'end' => [
@@ -759,7 +858,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         91 =>  createTrainer('Elite Four Bruno', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "Let the training session start!",
                 'end' => [
@@ -781,7 +880,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         92 =>  createTrainer('Elite Four Olga', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I am not old! Get ready to loose brat!",
                 'end' => [
@@ -805,7 +904,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         93 =>  createTrainer('Elite Four Peter Lance', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "I'm the master of Pokemons Dragon! Prepare you!",
                 'end' => [
@@ -828,7 +927,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         94 =>  createTrainer('Champion Blue', 
-            'trainer_test',
+            'trainer',
             [
                 'entrance' => "What?! You here?! Anyway, you will lose!",
                 'end' => [
@@ -845,20 +944,43 @@ function generateIAs(){
                 generatePkmnBattle('exeggutor', 58,0,['egg-bomb','slam','psychic','solar-beam']),
                 generatePkmnBattle('arcanine', 56,0,['hyper-beam','flamethrower','swift','growl']),
                 generatePkmnBattle('gyarados', 58,0, ['hydro-pump', 'gust','thunder','hyper-beam']),
-                generatePkmnBattle('rhydon', 56,0,['rock-slide','earthquake','hyper-beam','fury-attack']),
+                generatePkmnBattle(selectStarterRival(2), 56),
                 generatePkmnBattle('alakazam', 54,0,['psychic','recover','amnesia','flamethrower']),
             ],
             1,'Champion'
         ),
-        100 => createWildPkmn(80,'mewtwo', 
+        100 => createWildPkmn(70,'mewtwo', 
             [
                 'entrance' => "Who is that Pokemon? The pressure is high...",
                 'end' => "You've beaten the strongest Pokemon."
             ],          
             'Legendary'
         ),
-        110 =>  createTrainer('Champion Red', 
-            'trainer_test',
+        110 =>  createTrainer('Champion Blue', 
+            'rival',
+            [
+                'entrance' => "What?! You here?! Anyway, you will lose!",
+                'end' => [
+                    "How?! Impossible!",
+                ]
+            ],
+            10000,
+            [
+                getItemObject('Hyper potion',5),
+                getItemObject('Revive',5),
+            ],            
+            [
+                generatePkmnBattle('pidgeot', 60,0, ['quick-attack', 'wing-attack','growl','hyper-beam']),
+                generatePkmnBattle('exeggutor', 65,0,['egg-bomb','slam','psychic','solar-beam']),
+                generatePkmnBattle('arcanine', 65,0,['hyper-beam','flamethrower','swift','growl']),
+                generatePkmnBattle('gyarados', 65,0, ['hydro-pump', 'gust','thunder','hyper-beam']),
+                generatePkmnBattle(selectStarterRival(2), 66),
+                generatePkmnBattle('alakazam', 63,0,['psychic','recover','amnesia','flamethrower']),
+            ],
+            1,'Champion'
+        ),
+        120 =>  createTrainer('Champion Red', 
+            'trainer',
             [
                 'entrance' => "...",
                 'end' => "..."
@@ -878,8 +1000,8 @@ function generateIAs(){
             ],
             1,'Champion'
         ),
-        110 =>  createTrainer('Prof. Twig', 
-            'trainer_test',
+        130 =>  createTrainer('Prof. Twig', 
+            'trainer',
             [
                 'entrance' => "Hehe! What do you think? That i'm not a trainer? Of course i'm!",
                 'end' => [
@@ -916,10 +1038,10 @@ $towns = [
     70 => 'Cinnabar Island',
     80 => 'Viridian City',
     90 => 'Indigo League',
-    95 => 'Pewter City',
-    99 => 'Cinnabar Island',
-    110 => 'Pallet Town',
-    120 => 'Pallet Town',
-    130 => 'Pallet Town'
+    95 => 'Indigo League',
+    99 => 'Indigo League',
+    110 => 'Indigo League',
+    120 => 'Indigo League',
+    130 => 'Indigo League'
 ]
 ?>
