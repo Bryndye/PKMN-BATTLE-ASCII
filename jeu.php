@@ -91,6 +91,7 @@ while(true){
         else{
             ++$IndexFloor;
             $saveParty['IndexFloor'] = $IndexFloor;
+            // debugLog($saveParty['Starter']);
             setFile($saveParty, getSavePath('save'));
         }
         waitForInput(getPosChoice());

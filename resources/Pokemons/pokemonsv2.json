@@ -27,11 +27,11 @@
       "Sprite": "Grass",
       "capacites": [
         {
-          "name": "growl",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "tackle",
+          "name": "growl",
           "level": 1
         },
         {

@@ -51,14 +51,14 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         return;
     }
 
+    if(is_string($capacite['Power']) && $capacite['Power'] == 'randomReplace'){
+        $capacite = getRandCapacites('randomReplace');
+        messageBoiteDialogue($pkmnAtk['Name'].' replaces his attack with '. $capacite['Name'].'!',1);
+    }
     // Set new Capacite ref depend on metronome
     if(is_string($capacite['Power']) && $capacite['Power'] == 'random'){
         $newCapacite = getRandCapacites('metronome');
         messageBoiteDialogue($pkmnAtk['Name'].' invokes '. $newCapacite['Name'].'!',1);
-    }
-    elseif(is_string($capacite['Power']) && $capacite['Power'] == 'randomReplace'){
-        $capacite = getRandCapacites('randomReplace');
-        messageBoiteDialogue($pkmnAtk['Name'].' replaces his attack with '. $capacite['Name'].'!',1);
     }
     else {
         $newCapacite = &$capacite;

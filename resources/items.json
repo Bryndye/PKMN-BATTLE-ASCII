@@ -103,6 +103,14 @@
 		"price" : "0",
 		"indexFloor" : 30
 	},
+	"Replace":
+	{
+		"name":"Replace",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "300",
+		"indexFloor" : 0
+	},
     "Firestone":
 	{
 		"name":"Firestone",
