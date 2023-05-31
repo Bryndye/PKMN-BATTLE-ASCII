@@ -33860,5 +33860,37 @@
         "Pkmns Learned":[
             
         ]
+    },
+    "replace":{
+        "Name":"replace",
+        "Power":"randomReplace",
+        "Type":"normal",
+        "PP":1,
+        "Category":"status",
+        "Accuracy":100,
+        "crit_rate":0,
+        "priority":0,
+        "effects":{
+            "Drain":0,
+            "Healing":0,
+            "Stats Self":[
+            ],
+            "Stats Target":[
+
+            ],
+            "Ailment":{
+                "ailment":"none",
+                "ailment_chance":0
+            },
+            "Flinch Chance":0,
+            "hits":{
+                "min hits":null,
+                "max hits":null
+            }
+        },
+        "Target":"random-opponent",
+        "Pkmns Learned":[
+            
+        ]
     }
 }

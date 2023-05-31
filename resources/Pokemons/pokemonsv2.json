@@ -9141,7 +9141,7 @@
           "level": 1
         },
         {
-          "name": "splash",
+          "name": "replace",
           "level": 5
         },
         {
@@ -10285,6 +10285,10 @@
         {
           "name": "thunderbolt",
           "level": 20
+        },
+        {
+          "name": "replace",
+          "level": 30
         }
       ],
       "base experience": 300
