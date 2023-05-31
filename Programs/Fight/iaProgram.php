@@ -58,7 +58,8 @@ function createLegendaryWildPkmn($indexFloor){
 function generatePNJ($indexFloor, $level){
     $pnj = managerPNJGenerate($indexFloor, $level);
     if($pnj['Title'] == 'Champion' || $pnj['Title'] == 'Gym Leader' || $pnj['Title'] == 'Elite Four' || $pnj['Title'] == 'Legendary' || $pnj['Title'] == 'Rival'){
-        animationVersusLeader($pnj['Sprite']);
+        $spriteEnemy = is_array($pnj['Sprite']) ? $pnj['Sprite'][0] : $pnj['Sprite'];
+        animationVersusLeader($spriteEnemy);
     }
     return $pnj;
 }

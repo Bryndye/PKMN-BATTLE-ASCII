@@ -10,7 +10,8 @@ function startFight(&$joueur, &$pnj){
 
     // animation entrer dresseurs
     drawBoiteDialogue();
-    animationCharactersEnterBattle(getSprites('trainerBack'),getSprites($pnj['Sprite']));
+    
+    animationCharactersEnterBattle(getSprites('trainerBack'),$pnj['Sprite']);
 
     messageBoiteDialogue($pnj['Dialogues']['entrance'], -1); // message trainer 
     messageBoiteDialogue($pnj['Name'].' wants to fight!',-1); // message trainer 

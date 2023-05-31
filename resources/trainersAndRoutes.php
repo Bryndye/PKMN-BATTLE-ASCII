@@ -24,7 +24,25 @@ $routes = [
                 'rate' => 5
             ]
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('Bug Catcher', 
+                'bugCatcher',
+                [
+                    'entrance' => "There is so many bugs here! This is my paradise!",
+                    'end' => [
+                        "I'm gonna catch more to defeat you next time!"
+                    ]
+                ],
+                500,
+                [],
+                [
+                    generatePkmnBattle('weedle', 6),
+                    generatePkmnBattle('metapod', 6),
+                    generatePkmnBattle('caterpie', 6),
+                    generatePkmnBattle('kakuna', 6)
+                ]
+            )
+        ]
     ],
     "route 2" => [
         'Floors' => [11,15],
@@ -56,24 +74,7 @@ $routes = [
         ],
         'Trainers' => [
             createTrainer('Bug Catcher', 
-                'trainer',
-                [
-                    'entrance' => "There is so many bugs here! This is my paradise!",
-                    'end' => [
-                        "I'm gonna catch more to defeat you next time!"
-                    ]
-                ],
-                500,
-                [],
-                [
-                    generatePkmnBattle('weedle', 6),
-                    generatePkmnBattle('metapod', 6),
-                    generatePkmnBattle('caterpie', 6),
-                    generatePkmnBattle('kakuna', 6)
-                ]
-            ),
-            createTrainer('Bug Catcher', 
-                'trainer',
+                'bugCatcher',
                 [
                     'entrance' => "There is Pikachu into this forest. Did you see one?",
                     'end' => [
@@ -83,9 +84,9 @@ $routes = [
                 500,
                 [],
                 [
-                    generatePkmnBattle('pidgeot', 8),
-                    generatePkmnBattle('pikachu', 8),
-                    generatePkmnBattle('caterpie', 6)
+                    generatePkmnBattle('pidgeot', 10),
+                    generatePkmnBattle('pikachu', 9),
+                    generatePkmnBattle('caterpie', 11)
                 ]
             )
         ]
@@ -118,7 +119,39 @@ $routes = [
                 'rate' => 40
             ]
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Mountain Man', 
+                'trainer',
+                [
+                    'entrance' => "Hello!",
+                    'end' => [
+                        "By!"
+                    ]
+                ],
+                500,
+                [],
+                [
+                    generatePkmnBattle('geodude', 11),
+                    generatePkmnBattle('diglett', 12),
+                    generatePkmnBattle('onix', 13)
+                ]
+                ),
+            createTrainer('A Mountain Man', 
+                'trainer',
+                [
+                    'entrance' => "Hello!",
+                    'end' => [
+                        "By!"
+                    ]
+                ],
+                500,
+                [],
+                [
+                    generatePkmnBattle('zubat', 13),
+                    generatePkmnBattle('magnemite', 14)
+                ]
+            )
+        ]
     ],
     "route 3" => [
         'Floors' => [21,29],
@@ -814,7 +847,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         80 =>  createTrainer('Gym Leader Giovanni', 
-            'trainer',
+            'giovanni',
             [
                 'entrance' => "I will have my revenge.",
                 'end' => [
@@ -836,7 +869,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         90 =>  createTrainer('Elite Four Lorelei', 
-            'trainer',
+            'lorelei',
             [
                 'entrance' => "...",
                 'end' => [
@@ -858,7 +891,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         91 =>  createTrainer('Elite Four Bruno', 
-            'trainer',
+            'bruno',
             [
                 'entrance' => "Let the training session start!",
                 'end' => [
@@ -879,8 +912,8 @@ function generateIAs(){
             ],
             1,'Elite Four'
         ),
-        92 =>  createTrainer('Elite Four Olga', 
-            'trainer',
+        92 =>  createTrainer('Elite Four Agatha', 
+            'agatha',
             [
                 'entrance' => "I am not old! Get ready to loose brat!",
                 'end' => [
@@ -904,7 +937,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         93 =>  createTrainer('Elite Four Peter Lance', 
-            'trainer',
+            ['peter','peter2','peter3','peter2','peter'],
             [
                 'entrance' => "I'm the master of Pokemons Dragon! Prepare you!",
                 'end' => [
