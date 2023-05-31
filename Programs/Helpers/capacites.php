@@ -12,12 +12,22 @@ function getCapacite($name){
     else return null;
 }
 
-function getRandCapacites(){
+function getRandCapacites($exception = null){
     global $capacites;
     $keys = array_keys($capacites);
     $randomIndex = array_rand($keys);
-    $capacite = setCapacitePlayable($capacites[$keys[$randomIndex]]);
-    return $capacite;
+
+    if(!is_null($exception)){
+        $filteredCapacites = array_filter($capacites, function($value) use ($exception) {
+            return $value !== $exception;
+        });
+        $capacite = setCapacitePlayable($filteredCapacites[$keys[$randomIndex]]);
+        return $capacite;
+    }
+    else{
+        $capacite = setCapacitePlayable($capacites[$keys[$randomIndex]]);
+        return $capacite;
+    }
 }
 
 function setCapacitePlayable($capacite){

@@ -44,18 +44,28 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         return;
     }
 
+    // Evasion fiscal
     $chanceEvasion = rand(0,100);
     if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
         messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
         return;
     }
 
-    // penser au Power="reset" et status qui applique status="PSN"
-    if($capacite['Category'] == 'status'){
-        statusCapacityPkmn($pkmnAtk,$pkmnDef, $capacite);
+    // Set new Capacite ref depend on metronome
+    if(is_string($capacite['Power']) && $capacite['Power'] == 'random'){
+        $newCapacite = getRandCapacites('metronome');
+        messageBoiteDialogue($pkmnAtk['Name'].' invokes '. $newCapacite['Name'].'!',1);
+    }
+    else {
+        $newCapacite = &$capacite;
+    }
+    
+    // Now use $newCapacite in the remaining code
+    if($newCapacite['Category'] == 'status'){
+        statusCapacityPkmn($pkmnAtk,$pkmnDef, $newCapacite);
     }
     else{
-        attackPkmnCalculator($pkmnAtk,$pkmnDef, $capacite, !$isJoueurTakeDamage);
+        attackPkmnCalculator($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
     drawPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
     sleep(1);
@@ -67,9 +77,6 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     //// Capacity Special ¨Power /////////////////////////////////////////////////////////////////////
     $power = $capacite['Power'];
     if(is_string($capacite['Power'])){
-        if($capacite['Power'] == 'random'){
-            $capacite = getRandCapacites();
-        }
         if($capacite['Power'] == 'ko'){
             $power = setPowerCapacityToOS($pkmnDef, $capacite);
         }

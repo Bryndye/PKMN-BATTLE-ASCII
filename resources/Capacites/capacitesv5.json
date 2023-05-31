@@ -33781,5 +33781,84 @@
             "miraidon-aquatic-mode",
             "miraidon-glide-mode"
         ]
-        }
+    },
+    "shadow-ball":{
+        "Name":"metal-claw",
+        "Power":80,
+        "Type":"ghost",
+        "PP":15,
+        "Category":"special",
+        "Accuracy":100,
+        "crit_rate":0,
+        "priority":0,
+        "effects":{
+            "Drain":0,
+            "Healing":0,
+            "Stats Self":[
+                
+            ],
+            "Stats Target":[
+                [
+                    1,
+                    "Def Spe",
+                    20
+                ]
+            ],
+            "Ailment":{
+                "ailment":"none",
+                "ailment_chance":0
+            },
+            "Flinch Chance":0,
+            "hits":{
+                "min hits":null,
+                "max hits":null
+            }
+        },
+        "Target":"random-opponent",
+        "Pkmns Learned":[
+            
+        ]
+    },
+    "dragon-dance":{
+        "Name":"dragon-dance",
+        "Power":null,
+        "Type":"dragon",
+        "PP":10,
+        "Category":"status",
+        "Accuracy":100,
+        "crit_rate":0,
+        "priority":0,
+        "effects":{
+            "Drain":0,
+            "Healing":0,
+            "Stats Self":[
+                [
+                    1,
+                    "Vit",
+                    100
+                ],
+                [
+                    1,
+                    "Atk",
+                    100
+                ] 
+            ],
+            "Stats Target":[
+
+            ],
+            "Ailment":{
+                "ailment":"none",
+                "ailment_chance":0
+            },
+            "Flinch Chance":0,
+            "hits":{
+                "min hits":null,
+                "max hits":null
+            }
+        },
+        "Target":"random-opponent",
+        "Pkmns Learned":[
+            
+        ]
+    }
 }
