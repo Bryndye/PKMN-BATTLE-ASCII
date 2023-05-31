@@ -96,7 +96,7 @@ function createPartySave(){
     $json = json_encode($datasPartySave);
     file_put_contents(getSavePath('save'), $json);
     setData($var[1], 'Starter', getSavePath('save')); // SECURITY STARTER IF PLAYER QUIT BEFORE SAVE
-    $datasPartySave['Starter'] = $var[1];
+    $datasPartySave['Starter'] = $var[1]; // SAVE INTO VAR TO SAVE LATER
     return $datasPartySave;
 }
 

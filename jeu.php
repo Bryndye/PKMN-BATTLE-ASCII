@@ -47,7 +47,7 @@ while(true){
     $pkmnTeamJoueur = &$saveParty['Team'];
 
     setData($pkmnTeamJoueur, 'Team', getSavePath('save'));
-    array_push($pkmnTeamJoueur,generatePkmnBattle(151, 80));
+    // array_push($pkmnTeamJoueur,generatePkmnBattle(149, 24));
     // array_push($pkmnTeamJoueur,generatePkmnBattle(150, 80));
 
     if(array_key_exists('IndexFloor', $saveParty)){
@@ -91,7 +91,6 @@ while(true){
         else{
             ++$IndexFloor;
             $saveParty['IndexFloor'] = $IndexFloor;
-            // debugLog($saveParty['Starter']);
             setFile($saveParty, getSavePath('save'));
         }
         waitForInput(getPosChoice());

@@ -66,9 +66,10 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     
     // Now use $newCapacite in the remaining code
     if($newCapacite['Category'] == 'status'){
-        statusCapacityPkmn($pkmnAtk,$pkmnDef, $newCapacite);
+        statusCapacityPkmn($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
-    else{
+    else{ // capacite atk
+        animationAttack($pkmnAtk, !$isJoueurTakeDamage);
         attackPkmnCalculator($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
     drawPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
@@ -163,7 +164,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     }
 }
 
-function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite){
+function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurAttack){
     $ailment = $capacite['effects']['Ailment'];
     if($capacite['Power'] == 'reset'){
         resetAllStatsTempToPkmn($pkmnDef);
@@ -172,7 +173,7 @@ function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite){
         ailmentChanceOnpKmn($capacite, $pkmnDef, true);
     }
     else{
-        boostStatsTemp($pkmnAtk, $pkmnDef, $capacite);           
+        boostStatsTemp($pkmnAtk, $pkmnDef, $capacite, $isJoueurAttack);           
     }
     if($capacite['effects']['Healing'] != 0){
         $pkmnAtk['Stats']['Health'] += ($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max'];
@@ -183,15 +184,22 @@ function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite){
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////
 
-function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
+function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
     $effects = $capacite['effects'];
     if(isset($effects['Stats Self'])){
         foreach($effects['Stats Self'] as $stat){
             $chance = rand(0,100);
-            if($chance < $stat[2]){ 
+            if($chance <= $stat[2]){ 
                 if($pkmnAtk['Stats Temp'][$stat[1]] < 6){
                     $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0];
-                    messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
+                    if($pkmnAtk['Stats Temp'][$stat[1]] > 0){
+                        animationUp($pkmnAtk,$isJoueurAttack);
+                        messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
+                    }
+                    else{
+                        animationDown($pkmnAtk,$isJoueurAttack);
+                        messageBoiteDialogue($pkmnAtk['Name']." decreases ". $stat[1]."!",1);
+                    }
                 }
                 else{
                     messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
@@ -202,10 +210,18 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite){
     if(isset($effects['Stats Target'])){
         foreach($effects['Stats Target'] as $stat){
             $chance = rand(0,100);
-            if($chance < $stat[2]){ 
+            if($chance <= $stat[2]){ 
                 if($pkmnDef['Stats Temp'][$stat[1]] > -6){
                     $pkmnDef['Stats Temp'][$stat[1]] += $stat[0];
-                    messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
+                    // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
+                    if($pkmnDef['Stats Temp'][$stat[1]] > 0){
+                        animationUp($pkmnDef,!$isJoueurAttack);
+                        messageBoiteDialogue($pkmnDef['Name']." increases ". $stat[1]."!",1);
+                    }
+                    else{
+                        animationDown($pkmnDef,!$isJoueurAttack);
+                        messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
+                    }
                 }
                 else{
                     messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
