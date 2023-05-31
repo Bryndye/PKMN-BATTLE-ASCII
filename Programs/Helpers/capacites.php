@@ -104,7 +104,8 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
                 messageBoiteDialogue('Which capacity to removes?');
-                $choice = waitForInput([31,0], [leaveInputMenu(),0,1,2,3]);
+                $choice = waitForInput([31,0], [leaveInputMenu(),1,2,3,4]);
+                $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
                 if($choice == leaveInputMenu()){
                     break;
                 }

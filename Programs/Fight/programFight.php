@@ -67,6 +67,9 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     //// Capacity Special ¨Power /////////////////////////////////////////////////////////////////////
     $power = $capacite['Power'];
     if(is_string($capacite['Power'])){
+        if($capacite['Power'] == 'random'){
+            $capacite = getRandCapacites();
+        }
         if($capacite['Power'] == 'ko'){
             $power = setPowerCapacityToOS($pkmnDef, $capacite);
         }
@@ -74,9 +77,6 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             $power = setPowerCapacityPourcentByWeight($pkmnAtk);
         }else if($capacite['Power'] == 'speed'){
             $power = setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite);
-        }
-        else if($capacite['Power'] == 'random'){
-            $capacite = getRandCapacites();
         }
     }
     //// 1ere etape //////////////////////////////////////////////////////////////////////////////////
@@ -334,14 +334,14 @@ function selectPkmn(&$pkmnTeam, $exception = [], $pkmnDeadSelect = true, $string
             }
         }
         if($nextPkmn){
-            // debugLog($arrayChoice);
             continue;
         }
         else if($pkmnDeadSelect || !isPkmnDead_simple($pkmnTeam[$i])){
-            array_push($arrayChoice, ($i));
+            array_push($arrayChoice, ($i+1));
         }
     }
     $choice = waitForInput(getPosChoice(),$arrayChoice);
+    $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
     return $choice;
 }
 

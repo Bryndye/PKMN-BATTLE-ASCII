@@ -10214,19 +10214,23 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard",
+      "Sprite": "Mewtwo",
       "capacites": [
         {
+          "name": "confusion",
+          "level": 10
+        },
+        {
           "name": "psychic",
-          "level": 1
+          "level": 10
         },
         {
           "name": "hyper-beam",
-          "level": 5
+          "level": 15
         },
         {
-          "name": "amnesia",
-          "level": 10
+          "name": "thunderbolt",
+          "level": 20
         },
         {
           "name": "recover",
@@ -10256,23 +10260,27 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard",
+      "Sprite": "Mew",
       "capacites": [
         {
-          "name": "psychic",
-          "level": 1
-        },
-        {
-          "name": "hyper-beam",
-          "level": 5
-        },
-        {
-          "name": "amnesia",
+          "name": "confusion",
           "level": 10
         },
         {
-          "name": "recover",
+          "name": "psychic",
+          "level": 10
+        },
+        {
+          "name": "hyper-beam",
+          "level": 15
+        },
+        {
+          "name": "metronome",
           "level": 18
+        },
+        {
+          "name": "thunderbolt",
+          "level": 20
         }
       ],
       "base experience": 300
