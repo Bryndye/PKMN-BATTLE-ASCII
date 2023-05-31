@@ -71,12 +71,12 @@ function drawNextFloor($pos){
         textArea('Route : '.$currentRoute, [$posY+4,$posX+2]);
 
         if(!is_null($pnj)){
-            textArea('Trainer : '.$pnj['Name'], [$posY+6,$posX+2]);
+            textArea('Trainer : '.$pnj['Name'], [$posY+6,$posX+2], 26);
         }
     }
     else{
         if(!is_null($pnj)){
-            textArea('Trainer : '.$pnj['Name'], [$posY+4,$posX+2]);
+            textArea('Trainer : '.$pnj['Name'], [$posY+4,$posX+2], 26);
         }
     }
 }

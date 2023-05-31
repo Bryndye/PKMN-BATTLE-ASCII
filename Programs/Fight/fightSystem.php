@@ -12,8 +12,8 @@ function startFight(&$joueur, &$pnj){
     drawBoiteDialogue();
     animationCharactersEnterBattle(getSprites('trainerBack'),getSprites($pnj['Sprite']));
 
-    messageBoiteDialogue($pnj['Dialogues']['entrance'], 1); // message trainer 
-    messageBoiteDialogue($pnj['Name'].' wants to fight!',1); // message trainer 
+    messageBoiteDialogue($pnj['Dialogues']['entrance'], -1); // message trainer 
+    messageBoiteDialogue($pnj['Name'].' wants to fight!',-1); // message trainer 
 
     // animation pokeball
     if($pnj['type'] == 'trainer'){

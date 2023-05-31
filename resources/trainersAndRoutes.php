@@ -577,7 +577,7 @@ function generateIAs(){
                 'Rival'
             ),
         10 =>  createTrainer('Gym Leader Brock', 
-            'trainer',
+            'pierre',
             [
                 'entrance' => "I'm thougher than you think.",
                 'end' => [
@@ -613,7 +613,7 @@ function generateIAs(){
             'Rival'
         ),
         20 =>  createTrainer('Gym Leader Misty', 
-            'trainer',
+            'ondine',
             [
                 'entrance' => "Don't run around the pool!",
                 'end' => [
@@ -651,7 +651,7 @@ function generateIAs(){
             'Rival'
         ),
         30 =>  createTrainer('Gym Leader Lt. Surge', 
-            'trainer',
+            'surge',
             [
                 'entrance' => "Do you want to go to the army?",
                 'end' => [
@@ -670,7 +670,7 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         40 =>  createTrainer('Gym Leader Erika', 
-            'trainer',
+            'erika',
             [
                 'entrance' => "I'm the leader of grass type! Prepare your antidotes.",
                 'end' => [
@@ -710,7 +710,7 @@ function generateIAs(){
             'Rival'
         ),
         50 =>  createTrainer('Gym Leader Koga', 
-            'trainer',
+            'koga',
             [
                 'entrance' => "I'm a ninja! Could you see me?",
                 'end' => [
@@ -751,7 +751,7 @@ function generateIAs(){
             'Rival'
         ),
         60 =>  createTrainer('Gym Leader Sabrina', 
-            'trainer',
+            'sabrina',
             [
                 'entrance' => "What are you looking at?",
                 'end' => [
@@ -793,7 +793,7 @@ function generateIAs(){
             'Rival'
         ),
         70 =>  createTrainer('Gym Leader Blaine', 
-            'trainer',
+            'blaine',
             [
                 'entrance' => "I hope you bring water pokemon because the sun is shining hard!",
                 'end' => [
@@ -1028,18 +1028,18 @@ function generateIAs(){
 }
 
 $towns = [
-    2 => 'Pallet Town',
-    10 => 'Pewter City',
-    20 => 'Cerulean City',
-    30 => 'Vermilion City',
-    40 => 'Celadon City',
-    50 => 'Fuchsia City',
-    60 => 'Saffron City',
-    70 => 'Cinnabar Island',
-    80 => 'Viridian City',
-    90 => 'Indigo League',
-    95 => 'Indigo League',
-    99 => 'Indigo League',
+    2 =>   'Pallet Town',
+    10 =>  'Pewter City',
+    20 =>  'Cerulean City',
+    30 =>  'Vermilion City',
+    40 =>  'Celadon City',
+    50 =>  'Fuchsia City',
+    60 =>  'Saffron City',
+    70 =>  "Cinnabar Isl'",
+    80 =>  'Viridian City',
+    90 =>  'Indigo League',
+    95 =>  'Indigo League',
+    99 =>  'Indigo League',
     110 => 'Indigo League',
     120 => 'Indigo League',
     130 => 'Indigo League'

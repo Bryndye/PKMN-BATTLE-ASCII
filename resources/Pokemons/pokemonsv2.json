@@ -7584,7 +7584,7 @@
           "stade": 2
         }
       },
-      "Sprite": "standard",
+      "Sprite": "ball",
       "capacites": [
         {
           "name": "tackle",
@@ -7650,7 +7650,7 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard",
+      "Sprite": "ball",
       "capacites": [
         {
           "name": "tackle",
@@ -10144,7 +10144,7 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard",
+      "Sprite": "Wazo",
       "capacites": [
         {
           "name": "tackle",

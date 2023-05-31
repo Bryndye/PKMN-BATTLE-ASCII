@@ -217,7 +217,7 @@ function drawGameCadre(){
 
 function textArea($string, $pos, $scale = 0){
     if($scale != null && $scale != 0){
-        $string = textAreaLimited($string, $scale);
+        $string = textAreaLimited($string, $scale, $pos);
     }
     moveCursor($pos);
     echo $string;
