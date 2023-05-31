@@ -27,11 +27,11 @@
       "Sprite": "Grass",
       "capacites": [
         {
-          "name": "growl",
+          "name": "tackle",
           "level": 1
         },
         {
-          "name": "tackle",
+          "name": "growl",
           "level": 1
         },
         {
@@ -2607,7 +2607,7 @@
           "level": 12
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 15
         },
         {
@@ -2619,32 +2619,16 @@
           "level": 25
         },
         {
-          "name": "tri-attack",
+          "name": "belly-drum",
           "level": 33
         },
         {
-          "name": "psychic",
-          "level": 35
-        },
-        {
-          "name": "fire-blast",
-          "level": 40
-        },
-        {
           "name": "mega-punch",
-          "level": 50
-        },
-        {
-          "name": "thunder",
-          "level": 50
+          "level": 40
         },
         {
           "name": "mega-kick",
           "level": 50
-        },
-        {
-          "name": "blizzard",
-          "level": 60
         }
       ],
       "base experience": 95
@@ -2689,7 +2673,7 @@
           "level": 12
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 15
         },
         {
@@ -2701,32 +2685,16 @@
           "level": 25
         },
         {
-          "name": "tri-attack",
+          "name": "belly-drum",
           "level": 33
         },
         {
-          "name": "psychic",
-          "level": 35
-        },
-        {
-          "name": "fire-blast",
-          "level": 40
-        },
-        {
           "name": "mega-punch",
-          "level": 50
-        },
-        {
-          "name": "thunder",
-          "level": 50
+          "level": 40
         },
         {
           "name": "mega-kick",
           "level": 50
-        },
-        {
-          "name": "blizzard",
-          "level": 60
         }
       ],
       "base experience": 218
@@ -3125,6 +3093,10 @@
           "level": 10
         },
         {
+          "name": "twineedle",
+          "level": 13
+        },
+        {
           "name": "focus-energy",
           "level": 15
         },
@@ -3193,6 +3165,10 @@
         {
           "name": "spore",
           "level": 10
+        },
+        {
+          "name": "twineedle",
+          "level": 13
         },
         {
           "name": "focus-energy",
@@ -3269,6 +3245,10 @@
           "level": 15
         },
         {
+          "name": "twineedle",
+          "level": 13
+        },
+        {
           "name": "slash",
           "level": 22
         },
@@ -3329,6 +3309,10 @@
         {
           "name": "poison-powder",
           "level": 10
+        },
+        {
+          "name": "twineedle",
+          "level": 13
         },
         {
           "name": "psybeam",
@@ -3549,6 +3533,10 @@
           "level": 32
         },
         {
+          "name": "belly-drum",
+          "level": 33
+        },
+        {
           "name": "pay-day",
           "level": 34
         },
@@ -3613,6 +3601,10 @@
         {
           "name": "take-down",
           "level": 32
+        },
+        {
+          "name": "belly-drum",
+          "level": 33
         },
         {
           "name": "pay-day",
@@ -3829,6 +3821,10 @@
           "level": 30
         },
         {
+          "name": "belly-drum",
+          "level": 33
+        },
+        {
           "name": "body-slam",
           "level": 34
         },
@@ -3901,6 +3897,10 @@
         {
           "name": "mega-kick",
           "level": 30
+        },
+        {
+          "name": "belly-drum",
+          "level": 33
         },
         {
           "name": "body-slam",
@@ -4335,7 +4335,7 @@
           "level": 32
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 36
         },
         {
@@ -4409,7 +4409,7 @@
           "level": 32
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 36
         },
         {
@@ -4479,7 +4479,7 @@
           "level": 32
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 36
         },
         {
@@ -4707,6 +4707,10 @@
         {
           "name": "fissure",
           "level": 46
+        },
+        {
+          "name": "belly-drum",
+          "level": 50
         },
         {
           "name": "earthquake",
@@ -5013,7 +5017,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -5087,7 +5091,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -5997,7 +6001,7 @@
           "level": 10
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 18
         },
         {
@@ -6067,7 +6071,7 @@
           "level": 10
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 18
         },
         {
@@ -6293,7 +6297,7 @@
           "level": 10
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 18
         },
         {
@@ -6363,7 +6367,7 @@
           "level": 10
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 18
         },
         {
@@ -6445,7 +6449,7 @@
           "level": 18
         },
         {
-          "name": "dream-eater",
+          "name": "shadow-ball",
           "level": 20
         },
         {
@@ -6511,7 +6515,7 @@
           "level": 18
         },
         {
-          "name": "dream-eater",
+          "name": "shadow-ball",
           "level": 20
         },
         {
@@ -6573,7 +6577,7 @@
           "level": 18
         },
         {
-          "name": "dream-eater",
+          "name": "shadow-ball",
           "level": 20
         },
         {
@@ -6709,11 +6713,11 @@
           "level": 28
         },
         {
-          "name": "dream-eater",
+          "name": "shadow-ball",
           "level": 30
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 32
         }
       ],
@@ -6771,11 +6775,11 @@
           "level": 28
         },
         {
-          "name": "dream-eater",
+          "name": "shadow-ball",
           "level": 30
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 32
         }
       ],
@@ -7105,7 +7109,7 @@
           "level": 1
         },
         {
-          "name": "leech-seed",
+          "name": "vine-whip",
           "level": 10
         },
         {
@@ -7137,7 +7141,7 @@
           "level": 38
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 40
         },
         {
@@ -7183,7 +7187,7 @@
           "level": 1
         },
         {
-          "name": "leech-seed",
+          "name": "vine-whip",
           "level": 10
         },
         {
@@ -7215,7 +7219,7 @@
           "level": 38
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 40
         },
         {
@@ -7985,7 +7989,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -8521,7 +8525,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -8657,7 +8661,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -8727,7 +8731,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -8793,7 +8797,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -8925,7 +8929,7 @@
           "level": 32
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 38
         },
         {
@@ -9095,7 +9099,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9119,12 +9123,12 @@
         "weight": 40
       },
       "StatsBase": {
-        "Health": 48,
-        "Atk": 48,
-        "Def": 48,
-        "Atk Spe": 48,
-        "Def Spe": 48,
-        "Vit": 48
+        "Health": 70,
+        "Atk": 70,
+        "Def": 70,
+        "Atk Spe": 70,
+        "Def Spe": 70,
+        "Vit": 70
       },
       "evolution": {
         "before": "",
@@ -9133,28 +9137,16 @@
       "Sprite": "standard",
       "capacites": [
         {
-          "name": "tackle",
+          "name": "metronome",
           "level": 1
         },
         {
-          "name": "splash",
+          "name": "replace",
           "level": 5
         },
         {
-          "name": "solar-beam",
-          "level": 42
-        },
-        {
-          "name": "blizzard",
-          "level": 44
-        },
-        {
-          "name": "fire-blast",
-          "level": 46
-        },
-        {
-          "name": "hyper-beam",
-          "level": 52
+          "name": "tackle",
+          "level": 10
         }
       ],
       "base experience": 101
@@ -9281,7 +9273,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9339,7 +9331,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         }
       ],
@@ -9397,7 +9389,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9517,7 +9509,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9579,7 +9571,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9645,7 +9637,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9707,7 +9699,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9827,7 +9819,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -9869,7 +9861,7 @@
           "level": 1
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 1
         },
         {
@@ -9911,7 +9903,7 @@
           "level": 1
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 1
         },
         {
@@ -9953,7 +9945,7 @@
           "level": 1
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 1
         },
         {
@@ -10023,7 +10015,7 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
@@ -10037,6 +10029,10 @@
         {
           "name": "blizzard",
           "level": 40
+        },
+        {
+          "name": "outrage",
+          "level": 44
         },
         {
           "name": "earthquake",
@@ -10105,12 +10101,16 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
           "name": "fly",
           "level": 32
+        },
+        {
+          "name": "outrage",
+          "level": 40
         },
         {
           "name": "earthquake",
@@ -10167,7 +10167,7 @@
           "level": 20
         },
         {
-          "name": "fissure",
+          "name": "dragon-dance",
           "level": 24
         },
         {
@@ -10175,12 +10175,16 @@
           "level": 28
         },
         {
-          "name": "rest",
+          "name": "recover",
           "level": 30
         },
         {
           "name": "fly",
           "level": 32
+        },
+        {
+          "name": "outrage",
+          "level": 40
         },
         {
           "name": "earthquake",
@@ -10214,19 +10218,23 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard",
+      "Sprite": "Mewtwo",
       "capacites": [
         {
+          "name": "confusion",
+          "level": 10
+        },
+        {
           "name": "psychic",
-          "level": 1
+          "level": 10
         },
         {
           "name": "hyper-beam",
-          "level": 5
+          "level": 15
         },
         {
-          "name": "amnesia",
-          "level": 10
+          "name": "thunderbolt",
+          "level": 20
         },
         {
           "name": "recover",
@@ -10256,23 +10264,31 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard",
+      "Sprite": "Mew",
       "capacites": [
         {
-          "name": "psychic",
-          "level": 1
-        },
-        {
-          "name": "hyper-beam",
-          "level": 5
-        },
-        {
-          "name": "amnesia",
+          "name": "confusion",
           "level": 10
         },
         {
-          "name": "recover",
+          "name": "psychic",
+          "level": 10
+        },
+        {
+          "name": "hyper-beam",
+          "level": 15
+        },
+        {
+          "name": "metronome",
           "level": 18
+        },
+        {
+          "name": "thunderbolt",
+          "level": 20
+        },
+        {
+          "name": "replace",
+          "level": 30
         }
       ],
       "base experience": 300

@@ -12,12 +12,22 @@ function getCapacite($name){
     else return null;
 }
 
-function getRandCapacites(){
+function getRandCapacites($exception = null){
     global $capacites;
     $keys = array_keys($capacites);
     $randomIndex = array_rand($keys);
-    $capacite = setCapacitePlayable($capacites[$keys[$randomIndex]]);
-    return $capacite;
+
+    if(!is_null($exception)){
+        $filteredCapacites = array_filter($capacites, function($value) use ($exception) {
+            return $value !== $exception;
+        });
+        $capacite = setCapacitePlayable($filteredCapacites[$keys[$randomIndex]]);
+        return $capacite;
+    }
+    else{
+        $capacite = setCapacitePlayable($capacites[$keys[$randomIndex]]);
+        return $capacite;
+    }
 }
 
 function setCapacitePlayable($capacite){
@@ -62,7 +72,8 @@ function setPowerCapacityToOS($pkmnDef, $capacite){
 
 function getLastFourElements($array, $level) {
     $lastFour = [];
-    foreach ($array as $element) {
+    $reversedArray = array_reverse($array);
+    foreach ($reversedArray as $element) {
         if ($element['level'] <= $level) {
             $lastFour[] = $element;
             if (count($lastFour) == 4) {
@@ -70,8 +81,10 @@ function getLastFourElements($array, $level) {
             }
         }
     }
+    $lastFour = array_reverse($lastFour);
     return $lastFour;
 }
+
 
 function getLastElements($array, $level) {
     $capacity = null;
@@ -104,7 +117,8 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
                 messageBoiteDialogue('Which capacity to removes?');
-                $choice = waitForInput([31,0], [leaveInputMenu(),0,1,2,3]);
+                $choice = waitForInput([31,0], [leaveInputMenu(),1,2,3,4]);
+                $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
                 if($choice == leaveInputMenu()){
                     break;
                 }

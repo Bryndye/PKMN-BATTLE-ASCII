@@ -191,7 +191,7 @@ function selectStarterRival($stadeEvol = 0){
             $starter = 'charmander';  
             break;
         case null:
-            debugLog('No Starter');
+            // debugLog('No Starter',1);
             $starter = 'charmander';
             break;
     }

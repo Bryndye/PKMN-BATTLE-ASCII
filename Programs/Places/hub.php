@@ -86,7 +86,7 @@ function checkTeamPkmnFromMenu(&$pkmnTeam){
         $choice = selectPkmn($pkmnTeam, null, true, 'Choose a Pokemon.');
         if(is_numeric($choice)){
             while(true){ // LOOP ACTION TO A SINGLE PKMN
-                messageBoiteDialogue("1: Sheet Pkmn\n2: First Place");
+                messageBoiteDialogue("1: Stats ".$pkmnTeam[$choice]['Name']."\n2: Move to First Place");
                 $choice2 = waitForInput(getPosChoice(), [leaveInputMenu(),1,2]);
                 if($choice2 == 1){
                     seeSheetPkmn($pkmnTeam[$choice]);
@@ -157,7 +157,7 @@ function displayCapacitiesMenu($pkmn){
         getColorByType($capacitePkmn['Type']);
         drawBox([4,20],[2+$i,$x],'|','-',true);
         selectColor('reset');
-        textAreaLimited($y.' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
+        textAreaLimited(($y+1).' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
         textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
         ++$y;
         $i += 4;

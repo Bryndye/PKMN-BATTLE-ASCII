@@ -72,10 +72,11 @@ function loopFight(&$joueur, &$pnj){
             $arrayChoise2 = [leaveInputMenu()];
             for($i=0;$i<4;++$i){
                 if(isset($pkmnTeamJoueur[0]['Capacites'][$i]['Name']) && $pkmnTeamJoueur[0]['Capacites'][$i]['PP'] > 0){
-                    array_push($arrayChoise2, ($i));
+                    array_push($arrayChoise2, $i+1);
                 }
             }
-            $choice2 = waitForInput(getPosChoice(), $arrayChoise2);
+            $choice2 = waitForInput(getPosChoice(), $arrayChoise2); 
+            $choice2 = is_numeric($choice2) ? $choice2-1 : $choice2;// -1 cause of choices +1 for players
         }
         elseif($choice == 2){
             $choice2 = selectPkmn($pkmnTeamJoueur);

@@ -34,7 +34,7 @@ function managerShop(&$save){
         // Validation item
         elseif($move == 'v'){
             while(true){
-                messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['key'].' do you want?');
+                messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['item']['name'].' do you want?');
                 $quantity = waitForInput(getPosChoice(), '', ' Quantity? ');
                 if(!is_numeric($quantity)){
                     messageBoiteDialogue('Please insert a number.',-1);

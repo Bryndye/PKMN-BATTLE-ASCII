@@ -55,7 +55,11 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
     }
     else{
         $capacitesCanLearn = $pkmn['capacites'];
-        $capTemp = getLastFourElements($capacitesCanLearn, $level, $level);
+        $capTemp = getLastFourElements($capacitesCanLearn, $level);
+        // if($pkmn['Name'] == 'mew'){
+        //     debugLog($capTemp);
+
+        // }
         foreach($capTemp as $capacite){
             array_push($newCapacites, getCapacite($capacite['name']));
         }

@@ -202,7 +202,7 @@ function interfaceCapacities($capacites){
                 $posY = $posYInit +3;
                 $posX = $posXInit +20;
             }
-            textAreaLimited($i.' : ',23,[$posY,$posX]);
+            textAreaLimited(($i+1).' : ',23,[$posY,$posX]);
             getColorByType($capacites[$i]['Type']);
             textAreaLimited($capacites[$i]['Name'],23,[$posY,$posX+4]);
             selectColor('reset');

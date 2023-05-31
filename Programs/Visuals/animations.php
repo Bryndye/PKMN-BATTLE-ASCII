@@ -16,7 +16,6 @@ function translate($sprite, $posInit, $posFinal, $time=1, $laps=0.01){
         $posY += $moveYPerLaps;
         // debugLog("x:$posX y:$posY \n", 0);
         // textArea("x:$posX y:$posY \n",[0,0]);
-        // clearGameScreen();
         drawSprite($sprite, [$posY,$posX]);
         usleep($laps*1000);
         if($i != $countToExecuteAnimation-1){
@@ -51,8 +50,7 @@ function animationCapture(){
     drawSprite(getSprites('Pokeball_1'),getPosSpritePkmn(false));
 }
 
-
-//// ANIAMTIONS BATTLE //////////////////////////////////////////////////
+//// ANIMATION ENTER BATTLE /////////////////////////////////////////////
 function animationEnterBattle(){
     animationEnterSpirale();
 }
@@ -142,6 +140,9 @@ function animationVersusLeader($spriteName){
     sleep(1);
 }
 
+
+//// ANIAMTIONS BATTLE //////////////////////////////////////////////////
+
 function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
     $screenScale = getScreenScale();
     $posJoueur = getPosSpritePkmn(true);
@@ -158,6 +159,49 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
 
     drawSprite($spriteJoueur, getPosSpritePkmn(true));
     drawSprite($spriteEnemy, getPosSpritePkmn(false));
+}
+
+function animationAttack($pkmn, $isJoueur){
+    $pos = getPosSpritePkmn($isJoueur);
+    $decalage = $isJoueur ? 1 : -1;
+
+    clearSpritePkmn($isJoueur);
+    drawSprite(getSprites($pkmn['Sprite']),[$pos[0],$pos[1]+$decalage]);
+    sleep(1);
+    clearSprite([$pos[0]-1,$pos[1]+$decalage]);
+    drawSpritePkmn($pkmn, $isJoueur);
+}
+
+function animationDown($pkmn, $isJoueur){
+    $pos = getPosSpritePkmn($isJoueur);
+    $scaleSprite = getScaleSpritePkmn();
+    for($i=0;$i<3;++$i){
+        clearSpritePkmn($isJoueur);
+        drawSprite(getSprites($pkmn['Sprite']),$pos);
+
+        selectColor('red');
+        drawSprite(getSprites('down'), [$pos[0]+($i+1)*2+intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
+        selectColor('reset');
+        usleep(250000);
+    }
+    clearSpritePkmn($isJoueur);
+    drawSprite(getSprites($pkmn['Sprite']),$pos);
+}
+
+function animationUp($pkmn, $isJoueur){
+    $pos = getPosSpritePkmn($isJoueur);
+    $scaleSprite = getScaleSpritePkmn();
+    for($i=0;$i<3;++$i){
+        clearSpritePkmn($isJoueur);
+        drawSprite(getSprites($pkmn['Sprite']),$pos);
+
+        selectColor('green');
+        drawSprite(getSprites('up'), [$pos[0]+$scaleSprite[0]-($i+1)*2-intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
+        selectColor('reset');
+        usleep(250000);
+    }
+    clearSpritePkmn($isJoueur);
+    drawSprite(getSprites($pkmn['Sprite']),$pos);
 }
 
 function animationTakeDamage($pkmn, $isJoueur){
