@@ -40,7 +40,7 @@ function gameplayLoop(&$joueur, &$pnj){
             animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
-            $choice2 = selectPkmn($pkmnTeamJoueur, 1);
+            $choice2 = selectPkmn($pkmnTeamJoueur, 0);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
@@ -195,7 +195,6 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
                 $didIt = useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamDef'][0]);
                 // FIN DU COMBAT SI CAPTURE
                 if($didIt){
-                    // $action['teamDef'][0]['Stats']['Health'] = -1;
                     return 'captured';
                 }
             }
@@ -253,7 +252,8 @@ function endBattle(&$joueur, $pnj){
     }
     else{
         if($pnj['type'] == 'trainer'){
-            drawSprite(getSprites($pnj['Sprite']), getPosSpritePkmn(false));
+            $spriteEnemy = is_array($pnj['Sprite']) ? $pnj['Sprite'][0] : $pnj['Sprite'];
+            drawSprite(getSprites($spriteEnemy), getPosSpritePkmn(false));
         }
         if(isset($pnj['Dialogues']['end'])){
             // debugLog($pnj['Dialogues']['end']);
