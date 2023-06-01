@@ -4,6 +4,9 @@ function addPkmnToPokedex($pkmn, $type){
     if(!array_key_exists($pkmn['N Pokedex'], $main['Pokedex'])){
         $main['Pokedex'][$pkmn['N Pokedex']] = getTypePkmnToPokedex($type);
     }
+    if($main['Pokedex'][$pkmn['N Pokedex']] == 2){
+        return;
+    }
     ksort($main['Pokedex']);
     setData($main['Pokedex'], 'Pokedex', getSavePath('myGame'));
 }
@@ -88,7 +91,10 @@ function listPokedexRight($startKey, $exception = null){
 
     $counts = array_count_values($exception);
     drawBox([3,25],[2,$x]);
-    justifyText('C:'.$counts['2'].' S:'.($counts['1']+$counts['2']), 21, [3,$x+2], 'right');
+
+    $countS = array_key_exists('1',$counts) ? $counts['1'] : 0;
+    $countC = array_key_exists('2',$counts) ? $counts['2'] : 0;
+    justifyText('C:'.$countC.' S:'.($countS+$countC), 21, [3,$x+2], 'right');
     textArea('Total:'.getCountPokedex(), [3,$x+2]);
 
     foreach($slice as $pkmn){

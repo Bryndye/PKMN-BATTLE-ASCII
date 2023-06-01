@@ -355,7 +355,7 @@ function evolution(&$pkmn, $indexChoiceEvol = null){
         $newName = $pkmn['evolution']['Name'];
     }
 
-    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
+    drawSprite(getSprites($pkmn['Sprite']), [5,16]);
     sleep(1);
     clearSprite([4,16]);
     sleep(1);

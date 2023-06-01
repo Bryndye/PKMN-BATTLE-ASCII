@@ -76,7 +76,7 @@
 		"name":"Metal-claw",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0",
+		"price" : "500",
 		"indexFloor" : 10
 	},
     "Surf":
@@ -84,7 +84,7 @@
 		"name":"Surf",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0",
+		"price" : "2500",
 		"indexFloor" : 60
 	},
 	"Hyper-Beam":
@@ -92,7 +92,7 @@
 		"name":"Hyper-Beam",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0",
+		"price" : "4000",
 		"indexFloor" : 50
 	},
 	"Flamethrower":
@@ -100,7 +100,7 @@
 		"name":"Flamethrower",
 		"type": "TMs",
 		"effect": "capacity",
-		"price" : "0",
+		"price" : "3000",
 		"indexFloor" : 30
 	},
 	"Replace":
@@ -116,23 +116,23 @@
 		"name":"Firestone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "0",
-		"indexFloor" : 1
+		"price" : "3500",
+		"indexFloor" : 40
 	},
     "Waterstone":
 	{
 		"name":"Waterstone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "0",
-		"indexFloor" : 1
+		"price" : "3500",
+		"indexFloor" : 40
 	},
     "Thunderstone":
 	{
 		"name":"Thunderstone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "0",
-		"indexFloor" : 1
+		"price" : "3500",
+		"indexFloor" : 40
 	}
 }
