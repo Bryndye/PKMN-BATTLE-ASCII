@@ -960,7 +960,7 @@ function generateIAs(){
             1,'Elite Four'
         ),
         94 =>  createTrainer('Champion Blue', 
-            'trainer',
+            'rival',
             [
                 'entrance' => "What?! You here?! Anyway, you will lose!",
                 'end' => [
