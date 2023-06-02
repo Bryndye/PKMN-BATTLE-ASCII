@@ -43,7 +43,7 @@ function ailmentStartTurnEffect(&$pkmn){
     $ailments = [
         'paralysis' => ['chance' => 20, 'message' => 'is paralysed...'],
         'frozen' => ['chance' => 50, 'message' => 'is frozen...', 'recover_message' => 'is up!'],
-        'sleep' => ['chance' => 50, 'message' => 'is sleeping...', 'recover_message' => 'is awake!'],
+        'sleep' => ['chance' => 20, 'message' => 'is sleeping...', 'recover_message' => 'is awake!'],
     ];
 
     $ailment = $pkmn['Status'];
@@ -55,7 +55,7 @@ function ailmentStartTurnEffect(&$pkmn){
             messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['message']);
             return true;
         } elseif (isset($ailments[$ailment]['recover_message'])) {
-            messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['recover_message']);
+            messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['recover_message'],1);
             $pkmn['Status'] = null;
         }
     }

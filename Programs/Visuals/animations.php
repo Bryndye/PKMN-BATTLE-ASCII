@@ -33,8 +33,8 @@ function animationPkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/)
 }
 
 function drawEntirePkmnBattle($pkmnTeam, $isJoueur){
-    drawPkmnTeamHUD($pkmnTeam, getPosTeam($isJoueur));
-    drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
+    drawInfoTeamCount($pkmnTeam, getPosTeam($isJoueur));
+    drawPkmnInfoHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0]);
 }
 
 function animationCapture(){
@@ -184,7 +184,7 @@ function animationAttack($pkmn, $isJoueur){
 
     clearSpritePkmn($isJoueur);
     drawSprite(getSprites($pkmn['Sprite']),[$pos[0],$pos[1]+$decalage]);
-    usleep(250000);
+    usleep(150000);
     clearSprite([$pos[0]-1,$pos[1]+$decalage]);
     drawSpritePkmn($pkmn, $isJoueur);
 }
@@ -199,7 +199,7 @@ function animationDown($pkmn, $isJoueur){
         selectColor('red');
         drawSprite(getSprites('down'), [$pos[0]+($i+1)*2+intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
         selectColor('reset');
-        usleep(250000);
+        usleep(150000);
     }
     clearSpritePkmn($isJoueur);
     drawSprite(getSprites($pkmn['Sprite']),$pos);
@@ -215,7 +215,7 @@ function animationUp($pkmn, $isJoueur){
         selectColor('green');
         drawSprite(getSprites('up'), [$pos[0]+$scaleSprite[0]-($i+1)*2-intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
         selectColor('reset');
-        usleep(250000);
+        usleep(150000);
     }
     clearSpritePkmn($isJoueur);
     drawSprite(getSprites($pkmn['Sprite']),$pos);

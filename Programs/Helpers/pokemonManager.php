@@ -210,7 +210,7 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
 }
 
 function getNextLevelExp($currentLevel) {
-    $expToNextLevel = (int)((4 * $currentLevel * $currentLevel * $currentLevel) / 5);
+    $expToNextLevel = (int)((3 * $currentLevel * $currentLevel * $currentLevel) / 5);
     return intval($expToNextLevel);
 }
 

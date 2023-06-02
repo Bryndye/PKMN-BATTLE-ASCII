@@ -511,7 +511,7 @@
           "level": 17
         },
         {
-          "name": "protect",
+          "name": "harden",
           "level": 20
         },
         {
@@ -593,7 +593,7 @@
           "level": 17
         },
         {
-          "name": "protect",
+          "name": "harden",
           "level": 20
         },
         {
@@ -671,7 +671,7 @@
           "level": 17
         },
         {
-          "name": "protect",
+          "name": "harden",
           "level": 20
         },
         {
@@ -2492,23 +2492,27 @@
         },
         {
           "name": "quick-attack",
-          "level": 16
+          "level": 10
         },
         {
           "name": "confuse-ray",
-          "level": 28
+          "level": 18
         },
         {
           "name": "flamethrower",
-          "level": 35
+          "level": 25
         },
         {
           "name": "fire-spin",
-          "level": 38
+          "level": 30
         },
         {
           "name": "hyper-beam",
-          "level": 42
+          "level": 36
+        },
+        {
+          "name": "fire-blast",
+          "level": 40
         }
       ],
       "base experience": 60
@@ -2546,23 +2550,27 @@
         },
         {
           "name": "quick-attack",
-          "level": 16
+          "level": 10
         },
         {
           "name": "confuse-ray",
-          "level": 28
+          "level": 18
         },
         {
           "name": "flamethrower",
-          "level": 35
+          "level": 25
         },
         {
           "name": "fire-spin",
-          "level": 38
+          "level": 30
         },
         {
           "name": "hyper-beam",
-          "level": 42
+          "level": 36
+        },
+        {
+          "name": "fire-blast",
+          "level": 40
         }
       ],
       "base experience": 177
@@ -3958,23 +3966,31 @@
         },
         {
           "name": "quick-attack",
-          "level": 16
+          "level": 10
         },
         {
-          "name": "confuse-ray",
-          "level": 28
+          "name": "bite",
+          "level": 15
+        },
+        {
+          "name": "take-down",
+          "level": 18
         },
         {
           "name": "flamethrower",
-          "level": 35
+          "level": 25
         },
         {
           "name": "fire-spin",
-          "level": 38
+          "level": 30
         },
         {
           "name": "hyper-beam",
-          "level": 42
+          "level": 36
+        },
+        {
+          "name": "fire-blast",
+          "level": 40
         }
       ],
       "base experience": 70
@@ -4012,23 +4028,31 @@
         },
         {
           "name": "quick-attack",
-          "level": 16
+          "level": 10
         },
         {
-          "name": "confuse-ray",
-          "level": 28
+          "name": "bite",
+          "level": 15
+        },
+        {
+          "name": "take-down",
+          "level": 18
         },
         {
           "name": "flamethrower",
-          "level": 35
+          "level": 25
         },
         {
           "name": "fire-spin",
-          "level": 38
+          "level": 30
         },
         {
           "name": "hyper-beam",
-          "level": 42
+          "level": 36
+        },
+        {
+          "name": "fire-blast",
+          "level": 40
         }
       ],
       "base experience": 194

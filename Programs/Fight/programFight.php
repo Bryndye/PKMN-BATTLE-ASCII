@@ -72,7 +72,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         animationAttack($pkmnAtk, !$isJoueurTakeDamage);
         attackPkmnCalculator($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
-    drawPkmnHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
+    drawPkmnInfoHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
     sleep(1);
 }
 
@@ -89,6 +89,9 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             $power = setPowerCapacityPourcentByWeight($pkmnAtk);
         }else if($capacite['Power'] == 'speed'){
             $power = setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite);
+        }
+        else if($capacite['Power'] == 'level'){
+            $power = setPowerCapacityPourcentByLevel($pkmnAtk, $pkmnDef, $capacite);
         }
     }
     //// 1ere etape //////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +136,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     takeDamagePkmn($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
     //// update health pkmn def before drain ////////////////////////////////////////////////////////
-    drawPkmnHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
+    drawPkmnInfoHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
     usleep(500000);
     
     //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
@@ -159,7 +162,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
         }  
         // update health pkmn atk after drain
-        drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
+        drawPkmnInfoHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
     }
 }
 
@@ -175,7 +178,7 @@ function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurAttack){
         boostStatsTemp($pkmnAtk, $pkmnDef, $capacite, $isJoueurAttack);           
     }
     if($capacite['effects']['Healing'] != 0){
-        $pkmnAtk['Stats']['Health'] += ($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max'];
+        $pkmnAtk['Stats']['Health'] += intval(($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max']);
         checkHealthOutRange($pkmnAtk);
     }
 }
@@ -290,6 +293,10 @@ function takeDamagePkmn(&$pkmn, $damage, $isJoueur){
 
     $pkmn['Stats']['Health'] -= $damage;
     checkHealthOutRange($pkmn);
+
+    if($pkmn['Stats']['Health'] <= 0){ // If pkmn dead, reset status
+        $pkmn['Status'] = null;
+    }
 }
 /////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////

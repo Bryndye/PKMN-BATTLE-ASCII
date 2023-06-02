@@ -48,11 +48,6 @@ while(true){
     $pkmnTeamJoueur = &$saveParty['Team'];
 
     setData($pkmnTeamJoueur, 'Team', getSavePath('save'));
-    // array_push($pkmnTeamJoueur,generatePkmnBattle('dragonair', 55,35));
-    // array_push($pkmnTeamJoueur,generatePkmnBattle('zapdos', 60,400));
-    // array_push($pkmnTeamJoueur,generatePkmnBattle('onix', 58,330));
-    // array_push($pkmnTeamJoueur,generatePkmnBattle('kingler', 60,330));
-    // array_push($pkmnTeamJoueur,generatePkmnBattle('jolteon', 70,330));
 
     if(array_key_exists('IndexFloor', $saveParty)){
         $IndexFloor = $saveParty['IndexFloor'];

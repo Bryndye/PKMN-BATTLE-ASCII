@@ -81,7 +81,7 @@ $routes = [
                         "I'm gonna catch more to defeat you next time!"
                     ]
                 ],
-                500,
+                1000,
                 [],
                 [
                     generatePkmnBattle('pidgey', 10),
@@ -128,7 +128,7 @@ $routes = [
                         "By!"
                     ]
                 ],
-                500,
+                1500,
                 [],
                 [
                     generatePkmnBattle('geodude', 11),
@@ -144,7 +144,7 @@ $routes = [
                         "By!"
                     ]
                 ],
-                500,
+                1500,
                 [],
                 [
                     generatePkmnBattle('zubat', 13),
@@ -157,23 +157,23 @@ $routes = [
         'Floors' => [21,29],
         'Pokemon savages' => [
             'diglett' => [
-                'level' => [16,20],
+                'level' => [16,18],
                 'rate' => 45
             ],
             'spearow' => [
-                'level' => [18,20],
+                'level' => [18,18],
                 'rate' => 40
             ],
             'doduo' => [
-                'level' => [19,20],
+                'level' => [19,19],
                 'rate' => 35
             ],
             'dugtrio' => [
-                'level' => [23,25],
+                'level' => [23,23],
                 'rate' => 5
             ],
             'meowth' => [
-                'level' => [18,22],
+                'level' => [18,20],
                 'rate' => 40
             ],
             'magnemite' => [
@@ -181,7 +181,7 @@ $routes = [
                 'rate' => 20
             ],
             'abra' => [
-                'level' => [15,26],
+                'level' => [15,20],
                 'rate' => 5
             ],
             'jigglypuff' => [
@@ -189,7 +189,39 @@ $routes = [
                 'rate' => 5
             ]
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Scientist', 
+                'trainer',
+                [
+                    'entrance' => "Get away! I'm working.",
+                    'end' => [
+                        "Tsss! You're wasting my time."
+                    ]
+                ],
+                2000,
+                [],
+                [
+                    generatePkmnBattle('magnemite', 18),
+                    generatePkmnBattle('magnemite', 19)
+                ]
+                ),
+            createTrainer('A Pokemaniac', 
+                'trainer',
+                [
+                    'entrance' => "How many Pokemon did you catch?",
+                    'end' => [
+                        "You are really good! Maybe you are the next Champion."
+                    ]
+                ],
+                2000,
+                [],
+                [
+                    generatePkmnBattle('jigglypuff', 18),
+                    generatePkmnBattle('growlithe', 20),
+                    generatePkmnBattle('vulpix', 20)
+                ]
+            )
+        ]
     ],
     "route 4" => [
         'Floors' => [31,39],
@@ -203,7 +235,7 @@ $routes = [
                 'rate' => 25
             ],
             'ekans' => [
-                'level' => [15,20],
+                'level' => [18,20],
                 'rate' => 25
             ],
             'growlithe' => [
@@ -219,7 +251,43 @@ $routes = [
                 'rate' => 5
             ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('Old man', 
+                'trainer',
+                [
+                    'entrance' => "oh?! A battle?",
+                    'end' => [
+                        "Thank to you, I'm going to practice to be Champion!"
+                    ]
+                ],
+                2500,
+                [],
+                [
+                    generatePkmnBattle('nidorina', 22),
+                    generatePkmnBattle('nidorino', 23),
+                    generatePkmnBattle('spearow', 25),
+                ]
+            ),
+            createTrainer('A fisher', 
+                'trainer',
+                [
+                    'entrance' => "How many Pokemon did you catch?",
+                    'end' => [
+                        "You are really good! Maybe you are the next Champion."
+                    ]
+                ],
+                2500,
+                [],
+                [
+                    generatePkmnBattle('magikarp', 30),
+                    generatePkmnBattle('magikarp', 30),
+                    generatePkmnBattle('magikarp', 30),
+                    generatePkmnBattle('magikarp', 30),
+                    generatePkmnBattle('goldeen', 26),
+                    generatePkmnBattle('poliwag', 26),
+                ]
+            )
+        ]
     ],
     "route 5" => [
         'Floors' => [41,49],
@@ -245,15 +313,15 @@ $routes = [
                 'rate' => 10
             ],
             'magikarp' => [
-                'level' => [30,35],
+                'level' => [30,31],
                 'rate' => 5
             ],
             'rhyhorn' => [
-                'level' => [32,35],
+                'level' => [26,28],
                 'rate' => 5
             ],
             'lickitung' => [
-                'level' => [32,32],
+                'level' => [28,30],
                 'rate' => 5
             ],
         ],
@@ -702,13 +770,32 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
+        35 =>  createTrainer('Blue', 
+            'rival',
+            [
+                'entrance' => "Why are you here? You don't have any dead pokemon.",
+                'end' => [
+                    "..."
+                ]
+            ],
+            3000,
+            [],
+            [
+                generatePkmnBattle('primeape', 26),
+                generatePkmnBattle('pidgeotto', 24),
+                generatePkmnBattle('kadabra', 25),
+                generatePkmnBattle(selectStarterRival(2), 28),
+            ],
+            1,
+            'Rival'
+        ),
         40 =>  createTrainer('Gym Leader Erika', 
             'erika',
             [
                 'entrance' => "I'm the leader of grass type! Prepare your antidotes.",
                 'end' => [
                     "You obtained the Rainbow Badge!",
-                    "Be the sun with you!"
+                    "Have a nice day!"
                 ]
             ],
             4000,
@@ -725,24 +812,64 @@ function generateIAs(){
         45 =>  createTrainer('Blue', 
             'rival',
             [
-                'entrance' => "You? Again?",
+                'entrance' => "Did you see any Team Rocket member?",
                 'end' => [
-                    "Tsss! Out of my sight!"
+                    "You are useless! Go back to your mother."
                 ]
             ],
             3000,
             [],
             [
-                generatePkmnBattle('pidgeot', 30),
-                generatePkmnBattle('rattatac', 29),
-                generatePkmnBattle('kadabra', 34),
                 generatePkmnBattle('primeape', 30),
+                generatePkmnBattle('pidgeot', 30),
+                generatePkmnBattle('kadabra', 34),
                 generatePkmnBattle(selectStarterRival(2), 32),
             ],
             1,
             'Rival'
         ),
-        50 =>  createTrainer('Gym Leader Koga', 
+        50 =>  createTrainer('Gym Leader Sabrina', 
+            'sabrina',
+            [
+                'entrance' => "What are you looking at?",
+                'end' => [
+                    "You obtained the Marsh Badge!",
+                    "Get out!"
+                ]
+            ],
+            5000,
+            [
+                getItemObject('Super potion',2)
+            ],            
+            [
+                generatePkmnBattle('kadabra', 34,0,['recover','psychic']),
+                generatePkmnBattle('mr-mime', 38,0,['confusion','harden','light-screen']),
+                generatePkmnBattle('venomoth', 38,0,['psybeam','leech-life']),
+                generatePkmnBattle('alakazam', 40,0,['recover','psychic','amnesia']),
+            ],
+            1,'Gym Leader'
+        ),
+        55 =>  createTrainer('Blue', 
+        'rival',
+        [
+            'entrance' => "You? Again?",
+            'end' => [
+                "Tsss! Out of my sight!"
+                ]
+            ],
+            4000,
+            [],
+            [
+                generatePkmnBattle('pidgeot', 36),
+                generatePkmnBattle('rattatac', 38),
+                generatePkmnBattle('alakazam', 40),
+                generatePkmnBattle('primeape', 38),
+                generatePkmnBattle(selectStarterRival(2), 40),
+            ],
+            1,
+            'Rival'
+        ),
+        60 =>  createTrainer('Gym Leader Koga', 
             'koga',
             [
                 'entrance' => "I'm a ninja! Could you see me?",
@@ -760,47 +887,6 @@ function generateIAs(){
                 generatePkmnBattle('muk', 39,0,['sludge','sludge-bomb']),
                 generatePkmnBattle('koffing', 37,0,['sludge','sludge-bomb']),
                 generatePkmnBattle('weezing', 43,0,['sludge','sludge-bomb']),
-            ],
-            1,'Gym Leader'
-        ),
-        55 =>  createTrainer('Blue', 
-            'rival',
-            [
-                'entrance' => "You? Again?",
-                'end' => [
-                    "Tsss! Out of my sight!"
-                ]
-            ],
-            4000,
-            [],
-            [
-                generatePkmnBattle('pidgeot', 36),
-                generatePkmnBattle('rattatac', 38),
-                generatePkmnBattle('alakazam', 40),
-                generatePkmnBattle('primeape', 38),
-                generatePkmnBattle(selectStarterRival(2), 40),
-            ],
-            1,
-            'Rival'
-        ),
-        60 =>  createTrainer('Gym Leader Sabrina', 
-            'sabrina',
-            [
-                'entrance' => "What are you looking at?",
-                'end' => [
-                    "You obtained the Marsh Badge!",
-                    "Get out!"
-                ]
-            ],
-            5000,
-            [
-                getItemObject('Super potion',2)
-            ],            
-            [
-                generatePkmnBattle('kadabra', 38,0,['recover','psychic']),
-                generatePkmnBattle('mr-mime', 37,0,['confusion','harden','light-screen']),
-                generatePkmnBattle('venomoth', 38,0,['psybeam','leech-life']),
-                generatePkmnBattle('alakazam', 43,0,['recover','psychic','amnesia']),
             ],
             1,'Gym Leader'
         ),

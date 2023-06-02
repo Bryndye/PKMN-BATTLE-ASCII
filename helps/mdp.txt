@@ -1,0 +1,14 @@
+5ppLErnQcLBCzWXg
+
+key API = Jl1FBw8v1Nrv35RQeh76Nhks8bmc75qBCYSkmEJdk7mMGagB20hmOKMkEbmnGzBc
+
+curl --location --request POST 'https://eu-central-1.aws.data.mongodb-api.com/app/data-xkcms/endpoint/data/v1/action/findOne' \
+--header 'Content-Type: application/json' \
+--header 'Access-Control-Request-Headers: *' \
+--header 'api-key: Jl1FBw8v1Nrv35RQeh76Nhks8bmc75qBCYSkmEJdk7mMGagB20hmOKMkEbmnGzBc' \
+--data-raw '{
+    "collection":"<COLLECTION_NAME>",
+    "database":"<DATABASE_NAME>",
+    "dataSource":"Scores",
+    "projection": {"_id": 1}
+}'

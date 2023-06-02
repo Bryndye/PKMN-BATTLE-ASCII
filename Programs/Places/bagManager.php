@@ -144,13 +144,13 @@ function drawRefreshInterfaceList($listItems, $indexItem = 0){
 
 function useItemOn(&$bag, $indexItem, &$pkmnTeam){
     while(true){
-        drawPkmnTeam($pkmnTeam);
         $choice2 = "";
         $itemToUse = &$bag[$indexItem];
         // Si item pokeball, pas bsoin de choisir un pokemon de la team
         if($itemToUse['type'] == 'PokeBalls'){
             return "$indexItem $choice2";
         }
+        drawPkmnTeam($pkmnTeam);
         // Select Pkmn to heal
         $choice2 = selectPkmn($pkmnTeam, null, true, 'Use '.$itemToUse['name'] .' on?');
         if($choice2 == leaveInputMenu()){
@@ -181,11 +181,11 @@ function useItem(&$bag, &$item, &$pkmn){
     // utilisation des items
     switch($item['type']){
         case 'Heals':
-            if(is_numeric($item['effect'])){
-                healPkmn($item, $pkmn);
-            }
             if(is_string($item['effect']) && strpos($item['effect'], 'status') !== false){ // verifie si string et si contient status
                 healStatusToPkmn($pkmn);
+            }
+            else{
+                healPkmn($item, $pkmn);
             }
             break;
         case 'PokeBalls':

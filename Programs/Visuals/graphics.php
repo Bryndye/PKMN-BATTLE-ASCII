@@ -104,7 +104,7 @@ function getColorByType($type = 'normal'){
             selectColor('green bug');
             break;
         case 'ice':
-            selectColor('ice');
+            selectColor('cyan');
             break;
         case 'fighting':
             selectColor('brown');

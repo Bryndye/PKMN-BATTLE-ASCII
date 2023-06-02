@@ -60,6 +60,12 @@ function setPowerCapacityPourcentByWeight($pkmn){
     return $power;
 }   
 
+function setPowerCapacityPourcentByLevel($pkmnAtk, $pkmnDef, $capacite){
+    $power = $pkmnDef['Level'];
+    // $factor = multipleOf($power, 2);
+    return $power; 
+}
+
 function setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite){
     $power = $capacite['Power'];
     $factor = multipleOf($power, 2);

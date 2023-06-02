@@ -33892,5 +33892,37 @@
         "Pkmns Learned":[
             
         ]
+    },
+    "trash":{
+        "Name":"trash",
+        "Power":120,
+        "Type":"normal",
+        "PP":5,
+        "Category":"physical",
+        "Accuracy":90,
+        "crit_rate":0,
+        "priority":0,
+        "effects":{
+            "Drain":0,
+            "Healing":0,
+            "Stats Self":[
+            ],
+            "Stats Target":[
+
+            ],
+            "Ailment":{
+                "ailment":null,
+                "ailment_chance":0
+            },
+            "Flinch Chance":0,
+            "hits":{
+                "min hits":null,
+                "max hits":null
+            }
+        },
+        "Target":"random-opponent",
+        "Pkmns Learned":[
+            
+        ]
     }
 }

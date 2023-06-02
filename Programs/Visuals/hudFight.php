@@ -1,10 +1,10 @@
 <?php
 // -- HUD PKMN--
 // - Afficher HUD du pkmn joueur -
-// drawPkmnHUD(17,34, $pkmn1);
+// drawPkmnInfoHUD(17,34, $pkmn1);
 // drawSprite($sprites[$pkmn1['Sprite']], 9, 3); 
 // - Afficher HUD du pkmn ennemi -
-// drawPkmnHUD(2,3, $pkmn2);
+// drawPkmnInfoHUD(2,3, $pkmn2);
 // drawSprite($sprites[$pkmn2['Sprite']], 1, 35);
 
 
@@ -21,21 +21,21 @@ function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
     drawSkeletonHUD();
 
     // Afficher HUD du pkmn joueur
-    drawPkmnSideHUD($pkmnTeamJoueur, true);
+    drawPkmnAllBattleHUD($pkmnTeamJoueur, true);
     
     // Afficher HUD du pkmn ennemi
-    drawPkmnSideHUD($pkmnTeamEnemy, false);
+    drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
 }
 
 
 //// draw INFO PKMN ///////////////////////////////////////////
-function drawPkmnSideHUD(&$pkmnTeam, $isJoueur){  
-    drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
+function drawPkmnAllBattleHUD(&$pkmnTeam, $isJoueur){  
+    drawPkmnInfoHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
     drawSprite(getSprites($pkmnTeam[0]['Sprite']), getPosSpritePkmn($isJoueur));
-    drawPkmnTeamHUD($pkmnTeam,getPosTeam($isJoueur));
+    drawInfoTeamCount($pkmnTeam,getPosTeam($isJoueur));
 }
 
-function drawPkmnTeamHUD($pkmnTeam, $pos){
+function drawInfoTeamCount($pkmnTeam, $pos){
     $message = '<';
     for($i = 0; $i < 6; $i++){
         if($i < count($pkmnTeam)){
@@ -58,7 +58,7 @@ function clearPkmnHUD($isJoueur){
     clearArea(getScaleHUDPkmn(),getPosHealthPkmn($isJoueur));
 }
 
-function drawPkmnHUD($pos, $pkmn, $isJoueur = true){
+function drawPkmnInfoHUD($pos, $pkmn, $isJoueur = true){
     clearArea(getScaleHUDPkmn(),$pos);
     drawBox(getScaleHUDPkmn(),$pos,'|','-', true);
 
@@ -71,6 +71,9 @@ function drawPkmnHUD($pos, $pkmn, $isJoueur = true){
     if($isJoueur){
         updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
     }
+    // if(!$isJoueur){
+    //     // draw info if caught or not
+    // }
 } 
 
 function updateHealthPkmn($health, $healthMax, $isJoueur = true, $pos=null){
@@ -183,7 +186,7 @@ function drawPkmnTeam($pkmnTeam){
         $x = ($i % 2 == 0) ? 3 : 33;
         $y = ($i+1) * 3;
         $pos = [$y,$x];
-        drawPkmnHUD($pos, $pkmnTeam[$i]);
+        drawPkmnInfoHUD($pos, $pkmnTeam[$i]);
     }
 }
 
