@@ -157,19 +157,19 @@ $routes = [
         'Floors' => [21,29],
         'Pokemon savages' => [
             'diglett' => [
-                'level' => [20,22],
+                'level' => [16,20],
                 'rate' => 45
             ],
             'spearow' => [
-                'level' => [18,24],
+                'level' => [18,20],
                 'rate' => 40
             ],
             'doduo' => [
-                'level' => [20,44],
+                'level' => [19,20],
                 'rate' => 35
             ],
             'dugtrio' => [
-                'level' => [25,28],
+                'level' => [23,25],
                 'rate' => 5
             ],
             'meowth' => [
@@ -185,7 +185,7 @@ $routes = [
                 'rate' => 5
             ],
             'jigglypuff' => [
-                'level' => [19,28],
+                'level' => [15,18],
                 'rate' => 5
             ]
         ],
@@ -698,7 +698,7 @@ function generateIAs(){
             ],            [
                 generatePkmnBattle('voltorb', 21,0,["thunder-shock","tackle"]),
                 generatePkmnBattle('pikachu', 18,0,["thunder-shock","quick-attack","tail-whip","surf"]),
-                generatePkmnBattle('raichu', 24,0,["thunder-shock","tail-whip","quick-attack"]),
+                generatePkmnBattle('raichu', 23,0,["thunder-shock","tail-whip","quick-attack"]),
             ],
             1,'Gym Leader'
         ),

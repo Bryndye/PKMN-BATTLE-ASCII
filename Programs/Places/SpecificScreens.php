@@ -82,7 +82,9 @@ function drawStatsFromSaveToMenu(){
         textArea('Name : '.$save['name'], [5,30]);
         textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
         textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
-        textArea('Win Count : '.$save['Game wins'], [9,30]);
+        $floorMaxReached = getDataFromSave('Record IndexFloor', getSavePath('myGame')) ?? 0;
+        textArea('Floor reached : '.$floorMaxReached, [9,30]);
+        textArea('Win Count : '.$save['Game wins'], [10,30]);
 
         if(isSaveExist(getSavePath('save'))){
             $saveFight = getSave(getSavePath('save'));
@@ -241,6 +243,7 @@ function endGame(){
 function screenLose(){
     clearGameScreen();
     addData(1, 'loses', getSavePath('myGame'));
+    setData(getDataFromSave('IndexFloor', getSavePath('save')), 'Record IndexFloor', getSavePath('myGame'));
     $floor = getDataFromSave('IndexFloor', getSavePath('save'));
 
     drawSprite(getSprites('Pokeball'), [3,18]);

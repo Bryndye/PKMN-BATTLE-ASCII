@@ -12,7 +12,7 @@
 		"name":"Super potion",
 		"type": "Heals",
 		"effect": "50",
-		"price" : "500",
+		"price" : "400",
 		"indexFloor" : 20
 	},
     "Hyper potion":
@@ -20,7 +20,7 @@
 		"name":"Hyper potion",
 		"type": "Heals",
 		"effect": "120",
-		"price" : "1200",
+		"price" : "900",
 		"indexFloor" : 50
 	},
 	"Total Heals":
@@ -28,7 +28,7 @@
 		"name":"Total Heals",
 		"type": "Heals",
 		"effect": "status all",
-		"price" : "1000",
+		"price" : "600",
 		"indexFloor" : 10
 	},
     "PokeBall":
@@ -52,7 +52,7 @@
 		"name":"HyperBall",
 		"type": "PokeBalls",
 		"effect": "2",
-		"price" : "1200",
+		"price" : "1000",
 		"indexFloor" : 40
 	},
 	"MasterBall":
@@ -68,7 +68,7 @@
 		"name":"Revive",
 		"type": "Heals",
 		"effect": "50%",
-		"price" : "2400",
+		"price" : "2000",
 		"indexFloor" : 10
 	},
 	"Metal-claw":
@@ -116,7 +116,7 @@
 		"name":"Firestone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "3500",
+		"price" : "3000",
 		"indexFloor" : 40
 	},
     "Waterstone":
@@ -124,7 +124,7 @@
 		"name":"Waterstone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "3500",
+		"price" : "3000",
 		"indexFloor" : 40
 	},
     "Thunderstone":
@@ -132,7 +132,7 @@
 		"name":"Thunderstone",
 		"type": "Items",
 		"effect": "evolution",
-		"price" : "3500",
+		"price" : "3000",
 		"indexFloor" : 40
 	}
 }

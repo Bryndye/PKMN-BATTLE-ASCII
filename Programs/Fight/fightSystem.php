@@ -40,7 +40,7 @@ function gameplayLoop(&$joueur, &$pnj){
             animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
-            $choice2 = selectPkmn($pkmnTeamJoueur, 0);
+            $choice2 = selectPkmn($pkmnTeamJoueur, 0, false);
             
             switchPkmn($pkmnTeamJoueur ,$choice2);
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
@@ -80,7 +80,7 @@ function loopFight(&$joueur, &$pnj){
             $choice2 = is_numeric($choice2) ? $choice2-1 : $choice2;// -1 cause of choices +1 for players
         }
         elseif($choice == 2){
-            $choice2 = selectPkmn($pkmnTeamJoueur,0);
+            $choice2 = selectPkmn($pkmnTeamJoueur,0, false);
             if($choice2 != leaveInputMenu()){           
                 drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }
@@ -230,10 +230,9 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
     messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $firstPkmn = $i == 0;
-        if(isPkmnDead_simple($pkmnTeamJoueur[$i])){
-            
+        if(!isPkmnDead_simple($pkmnTeamJoueur[$i])){
+            getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE),false, $firstPkmn);
         }
-        getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE),false, $firstPkmn);
     }
 }   
 

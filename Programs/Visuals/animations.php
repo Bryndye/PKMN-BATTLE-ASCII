@@ -184,7 +184,7 @@ function animationAttack($pkmn, $isJoueur){
 
     clearSpritePkmn($isJoueur);
     drawSprite(getSprites($pkmn['Sprite']),[$pos[0],$pos[1]+$decalage]);
-    sleep(1);
+    usleep(250000);
     clearSprite([$pos[0]-1,$pos[1]+$decalage]);
     drawSpritePkmn($pkmn, $isJoueur);
 }

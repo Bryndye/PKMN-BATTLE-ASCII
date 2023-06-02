@@ -149,6 +149,9 @@ function getDataFromSave($key, $path){
     $path = isPathNull($path);
     $file = file_get_contents($path);
     $array = json_decode($file, true);
+    if(!array_key_exists($key, $array)){
+        return null;
+    }
     return $array[$key];
 }
 

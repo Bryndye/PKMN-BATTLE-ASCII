@@ -125,7 +125,7 @@ function getColorByType($type = 'normal'){
             selectColor('pink');
             break;
         case 'dark':
-            selectColor('black');
+            selectColor('grey');
             break;
         case 'steel':
             selectColor('grey');

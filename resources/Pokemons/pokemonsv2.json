@@ -868,7 +868,7 @@
           "stade": 2
         }
       },
-      "Sprite": "Bug2",
+      "Sprite": "Bug",
       "capacites": [
         {
           "name": "tackle",
@@ -1902,7 +1902,7 @@
           "stade": 3
         }
       },
-      "Sprite": "standard",
+      "Sprite": "standard2",
       "capacites": [
         {
           "name": "tackle",
@@ -2903,7 +2903,7 @@
           "level": 34
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 36
         },
         {
@@ -2973,7 +2973,7 @@
           "level": 34
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 36
         },
         {
@@ -3039,7 +3039,7 @@
           "level": 34
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 36
         },
         {
@@ -3117,7 +3117,7 @@
           "level": 34
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 36
         },
         {
@@ -3191,7 +3191,7 @@
           "level": 34
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 36
         },
         {
@@ -5791,7 +5791,7 @@
           "level": 18
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 20
         },
         {
@@ -5861,7 +5861,7 @@
           "level": 18
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 20
         },
         {
@@ -5931,7 +5931,7 @@
           "level": 18
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 20
         },
         {
@@ -6853,7 +6853,7 @@
           "level": 40
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 46
         },
         {
@@ -6927,7 +6927,7 @@
           "level": 40
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 46
         },
         {
@@ -7429,7 +7429,7 @@
           "level": 20
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 24
         },
         {
@@ -8599,7 +8599,7 @@
           "level": 24
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 28
         },
         {
@@ -8859,7 +8859,7 @@
           "level": 24
         },
         {
-          "name": "sword-dance",
+          "name": "swords-dance",
           "level": 28
         },
         {
