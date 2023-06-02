@@ -63,22 +63,24 @@ function drawPkmnHUD($pos, $pkmn, $isJoueur = true){
     drawBox(getScaleHUDPkmn(),$pos,'|','-', true);
 
     textArea($pkmn['Name'], [$pos[0]+1, $pos[1]+2]);
-    $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : $pkmn['Status'];
+    $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : status($pkmn['Status']);
     textArea($displayLevel, [$pos[0]+1, $pos[1]+19]);
     textArea('<          >', [$pos[0]+2, $pos[1]+10]);
 
-    updateHealthPkmn($pos, $pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur);
+    updateHealthPkmn($pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur, $pos);
     if($isJoueur){
         updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
     }
 } 
 
-function updateHealthPkmn($pos,$health, $healthMax, $isjoueur = true){
+function updateHealthPkmn($health, $healthMax, $isJoueur = true, $pos=null){
     $pourcentage = $health/$healthMax;
-
+    if(is_null($pos)){
+        $pos = getPosHealthPkmn($isJoueur);
+    }
     //Set health text
     clearArea([1,7],[$pos[0]+2,$pos[1]+2]); //clear pour eviter 
-    if($isjoueur){
+    if($isJoueur){
         textArea($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
     }
     
@@ -89,10 +91,10 @@ function updateHealthPkmn($pos,$health, $healthMax, $isjoueur = true){
     if($pourcentage > 0.5){
         selectColor('green');
     }elseif($pourcentage < 0.2){
-        selectColor('orange');
+        selectColor('red');
     }
     else{
-        selectColor('red');
+        selectColor('orange');
     }
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){

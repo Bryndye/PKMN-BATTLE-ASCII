@@ -49,6 +49,7 @@ function drawHub(&$save){
         elseif($choice == 6){
             exitGame();
         }
+        setFile($save, getSavePath('save'));
     }
     animationEnterBattle();
 

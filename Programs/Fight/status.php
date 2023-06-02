@@ -1,61 +1,62 @@
 <?php
 //// AILMENT PROBLEM ///////////////////////////////////////
-function ailmentChanceOnpKmn(&$capacite, &$pkmnDef, $isStatusCap = false){
+function ailmentChanceOnPkmn(&$capacite, &$pkmn, $isStatusCap = false){
     $ailment = $capacite['effects']['Ailment'];
-    if(!is_null($pkmnDef['Status'])){
+    $ailmentChance = $ailment['ailment_chance'] ?? 0;
+    $isStatus = $capacite['Category'] == 'status';
+
+    if(hasStatus($pkmn)){
+        if($isStatus){
+            messageBoiteDialogue($pkmn['Name'].' already has an ailment.',1);
+        }
         return;
     }
 
-    if($capacite['Category'] == 'status'){
-        $pkmnDef['Status'] = status($ailment['ailment']);
-        messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment'],1);
-        return;
-    }
-    else if(isset($ailment['ailment_chance']) && $ailment['ailment_chance'] != 0){
-        $chance = rand(0,100);
-        if($chance <= $ailment['ailment_chance']){
-            $pkmnDef['Status'] = status($ailment['ailment']);
-            messageBoiteDialogue($pkmnDef['Name']." get ". $ailment['ailment'],1);
+    $isRandomAilment = !$isStatus && $ailmentChance != 0 && rand(0,100) <= $ailmentChance;
+
+    if($isStatus || $isRandomAilment){
+        if(hasStatus($pkmn)){
+            messageBoiteDialogue($pkmn['Name'].' already has an ailment.',1);
             return;
         }
+        if($ailment['ailment'] == 'poison'){ // reset stat temp damage per turn
+            $pkmn['Stats Temp']['poisonned'] = 0;
+        }
+        $pkmn['Status'] = $ailment['ailment'];
+        messageBoiteDialogue($pkmn['Name'].' get '. $ailment['ailment'].'!',1);
     }
-    if($isStatusCap){
+    elseif($isStatusCap){
         messageBoiteDialogue('But it failed');
     }
 }
 
+
+function hasStatus($pkmn){
+    return !is_null($pkmn['Status']);
+}
+
+
 function ailmentStartTurnEffect(&$pkmn){
-    if($pkmn['Status'] == 'PAR'){
-        $ailmentParalysis = rand(0,100) < 20;
-        if($ailmentParalysis){
-            messageBoiteDialogue($pkmn['Name'] . ' is paralysed...');
+    $ailments = [
+        'paralysis' => ['chance' => 20, 'message' => 'is paralysed...'],
+        'frozen' => ['chance' => 50, 'message' => 'is frozen...', 'recover_message' => 'is up!'],
+        'sleep' => ['chance' => 50, 'message' => 'is sleeping...', 'recover_message' => 'is awake!'],
+    ];
+
+    $ailment = $pkmn['Status'];
+
+    if (isset($ailments[$ailment])) {
+        $isAilment = rand(0, 100) < $ailments[$ailment]['chance'];
+
+        if ($isAilment) {
+            messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['message']);
             return true;
-        }
-    }
-    else if($pkmn['Status'] == 'FRZ'){
-        $ailment = rand(0,100) < 50;
-        if($ailment){
-            messageBoiteDialogue($pkmn['Name'] . ' is frozen...');
-            return true;
-        }
-        else{
-            messageBoiteDialogue($pkmn['Name'] . ' is up!');
+        } elseif (isset($ailments[$ailment]['recover_message'])) {
+            messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['recover_message']);
             $pkmn['Status'] = null;
-            return false;
         }
     }
-    else if($pkmn['Status'] == 'SLP'){
-        $ailment = rand(0,100) < 50;
-        if($ailment){
-            messageBoiteDialogue($pkmn['Name'] . ' is sleeping...');
-            return true;
-        }
-        else{
-            messageBoiteDialogue($pkmn['Name'] . ' is awake!');
-            $pkmn['Status'] = null;
-            return false;
-        }
-    }
+
     return false;
 }
 
@@ -75,7 +76,7 @@ function status($nameStatus){
 }
 
 function getStatusEffect($status, $mode) {
-    if($mode == "capture"){
+    if($mode == 'capture'){
         $effect = 1;
     }
     else{
@@ -83,45 +84,45 @@ function getStatusEffect($status, $mode) {
     }
     
     switch($status) {
-        case "burn":
-            if($mode == "battle") {
+        case 'burn':
+            if($mode == 'battle') {
                 $effect = 0.06;
-            } else if($mode == "capture") {
+            } else if($mode == 'capture') {
                 $effect = 1.5;
             }
             break;
-        case "poison":
-            if($mode == "battle") {
+        case 'poison':
+            if($mode == 'battle') {
                 $effect = 0.1;
-            } else if($mode == "capture") {
+            } else if($mode == 'capture') {
                 $effect = 1.5;
             }
             break;
-        case "paralysis":
-            if($mode == "battle") {
+        case 'paralysis':
+            if($mode == 'battle') {
                 $effect = 'stun temp';
-            } else if($mode == "capture") {
+            } else if($mode == 'capture') {
                 $effect = 2;
             }
             break;
-        case "sleep":
-            if($mode == "battle") {
+        case 'sleep':
+            if($mode == 'battle') {
                 $effect = 'stun';
-            } else if($mode == "capture") {
+            } else if($mode == 'capture') {
                 $effect = 2;
             }
             break;
-        case "frozen":
-            if($mode == "battle") {
+        case 'frozen':
+            if($mode == 'battle') {
                 $effect = 'stun';
-            } else if($mode == "capture") {
+            } else if($mode == 'capture') {
                 $effect = 2;
             }
             break;
         default:
-            if($mode == "battle") {
+            if($mode == 'battle') {
                 $effect = '';
-            } else if($mode == "capture") {
+            } else if($mode == 'capture') {
                 $effect = 1;
             }
     }
@@ -130,21 +131,20 @@ function getStatusEffect($status, $mode) {
 }
 
 function damageTurn(&$pkmn, $isJoueur){
-    if($pkmn['Status'] == 'BRN' || $pkmn['Status'] == 'PSN'){
+    if($pkmn['Status'] == 'burn' || $pkmn['Status'] == 'poison'){
 
-        if($pkmn['Status'] == 'BRN'){
-            takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * 0.06), $isJoueur);
-            // $pkmn['Stats']['Health'] -= intval($pkmn['Stats']['Health Max'] * 0.06);
+        if($pkmn['Status'] == 'burn'){
+            takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * getStatusEffect($pkmn['Status'], 'battle')), $isJoueur);
         }
-        else if($pkmn['Status'] == 'PSN'){
-            takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * 0.10), $isJoueur);
+
+        else if($pkmn['Status'] == 'poison'){
+            $pkmn['Stats Temp']['poisonned'] += getStatusEffect($pkmn['Status'], 'battle');
+            takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * $pkmn['Stats Temp']['poisonned']), $isJoueur);
         }
         messageBoiteDialogue($pkmn['Name'] . ' takes damage from its status!',1);
-        updateHealthPkmn(getPosHealthPkmn($isJoueur),$pkmn['Stats']['Health'], $pkmn['Stats']['Health Max']);
-        clearBoiteDialogue();
+        updateHealthPkmn($pkmn['Stats']['Health'], $pkmn['Stats']['Health Max'], $isJoueur);
         sleep(1);
         isPkmnDead($pkmn, $isJoueur);
     }
 }
-///////////////////////////////////////////////////////////
 ?>

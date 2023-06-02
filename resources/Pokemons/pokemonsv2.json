@@ -1507,7 +1507,7 @@
       "Sprite": "Pikachu",
       "capacites": [
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 1
         },
         {
@@ -1585,7 +1585,7 @@
       "Sprite": "Pikachu",
       "capacites": [
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 1
         },
         {
@@ -5643,7 +5643,7 @@
       "Sprite": "ball",
       "capacites": [
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 1
         },
         {
@@ -5709,7 +5709,7 @@
       "Sprite": "ball",
       "capacites": [
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 1
         },
         {
@@ -6965,7 +6965,7 @@
       "Sprite": "ball",
       "capacites": [
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 1
         },
         {
@@ -7031,7 +7031,7 @@
       "Sprite": "ball",
       "capacites": [
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 1
         },
         {
@@ -8707,7 +8707,7 @@
           "level": 1
         },
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 5
         },
         {
@@ -9311,7 +9311,7 @@
           "level": 1
         },
         {
-          "name": "thundershock",
+          "name": "thunder-shock",
           "level": 5
         },
         {

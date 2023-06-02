@@ -18,7 +18,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -139,7 +139,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -182,7 +182,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -257,7 +257,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -298,7 +298,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -561,7 +561,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -1444,7 +1444,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -1595,7 +1595,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -1646,7 +1646,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -1697,7 +1697,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -1784,7 +1784,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -2150,7 +2150,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -2474,7 +2474,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -2555,7 +2555,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -2636,7 +2636,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -2920,7 +2920,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -3054,7 +3054,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -3112,7 +3112,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -3210,7 +3210,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -3310,7 +3310,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -3578,7 +3578,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -3623,7 +3623,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -3664,7 +3664,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -3813,7 +3813,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -4371,7 +4371,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -4423,7 +4423,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -4515,7 +4515,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -4571,7 +4571,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -5749,7 +5749,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -6484,7 +6484,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -6637,7 +6637,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -7171,7 +7171,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -7457,7 +7457,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -7543,7 +7543,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -7851,7 +7851,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -8135,7 +8135,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -8588,7 +8588,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -8639,7 +8639,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -9121,7 +9121,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -9338,7 +9338,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -9572,7 +9572,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -10772,7 +10772,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -10914,7 +10914,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -10976,7 +10976,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -11723,7 +11723,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -11841,7 +11841,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -11897,7 +11897,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -11990,7 +11990,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -12265,7 +12265,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -12454,7 +12454,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -12890,7 +12890,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -13011,7 +13011,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -13152,7 +13152,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -13261,7 +13261,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -13363,7 +13363,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -14000,7 +14000,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -14056,7 +14056,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -14158,7 +14158,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -15569,7 +15569,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -15663,7 +15663,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -16066,7 +16066,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -16162,7 +16162,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -17821,7 +17821,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -18279,7 +18279,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -18330,7 +18330,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -18698,7 +18698,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -18916,7 +18916,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -19130,7 +19130,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -19271,7 +19271,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -19547,7 +19547,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -20528,7 +20528,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -20634,7 +20634,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -20768,7 +20768,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -20826,7 +20826,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -21127,7 +21127,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -21194,7 +21194,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -21441,7 +21441,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -21507,7 +21507,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -21941,7 +21941,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -22050,7 +22050,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -22472,7 +22472,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -22681,7 +22681,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -22850,7 +22850,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -23001,7 +23001,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -23228,7 +23228,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":10,
@@ -23536,7 +23536,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":20,
@@ -23775,7 +23775,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -24361,7 +24361,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":100
         },
         "Flinch Chance":0,
@@ -24509,7 +24509,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -24551,7 +24551,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -24605,7 +24605,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -24803,7 +24803,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -24838,7 +24838,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -24878,7 +24878,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25033,7 +25033,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25068,7 +25068,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25210,7 +25210,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -25316,7 +25316,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25492,7 +25492,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25584,7 +25584,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25660,7 +25660,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25724,7 +25724,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25764,7 +25764,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -25920,7 +25920,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -26047,7 +26047,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -26083,7 +26083,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -26584,7 +26584,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":10,
@@ -26633,7 +26633,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -26766,7 +26766,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -26879,7 +26879,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -27063,7 +27063,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -28314,7 +28314,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -28347,7 +28347,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -28441,7 +28441,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":30,
@@ -29544,7 +29544,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -29716,7 +29716,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -29753,7 +29753,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -29879,7 +29879,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -31134,7 +31134,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -31180,7 +31180,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -31579,7 +31579,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -31810,7 +31810,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -32116,7 +32116,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -32643,7 +32643,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -32875,7 +32875,7 @@
             ]
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -33274,7 +33274,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -33313,7 +33313,7 @@
             
         ],
         "Ailment":{
-            "ailment":"none",
+            "ailment":null,
             "ailment_chance":0
         },
         "Flinch Chance":0,
@@ -33557,7 +33557,7 @@
                 
             ],
             "Ailment":{
-                "ailment":"none",
+                "ailment":null,
                 "ailment_chance":0
             },
             "Flinch Chance":0,
@@ -33805,7 +33805,7 @@
                 ]
             ],
             "Ailment":{
-                "ailment":"none",
+                "ailment":null,
                 "ailment_chance":0
             },
             "Flinch Chance":0,
@@ -33847,7 +33847,7 @@
 
             ],
             "Ailment":{
-                "ailment":"none",
+                "ailment":null,
                 "ailment_chance":0
             },
             "Flinch Chance":0,
@@ -33879,7 +33879,7 @@
 
             ],
             "Ailment":{
-                "ailment":"none",
+                "ailment":null,
                 "ailment_chance":0
             },
             "Flinch Chance":0,

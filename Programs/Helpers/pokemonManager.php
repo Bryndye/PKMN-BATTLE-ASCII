@@ -105,6 +105,7 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
         'evasion' => 10,
         'critical' => 0,
         'Accuracy' => 0,
+        'poisonned' => 0,
         'protected' => false,
         'Substitute' => [
             'Health Max' => 3,
@@ -113,7 +114,7 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
         ]
     ];
     $pokemonBattle['Capacites'] = $newCapacites;
-    $pokemonBattle['Status'] = '';
+    $pokemonBattle['Status'] = null;
     if(is_array($pkmn['evolution']['after'])){
         if(array_key_exists('Name', $pkmn['evolution']['after'])){
             $pokemonBattle['evolution'] = [
@@ -222,7 +223,7 @@ function expToGive($pkmnAtk, $pkmnDef){
 function fullHealTeam(&$teamPkmn){
     foreach($teamPkmn as &$pkmn){
         $pkmn['Stats']['Health'] = $pkmn['Stats']['Health Max'];
-        $pkmn['Status'] = '';
+        $pkmn['Status'] = null;
     }
     resetTeamStatsTemp($teamPkmn);
     resetPPCapacitiesTeamPkmn($teamPkmn);
@@ -290,6 +291,7 @@ function resetStatsTemp(&$pkmn){
         'evasion' => 10,
         'critical' => 0,
         'Accuracy' => 0,
+        'poisonned' => 0,
         'protected' => false,
         'Substitute' => [
             'Health Max' => 3,

@@ -37,7 +37,7 @@ function setCapacitePlayable($capacite){
 }
 
 function setPowerCapacityPourcentByWeight($pkmn){
-    $weight = $pkmn['weight']; 
+    $weight = $pkmn['scale']['weight']; 
     $power = 20;  
     if($weight < 10){
         $power = 20;

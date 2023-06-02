@@ -1,11 +1,17 @@
 <?php
 function addPkmnToPokedex($pkmn, $type){
     $main = getSave(getSavePath('myGame'));
-    if(!array_key_exists($pkmn['N Pokedex'], $main['Pokedex'])){
+    if(!array_key_exists($pkmn['N Pokedex'], $main['Pokedex'])){ // SEE
         $main['Pokedex'][$pkmn['N Pokedex']] = getTypePkmnToPokedex($type);
     }
-    if($main['Pokedex'][$pkmn['N Pokedex']] == 2){
-        return;
+    else{
+        if($main['Pokedex'][$pkmn['N Pokedex']] == 2){ // CATCH
+            debugLog($main['Pokedex'][$pkmn['N Pokedex']].' already caugth',2);
+            return;
+        }
+        else{
+            $main['Pokedex'][$pkmn['N Pokedex']] = getTypePkmnToPokedex($type);
+        }
     }
     ksort($main['Pokedex']);
     setData($main['Pokedex'], 'Pokedex', getSavePath('myGame'));

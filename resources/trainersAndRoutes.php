@@ -84,7 +84,7 @@ $routes = [
                 500,
                 [],
                 [
-                    generatePkmnBattle('pidgeot', 10),
+                    generatePkmnBattle('pidgey', 10),
                     generatePkmnBattle('pikachu', 9),
                     generatePkmnBattle('caterpie', 11)
                 ]

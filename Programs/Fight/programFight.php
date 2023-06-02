@@ -169,7 +169,7 @@ function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurAttack){
     if($capacite['Power'] == 'reset'){
         resetAllStatsTempToPkmn($pkmnDef);
     }
-    else if(is_null($ailment['ailment'])){
+    else if(!is_null($ailment['ailment'])){
         ailmentChanceOnpKmn($capacite, $pkmnDef, true);
     }
     else{
