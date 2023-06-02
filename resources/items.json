@@ -26,8 +26,8 @@
 	"Total Heals":
 	{
 		"name":"Total Heals",
-		"type": "status",
-		"effect": "all",
+		"type": "Heals",
+		"effect": "status all",
 		"price" : "1000",
 		"indexFloor" : 10
 	},

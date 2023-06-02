@@ -6,7 +6,7 @@ function addPkmnToPokedex($pkmn, $type){
     }
     else{
         if($main['Pokedex'][$pkmn['N Pokedex']] == 2){ // CATCH
-            debugLog($main['Pokedex'][$pkmn['N Pokedex']].' already caugth',2);
+            // debugLog($main['Pokedex'][$pkmn['N Pokedex']].' already caugth',2);
             return;
         }
         else{

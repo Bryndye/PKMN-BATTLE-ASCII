@@ -263,16 +263,11 @@ function healStatusToPkmn(&$pkmn){
     messageBoiteDialogue($pkmn['Name'] . ' is cured of its ailment!',1);
 }
 
-function isPkmnDead_simple(&$pkmn){
-    if($pkmn['Stats']['Health'] <= 0){
-        return true;
-    }
-    else{
-        return false;
-    }
+function isPkmnDead_simple($pkmn){
+    return $pkmn['Stats']['Health'] <= 0;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
-///// RESET STAT ///////////////////////////////////////////////////////////////////////////////////
+///// RESET STAT ///////////////////////////////////////////////////////////////////////
 
 function resetTeamStatsTemp(&$pkmnTeam){
     foreach($pkmnTeam as &$pkmn){

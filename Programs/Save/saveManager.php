@@ -85,10 +85,10 @@ function createPartySave(){
         'Team' => null,
         'Starter' => null,
         'IndexFloor' => 1,
-        'Money' => 1000,
+        'Money' => 3000,
         'Bag' => [
-            getItemObject('Potion',1),
-            getItemObject('PokeBall',5)
+            getItemObject('Potion',5),
+            getItemObject('PokeBall',10)
         ]
     ];
     $var =  chooseFirstPokemon();

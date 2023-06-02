@@ -157,10 +157,9 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
 
         if($capacite['effects']['Drain'] <= 0){
             messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
-
-            // update health pkmn atk after drain
-            drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
-        }
+        }  
+        // update health pkmn atk after drain
+        drawPkmnHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
     }
 }
 

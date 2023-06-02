@@ -181,7 +181,12 @@ function useItem(&$bag, &$item, &$pkmn){
     // utilisation des items
     switch($item['type']){
         case 'Heals':
-            healPkmn($item, $pkmn);
+            if(is_numeric($item['effect'])){
+                healPkmn($item, $pkmn);
+            }
+            if(is_string($item['effect']) && strpos($item['effect'], 'status') !== false){ // verifie si string et si contient status
+                healStatusToPkmn($pkmn);
+            }
             break;
         case 'PokeBalls':
             return captureItem($item, $pkmn);
@@ -189,7 +194,6 @@ function useItem(&$bag, &$item, &$pkmn){
             healStatusToPkmn($pkmn);
             break;
         case 'TMs':
-            // debugLog($item);
             setCapacityToPkmn($pkmn, getCapacite($item['name']));
             break;
         case 'Items':

@@ -124,7 +124,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
     $actionsTurn = [];
 
     // voir quelle action a choisi le joueur 
-    $arrayJoueur = explode(" ", $actionJoueur);
+    $arrayJoueur = explode(' ', $actionJoueur);
     $actionJoueur = [
         'choice' => $arrayJoueur, 
         'teamAtk' => &$pkmnTeamJoueur, 
@@ -133,7 +133,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
         'Bag' => &$bagJ
     ];
     // voir quelle action a choisi l'ennemi 
-    $arrayEnemy = explode(" ", $actionEnemy);
+    $arrayEnemy = explode(' ', $actionEnemy);
     $actionEnemy = [
         'choice' => $arrayEnemy, 
         'teamAtk' => &$pkmnTeamEnemy, 
@@ -185,8 +185,8 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
         elseif($action['choice'][0] == '2'){
             switchPkmn($action['teamAtk'], $action['choice'][1]);
             resetTeamStatsTemp($action['teamAtk']);
-            clearPkmnHUD($action['teamAtk'], $action['isjoueur']);
-            animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
+            drawPkmnHUD(getPosHealthPkmn(!$action['isjoueur']), $action['teamDef'][0], !$action['isjoueur']);// back to battle screen
+            animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn de laction
             usleep(500000);
             drawPkmnSideHUD($action['teamAtk'], $action['isjoueur']);
         }
@@ -230,6 +230,9 @@ function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
     messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $firstPkmn = $i == 0;
+        if(isPkmnDead_simple($pkmnTeamJoueur[$i])){
+            
+        }
         getExp($pkmnTeamJoueur[$i], expToGive($pkmnTeamJoueur[$i], $pkmnE),false, $firstPkmn);
     }
 }   
@@ -248,7 +251,7 @@ function endBattle(&$joueur, $pnj){
     resetTeamStatsTemp($joueur['Team']);
 
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
-        messageBoiteDialogue("Your whole Team is k.o!",1);
+        messageBoiteDialogue('Your whole Team is k.o!',1);
         messageBoiteDialogue("You can't fight...",1);
     }
     else{
@@ -274,7 +277,7 @@ function endBattle(&$joueur, $pnj){
         messageBoiteDialogue("You've defeated " . $pnj['Name'].'!',-1);
         if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
             $joueur['Money'] += $pnj['Reward'];
-            messageBoiteDialogue("You get " . $pnj['Reward'].' pokedollars.',1);
+            messageBoiteDialogue('You get ' . $pnj['Reward'].' pokedollars.',1);
         }
     }
 }

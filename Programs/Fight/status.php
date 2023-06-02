@@ -2,6 +2,9 @@
 //// AILMENT PROBLEM ///////////////////////////////////////
 function ailmentChanceOnPkmn(&$capacite, &$pkmn, $isStatusCap = false){
     $ailment = $capacite['effects']['Ailment'];
+    if(is_null(status( $ailment['ailment']))){
+        return;
+    }
     $ailmentChance = $ailment['ailment_chance'] ?? 0;
     $isStatus = $capacite['Category'] == 'status';
 
@@ -73,6 +76,7 @@ function status($nameStatus){
         case 'sleep':
             return 'SLP';
     }
+    return null;
 }
 
 function getStatusEffect($status, $mode) {
