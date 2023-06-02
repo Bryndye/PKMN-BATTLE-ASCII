@@ -80,7 +80,7 @@ function loopFight(&$joueur, &$pnj){
             $choice2 = is_numeric($choice2) ? $choice2-1 : $choice2;// -1 cause of choices +1 for players
         }
         elseif($choice == 2){
-            $choice2 = selectPkmn($pkmnTeamJoueur);
+            $choice2 = selectPkmn($pkmnTeamJoueur,0);
             if($choice2 != leaveInputMenu()){           
                 drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }
@@ -184,7 +184,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
         }
         elseif($action['choice'][0] == '2'){
             switchPkmn($action['teamAtk'], $action['choice'][1]);
-
+            resetTeamStatsTemp($action['teamAtk']);
             clearPkmnHUD($action['teamAtk'], $action['isjoueur']);
             animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn j
             usleep(500000);
@@ -244,8 +244,9 @@ function endPkmnCaptured(&$joueur, &$pkmnE){
 }
 
 function endBattle(&$joueur, $pnj){
-    $pkmnTeamJoueur = $joueur['Team'];
-    resetTeamStatsTemp($pkmnTeamJoueur);
+    $pkmnTeamJoueur = &$joueur['Team'];
+    resetTeamStatsTemp($joueur['Team']);
+
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
         messageBoiteDialogue("Your whole Team is k.o!",1);
         messageBoiteDialogue("You can't fight...",1);

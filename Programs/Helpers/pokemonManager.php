@@ -215,7 +215,7 @@ function getNextLevelExp($currentLevel) {
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) * 3;
+    return intval($exp) * 5;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -225,6 +225,7 @@ function fullHealTeam(&$teamPkmn){
         $pkmn['Status'] = '';
     }
     resetTeamStatsTemp($teamPkmn);
+    resetPPCapacitiesTeamPkmn($teamPkmn);
 }
 
 function checkHealthOutRange(&$pkmn){
@@ -273,7 +274,7 @@ function isPkmnDead_simple(&$pkmn){
 ///// RESET STAT ///////////////////////////////////////////////////////////////////////////////////
 
 function resetTeamStatsTemp(&$pkmnTeam){
-    foreach($pkmnTeam as $pkmn){
+    foreach($pkmnTeam as &$pkmn){
         resetStatsTemp($pkmn);
     }
 }
@@ -296,6 +297,22 @@ function resetStatsTemp(&$pkmn){
             'Used' => false
         ]
     ];
+}
+///// PP ///////////////////////////////////////////////////////////////////////////////////
+function resetPP(&$capacity){
+    $capacity['PP'] = $capacity['PP Max'];
+}
+
+function resetPPCapacitiesPkmn(&$pkmn){
+    foreach($pkmn['Capacites'] as &$capacity){
+        resetPP($capacity);
+    }
+}
+
+function resetPPCapacitiesTeamPkmn(&$teamPkmn){
+    foreach($teamPkmn as &$pkmn){
+        resetPPCapacitiesPkmn($pkmn);
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ///// EVOLUTION ////////////////////////////////////////////////////////////////////////

@@ -63,7 +63,7 @@ function getMessageBoiteDialogue($Mode = 'use', $sentence = 'Which item to use?'
 //// SAVES ///////////////////////////////////////////////
 
 function getParameterPathSave(){
-    return 0;
+    return 1;
 }
 
 function getSavePath($name = 'save'){

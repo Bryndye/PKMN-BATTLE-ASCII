@@ -4,23 +4,23 @@ $routes = [
         'Floors' => [1,9],
         'Pokemon savages' => [
             'rattata' => [
-                'level' => [2,4],
+                'level' => [3,4],
                 'rate' => 30
             ],
             'pidgey' => [
-                'level' => [2,5],
+                'level' => [3,5],
                 'rate' => 35
             ],
             'nidoran-f' => [
-                'level' => [3,4],
+                'level' => [4,4],
                 'rate' => 15
             ],
             'nidoran-m' => [
-                'level' => [3,5],
+                'level' => [4,5],
                 'rate' => 15
             ],
             'mankey' => [
-                'level' => [3,5],
+                'level' => [4,5],
                 'rate' => 5
             ]
         ],
@@ -579,19 +579,19 @@ function generateIAs(){
             ],
             0
         ),
-        1 => createTrainer('TEST TRAINER', 
-        'trainer',
-        [
-            'entrance' => "Do you like short pants?",
-            'end' => []
-        ],
-        0,
-        [],
-        [
-            generatePkmnBattle('rattata', 1),
-        ],
-        0
-    ),
+        // 1 => createTrainer('TEST TRAINER', 
+        //     'trainer',
+        //     [
+        //         'entrance' => "Do you like short pants?",
+        //         'end' => []
+        //     ],
+        //     0,
+        //     [],
+        //     [
+        //         generatePkmnBattle('rattata', 1),
+        //     ],
+        //     0
+        // ),
         5 =>  createTrainer('???', 
                 'rival',
                 [
@@ -603,8 +603,8 @@ function generateIAs(){
                 1000,
                 [],
                 [
-                    generatePkmnBattle('pidgey', 6),
-                    generatePkmnBattle(selectStarterRival(0), 8),
+                    generatePkmnBattle('pidgey', 6,0,['gust','tackle','growl']),
+                    generatePkmnBattle(selectStarterRival(0), 8,0),
                 ],
                 1,
                 'Rival'
@@ -1062,19 +1062,33 @@ function generateIAs(){
 
 $towns = [
     2 =>   'Pallet Town',
+    5 =>   'Viridian City',
     10 =>  'Pewter City',
+    15 =>  'Mt Moon',
     20 =>  'Cerulean City',
+    25 =>  'S.S. Anne',
     30 =>  'Vermilion City',
+    35 =>  'Lavender Town',
     40 =>  'Celadon City',
+    45 =>  'Celadon City',
     50 =>  'Fuchsia City',
+    55 =>  'Celadon City',
     60 =>  'Saffron City',
+    65 =>  'Fuchsia City',
     70 =>  "Cinnabar Isl'",
+    75 =>  'Pallet Town',
     80 =>  'Viridian City',
+    85 =>  'Victory Road',
     90 =>  'Indigo League',
     95 =>  'Indigo League',
-    99 =>  'Indigo League',
-    110 => 'Indigo League',
-    120 => 'Indigo League',
-    130 => 'Indigo League'
+    100 =>  'Cerulean City',
+    101 => 'Sevii Islands',
+    105 => 'Sevii Islands',
+    110 => 'Sevii Islands',
+    115 => 'Sevii Islands',
+    120 => 'Sevii Islands',
+    125 => 'Sevii Islands',
+    130 => 'Sevii Islands',
+    135 => 'Sevii Islands'
 ]
 ?>
