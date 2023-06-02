@@ -7,7 +7,7 @@ function enterIntoBag(&$save, $type = 'hub'){
     $currentIndexItemTEMP = 0;
     while(true){
         clearGameScreen();
-
+        
         // Set interface depends on category of items
         if($type == 'wild'){
             $categories = ['Heals','PokeBalls'];

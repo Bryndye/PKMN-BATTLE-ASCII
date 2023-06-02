@@ -25,7 +25,7 @@ function getPathScript($script){
 
 //// MENU LIST SCROLLING ///////////////////////////////////////////
 function getAllCategoriesItem(){
-    return [getTypeItemBag('Items'),getTypeItemBag('Heals'),getTypeItemBag('PokeBalls'),getTypeItemBag('TMs')];
+    return [getTypeItemBag('Heals'),getTypeItemBag('PokeBalls'),getTypeItemBag('Items'),getTypeItemBag('TMs')];
 }
 function getTypeItemBag($type = 'Heals'){
     switch($type){
