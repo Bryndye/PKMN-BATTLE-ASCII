@@ -214,6 +214,13 @@ function getExceptionsItemToPkmnTeam($pkmnTeam, $item){
                 }
             }
         }
+        elseif(isReviveItem($item)){
+            foreach($pkmnTeam as $key=>$pkmn){
+                if($pkmn['Stats']['Health'] >= 0){
+                    array_push($exceptions, $key);
+                }
+            }
+        }
         else{
             foreach($pkmnTeam as $key=>$pkmn){
                 if($pkmn['Stats']['Health'] == $pkmn['Stats']['Health Max']){
@@ -227,6 +234,15 @@ function getExceptionsItemToPkmnTeam($pkmnTeam, $item){
 
 function isStatusItem($item){
     if(is_string($item['effect']) && strpos($item['effect'], 'status') !== false){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function isReviveItem($item){
+    if(strpos($item['effect'], '%')){
         return true;
     }
     else{
