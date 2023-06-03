@@ -83,18 +83,19 @@ function drawStatsFromSaveToMenu(){
         textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
         textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
         $floorMaxReached = getDataFromSave('Record IndexFloor', getSavePath('myGame')) ?? 0;
-        textArea('Floor reached : '.$floorMaxReached, [9,30]);
+        textArea('Floor reached Max : '.$floorMaxReached, [9,30]);
         textArea('Win Count : '.$save['Game wins'], [10,30]);
 
         if(isSaveExist(getSavePath('save'))){
             $saveFight = getSave(getSavePath('save'));
-            textArea('------ Current Game ------', [11,30]);
+            textArea('------ Current Game ------', [12,30]);
             textArea('Floor : '.$saveFight['IndexFloor'], [13,30]);
-            textArea("Money : ".$saveFight['Money'], [14,30]);
+            textArea("Money : ".formatMoney($saveFight['Money']), [14,30]);
             
             $y = 0;
             foreach($saveFight['Team'] as $key => $pkmn){
-                textArea(ucfirst($pkmn['Name'])."  Lv: ".$pkmn['Level'], [16+$y,30]);
+                justifyText('Lv: '.$pkmn['Level'], 7,[16+$y,45], 'right');
+                textArea(ucfirst($pkmn['Name']), [16+$y,30]);
                 $y +=1;
             }
         }

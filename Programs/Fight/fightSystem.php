@@ -14,7 +14,7 @@ function startFight(&$joueur, &$pnj){
     animationCharactersEnterBattle(getSprites('trainerBack'),$pnj['Sprite']);
 
     messageBoiteDialogue($pnj['Dialogues']['entrance'], -1); // message trainer 
-    messageBoiteDialogue($pnj['Name'].' wants to fight!',-1); // message trainer 
+    messageBoiteDialogue(ucfirst($pnj['Name']).' wants to fight!',-1); // message trainer 
 
     // animation pokeball
     if($pnj['type'] == 'trainer'){
@@ -279,7 +279,7 @@ function endBattle(&$joueur, $pnj){
                 messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
         }
-        messageBoiteDialogue("You've defeated " . $pnj['Name'].'!',-1);
+        messageBoiteDialogue("You've defeated " . ucfirst($pnj['Name']).'!',-1);
         if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
             $joueur['Money'] += $pnj['Reward'];
             messageBoiteDialogue('You get ' . $pnj['Reward'].' pokedollars.',1);
