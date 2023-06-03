@@ -228,26 +228,26 @@ $routes = [
         'Pokemon savages' => [
             'sandshrew' => [
                 'level' => [19,24],
-                'rate' => 25
-            ],
-            'pidgey' => [
-                'level' => [20,24],
-                'rate' => 25
+                'rate' => 30
             ],
             'ekans' => [
                 'level' => [18,20],
-                'rate' => 25
+                'rate' => 30
             ],
             'growlithe' => [
                 'level' => [20,25],
-                'rate' => 10
+                'rate' => 15
             ],
             'vulpix' => [
                 'level' => [20,25],
-                'rate' => 10
+                'rate' => 15
             ],
             'kadabra' => [
                 'level' => [20,27],
+                'rate' => 5
+            ],
+            'gastly' => [
+                'level' => [20,20],
                 'rate' => 5
             ],
         ],
@@ -263,8 +263,8 @@ $routes = [
                 2500,
                 [],
                 [
-                    generatePkmnBattle('nidorina', 22),
-                    generatePkmnBattle('nidorino', 23),
+                    generatePkmnBattle('kadabra', 22),
+                    generatePkmnBattle('haunter', 23),
                     generatePkmnBattle('spearow', 25),
                 ]
             ),
@@ -292,29 +292,21 @@ $routes = [
     "route 5" => [
         'Floors' => [41,49],
         'Pokemon savages' => [
-            'nidorino' => [
-                'level' => [22,24],
-                'rate' => 25
-            ],
-            'nidorina' => [
-                'level' => [22,24],
-                'rate' => 25
-            ],
             'raticate' => [
-                'level' => [24,26],
+                'level' => [25,26],
                 'rate' => 25
             ],
             'fearow' => [
-                'level' => [24,28],
+                'level' => [25,28],
                 'rate' => 10
             ],
             'voltorb' => [
-                'level' => [24,26],
+                'level' => [25,26],
                 'rate' => 10
             ],
-            'magikarp' => [
+            'gloom' => [
                 'level' => [30,31],
-                'rate' => 5
+                'rate' => 10
             ],
             'rhyhorn' => [
                 'level' => [26,28],
@@ -331,23 +323,23 @@ $routes = [
         'Floors' => [51,59],
         'Pokemon savages' => [
             'horsea' => [
-                'level' => [24,28],
+                'level' => [30,32],
                 'rate' => 5
             ],
             'krabby' => [
-                'level' => [25,28],
+                'level' => [30,32],
                 'rate' => 25
             ],
             'slowpoke' => [
-                'level' => [24,26],
+                'level' => [30,31],
                 'rate' => 25
             ],
             'poliwag' => [
-                'level' => [24,28],
+                'level' => [30,32],
                 'rate' => 20
             ],
             'goldeen' => [
-                'level' => [28,30],
+                'level' => [30,30],
                 'rate' => 20
             ],
             'magikarp' => [
@@ -358,43 +350,87 @@ $routes = [
                 'level' => [30,32],
                 'rate' => 25
             ],
+            'snorlax' => [
+                'level' => [33,35],
+                'rate' => 5
+            ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A fisher boy', 
+                'trainer',
+                [
+                    'entrance' => "Do you like fishing?",
+                    'end' => [
+                        "I really thought Magikarp was good..."
+                    ]
+                ],
+                3000,
+                [],
+                [
+                    generatePkmnBattle('magikarp', 35),
+                    generatePkmnBattle('magikarp', 35),
+                    generatePkmnBattle('magikarp', 35),
+                    generatePkmnBattle('magikarp', 35),
+                    generatePkmnBattle('magikarp', 35),
+                    generatePkmnBattle('gyarados', 35),
+                ]
+                ),
+                createTrainer('A fisher man', 
+                'trainer',
+                [
+                    'entrance' => "Did you see my son?",
+                    'end' => [
+                        "If he's met you I know he's gone to see his mother in tears."
+                    ]
+                ],
+                3000,
+                [],
+                [
+                    generatePkmnBattle('dratini', 30),
+                    generatePkmnBattle('gyarados', 30),
+                    generatePkmnBattle('gyarados', 30)
+                ]
+            )
+        ]
     ],
     "route 7" => [
         'Floors' => [61,69],
         'Pokemon savages' => [
             'drowzee' => [
-                'level' => [24,28],
+                'level' => [30,35],
                 'rate' => 15
             ],
             'mr-mime' => [
-                'level' => [30,30],
+                'level' => [30,33],
                 'rate' => 5
             ],            
             'venonat' => [
-                'level' => [25,28],
+                'level' => [31,35],
                 'rate' => 25
             ],
             'gloom' => [
-                'level' => [24,26],
+                'level' => [33,34],
                 'rate' => 25
             ],
             'tauros' => [
-                'level' => [24,28],
+                'level' => [33,36],
                 'rate' => 5
             ],
             'weepinbell' => [
-                'level' => [28,30],
+                'level' => [32,32],
                 'rate' => 20
             ],
             'farfetchd' => [
-                'level' => [35,45],
+                'level' => [35,40],
                 'rate' => 15
             ],
             'machop' => [
-                'level' => [24,26],
+                'level' => [28,30],
                 'rate' => 20
+            ],
+            'snorlax' => [
+                'level' => [30,32],
+                'rate' => 5
             ],
         ],
         'Trainers' => null
@@ -843,9 +879,9 @@ function generateIAs(){
             ],            
             [
                 generatePkmnBattle('kadabra', 34,0,['recover','psychic']),
-                generatePkmnBattle('mr-mime', 38,0,['confusion','harden','light-screen']),
-                generatePkmnBattle('venomoth', 38,0,['psybeam','leech-life']),
-                generatePkmnBattle('alakazam', 40,0,['recover','psychic','amnesia']),
+                generatePkmnBattle('mr-mime', 36,0,['confusion','harden','light-screen']),
+                generatePkmnBattle('venomoth', 36,0,['psybeam','leech-life']),
+                generatePkmnBattle('alakazam', 38,0,['recover','psychic','amnesia']),
             ],
             1,'Gym Leader'
         ),
@@ -861,7 +897,7 @@ function generateIAs(){
             [],
             [
                 generatePkmnBattle('pidgeot', 36),
-                generatePkmnBattle('rattatac', 38),
+                generatePkmnBattle('raticate', 38),
                 generatePkmnBattle('alakazam', 40),
                 generatePkmnBattle('primeape', 38),
                 generatePkmnBattle(selectStarterRival(2), 40),
@@ -1157,9 +1193,9 @@ $towns = [
     35 =>  'Lavender Town',
     40 =>  'Celadon City',
     45 =>  'Celadon City',
-    50 =>  'Fuchsia City',
+    50 =>  'Saffron City',
     55 =>  'Celadon City',
-    60 =>  'Saffron City',
+    60 =>  'Fuchsia City',
     65 =>  'Fuchsia City',
     70 =>  "Cinnabar Isl'",
     75 =>  'Pallet Town',

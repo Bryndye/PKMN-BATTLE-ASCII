@@ -64,13 +64,13 @@ function clearBoiteDialogue(){
 //// COLOR TEXT///////////////////////////////////////////////
 
 function textColored($text, $color) {
-    $colorCode = selectColor($color);
+    $colorCode = setColor($color);
 
     echo "\033[{$colorCode}m{$text}\033[0m\n";
 }
 
 function textColoredByType($text, $color) {
-    $colorCode = getColorByType($color);
+    $colorCode = setColorByType($color);
     
     echo "\033[{$colorCode}m{$text}\033[0m\n";
 }

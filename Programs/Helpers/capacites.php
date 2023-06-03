@@ -119,7 +119,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             clearGameScreen();
             displayPkmnLeftMenu($pkmn);
             displayCapacitiesMenu($pkmn);
-    
+            drawCapacityToLearn($capacite, [18,30]);
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
                 messageBoiteDialogue('Which capacity to removes?');
@@ -147,5 +147,23 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         array_push($pkmn['Capacites'], $capacite);
         messageBoiteDialogue($pkmn['Name'].' has learned ' .$capacite['Name'].'!');
     }
+}
+
+function drawCapacityToLearn($capacity, $pos){
+    $y = $pos[0];
+    $x = $pos[1];
+    setColorByType($capacity['Type']);
+    drawBox([4,30],[2+$y,$x],'|','-',true);
+    setColor('reset');
+
+    if($capacity['Category'] != 'status'){
+        justifyText('Power:'.$capacity['Power'], 9, [4+$y,$x+19],'right');
+    }      
+    setColorByType($capacity['Category']);
+    justifyText(ucfirst($capacity['Category']), 9, [3+$y,$x+19],'right');
+    setColor('reset');
+
+    textAreaLimited($capacity['Name'],23,[3+$y,$x+2]);
+    textAreaLimited('PP : '.$capacity['PP'].'/'.$capacity['PP Max'],23,[4+$y,$x+2]);
 }
 ?>

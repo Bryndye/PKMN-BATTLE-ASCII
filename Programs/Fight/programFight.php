@@ -44,13 +44,6 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         return;
     }
 
-    // Evasion fiscal
-    $chanceEvasion = rand(0,100);
-    if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
-        messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
-        return;
-    }
-
     if(is_string($capacite['Power']) && $capacite['Power'] == 'randomReplace'){
         $capacite = getRandCapacites('randomReplace');
         messageBoiteDialogue($pkmnAtk['Name'].' replaces his attack with '. $capacite['Name'].'!',1);
@@ -68,7 +61,13 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     if($newCapacite['Category'] == 'status'){
         statusCapacityPkmn($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
-    else{ // capacite atk
+    else{ // CAPACITE PHYSICAL/SPECIAL
+        // Evasion fiscal
+        $chanceEvasion = rand(0,100);
+        if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
+            messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
+            return;
+        }
         animationAttack($pkmnAtk, !$isJoueurTakeDamage);
         attackPkmnCalculator($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
@@ -180,6 +179,7 @@ function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurAttack){
     if($capacite['effects']['Healing'] != 0){
         $pkmnAtk['Stats']['Health'] += intval(($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max']);
         checkHealthOutRange($pkmnAtk);
+        drawPkmnInfoHUD(getPosHealthPkmn($isJoueurAttack),$pkmnAtk, $isJoueurAttack);
     }
 }
 

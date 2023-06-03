@@ -65,7 +65,7 @@ function pokedexInterface(){
         $catchInfo = $exceptionValue == 2 ? 'Catch' : ($exceptionValue == 1 ? 'See' : null);
 
         displayPkmnLeftMenu($exceptionValue ? $currentPkmnUsing : null, $catchInfo);
-
+        
         $choice = waitForInput(getPosChoice(), null, ' Select '. leaveInputMenu() .' : ');
 
         if(is_numeric($choice)){
@@ -121,5 +121,4 @@ function listPokedexRight($startKey, $exception = null){
     }
     drawBoxTextJusitfy([$y, $x], $newListPokemonToDraw);
 }
-
 ?>

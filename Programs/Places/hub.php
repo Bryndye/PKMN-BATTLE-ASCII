@@ -113,6 +113,7 @@ function seeSheetPkmn($pkmn){
     clearGameScreen();
     displayPkmnLeftMenu($pkmn);
     displayCapacitiesMenu($pkmn);
+    displayBottonPkmnStatsInterface($pkmn);
     waitForInput();
     clearArea([20,30], [2,30]);
     dispslayStatsPkmnMenu($pkmn);
@@ -142,22 +143,30 @@ function displayPkmnLeftMenu($pkmn, $catch = null){
     }
     textAreaLimited('N° : '.$pkmn['N Pokedex'],30,[4,5]);
 
-    getColorByType($pkmn['Type 2']);
+    setColorByType($pkmn['Type 2']);
     justifyText($pkmn['Type 2'], 20, [5,5], 'right');
     
-    getColorByType($pkmn['Type 1']);
+    setColorByType($pkmn['Type 1']);
     textAreaLimited($pkmn['Type 1'],30,[5,5]);
-    selectColor('reset');
+    setColor('reset');
 }
 
 function displayCapacitiesMenu($pkmn){
-    $i = 4;
+    $i = 1;
     $y = 0;
-    $x = 35;
+    $x = 30;
     foreach($pkmn['Capacites'] as $capacitePkmn){
-        getColorByType($capacitePkmn['Type']);
-        drawBox([4,20],[2+$i,$x],'|','-',true);
-        selectColor('reset');
+        setColorByType($capacitePkmn['Type']);
+        drawBox([4,30],[2+$i,$x],'|','-',true);
+        setColor('reset');
+
+        if($capacitePkmn['Category'] != 'status'){
+            justifyText('Power:'.$capacitePkmn['Power'], 9, [4+$i,$x+19],'right');
+        }      
+        setColorByType($capacitePkmn['Category']);
+        justifyText(ucfirst($capacitePkmn['Category']), 9, [3+$i,$x+19],'right');
+        setColor('reset');
+
         textAreaLimited(($y+1).' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
         textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
         ++$y;
@@ -213,17 +222,15 @@ function inTown(&$save){
     }
 }
 
-function continueToFight(){
-    clearGameScreen();
-    drawStatsFromSaveToMenu();
-    messageBoiteDialogue('Do you want to continue ?');
-    drawBox([7,15],[24,46]);
-    textArea('1: Continue',[26,48]);
-    textArea('2: Quit',[28,48]);
-    // Attend la selection entre 1 et 2
-    $choice = waitForInput([31,0],[1,2]);
-    if($choice == 2){
-        exitGame();
-    }
+
+function displayBottonPkmnStatsInterface($pkmn){
+    drawPkmnInfoHUD([23,3], $pkmn);
+    // $texts = ['Exp :'.$pkmn['exp'], 'Exp To Level :'.$pkmn['expToLevel']];
+    drawBox([5,25],[23,30]);
+    setColorByType('exp');
+    textArea('Exp :'.$pkmn['exp'], [24,32]);
+    textArea('Exp To Level :'.$pkmn['expToLevel'], [26,32]);
+    // drawBoxTextJusitfy([23,30], $texts);
+    setColor('reset');
 }
 ?>

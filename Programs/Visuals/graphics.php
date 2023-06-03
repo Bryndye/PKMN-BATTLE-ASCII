@@ -17,7 +17,7 @@ function moveCursor($pos){
 } 
 
 //// STANDARD FCT DRAW ///////////////////////////////
-function selectColor($color = 'black'){
+function setColor($color = 'black'){
     if(is_int($color)){
         echo "\033[".$color;
         return;
@@ -77,61 +77,74 @@ function selectColor($color = 'black'){
     echo "\033[".$string;
 }
 
-function getColorByType($type = 'normal'){
+function setColorByType($type = 'normal'){
     switch($type){
         case 'normal':
-            selectColor('white');
+            setColor('white');
             break;
         case 'grass':
-            selectColor('green');
+            setColor('green');
             break;
         case 'water':
-            selectColor('blue');
+            setColor('blue');
             break;
         case 'fire':
-            selectColor('red');
+            setColor('red');
             break;
         case 'electric':
-            selectColor('yellow');
+            setColor('yellow');
             break;
         case 'rock':
-            selectColor('brown');
+            setColor('brown');
             break;
         case 'ground':
-            selectColor('orange');
+            setColor('orange');
             break;
         case 'bug':
-            selectColor('green bug');
+            setColor('green bug');
             break;
         case 'ice':
-            selectColor('cyan');
+            setColor('cyan');
             break;
         case 'fighting':
-            selectColor('brown');
+            setColor('brown');
             break;
         case 'poison':
-            selectColor('purple');
+            setColor('purple');
             break;
         case 'flying':
-            selectColor('cyan');
+            setColor('cyan');
             break;
         case 'psychic':
-            selectColor('pink');
+            setColor('pink');
             break;
         case 'ghost':
-            selectColor('purple');
+            setColor('purple');
             break;
         case 'fairy':
-            selectColor('pink');
+            setColor('pink');
             break;
         case 'dark':
-            selectColor('grey');
+            setColor('grey');
             break;
         case 'steel':
-            selectColor('grey');
+            setColor('grey');
             break;
         case 'dragon':
-            selectColor('blue');
+            setColor('blue');
+            break;
+
+        case 'physical':
+            setColor('red');
+            break;
+        case 'special':
+            setColor('blue');
+            break;
+        case 'status':
+            setColor('white');
+            break;
+        case 'exp':
+            setColor('cyan');
             break;
     }
 }

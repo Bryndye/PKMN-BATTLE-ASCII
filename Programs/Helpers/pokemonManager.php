@@ -160,7 +160,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
     if($pkmn['Level'] >= 100){
         $pkmn['Level'] = 100;
         $pkmn['expToLevel'] = 1;
-        $pkmn['exp'] = 1;
+        // $pkmn['exp'] = 1;
         return;
     }
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
@@ -210,7 +210,7 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
 }
 
 function getNextLevelExp($currentLevel) {
-    $expToNextLevel = (int)((3 * $currentLevel * $currentLevel * $currentLevel) / 5);
+    $expToNextLevel = (int)((5 * $currentLevel * $currentLevel * $currentLevel) / 5);
     return intval($expToNextLevel);
 }
 

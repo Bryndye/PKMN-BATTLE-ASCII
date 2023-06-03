@@ -92,12 +92,12 @@ function updateHealthPkmn($health, $healthMax, $isJoueur = true, $pos=null){
     
     
     if($pourcentage > 0.5){
-        selectColor('green');
+        setColor('green');
     }elseif($pourcentage < 0.2){
-        selectColor('red');
+        setColor('red');
     }
     else{
-        selectColor('orange');
+        setColor('orange');
     }
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){
@@ -106,7 +106,7 @@ function updateHealthPkmn($health, $healthMax, $isJoueur = true, $pos=null){
             echo ' ';
         }
     }
-    selectColor('reset');
+    setColor('reset');
 }
 function updateExpPkmn($pos,$exp, $expMax){
     $pourcentage = $exp/$expMax;
@@ -117,7 +117,7 @@ function updateExpPkmn($pos,$exp, $expMax){
 
     //Set health graphic style + color
     moveCursor([$pos[0]+3,$pos[1]+11]);
-    selectColor('blue');
+    setColorByType('exp');
     for($i=0;$i<10;++$i){
         if (($pourcentage*10) > $i){
             echo '=';
@@ -125,7 +125,7 @@ function updateExpPkmn($pos,$exp, $expMax){
             echo ' ';
         }
     }
-    selectColor('reset');
+    setColor('reset');
 }
 
 function levelUpWindow($oldStats, $newStats){
@@ -208,9 +208,9 @@ function interfaceCapacities($capacites){
                 $posX = $posXInit +20;
             }
             textAreaLimited(($i+1).' : ',23,[$posY,$posX]);
-            getColorByType($capacites[$i]['Type']);
+            setColorByType($capacites[$i]['Type']);
             textAreaLimited($capacites[$i]['Name'],23,[$posY,$posX+4]);
-            selectColor('reset');
+            setColor('reset');
             textAreaLimited('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
         }
     }

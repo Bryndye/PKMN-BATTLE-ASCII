@@ -124,16 +124,16 @@ function animationVersusLeader($spriteName){
     $posFinal = [$posY+1, $scaleSpriteVersus[1]/2+5]; // Weird stuff
 
     drawSprite(getSprites('Versus'),[$posY+3,3]);
-    selectColor('reset');
+    setColor('reset');
     translate($sprite, $posInit, $posFinal, 2);
 
     // TRANSITION TO GREY
-    selectColor('grey');
+    setColor('grey');
     drawBox([2,$screenScale[1]-2],[$screenScale[0]-6,2], '|','-',true,['-','-','-','-']);
     drawBox([2,$screenScale[1]-2],[$screenScale[0]-23,2], '|','-',true,['-','-','-','-']);
     drawSprite($sprite,$posFinal);
     drawSprite(getSprites('Versus'),[$posY+3,3]);
-    selectColor('reset');
+    setColor('reset');
     sleep(1);
     clearArea([$screenScale[0]-2,$screenScale[1]-2],[2,2]);
     
@@ -196,9 +196,9 @@ function animationDown($pkmn, $isJoueur){
         clearSpritePkmn($isJoueur);
         drawSprite(getSprites($pkmn['Sprite']),$pos);
 
-        selectColor('red');
+        setColor('red');
         drawSprite(getSprites('down'), [$pos[0]+($i+1)*2+intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
-        selectColor('reset');
+        setColor('reset');
         usleep(150000);
     }
     clearSpritePkmn($isJoueur);
@@ -212,9 +212,9 @@ function animationUp($pkmn, $isJoueur){
         clearSpritePkmn($isJoueur);
         drawSprite(getSprites($pkmn['Sprite']),$pos);
 
-        selectColor('green');
+        setColor('green');
         drawSprite(getSprites('up'), [$pos[0]+$scaleSprite[0]-($i+1)*2-intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
-        selectColor('reset');
+        setColor('reset');
         usleep(150000);
     }
     clearSpritePkmn($isJoueur);

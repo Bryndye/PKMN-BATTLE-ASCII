@@ -39,6 +39,7 @@ function gameplayLoop(&$joueur, &$pnj){
         if(isPkmnDead_simple($pkmnTeamEnemy[0])){
             choosePkmn($pkmnTeamEnemy);
             animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
+            usleep(150000);
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
             $choice2 = selectPkmn($pkmnTeamJoueur, 0, false);
@@ -61,7 +62,7 @@ function loopFight(&$joueur, &$pnj){
 
     $pkmnTeamEnemy = &$pnj['Team'];
     $pkmnTeamJoueur = &$joueur['Team'];
-    while(isPkmnDead_simple($pkmnTeamJoueur[0]) && isPkmnDead_simple($pkmnTeamEnemy[0])){
+    while(!isPkmnDead_simple($pkmnTeamJoueur[0]) && !isPkmnDead_simple($pkmnTeamEnemy[0])){
 
         drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         interfaceMenu();
@@ -185,9 +186,9 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             $aPkmnIsDead = attackByJustOnePkmn($pkmnAtk,$pkmnDef, $capacite, !$action['isjoueur']);
         }
         elseif($action['choice'][0] == '2'){
-            switchPkmn($action['teamAtk'], $action['choice'][1]);
             resetTeamStatsTemp($action['teamAtk']);
             drawPkmnAllBattleHUD($action['teamDef'], !$action['isjoueur']);
+            switchPkmn($action['teamAtk'], $action['choice'][1]);
             animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn de laction
             
             usleep(250000);
