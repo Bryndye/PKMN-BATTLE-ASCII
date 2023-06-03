@@ -141,7 +141,14 @@ function drawRefreshInterfaceList($listItems, $indexItem = 0){
         $y++;
     }
 }
-
+function drawCategoryBag($categories, $actualCategory = 0){
+    if(is_int($actualCategory)){
+        $actualCategory = $categories[$actualCategory];
+    }
+    drawCategorySelected($categories ,$actualCategory,[4,2]);
+}
+////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 function useItemOn(&$bag, $indexItem, &$pkmnTeam){
     while(true){
         $choice2 = "";
@@ -151,8 +158,10 @@ function useItemOn(&$bag, $indexItem, &$pkmnTeam){
             return "$indexItem $choice2";
         }
         drawPkmnTeam($pkmnTeam);
+        $exceptions = getExceptionsItemToPkmnTeam($pkmnTeam, $itemToUse);
+
         // Select Pkmn to heal
-        $choice2 = selectPkmn($pkmnTeam, null, true, 'Use '.$itemToUse['name'] .' on?');
+        $choice2 = selectPkmn($pkmnTeam, $exceptions, true, 'Use '.$itemToUse['name'] .' on?');
         if($choice2 == leaveInputMenu()){
             return leaveInputMenu();
         }
@@ -160,28 +169,13 @@ function useItemOn(&$bag, $indexItem, &$pkmnTeam){
     }
 }
 
-function drawCategoryBag($categories, $actualCategory = 0){
-    if(is_int($actualCategory)){
-        $actualCategory = $categories[$actualCategory];
-    }
-    drawCategorySelected($categories ,$actualCategory,[4,2]);
-}
 
-function manageBag(&$bag, &$item){
-    if($item['quantity'] <= 0){
-        remove($item, $bag);
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////
 function useItem(&$bag, &$item, &$pkmn){
-    --$item['quantity'];
-    manageBag($bag, $item);
-
+    $usedItem = true;
     // utilisation des items
     switch($item['type']){
         case 'Heals':
-            if(is_string($item['effect']) && strpos($item['effect'], 'status') !== false){ // verifie si string et si contient status
+            if(isStatusItem($item)){ // verifie si string et si contient status
                 healStatusToPkmn($pkmn);
             }
             else{
@@ -194,14 +188,51 @@ function useItem(&$bag, &$item, &$pkmn){
             healStatusToPkmn($pkmn);
             break;
         case 'TMs':
-            setCapacityToPkmn($pkmn, getCapacite($item['name']));
+            $usedItem = setCapacityToPkmn($pkmn, getCapacite($item['name']));
             break;
         case 'Items':
             verifyIfPkmnCanEvolve($pkmn, $item);
             break;
     }
+
+    if(is_bool($usedItem) && $usedItem){
+        --$item['quantity'];
+        removeItem($bag, $item);
+    }
+    else{
+        removeItem($bag, $item);
+    }
 }
 
+function getExceptionsItemToPkmnTeam($pkmnTeam, $item){
+    $exceptions = [];
+    if($item['type'] == 'Heals'){
+        if(isStatusItem($item)){
+            foreach($pkmnTeam as $key=>$pkmn){
+                if(!hasStatus($pkmn)){
+                    array_push($exceptions, $key);
+                }
+            }
+        }
+        else{
+            foreach($pkmnTeam as $key=>$pkmn){
+                if($pkmn['Stats']['Health'] == $pkmn['Stats']['Health Max']){
+                    array_push($exceptions, $key);
+                }
+            }
+        }
+        return $exceptions;
+    }
+}
+
+function isStatusItem($item){
+    if(is_string($item['effect']) && strpos($item['effect'], 'status') !== false){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 function giveItemFromResources(&$bag, $itemName, $quantity = 1){
@@ -248,5 +279,12 @@ function getItemObject($itemName, $quantity = 1){
     $item = $array[$itemName];
     $item['quantity'] = $quantity;
     return $item;
+}
+
+
+function removeItem(&$bag, &$item){
+    if($item['quantity'] <= 0){
+        remove($item, $bag);
+    }
 }
 ?>

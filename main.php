@@ -58,7 +58,7 @@ while(true){
     $IndexFloorMax = $saveProfile['IndexFloor Max'];
     
     // item TEMP
-    // giveItemFromResources($saveParty["Bag"], 'Potion', 5);
+    // giveItemFromResources($saveParty["Bag"], 'Total Heals', 5);
     // giveItemFromResources($saveParty["Bag"], 'Revive', 5);
     // giveItemFromResources($saveParty["Bag"], 'Super potion', 5);
     // giveItemFromResources($saveParty["Bag"], 'PokeBall', 5);
