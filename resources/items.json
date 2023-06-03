@@ -60,7 +60,7 @@
 		"name":"MasterBall",
 		"type": "PokeBalls",
 		"effect": "255",
-		"price" : "10000",
+		"price" : "50000",
 		"indexFloor" : 60
 	},
     "Revive":

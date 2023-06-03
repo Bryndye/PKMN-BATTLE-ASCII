@@ -18,11 +18,11 @@ function startFight(&$joueur, &$pnj){
 
     // animation pokeball
     if($pnj['type'] == 'trainer'){
-        messageBoiteDialogue($pkmnTeamEnemy[0]['Name'].', Go!',1);
+        messageBoiteDialogue(ucfirst($pkmnTeamEnemy[0]['Name']).', Go!',1);
         animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
-    messageBoiteDialogue($pkmnTeamJoueur[0]['Name'].', Go!',1);
+    messageBoiteDialogue(ucfirst($pkmnTeamJoueur[0]['Name']).', Go!',1);
     animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
 
@@ -45,6 +45,7 @@ function gameplayLoop(&$joueur, &$pnj){
             $choice2 = selectPkmn($pkmnTeamJoueur, 0, false);
             switchPkmn($pkmnTeamJoueur ,$choice2);
             clearGameScreen();
+            drawBoiteDialogue();
             drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
             animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
@@ -189,6 +190,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             resetTeamStatsTemp($action['teamAtk']);
             drawPkmnAllBattleHUD($action['teamDef'], !$action['isjoueur']);
             switchPkmn($action['teamAtk'], $action['choice'][1]);
+            clearPkmnHUD($action['isjoueur']);
             animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn de laction
             
             usleep(250000);

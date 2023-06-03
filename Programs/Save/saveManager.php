@@ -54,7 +54,7 @@ function createMainSave(){
     $datasMainSave = [
         'name' => null,
         'Game wins' => 0,
-        'IndexFloor Max' => 100,
+        'IndexFloor Max' => getIndexFloorMaxOriginal(),
         'Pokedex' => [],
         'wins' => 0,
         'loses' => 0
@@ -93,6 +93,9 @@ function createPartySave(){
     ];
     $var =  chooseFirstPokemon();
     $datasPartySave['Team'] = $var[0];
+    if(isPkmnAlreadyCatch('mew')){
+        array_push($datasPartySave['Team'], generatePkmnBattle('mew',5));
+    }
     $json = json_encode($datasPartySave);
     file_put_contents(getSavePath('save'), $json);
     setData($var[1], 'Starter', getSavePath('save')); // SECURITY STARTER IF PLAYER QUIT BEFORE SAVE
@@ -107,6 +110,9 @@ function adaptMainSave(){
     $main = getSave(getSavePath('myGame'));
     if(!array_key_exists('Pokedex', $main)){
         $main['Pokedex'] = [];
+    }
+    if(array_key_exists('IndexFloor Max', $main) && $main['IndexFloor Max'] < getIndexFloorMaxOriginal()){
+        $main['IndexFloor Max'] = getIndexFloorMaxOriginal();
     }
 }
 

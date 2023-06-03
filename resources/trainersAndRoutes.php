@@ -1,6 +1,6 @@
 <?php
-$routes = [
-    "route 1" => [
+$Routes = [
+    "Route 1" => [
         'Floors' => [1,9],
         'Pokemon savages' => [
             'rattata' => [
@@ -33,7 +33,7 @@ $routes = [
                         "I'm gonna catch more to defeat you next time!"
                     ]
                 ],
-                500,
+                1000,
                 [],
                 [
                     generatePkmnBattle('weedle', 6),
@@ -44,7 +44,7 @@ $routes = [
             )
         ]
     ],
-    "route 2" => [
+    "Route 2" => [
         'Floors' => [11,15],
         'Pokemon savages' => [
             'weedle' => [
@@ -81,7 +81,7 @@ $routes = [
                         "I'm gonna catch more to defeat you next time!"
                     ]
                 ],
-                1000,
+                2000,
                 [],
                 [
                     generatePkmnBattle('pidgey', 10),
@@ -95,40 +95,44 @@ $routes = [
         'Floors' => [16,19],
         'Pokemon savages' => [
             'geodude' => [
-                'level' => [10,12],
+                'level' => [13,14],
                 'rate' => 45
             ],
             'onix' => [
-                'level' => [10,14],
+                'level' => [13,14],
                 'rate' => 35
             ],
             'cubone' => [
-                'level' => [8,13],
+                'level' => [13,13],
                 'rate' => 5
             ],
             'graveler' => [
-                'level' => [10,14],
+                'level' => [15,16],
                 'rate' => 5
             ],
-            'doduo' => [
-                'level' => [10,14],
-                'rate' => 15
+            'bellsprout' => [
+                'level' => [8,12],
+                'rate' => 20
             ],
             'zubat' => [
-                'level' => [8,12],
+                'level' => [10,12],
                 'rate' => 40
+            ],
+            'abra' => [
+                'level' => [15,17],
+                'rate' => 15
             ]
         ],
         'Trainers' => [
             createTrainer('A Mountain Man', 
-                'trainer',
+                'mountain',
                 [
                     'entrance' => "Hello!",
                     'end' => [
                         "By!"
                     ]
                 ],
-                1500,
+                3000,
                 [],
                 [
                     generatePkmnBattle('geodude', 11),
@@ -137,14 +141,14 @@ $routes = [
                 ]
                 ),
             createTrainer('A Mountain Man', 
-                'trainer',
+                'mountain',
                 [
                     'entrance' => "Hello!",
                     'end' => [
                         "By!"
                     ]
                 ],
-                1500,
+                3000,
                 [],
                 [
                     generatePkmnBattle('zubat', 13),
@@ -153,20 +157,20 @@ $routes = [
             )
         ]
     ],
-    "route 3" => [
+    "Route 3" => [
         'Floors' => [21,29],
         'Pokemon savages' => [
             'diglett' => [
                 'level' => [16,18],
-                'rate' => 45
+                'rate' => 30
             ],
             'spearow' => [
                 'level' => [18,18],
-                'rate' => 40
+                'rate' => 30
             ],
             'doduo' => [
                 'level' => [19,19],
-                'rate' => 35
+                'rate' => 30
             ],
             'dugtrio' => [
                 'level' => [23,23],
@@ -174,7 +178,7 @@ $routes = [
             ],
             'meowth' => [
                 'level' => [18,20],
-                'rate' => 40
+                'rate' => 30
             ],
             'magnemite' => [
                 'level' => [20,20],
@@ -182,7 +186,7 @@ $routes = [
             ],
             'abra' => [
                 'level' => [15,20],
-                'rate' => 5
+                'rate' => 15
             ],
             'jigglypuff' => [
                 'level' => [15,18],
@@ -191,14 +195,14 @@ $routes = [
         ],
         'Trainers' => [
             createTrainer('A Scientist', 
-                'trainer',
+                'scientist',
                 [
                     'entrance' => "Get away! I'm working.",
                     'end' => [
                         "Tsss! You're wasting my time."
                     ]
                 ],
-                2000,
+                4000,
                 [],
                 [
                     generatePkmnBattle('magnemite', 18),
@@ -206,14 +210,14 @@ $routes = [
                 ]
                 ),
             createTrainer('A Pokemaniac', 
-                'trainer',
+                'scientist',
                 [
                     'entrance' => "How many Pokemon did you catch?",
                     'end' => [
                         "You are really good! Maybe you are the next Champion."
                     ]
                 ],
-                2000,
+                4000,
                 [],
                 [
                     generatePkmnBattle('jigglypuff', 18),
@@ -223,11 +227,11 @@ $routes = [
             )
         ]
     ],
-    "route 4" => [
+    "Route 4" => [
         'Floors' => [31,39],
         'Pokemon savages' => [
             'sandshrew' => [
-                'level' => [19,24],
+                'level' => [20,24],
                 'rate' => 30
             ],
             'ekans' => [
@@ -243,24 +247,24 @@ $routes = [
                 'rate' => 15
             ],
             'kadabra' => [
-                'level' => [20,27],
+                'level' => [22,27],
                 'rate' => 5
             ],
             'gastly' => [
-                'level' => [20,20],
+                'level' => [24,24],
                 'rate' => 5
             ],
         ],
         'Trainers' => [
             createTrainer('Old man', 
-                'trainer',
+                'oldman',
                 [
                     'entrance' => "oh?! A battle?",
                     'end' => [
                         "Thank to you, I'm going to practice to be Champion!"
                     ]
                 ],
-                2500,
+                5000,
                 [],
                 [
                     generatePkmnBattle('kadabra', 22),
@@ -269,14 +273,14 @@ $routes = [
                 ]
             ),
             createTrainer('A fisher', 
-                'trainer',
+                'fisher',
                 [
                     'entrance' => "How many Pokemon did you catch?",
                     'end' => [
                         "You are really good! Maybe you are the next Champion."
                     ]
                 ],
-                2500,
+                5000,
                 [],
                 [
                     generatePkmnBattle('magikarp', 30),
@@ -289,14 +293,10 @@ $routes = [
             )
         ]
     ],
-    "route 5" => [
+    "Route 5" => [
         'Floors' => [41,49],
         'Pokemon savages' => [
-            'raticate' => [
-                'level' => [25,26],
-                'rate' => 25
-            ],
-            'fearow' => [
+            'eevee' => [
                 'level' => [25,28],
                 'rate' => 10
             ],
@@ -306,20 +306,55 @@ $routes = [
             ],
             'gloom' => [
                 'level' => [30,31],
-                'rate' => 10
+                'rate' => 20
             ],
             'rhyhorn' => [
                 'level' => [26,28],
-                'rate' => 5
+                'rate' => 15
             ],
             'lickitung' => [
                 'level' => [28,30],
-                'rate' => 5
+                'rate' => 25
             ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Boy', 
+                'boy',
+                [
+                    'entrance' => "Do you want to be my friend?",
+                    'end' => [
+                        "I guess you won't..."
+                    ]
+                ],
+                6000,
+                [],
+                [
+                    generatePkmnBattle('onix', 26),
+                    generatePkmnBattle('eevee', 28),
+                    generatePkmnBattle('slowpoke', 27),
+                    generatePkmnBattle('growlithe', 30),
+                ]
+            ),
+            createTrainer('A Girl', 
+                'girl',
+                [
+                    'entrance' => "My brother doesn't stop to ask everyone if they want to be his friend.",
+                    'end' => [
+                        "I guess you won't. Good for him."
+                    ]
+                ],
+                6000,
+                [],
+                [
+                    generatePkmnBattle('cloyster', 26),
+                    generatePkmnBattle('eevee', 28),
+                    generatePkmnBattle('slowpoke', 27),
+                    generatePkmnBattle('vulpix', 30),
+                ]
+            ),
+        ]
     ],
-    "route 6" => [
+    "Route 6" => [
         'Floors' => [51,59],
         'Pokemon savages' => [
             'horsea' => [
@@ -357,14 +392,14 @@ $routes = [
         ],
         'Trainers' => [
             createTrainer('A fisher boy', 
-                'trainer',
+                'boy',
                 [
                     'entrance' => "Do you like fishing?",
                     'end' => [
                         "I really thought Magikarp was good..."
                     ]
                 ],
-                3000,
+                6000,
                 [],
                 [
                     generatePkmnBattle('magikarp', 35),
@@ -376,14 +411,14 @@ $routes = [
                 ]
                 ),
                 createTrainer('A fisher man', 
-                'trainer',
+                'fisher',
                 [
                     'entrance' => "Did you see my son?",
                     'end' => [
                         "If he's met you I know he's gone to see his mother in tears."
                     ]
                 ],
-                3000,
+                6000,
                 [],
                 [
                     generatePkmnBattle('dratini', 30),
@@ -393,66 +428,89 @@ $routes = [
             )
         ]
     ],
-    "route 7" => [
+    "Route 7" => [
         'Floors' => [61,69],
         'Pokemon savages' => [
             'drowzee' => [
                 'level' => [30,35],
-                'rate' => 15
+                'rate' => 10
             ],
             'mr-mime' => [
                 'level' => [30,33],
-                'rate' => 5
+                'rate' => 10
             ],            
             'venonat' => [
                 'level' => [31,35],
-                'rate' => 25
-            ],
-            'gloom' => [
-                'level' => [33,34],
-                'rate' => 25
+                'rate' => 20
             ],
             'tauros' => [
                 'level' => [33,36],
-                'rate' => 5
+                'rate' => 10
             ],
-            'weepinbell' => [
+            'jynx' => [
                 'level' => [32,32],
                 'rate' => 20
             ],
             'farfetchd' => [
                 'level' => [35,40],
-                'rate' => 15
+                'rate' => 10
             ],
             'machop' => [
-                'level' => [28,30],
+                'level' => [30,32],
                 'rate' => 20
             ],
             'snorlax' => [
-                'level' => [30,32],
-                'rate' => 5
+                'level' => [32,35],
+                'rate' => 10
             ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Biker', 
+                'mountain',
+                [
+                    'entrance' => "What are you looking at?",
+                    'end' => [
+                        "Next time, you will suffer!"
+                    ]
+                ],
+                6000,
+                [],
+                [
+                    generatePkmnBattle('muk', 34),
+                    generatePkmnBattle('weezing', 35),
+                    generatePkmnBattle('haunter', 35),
+                    generatePkmnBattle('nidoqueen', 33),
+                ]
+            ),
+            createTrainer('A Biker', 
+                'mountain',
+                [
+                    'entrance' => "What are you looking at?",
+                    'end' => [
+                        "Next time, you will suffer!"
+                    ]
+                ],
+                6000,
+                [],
+                [
+                    generatePkmnBattle('muk', 36),
+                    generatePkmnBattle('weezing', 33),
+                    generatePkmnBattle('gengar', 30),
+                    generatePkmnBattle('nidoking', 33),
+                ]
+            ),
+        ]
     ],
-    "route 8" => [
+    "Route 8" => [
         'Floors' => [71,79],
         'Pokemon savages' => [
-            'drowzee' => [
-                'level' => [24,28],
+            'abra' => [
+                'level' => [32,34],
                 'rate' => 5
             ],
-            'venonat' => [
-                'level' => [25,28],
+            'koffing' => [
+                'level' => [36,38],
                 'rate' => 25
-            ],
-            'gloom' => [
-                'level' => [24,26],
-                'rate' => 25
-            ],
-            'bellsprout' => [
-                'level' => [24,28],
-                'rate' => 20
             ],
             'weepinbell' => [
                 'level' => [28,30],
@@ -470,16 +528,51 @@ $routes = [
                 'level' => [35,45],
                 'rate' => 5
             ],
+            'lapras' => [
+                'level' => [40,42],
+                'rate' => 15
+            ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Mountain Man', 
+                'mountain',
+                [
+                    'entrance' => "Get ready!",
+                    'end' => [
+                        "You just destroy my dream to be Champion!"
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('kangaskhan', 48),
+                    generatePkmnBattle('machamp', 47),
+                    generatePkmnBattle('arbok', 46),
+                    generatePkmnBattle('nidoking', 50),
+                ]
+            ),
+            createTrainer('A Mountain Man', 
+                'mountain',
+                [
+                    'entrance' => "Can you climb any walls here? I can!",
+                    'end' => [
+                        "Let me do it for you."
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('golem', 48),
+                    generatePkmnBattle('onix', 47),
+                    generatePkmnBattle('dugtrio', 46),
+                    generatePkmnBattle('sandslash', 46),
+                ]
+            )
+        ]
     ],
-    "route 9" => [
+    "Victory Road - Part 1" => [
         'Floors' => [81,89],
         'Pokemon savages' => [
-            'onix' => [
-                'level' => [38,42],
-                'rate' => 30
-            ],
             'machoke' => [
                 'level' => [35,40],
                 'rate' => 20
@@ -488,60 +581,153 @@ $routes = [
                 'level' => [40,44],
                 'rate' => 25
             ],
-            'graveler' => [
-                'level' => [43,45],
-                'rate' => 20
-            ],
-            'muk' => [
-                'level' => [30,34],
+            'grimer' => [
+                'level' => [38,40],
                 'rate' => 5
             ],
             'clefairy' => [
-                'level' => [25,30],
+                'level' => [37,38],
                 'rate' => 20
             ],
+            'electabuzz' => [
+                'level' => [38,40],
+                'rate' => 10
+            ],
+            'magmar' => [
+                'level' => [38,40],
+                'rate' => 10
+            ],
+            'dratini' => [
+                'level' => [40,40],
+                'rate' => 5
+            ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "Get ready!",
+                    'end' => [
+                        "You just destroy my dream to be Champion!"
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('rhyhorn', 50),
+                    generatePkmnBattle('gyarados', 51),
+                    generatePkmnBattle('exeggutor', 50),
+                    generatePkmnBattle('pidgeot', 52),
+                    generatePkmnBattle('blastoise', 53),
+                ]
+            ),
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "Get ready!",
+                    'end' => [
+                        "You just destroy my dream to be Champion!"
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('machamp', 50),
+                    generatePkmnBattle('electrode', 51),
+                    generatePkmnBattle('starmie', 50),
+                    generatePkmnBattle('proygon', 52),
+                    generatePkmnBattle('parasect', 50),
+                ]
+            )
+        ]
     ],
-    "route 10" => [
+    "Victory Road - Part 2" => [
         'Floors' => [91,99],
         'Pokemon savages' => [
-            'magneton' => [
-                'level' => [38,42],
-                'rate' => 20
-            ],
-            'hypno' => [
-                'level' => [35,40],
-                'rate' => 10
-            ],
-            'dodrio' => [
-                'level' => [40,44],
-                'rate' => 20
-            ],
-            'parasect' => [
-                'level' => [43,45],
-                'rate' => 10
-            ],
-            'raichu' => [
-                'level' => [30,34],
-                'rate' => 10
-            ],
-            'arbok' => [
-                'level' => [25,30],
-                'rate' => 20
-            ],
-            'rapidash' => [
-                'level' => [30,34],
-                'rate' => 5
-            ],
             'chansey' => [
-                'level' => [25,30],
+                'level' => [44,50],
+                'rate' => 15
+            ],
+            'haunter' => [
+                'level' => [43,44],
+                'rate' => 15
+            ],
+            'kangaskhan' => [
+                'level' => [44,46],
+                'rate' => 30
+            ],
+            'hitmonlee' => [
+                'level' => [44,44],
+                'rate' => 20
+            ],
+            'hitmonchan' => [
+                'level' => [44,44],
+                'rate' => 20
+            ],
+            'dratini' => [
+                'level' => [42,42],
                 'rate' => 5
             ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "Get ready!",
+                    'end' => [
+                        "You just destroy my dream to be Champion!"
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('arcanine', 54),
+                    generatePkmnBattle('rapidash', 51),
+                    generatePkmnBattle('ninetales', 54),
+                    generatePkmnBattle('magmar', 49),
+                    generatePkmnBattle('charizard', 49),
+                    generatePkmnBattle('flareon', 49),
+                ]
+            ),
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "Get ready!",
+                    'end' => [
+                        "You just destroy my dream to be Champion!"
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('victreebel', 54),
+                    generatePkmnBattle('exeggutor', 51),
+                    generatePkmnBattle('scyther', 54),
+                    generatePkmnBattle('venusaur', 49),
+                    generatePkmnBattle('vileplume', 48),
+                ]
+            ),
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "Get ready!",
+                    'end' => [
+                        "You just destroy my dream to be Champion!"
+                    ]
+                ],
+                5000,
+                [],
+                [
+                    generatePkmnBattle('golduck', 54),
+                    generatePkmnBattle('seadra', 51),
+                    generatePkmnBattle('dewgong', 54),
+                    generatePkmnBattle('lapras', 47),
+                    generatePkmnBattle('vaporeon', 49),
+                ]
+            ),
+        ]
     ],
-    "route 11" => [
+    "Route 9" => [
         'Floors' => [101,109],
         'Pokemon savages' => [
             'lapras' => [
@@ -562,104 +748,180 @@ $routes = [
             ],
             'seel' => [
                 'level' => [50,54],
-                'rate' => 55
+                'rate' => 30
+            ],
+            'dratini' => [
+                'level' => [44,45],
+                'rate' => 5
             ],
         ],
         'Trainers' => null
     ],
-    "route 12" => [
+    "Safari 2" => [
         'Floors' => [111,119],
         'Pokemon savages' => [
-            'grimer' => [
-                'level' => [2,4],
-                'rate' => 45
+            'porygon' => [
+                'level' => [55,60],
+                'rate' => 10
             ],
-            'exeggcute' => [
-                'level' => [2,5],
-                'rate' => 55
+            'exeggutor' => [
+                'level' => [55,60],
+                'rate' => 10
             ],
-            'grimer' => [
-                'level' => [2,4],
-                'rate' => 45
+            'muk' => [
+                'level' => [55,60],
+                'rate' => 10
+            ],
+            'poliwrath' => [
+                'level' => [55,60],
+                'rate' => 10
+            ],
+            'eevee' => [
+                'level' => [55,60],
+                'rate' => 10
+            ],
+            'kadabra' => [
+                'level' => [55,60],
+                'rate' => 10
             ],
         ],
         'Trainers' => null
     ],
-    "route 13" => [
+    "Route 10" => [
         'Floors' => [121,129],
         'Pokemon savages' => [
-            'gastly' => [
-                'level' => [34,38],
-                'rate' => 55
+            'horsea' => [
+                'level' => [60,65],
+                'rate' => 10
             ],
-            'haunter' => [
-                'level' => [40,40],
-                'rate' => 45
-            ]
+            'kingler' => [
+                'level' => [60,65],
+                'rate' => 10
+            ],
+            'muk' => [
+                'level' => [60,65],
+                'rate' => 10
+            ],
+            'poliwrath' => [
+                'level' => [60,65],
+                'rate' => 10
+            ],
+            'eevee' => [
+                'level' => [60,65],
+                'rate' => 10
+            ],
+            'kadabra' => [
+                'level' => [60,65],
+                'rate' => 10
+            ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('Something???', 
+                'ghost',
+                [
+                    'entrance' => "...",
+                    'end' => [
+                        "..."
+                    ]
+                ],
+                10000,
+                [],
+                [
+                    generatePkmnBattle('gastly', 60),
+                    generatePkmnBattle('haunter', 59),
+                    generatePkmnBattle('gastly', 60),
+                    generatePkmnBattle('haunter', 59),
+                    generatePkmnBattle('gengar', 59),
+                ]
+            ),
+            createTrainer('A Ghost Haunter', 
+                'ranger',
+                [
+                    'entrance' => "I'm from another region. I heard there were ghosts here!",
+                    'end' => [
+                        "You tell me when you see one!"
+                    ]
+                ],
+                10000,
+                [],
+                [
+                    generatePkmnBattle('golbat', 61),
+                    generatePkmnBattle('scyther', 62),
+                    generatePkmnBattle('pinsir', 62),
+                    generatePkmnBattle('tauros', 61),
+                    generatePkmnBattle('snorlax', 60),
+                    generatePkmnBattle('venusaur', 60)
+                ]
+            ),
+        ]
     ],
-    "route 14" => [
+    "Route 11" => [
         'Floors' => [131,139],
         'Pokemon savages' => [
-            'hitmonlee' => [
-                'level' => [34,38],
-                'rate' => 55
-            ],
-            'hitmonchan' => [
-                'level' => [40,40],
-                'rate' => 45
-            ],
-            'kangaskhan' => [
-                'level' => [34,38],
-                'rate' => 55
-            ],
             'scyther' => [
                 'level' => [34,38],
-                'rate' => 55
+                'rate' => 10
             ],
             'pinsir' => [
                 'level' => [34,38],
-                'rate' => 55
+                'rate' => 10
             ],
             'porygon' => [
                 'level' => [34,38],
-                'rate' => 55
+                'rate' => 10
             ],
             'omanyte' => [
                 'level' => [34,38],
-                'rate' => 55
+                'rate' => 10
             ],
             'kabuto' => [
                 'level' => [34,38],
-                'rate' => 55
+                'rate' => 10
             ],
             'aerodactyl' => [
                 'level' => [34,38],
-                'rate' => 55
+                'rate' => 10
             ],
-            'snorlax' => [
-                'level' => [34,38],
-                'rate' => 55
-            ],
-            'koffing' => [
-                'level' => [34,38],
-                'rate' => 55
-            ],
-            'electabuzz' => [
-                'level' => [34,38],
-                'rate' => 55
-            ],
-            'magmar' => [
-                'level' => [34,38],
-                'rate' => 55
-            ],
-            'dratini' => [
+            'tangela' => [
                 'level' => [34,38],
                 'rate' => 55
             ],
         ],
-        'Trainers' => null
+        'Trainers' => [
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "There is the master of this area top of here.",
+                    'end' => [
+                        "I never managed to beat him once. And it's not today..."
+                    ]
+                ],
+                10000,
+                [],
+                [
+                    generatePkmnBattle('jynx', 65),
+                    generatePkmnBattle('hitmonlee', 63),
+                    generatePkmnBattle('dragonite', 65),
+                    generatePkmnBattle('wigglytuff', 64),
+                    generatePkmnBattle('starmie', 62),
+                    generatePkmnBattle('marowak', 66)
+                ]
+            ),
+            createTrainer('A Ranger', 
+                'ranger',
+                [
+                    'entrance' => "My goal is to beat the boss with 1 Pokemon!",
+                    'end' => [
+                        "Hmm... This may not be a good strategy."
+                    ]
+                ],
+                10000,
+                [],
+                [
+                    generatePkmnBattle(selectStarterRival(3), 100),
+                ]
+            ),
+        ]
     ],
 ];
 
@@ -886,8 +1148,8 @@ function generateIAs(){
             1,'Gym Leader'
         ),
         55 =>  createTrainer('Blue', 
-        'rival',
-        [
+            'rival',
+            [
             'entrance' => "You? Again?",
             'end' => [
                 "Tsss! Out of my sight!"
@@ -990,7 +1252,7 @@ function generateIAs(){
             ],
             1,'Gym Leader'
         ),
-        90 =>  createTrainer('Elite Four Lorelei', 
+        100 =>  createTrainer('Elite Four Lorelei', 
             'lorelei',
             [
                 'entrance' => "...",
@@ -1012,7 +1274,7 @@ function generateIAs(){
             ],
             1,'Elite Four'
         ),
-        91 =>  createTrainer('Elite Four Bruno', 
+        101 =>  createTrainer('Elite Four Bruno', 
             'bruno',
             [
                 'entrance' => "Let the training session start!",
@@ -1034,7 +1296,7 @@ function generateIAs(){
             ],
             1,'Elite Four'
         ),
-        92 =>  createTrainer('Elite Four Agatha', 
+        102 =>  createTrainer('Elite Four Agatha', 
             'agatha',
             [
                 'entrance' => "I am not old! Get ready to loose brat!",
@@ -1058,7 +1320,7 @@ function generateIAs(){
             ],
             1,'Elite Four'
         ),
-        93 =>  createTrainer('Elite Four Peter Lance', 
+        103 =>  createTrainer('Elite Four Peter Lance', 
             ['peter','peter2','peter3','peter2','peter'],
             [
                 'entrance' => "I'm the master of Pokemons Dragon! Prepare you!",
@@ -1081,7 +1343,7 @@ function generateIAs(){
             ],
             1,'Elite Four'
         ),
-        94 =>  createTrainer('Champion Blue', 
+        104 =>  createTrainer('Champion Blue', 
             'rival',
             [
                 'entrance' => "What?! You here?! Anyway, you will lose!",
@@ -1104,14 +1366,14 @@ function generateIAs(){
             ],
             1,'Champion'
         ),
-        100 => createWildPkmn(70,'mewtwo', 
+        110 => createWildPkmn(70,'mewtwo', 
             [
                 'entrance' => "Who is that Pokemon? The pressure is high...",
                 'end' => "You've beaten the strongest Pokemon."
             ],          
             'Legendary'
         ),
-        110 =>  createTrainer('Champion Blue', 
+        120 =>  createTrainer('Champion Blue', 
             'rival',
             [
                 'entrance' => "What?! You here?! Anyway, you will lose!",
@@ -1134,7 +1396,7 @@ function generateIAs(){
             ],
             1,'Champion'
         ),
-        120 =>  createTrainer('Champion Red', 
+        130 =>  createTrainer('Champion Red', 
             'trainer',
             [
                 'entrance' => "...",
@@ -1155,13 +1417,16 @@ function generateIAs(){
             ],
             1,'Champion'
         ),
-        130 =>  createTrainer('Prof. Twig', 
+        140 =>  createTrainer('Prof. Twig', 
             'trainer',
             [
                 'entrance' => "Hehe! What do you think? That i'm not a trainer? Of course i'm!",
                 'end' => [
                     "...",
-                    "I'm going back to my development. this game needs some updates..."
+                    "You're stronger than I thought.",
+                    "I heard a story about a strange Pokemon hides behind a truck at Vermilion City.",
+                    "Here some money to buy what you need to capture it!",
+                    "Good luck!",
                 ]
             ],
             30000,
@@ -1178,6 +1443,13 @@ function generateIAs(){
                 generatePkmnBattle('mew', 80,0,['psychic','hydro-pump','ice-beam','amnesia'])
             ],
             1,'Prof'
+        ),
+        141 => createWildPkmn(70,'mew', 
+            [
+                'entrance' => "Who is that Pokemon? The pressure is high...",
+                'end' => "You've beaten the strongest Pokemon."
+            ],          
+            'Legendary'
         ),
     ];
 }
@@ -1201,16 +1473,18 @@ $towns = [
     75 =>  'Pallet Town',
     80 =>  'Viridian City',
     85 =>  'Victory Road',
-    90 =>  'Indigo League',
-    95 =>  'Indigo League',
-    100 =>  'Cerulean City',
-    101 => 'Sevii Islands',
-    105 => 'Sevii Islands',
-    110 => 'Sevii Islands',
-    115 => 'Sevii Islands',
-    120 => 'Sevii Islands',
+    90 =>  'Victory Road',
+    95 =>  'Victory Road',
+    100 => 'Indigo League',
+    105 => 'Indigo League',
+    110 => 'Cerulean City',
+    111 => 'Cerulean City', // After mewtwo caugth or not
+    115 => 'Safari 2',
+    120 => 'Safari 2',
     125 => 'Sevii Islands',
     130 => 'Sevii Islands',
-    135 => 'Sevii Islands'
+    135 => 'Sevii Islands',
+    140 => 'Tower ???',
+    141 => 'Vermilion City'
 ]
 ?>

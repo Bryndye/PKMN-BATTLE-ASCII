@@ -49,6 +49,16 @@ function getCountPokedex(){
     return count($pokemonPokedex);
 }
 
+function isPkmnAlreadyCatch($nameOrIndex){
+    $main = getSave(getSavePath('myGame'));
+    if(array_key_exists($nameOrIndex, $main['Pokedex']) && $main['Pokedex'][$nameOrIndex] == 2){ // SEE
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 function pokedexInterface(){
     $indexPokedex = 1;
     $lastNPokdex = getLastNPokedex();

@@ -7,12 +7,12 @@ $pokemonPokedex = json_decode($json, true);
 
 //// GET POKEMONS ///////////////////////////////////
 /////////////////////////////////////////////////////
-function getPokemon($pkmn){
-    if(is_numeric($pkmn)){
-        return getPokemonByIndex($pkmn);
+function getPokemon($nameOrIndex){
+    if(is_numeric($nameOrIndex)){
+        return getPokemonByIndex($nameOrIndex);
     }
-    elseif(is_string($pkmn)){
-        return getPokemonByName($pkmn);
+    elseif(is_string($nameOrIndex)){
+        return getPokemonByName($nameOrIndex);
     }
 }
 

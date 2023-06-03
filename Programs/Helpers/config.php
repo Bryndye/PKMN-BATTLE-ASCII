@@ -83,6 +83,10 @@ function getFolderSave($state = 0){
         return '../Save/';
     }
 }
+
+function getIndexFloorMaxOriginal(){
+    return 110;
+}
 //// POSITIONS ///////////////////////////////////////////////
 function getPosSpritePkmn($isJoueur){
     if($isJoueur)

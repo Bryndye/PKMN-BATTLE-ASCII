@@ -114,6 +114,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             $choice = binaryChoice();
             if(!$choice){
                 messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .$capacite['Name'].'...');
+                clearGameScreen();
                 return false; //for the bag 
                 // break;
             }
@@ -135,6 +136,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
                     messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!');
+                    clearGameScreen();
                     return true; //for the bag 
                 }
                 else{

@@ -236,7 +236,7 @@ function endGame(){
     deleteSave(getSavePath('save'));
     $gameWins = getDataFromSave('Game wins', getSavePath('myGame'));
     ++$gameWins;
-    $floorMaxReturn = ($gameWins*10) + 100 >= 140 ? 140 : ($gameWins*10) + 100;
+    $floorMaxReturn = ($gameWins*10) + 110 > 140 ? 141 : ($gameWins*10) + 100;
     setData($floorMaxReturn, 'IndexFloor Max', getSavePath('myGame'));
     setData($gameWins, 'Game wins', getSavePath('myGame'));
 }

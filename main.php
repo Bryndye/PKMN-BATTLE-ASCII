@@ -94,7 +94,7 @@ while(true){
         }
         waitForInput(getPosChoice());
 
-        if($IndexFloor == 95){
+        if($IndexFloor == 105){
             cinematicLeagueEnding($saveParty);
         }
         else if($IndexFloor > $IndexFloorMax){
