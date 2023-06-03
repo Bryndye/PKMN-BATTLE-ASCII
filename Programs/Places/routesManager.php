@@ -2,8 +2,8 @@
 //// FIND ROUTES AND GET ENCOUNTER ////////////////////////////////////////////////////////////////////////////
 
 function getRouteFromIndex($indexFloor, $onlyName = false) {
-    global $routes;
-    foreach ($routes as $route => $details) {
+    global $Routes;
+    foreach ($Routes as $route => $details) {
         $floors = $details['Floors'];
         if ($indexFloor >= $floors[0] && $indexFloor <= $floors[1]) {
             return $onlyName ? $route : $details;
