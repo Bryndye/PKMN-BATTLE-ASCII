@@ -133,7 +133,7 @@ function displayPkmnLeftMenu($pkmn, $catch = null){
     if(array_key_exists('Level', $pkmn)){
         justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
     }
-    textAreaLimited($pkmn['Name'],30,[3,5]);
+    textAreaLimited(ucfirst($pkmn['Name']),30,[3,5]);
     // debugLog($catch);
     if(!is_null($catch)){
         justifyText($catch, 20, [4,5], 'right');

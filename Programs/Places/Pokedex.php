@@ -106,7 +106,7 @@ function listPokedexRight($startKey, $exception = null){
     foreach($slice as $pkmn){
         $pokedexNumber = $pkmn['N Pokedex'];
         $pokedexNumberString = sprintf("%03d", $pokedexNumber);
-        $pokedexName = $pkmn['Name'];
+        $pokedexName = ucfirst($pkmn['Name']);
 
         $exceptionValue = $exception[$pokedexNumber] ?? null;
         $pointer = (!$pointerFlag ? ' <' : '');

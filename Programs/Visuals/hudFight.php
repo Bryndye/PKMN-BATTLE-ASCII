@@ -62,7 +62,7 @@ function drawPkmnInfoHUD($pos, $pkmn, $isJoueur = true){
     clearArea(getScaleHUDPkmn(),$pos);
     drawBox(getScaleHUDPkmn(),$pos,'|','-', true);
 
-    textArea($pkmn['Name'], [$pos[0]+1, $pos[1]+2]);
+    textArea(ucfirst($pkmn['Name']), [$pos[0]+1, $pos[1]+2]);
     $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : status($pkmn['Status']);
     textArea($displayLevel, [$pos[0]+1, $pos[1]+19]);
     textArea('<          >', [$pos[0]+2, $pos[1]+10]);

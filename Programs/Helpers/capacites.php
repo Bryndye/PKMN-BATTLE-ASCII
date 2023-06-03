@@ -109,11 +109,11 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         // Premiere boucle : vouloir apprendre la capacite ?
         $replace = false;
         while(!$replace){
-            messageBoiteDialogue($pkmn['Name'].' wants to learn '.$capacite['Name'].'.');
+            messageBoiteDialogue(ucfirst($pkmn['Name']).' wants to learn '.$capacite['Name'].'.');
             messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
             $choice = binaryChoice();
             if(!$choice){
-                messageBoiteDialogue($pkmn['Name']." didn't learned " .$capacite['Name'].'...');
+                messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .$capacite['Name'].'...');
                 return false; //for the bag 
                 // break;
             }
@@ -134,7 +134,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                 if($choice2){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
-                    messageBoiteDialogue($pkmn['Name'].' has learned ' .$capacite['Name'].'!');
+                    messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!');
                     return true; //for the bag 
                 }
                 else{
@@ -146,7 +146,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
     }
     else{
         array_push($pkmn['Capacites'], $capacite);
-        messageBoiteDialogue($pkmn['Name'].' has learned ' .$capacite['Name'].'!',-1);
+        messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!',-1);
         return true; //for the bag 
     }
 }

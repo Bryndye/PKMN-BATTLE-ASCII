@@ -111,12 +111,12 @@ function loopFight(&$joueur, &$pnj){
             break;
         }
     } 
-    if($pkmnTeamEnemy[0]['Stats']['Health'] == 0){
-        endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
-    }
-    elseif($var == 'captured'){
+    if($var == 'captured'){
         endPkmnCaptured($joueur, $pkmnTeamEnemy[0]);
         $pkmnTeamEnemy[0]['Stats']['Health'] = 0;
+    }
+    else if($pkmnTeamEnemy[0]['Stats']['Health'] == 0){
+        endPkmnDied($pkmnTeamJoueur,$pkmnTeamEnemy[0]);
     }
 }
 
@@ -231,7 +231,7 @@ function isActionBePriority($pkmn, $action){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
-    messageBoiteDialogue("You've fainted " . $pkmnE['Name'].'.');
+    messageBoiteDialogue("You've fainted " . ucfirst($pkmnE['Name']).'.');
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $firstPkmn = $i == 0;
         if(!isPkmnDead_simple($pkmnTeamJoueur[$i])){

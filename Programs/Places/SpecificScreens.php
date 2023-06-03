@@ -94,7 +94,7 @@ function drawStatsFromSaveToMenu(){
             
             $y = 0;
             foreach($saveFight['Team'] as $key => $pkmn){
-                textArea($pkmn['Name']."  Lv: ".$pkmn['Level'], [16+$y,30]);
+                textArea(ucfirst($pkmn['Name'])."  Lv: ".$pkmn['Level'], [16+$y,30]);
                 $y +=1;
             }
         }
@@ -181,9 +181,9 @@ function cinematicLeagueEnding(&$save){
         drawSprite(getSprites($pkmn['Sprite']), [3,18]);
         drawBox([4,20],[20,20]);
 
-        justifyText($pkmn['Name'], 20, [21,20], 'center');
+        justifyText(ucfirst($pkmn['Name']), 20, [21,20], 'center');
         justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
-        messageBoiteDialogue('Bravo to '.$pkmn['Name'].'!');
+        messageBoiteDialogue('Bravo to '.ucfirst($pkmn['Name']).'!');
 
         waitForInput([31,0]);
         clearSprite([3,18]);
@@ -210,9 +210,9 @@ function cinematicEnding(&$save){
         drawSprite(getSprites($pkmn['Sprite']), [3,18]);
         drawBox([4,20],[20,20]);
 
-        justifyText($pkmn['Name'], 20, [21,20], 'center');
+        justifyText(ucfirst($pkmn['Name']), 20, [21,20], 'center');
         justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
-        messageBoiteDialogue('Bravo to '.$pkmn['Name'].'!');
+        messageBoiteDialogue('Bravo to '.ucfirst($pkmn['Name']).'!');
 
         waitForInput([31,0]);
         clearSprite([3,18]);

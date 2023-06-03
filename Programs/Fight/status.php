@@ -10,7 +10,7 @@ function ailmentChanceOnPkmn(&$capacite, &$pkmn, $isStatusCap = false){
 
     if(hasStatus($pkmn)){
         if($isStatus){
-            messageBoiteDialogue($pkmn['Name'].' already has an ailment.',1);
+            messageBoiteDialogue(ucfirst($pkmn['Name']).' already has an ailment.',1);
         }
         return;
     }
@@ -19,14 +19,14 @@ function ailmentChanceOnPkmn(&$capacite, &$pkmn, $isStatusCap = false){
 
     if($isStatus || $isRandomAilment){
         if(hasStatus($pkmn)){
-            messageBoiteDialogue($pkmn['Name'].' already has an ailment.',1);
+            messageBoiteDialogue(ucfirst($pkmn['Name']).' already has an ailment.',1);
             return;
         }
         if($ailment['ailment'] == 'poison'){ // reset stat temp damage per turn
             $pkmn['Stats Temp']['poisonned'] = 0;
         }
         $pkmn['Status'] = $ailment['ailment'];
-        messageBoiteDialogue($pkmn['Name'].' get '. $ailment['ailment'].'!',1);
+        messageBoiteDialogue(ucfirst($pkmn['Name']).' get '. $ailment['ailment'].'!',1);
     }
     elseif($isStatusCap){
         messageBoiteDialogue('But it failed');
@@ -52,10 +52,10 @@ function ailmentStartTurnEffect(&$pkmn){
         $isAilment = rand(0, 100) < $ailments[$ailment]['chance'];
 
         if ($isAilment) {
-            messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['message'],1);
+            messageBoiteDialogue(ucfirst($pkmn['Name']) . ' ' . $ailments[$ailment]['message'],1);
             return true;
         } elseif (isset($ailments[$ailment]['recover_message'])) {
-            messageBoiteDialogue($pkmn['Name'] . ' ' . $ailments[$ailment]['recover_message'],1);
+            messageBoiteDialogue(ucfirst($pkmn['Name']) . ' ' . $ailments[$ailment]['recover_message'],1);
             $pkmn['Status'] = null;
         }
     }
@@ -145,7 +145,7 @@ function damageTurn(&$pkmn, $isJoueur){
             $pkmn['Stats Temp']['poisonned'] += getStatusEffect($pkmn['Status'], 'battle');
             takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * $pkmn['Stats Temp']['poisonned']), $isJoueur);
         }
-        messageBoiteDialogue($pkmn['Name'] . ' takes damage from its status!',1);
+        messageBoiteDialogue(ucfirst($pkmn['Name']) . ' takes damage from its status!',1);
         updateHealthPkmn($pkmn['Stats']['Health'], $pkmn['Stats']['Health Max'], $isJoueur);
         sleep(1);
         isPkmnDead($pkmn, $isJoueur);

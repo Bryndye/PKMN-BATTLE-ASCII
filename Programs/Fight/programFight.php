@@ -270,7 +270,7 @@ function resetAllStatsTempToPkmn(&$pkmn){
             'Used' => false
         ]
     ];
-    messageBoiteDialogue($pkmn['Name'] . ' reset all changes.',1);
+    messageBoiteDialogue(ucfirst($pkmn['Name']) . ' reset all changes.',1);
 }
 
 function getHits($minHits, $maxHits) {
@@ -288,7 +288,7 @@ function getHits($minHits, $maxHits) {
 function takeDamagePkmn(&$pkmn, $damage, $isJoueur){
     animationTakeDamage($pkmn, $isJoueur);
     if($damage < 0){
-        messageBoiteDialogue($pkmn['Name'] . ' drains ' . -$damage . ' Hp.',1);
+        messageBoiteDialogue(ucfirst($pkmn['Name']) . ' drains ' . -$damage . ' Hp.',1);
     }
 
     $pkmn['Stats']['Health'] -= $damage;
@@ -322,7 +322,7 @@ function animatePkmnKo($pkmn, $isJoueur){
     $scaleClear = getScaleSpritePkmn();
     clearArea($scaleClear,$posClearSprite);
 
-    messageBoiteDialogue($pkmn['Name'] . ' is K.O.',1);
+    messageBoiteDialogue(ucfirst($pkmn['Name']) . ' is K.O.',1);
 }
 
 function isTeamPkmnAlive($teamPkmn){
