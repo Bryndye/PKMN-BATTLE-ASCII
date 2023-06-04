@@ -40,7 +40,10 @@ $typeEffectiveness = [
         'fire' => 0.5,
         'fighting' => 0.5,
         'poison' => 0.5,
-        'flying' => 0.5
+        'flying' => 0.5,
+        'ghost' =>0.5,
+        'steel' =>0.5,
+        'fairy' =>0.5
     ],
     'grass' => [
         'fire' => 0.5,
@@ -74,7 +77,8 @@ $typeEffectiveness = [
         'rock' => 2,
         'ghost' => 0,
         'dark' => 2,
-        'fairy' => 0.5
+        'fairy' => 0.5,
+        'steel' => 2
     ],
     'poison' => [
         'grass' => 2,
@@ -98,39 +102,58 @@ $typeEffectiveness = [
     'flying' => [
         'electric' => 0.5,
         'grass' => 2,
-        'bug' => 2
+        'fighting' => 2,
+        'bug' => 2,
+        'rock' => 0.5,
+        'steel' => 0.5
     ],
     'psychic' => [
         'fighting' => 2,
         'poison' => 2,
         'bug' => 0.5,
-        'dark' => 0
+        'dark' => 0,
+        'steel' =>0.5
     ],
     'ghost' => [
         'psychic' => 2,
         'normal' => 0,
-        'bug' => 2
+        'ghost' => 2,
+        'dark' => 0.5
     ],
     'fairy' => [
         'steel' => 0.5,
-        'dragon' => 2
+        'dragon' => 2,
+        'grass' => 0.5,
+        'poison' => 0.5,
+        'dark' => 2,
     ],
     'dark' => [
         'psychic' => 2,
         'ghost' => 2,
-        'bug' => 0.5
+        'bug' => 0.5,
+        'fighting' => 0.5,
+        'dark' => 0.5,
     ],
     'steel' =>[
         'rock' => 2,
         'steel' => 0.5,
         'fire' => 0.5,
-        'water' => 0.5,
+        'rock' => 2,
+        'grass' => 0.5,
         'electric' => 0.5
     ],
     'dragon' => [
         'steel' => 0.5,
         'fairy' => 0,
         'dragon' => 2
+    ],
+    'rock' => [
+        'fighting' => 0.5,
+        'ground' => 0.5,
+        'steel' => 0.5,
+        'flying' => 2,
+        'bug' => 2,
+        'ice' => 2
     ]
 ]; 
 // Function to check type matchup

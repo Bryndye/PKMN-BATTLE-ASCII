@@ -95,6 +95,7 @@ function createPartySave(){
     $datasPartySave['Team'] = $var[0];
     if(isPkmnAlreadyCatch('mew')){
         array_push($datasPartySave['Team'], generatePkmnBattle('mew',5));
+        messageBoiteDialogue("You've discovered Mew, so I've decided you can have it.",-1);
     }
     $json = json_encode($datasPartySave);
     file_put_contents(getSavePath('save'), $json);

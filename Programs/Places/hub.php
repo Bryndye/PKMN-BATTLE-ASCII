@@ -69,15 +69,15 @@ function drawNextFloor($pos){
     $currentRoute = getRouteFromIndex($saveFight['IndexFloor'],true);
     $pnj = checkPNJExist($saveFight['IndexFloor']);
     if(!is_null($currentRoute)){
-        textArea('Route : '.$currentRoute, [$posY+4,$posX+2]);
+        textArea('Route : '.$currentRoute, [$posY+4,$posX+2],26);
 
         if(!is_null($pnj)){
-            textArea('Trainer : '.$pnj['Name'], [$posY+6,$posX+2], 26);
+            textArea('Trainer : '.ucfirst($pnj['Name']), [$posY+6,$posX+2], 26);
         }
     }
     else{
         if(!is_null($pnj)){
-            textArea('Trainer : '.$pnj['Name'], [$posY+4,$posX+2], 26);
+            textArea('Trainer : '.ucfirst($pnj['Name']), [$posY+4,$posX+2], 26);
         }
     }
 }

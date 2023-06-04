@@ -71,14 +71,6 @@
 		"price" : "2000",
 		"indexFloor" : 10
 	},
-	"Metal-claw":
-	{
-		"name":"Metal-claw",
-		"type": "TMs",
-		"effect": "capacity",
-		"price" : "500",
-		"indexFloor" : 10
-	},
     "Surf":
 	{
 		"name":"Surf",
@@ -101,7 +93,47 @@
 		"type": "TMs",
 		"effect": "capacity",
 		"price" : "3000",
+		"indexFloor" : 40
+	},
+	"Thunderbolt":
+	{
+		"name":"Thunderbolt",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "3000",
 		"indexFloor" : 30
+	},
+	"Psychic":
+	{
+		"name":"Psychic",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "3000",
+		"indexFloor" : 55
+	},
+	"Earthquake":
+	{
+		"name":"Earthquake",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "3000",
+		"indexFloor" : 60
+	},
+	"Shadow-ball":
+	{
+		"name":"Shadow-ball",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "3000",
+		"indexFloor" : 50
+	},
+	"Swords-dance":
+	{
+		"name":"Swords-dance",
+		"type": "TMs",
+		"effect": "capacity",
+		"price" : "3000",
+		"indexFloor" : 20
 	},
 	"Replace":
 	{
@@ -125,7 +157,7 @@
 		"type": "Items",
 		"effect": "evolution",
 		"price" : "3000",
-		"indexFloor" : 40
+		"indexFloor" : 20
 	},
     "Thunderstone":
 	{
@@ -133,6 +165,22 @@
 		"type": "Items",
 		"effect": "evolution",
 		"price" : "3000",
-		"indexFloor" : 40
+		"indexFloor" : 30
+	},
+	"Leafstone":
+	{
+		"name":"Leafstone",
+		"type": "Items",
+		"effect": "evolution",
+		"price" : "3000",
+		"indexFloor" : 45
+	},
+	"Moonstone":
+	{
+		"name":"Moonstone",
+		"type": "Items",
+		"effect": "evolution",
+		"price" : "1500",
+		"indexFloor" : 15
 	}
 }

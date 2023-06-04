@@ -285,7 +285,7 @@
           "level": 8
         },
         {
-          "name": "dragon-rage",
+          "name": "metal-claw",
           "level": 12
         },
         {
@@ -1500,7 +1500,7 @@
         "before": "",
         "after": {
           "Name": "raichu",
-          "min level": 30,
+          "item": "Thunderstone",
           "stade": 2
         }
       },
@@ -1898,7 +1898,7 @@
         "before": "",
         "after": {
           "Name": "nidoqueen",
-          "min level": 36,
+          "item": "Moonstone",
           "stade": 3
         }
       },
@@ -2152,7 +2152,7 @@
         "before": "",
         "after": {
           "Name": "nidoking",
-          "min level": 36,
+          "item": "Moonstone",
           "stade": 3
         }
       },
@@ -2318,7 +2318,11 @@
       },
       "evolution": {
         "before": "",
-        "after": ""
+        "after": {
+          "Name": "clefable",
+          "item": "Moonstone",
+          "stade": 2
+        }      
       },
       "Sprite": "standard2",
       "capacites": [
@@ -2476,7 +2480,7 @@
         "before": "",
         "after": {
           "Name": "ninetales",
-          "min level": 16,
+          "item": "Firestone",
           "stade": 2
         }
       },
@@ -2594,8 +2598,11 @@
       },
       "evolution": {
         "before": "",
-        "after": ""
-      },
+        "after": {
+          "Name": "wigglytuff",
+          "item": "Moonstone",
+          "stade": 2
+        }      },
       "Sprite": "standard3",
       "capacites": [
         {
@@ -2872,7 +2879,7 @@
         "before": "",
         "after": {
           "Name": "gloom",
-          "min level": 21,
+          "min level": "Leafstone",
           "stade": 2
         }
       },
@@ -3950,7 +3957,7 @@
         "before": "",
         "after": {
           "Name": "arcanine",
-          "min level": 16,
+          "item": "Firestone",
           "stade": 2
         }
       },
@@ -4160,7 +4167,7 @@
         "before": "",
         "after": {
           "Name": "poliwrath",
-          "min level": 36,
+          "item": "Waterstone",
           "stade": 3
         }
       },
@@ -4846,7 +4853,7 @@
         "before": "",
         "after": {
           "Name": "victreebel",
-          "min level": 36,
+          "item": "Leafstone",
           "stade": 3
         }
       },
@@ -6298,7 +6305,7 @@
         "before": "",
         "after": {
           "Name": "cloyster",
-          "min level": 16,
+          "item": "Waterstone",
           "stade": 2
         }
       },
@@ -6446,7 +6453,7 @@
           "stade": 2
         }
       },
-      "Sprite": "standard",
+      "Sprite": "gastly",
       "capacites": [
         {
           "name": "lick",
@@ -6512,7 +6519,7 @@
           "stade": 3
         }
       },
-      "Sprite": "standard2",
+      "Sprite": "haunter",
       "capacites": [
         {
           "name": "lick",
@@ -6574,7 +6581,7 @@
         "before": "",
         "after": ""
       },
-      "Sprite": "standard3",
+      "Sprite": "gengar",
       "capacites": [
         {
           "name": "lick",
@@ -7118,7 +7125,7 @@
         "before": "",
         "after": {
           "Name": "exeggutor",
-          "min level": 16,
+          "item": "Leafstone",
           "stade": 2
         }
       },
@@ -8386,7 +8393,7 @@
         "before": "",
         "after": {
           "Name": "starmie",
-          "min level": 16,
+          "item": "Waterstone",
           "stade": 2
         }
       },

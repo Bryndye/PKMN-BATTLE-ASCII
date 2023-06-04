@@ -155,7 +155,7 @@ function cinematicPresentation(){
     sleep(1);
     drawSprite(getSprites("Pikachu"), $posSprite);
     messageBoiteDialogue("Here's Pikachu!", -1);
-    messageBoiteDialogue("He's an electric type. You can meet him later on your journey.", -1);
+    messageBoiteDialogue("He's an electric type. You'll need Pokemons to do Pokemon battles. You can meet him later on your journey.", -1);
     clearSprite($posSprite);
     drawSprite(getSprites('trainer'), $posSprite);
     messageBoiteDialogue("By the way, what is your name?", -1);
@@ -164,11 +164,13 @@ function cinematicPresentation(){
     saveMainManager();
     $save = getSave(getSavePath('myGame'));
     messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", -1);
-    messageBoiteDialogue("But this time, it will be different. You have 100 battles to win.", -1);
-    messageBoiteDialogue("You loose, you restart by choosing your 'first' Pokemon.", -1);
-    messageBoiteDialogue("Between your battles, you can heal your pokemon, buy items and rest", -1);
-    messageBoiteDialogue("Careful with captures! You can't stock Pokemons like before. If you capture one, you have to replace one from your team.", -1);
+    messageBoiteDialogue("But this time, it will be different. You have ".getIndexFloorMaxOriginal()." battles to win.", -1);
+    messageBoiteDialogue("You loose, you restart. Everytime you can choose a new starter Pokemon.", -1);
+    messageBoiteDialogue("You can still buy items that can help you on your journey, but be careful with your money!", -1);
+    messageBoiteDialogue("Capture Pokemons to grow up your team! You can only stock 6 Pokemons with you. If you capture one, you must replace it with a member of your team.", -1);
     messageBoiteDialogue("Do you see the difference? Of course you do!", -1);
+    messageBoiteDialogue("I almost forgot! Here's a Pokedex that might help. When you see a Pokemon, It records Pokemon data .", -1);
+    messageBoiteDialogue("And id you see my nephew, tell him his grandfather's looking for him.", -1);
     messageBoiteDialogue("So, you are ready. Good luck!", -1);
 }
 
@@ -236,7 +238,7 @@ function endGame(){
     deleteSave(getSavePath('save'));
     $gameWins = getDataFromSave('Game wins', getSavePath('myGame'));
     ++$gameWins;
-    $floorMaxReturn = ($gameWins*10) + 110 > 140 ? 141 : ($gameWins*10) + 100;
+    $floorMaxReturn = ($gameWins*10) + getIndexFloorMaxOriginal() > 140 ? 141 : ($gameWins*10) + getIndexFloorMaxOriginal();
     setData($floorMaxReturn, 'IndexFloor Max', getSavePath('myGame'));
     setData($gameWins, 'Game wins', getSavePath('myGame'));
 }

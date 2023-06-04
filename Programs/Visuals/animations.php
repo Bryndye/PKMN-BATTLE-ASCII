@@ -151,12 +151,13 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
     // Set animation enemy if exist
     $isArray = is_array($spriteEnemy);
     // debugLog(getSprites($spriteEnemy[0]));
-    $spriteTranslateEnemy = $isArray ? getSprites($spriteEnemy[0]) : getSprites($spriteEnemy);
+    $spriteTranslateEnemyStart = $isArray ? getSprites($spriteEnemy[0]) : getSprites($spriteEnemy);
+    $spriteTranslateEnemyEnd = $isArray ? getSprites($spriteEnemy[count($spriteEnemy)-1]) : getSprites($spriteEnemy);
 
     $distance = $screenScale[1]-1-getScaleSpritePkmn()[1];
 
     for($i=0;$i<$distance;++$i){
-        drawSprite($spriteTranslateEnemy, [$posEnemy[0], 2+$i]);
+        drawSprite($spriteTranslateEnemyStart, [$posEnemy[0], 2+$i]);
         drawSprite($spriteJoueur, [$posJoueur[0], $screenScale[1]-$i-getScaleSpritePkmn()[1]]);
         usleep(1000);
         clearGameplayScreen();
@@ -164,7 +165,7 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
 
     if($isArray){
         $y = 0;
-        for($i=0;$i<count($spriteEnemy)*2;++$i){
+        for($i=0;$i<count($spriteEnemy);++$i){
             clearSpritePkmn(false);
             drawSprite(getSprites($spriteEnemy[$y]),getPosSpritePkmn(false));
             ++$y;
@@ -175,7 +176,7 @@ function animationCharactersEnterBattle($spriteJoueur, $spriteEnemy){
         }
     }
     drawSprite($spriteJoueur, getPosSpritePkmn(true));
-    drawSprite($spriteTranslateEnemy, getPosSpritePkmn(false));
+    drawSprite($spriteTranslateEnemyEnd, getPosSpritePkmn(false));
 }
 
 function animationAttack($pkmn, $isJoueur){

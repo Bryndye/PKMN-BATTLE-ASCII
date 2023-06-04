@@ -513,11 +513,11 @@ $Routes = [
                 'rate' => 25
             ],
             'weepinbell' => [
-                'level' => [28,30],
+                'level' => [33,36],
                 'rate' => 20
             ],
             'tentacool' => [
-                'level' => [28,32],
+                'level' => [33,36],
                 'rate' => 25
             ],
             'ponyta' => [
@@ -995,9 +995,9 @@ function generateIAs(){
         15 =>  createTrainer('Blue', 
             'rival',
             [
-                'entrance' => "You? Again?",
+                'entrance' => "My grandfather has something to tell me? After the fight!",
                 'end' => [
-                    "Tsss! Out of my sight!"
+                    "What?! I have a dream, let me to be the next Champion!"
                 ]
             ],
             2000,
@@ -1150,12 +1150,12 @@ function generateIAs(){
         55 =>  createTrainer('Blue', 
             'rival',
             [
-            'entrance' => "You? Again?",
+            'entrance' => "I almost destroyed the entire Team Rocket base, and you? What did you do?",
             'end' => [
-                "Tsss! Out of my sight!"
+                "Tsss! How can you be so strong and do nothing to help people..."
                 ]
             ],
-            4000,
+            5000,
             [],
             [
                 generatePkmnBattle('pidgeot', 36),
@@ -1191,9 +1191,9 @@ function generateIAs(){
         65 =>  createTrainer('Blue', 
             'rival',
             [
-                'entrance' => "You? Again?",
+                'entrance' => "Team Rocket is out! I think you don't know huh?",
                 'end' => [
-                    "Tsss! Out of my sight!"
+                    "Never mind if i loose. My dream is stronger than you!"
                 ]
             ],
             4000,
@@ -1335,20 +1335,21 @@ function generateIAs(){
                 getItemObject('Revive',5),
             ],            
             [
-                generatePkmnBattle('gyarados', 58,0, ['dragon-rage', 'slam','thunder','hyper-beam']),
-                generatePkmnBattle('dragonair', 56,0,['dragon-rage','slam','hyper-beam']),
-                generatePkmnBattle('dragonair', 56,0,['dragon-rage','slam','sludge-bomb','solar-beam']),
-                generatePkmnBattle('aerodactyl', 60,0,['bite','take-down','surf','take-down']),
-                generatePkmnBattle('dragonite', 62,0,['hyper-beam','earthquake','thunder','trash']),
+                generatePkmnBattle('gyarados', 58,0, ['outrage', 'dragon-dance','thunder','hyper-beam']),
+                generatePkmnBattle('dragonair', 56,0,['outrage','slam','hyper-beam','dragon-dance','dragon-dance']),
+                generatePkmnBattle('dragonair', 56,0,['outrage','slam','sludge-bomb','solar-beam']),
+                generatePkmnBattle('aerodactyl', 58,0,['bite','take-down','surf','rock-slide']),
+                generatePkmnBattle('dragonite', 60,0,['hyper-beam','earthquake','outrage','trash']),
             ],
             1,'Elite Four'
         ),
         104 =>  createTrainer('Champion Blue', 
             'rival',
             [
-                'entrance' => "What?! You here?! Anyway, you will lose!",
+                'entrance' => "What?! You here?! How?!",
                 'end' => [
                     "How?! Impossible!",
+                    "You destroy my dream! I've just become Champion...",
                 ]
             ],
             10000,
@@ -1357,7 +1358,7 @@ function generateIAs(){
                 getItemObject('Revive',5),
             ],            
             [
-                generatePkmnBattle('pidgeot', 56,0, ['quick-attack', 'wing-attack','growl','hyper-beam']),
+                generatePkmnBattle('pidgeot', 56,0, ['quick-attack', 'wing-attack','fly','hyper-beam']),
                 generatePkmnBattle('exeggutor', 58,0,['egg-bomb','slam','psychic','solar-beam']),
                 generatePkmnBattle('arcanine', 56,0,['hyper-beam','flamethrower','swift','growl']),
                 generatePkmnBattle('gyarados', 58,0, ['hydro-pump', 'gust','thunder','hyper-beam']),
@@ -1397,7 +1398,7 @@ function generateIAs(){
             1,'Champion'
         ),
         130 =>  createTrainer('Champion Red', 
-            'trainer',
+            ['red','red2','red3','red4'],
             [
                 'entrance' => "...",
                 'end' => "..."

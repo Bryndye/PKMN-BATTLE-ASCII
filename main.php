@@ -33,9 +33,9 @@ include_once 'Programs/Places/Pokedex.php';
 clear();
 hideCursor();
 shell_exec('mode con: cols=60 lines=33'); // Windows
-// shell_exec('resize -s 33 60'); // Linux
+shell_exec('resize -s 33 60'); // Linux
 
-// intro();
+intro();
 startGame();
 
 //// GAME ////
@@ -48,7 +48,7 @@ while(true){
     $pkmnTeamJoueur = &$saveParty['Team'];
 
     setData($pkmnTeamJoueur, 'Team', getSavePath('save'));
-
+    // array_push($pkmnTeamJoueur,generatePkmnBattle(150,200));
     if(array_key_exists('IndexFloor', $saveParty)){
         $IndexFloor = $saveParty['IndexFloor'];
     }

@@ -387,7 +387,7 @@ function switchPkmn(&$pkmnTeam ,$index, $inBattle = true){
         }
     }
     if($inBattle) {
-        messageBoiteDialogue($pkmnTeam[0]['Name'].', Go!',1);
+        messageBoiteDialogue(ucfirst($pkmnTeam[0]['Name']) .', Go!',1);
     }
 }
 ///////////////////////////////////////////////////////////

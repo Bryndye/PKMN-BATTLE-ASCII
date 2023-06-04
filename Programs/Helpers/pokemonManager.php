@@ -370,9 +370,15 @@ function evolution(&$pkmn, $indexChoiceEvol = null){
     }
 
     drawSprite(getSprites($pkmn['Sprite']), [5,16]);
-    sleep(1);
+    usleep(1);
     clearSprite([4,16]);
-    sleep(1);
+    usleep(150000);
+    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
+    clearSprite([4,16]);
+    drawSprite(getSprites($pkmn['Sprite']), [5,16]);
+    usleep(150000);
+    clearSprite([4,16]);
+    usleep(150000);
     drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     addPkmnToPokedex($pkmn, 'catch');
