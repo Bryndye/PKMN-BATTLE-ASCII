@@ -82,8 +82,11 @@ function drawStatsFromSaveToMenu(){
         textArea('Name : '.$save['name'], [5,30]);
         textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
         textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
-        $floorMaxReached = getDataFromSave('Record IndexFloor', getSavePath('myGame')) ?? 0;
-        textArea('Floor reached Max : '.$floorMaxReached, [9,30]);
+
+        // if(isSaveExist(getSavePath('myGame'))){
+        //     $floorMaxReached = getDataFromSave('Record IndexFloor', getSavePath('myGame')) ?? 0;
+        //     textArea('Floor reached Max : '.$floorMaxReached, [9,30]);
+        // }
         textArea('Win Count : '.$save['Game wins'], [10,30]);
 
         if(isSaveExist(getSavePath('save'))){
@@ -128,6 +131,8 @@ function chooseFirstPokemon(){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// FIRST TIME IN GAME //////////////////////////////////////////////////////////////////////
 function startGame(){
+    // debugLog(getSavePath('myGame'));
+    // debugLog(isSaveExist(getSavePath('myGame')));
     if(!isSaveExist(getSavePath('myGame'))){
         cinematicPresentation();
     }

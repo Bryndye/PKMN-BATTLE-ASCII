@@ -153,7 +153,10 @@ function getSave($path){
 }
 
 function getDataFromSave($key, $path){
-    $path = isPathNull($path);
+    // $path = isPathNull($path);
+    if(!file_exists(getFolderSave())){
+        return null;
+    }
     $file = file_get_contents($path);
     $array = json_decode($file, true);
     if(!array_key_exists($key, $array)){
@@ -163,12 +166,14 @@ function getDataFromSave($key, $path){
 }
 
 function deleteSave($path){
-    $path = isPathNull($path);
+    // $path = isPathNull($path);
     unlink($path);
 }
 
 function isSaveExist($path){
-    $path = isPathNull($path);
+    if(!file_exists(getFolderSave(getParameterPathSave()))){
+        return false;
+    }
     if(file_exists($path)){
         return true;
     }
