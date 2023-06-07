@@ -7,7 +7,7 @@ function intro(){
     $height = Parameters::getScreenScale();
     for ($i = 0; $i < $height[0]-2; $i++) {
          Display::clearGameScreen();
-        // Display::drawFullBox([1,1],[$i,2*$i+4]);
+
         if($i != ($height[0]-1) && $i > 1){
             Display::drawFullBox([3,3],[$i,2*$i]);
         }
@@ -82,11 +82,6 @@ function drawStatsFromSaveToMenu(){
         Display::textArea('Name : '.$save['name'], [5,30]);
         Display::textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
         Display::textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
-
-        // if(isSaveExist(Parameters::getSavePath('myGame'))){
-        //     $floorMaxReached = getDataFromSave('Record IndexFloor', Parameters::getSavePath('myGame')) ?? 0;
-        //     Display::textArea('Floor reached Max : '.$floorMaxReached, [9,30]);
-        // }
         Display::textArea('Win Count : '.$save['Game wins'], [10,30]);
 
         if(isSaveExist(Parameters::getSavePath('save'))){
@@ -209,7 +204,7 @@ function cinematicLeagueEnding(&$save){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// ENDING //////////////////////////////////////////////////////////////////////
 function cinematicEnding(&$save){
-     Display::clearGameScreen();
+    Display::clearGameScreen();
     Display_Game::messageBoiteDialogue('Congratulations! You beat the game!', -1);
     $name = getDataFromSave('name', Parameters::getSavePath('myGame'));
     $win = getDataFromSave('Game wins', Parameters::getSavePath('myGame'));
@@ -225,7 +220,7 @@ function cinematicEnding(&$save){
         waitForInput([31,0]);
         Display::clearSprite([3,18]);
     }
-     Display::clearGameScreen();
+    Display::clearGameScreen();
     Display::drawSprite(getSprites('trainer'), [6,18]);
     Display_Game::messageBoiteDialogue('Bravo '.$name.' and your team to defeat the game!', -1);
     if($win == 0){
