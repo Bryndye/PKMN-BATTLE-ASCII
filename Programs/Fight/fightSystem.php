@@ -4,14 +4,14 @@ include_once 'Programs/Fight/programFight.php';
 include_once 'Programs/Fight/status.php';
 // Animations de lancement de combat
 function startFight(&$joueur, &$pnj){
-    drawSkeletonHUD();
+    Display_Game::drawSkeletonHUD();
     $pkmnTeamEnemy = &$pnj['Team'];
     $pkmnTeamJoueur = &$joueur['Team'];
 
     // animation entrer dresseurs
     drawBoiteDialogue();
     
-    animationCharactersEnterBattle(getSprites('trainerBack'),$pnj['Sprite']);
+    Animations::charactersenterBattle(getSprites('trainerBack'),$pnj['Sprite']);
 
     messageBoiteDialogue($pnj['Dialogues']['entrance'], -1); // message trainer 
     messageBoiteDialogue(ucfirst($pnj['Name']).' wants to fight!',-1); // message trainer 
@@ -19,11 +19,11 @@ function startFight(&$joueur, &$pnj){
     // animation pokeball
     if($pnj['type'] == 'trainer'){
         messageBoiteDialogue(ucfirst($pkmnTeamEnemy[0]['Name']).', Go!',1);
-        animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
+        Animations::pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
     messageBoiteDialogue(ucfirst($pkmnTeamJoueur[0]['Name']).', Go!',1);
-    animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+    Animations::pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
 
     gameplayLoop($joueur, $pnj);
@@ -38,16 +38,16 @@ function gameplayLoop(&$joueur, &$pnj){
         // selectionne un pkmn si currentPkmn = vide (enemy ou joueur)
         if(isPkmnDead_simple($pkmnTeamEnemy[0])){
             choosePkmn($pkmnTeamEnemy);
-            animationPkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
+            Animations::pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn j
             usleep(150000);
         }
         if(isPkmnDead_simple($pkmnTeamJoueur[0])){
             $choice2 = selectPkmn($pkmnTeamJoueur, 0, false);
             switchPkmn($pkmnTeamJoueur ,$choice2);
-            clearGameScreen();
+             Display::clearGameScreen();
             drawBoiteDialogue();
-            drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
-            animationPkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
+            Display_Fight::drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
+            Animations::pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
         addPkmnToPokedex($pkmnTeamEnemy[0], 'see');
         // lance le combat quand les pkmns sont en combat
@@ -65,34 +65,34 @@ function loopFight(&$joueur, &$pnj){
     $pkmnTeamJoueur = &$joueur['Team'];
     while(!isPkmnDead_simple($pkmnTeamJoueur[0]) && !isPkmnDead_simple($pkmnTeamEnemy[0])){
 
-        drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
-        interfaceMenu();
+        Display_Fight::drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+        Display_Fight::interfaceMenu();
 
         // init var choice of Player
-        $choice = waitForInput(getPosChoice(),[1,2,3]);
+        $choice = waitForInput(Parameters::getPosChoice(),[1,2,3]);
 
         $actionJoueur = null;
         if($choice == 1){
-            interfaceCapacities($pkmnTeamJoueur[0]['Capacites']);
+            Display_Fight::interfaceCapacities($pkmnTeamJoueur[0]['Capacites']);
             $arrayChoise2 = [leaveInputMenu()];
             for($i=0;$i<4;++$i){
                 if(isset($pkmnTeamJoueur[0]['Capacites'][$i]['Name']) && $pkmnTeamJoueur[0]['Capacites'][$i]['PP'] > 0){
                     array_push($arrayChoise2, $i+1);
                 }
             }
-            $choice2 = waitForInput(getPosChoice(), $arrayChoise2); 
+            $choice2 = waitForInput(Parameters::getPosChoice(), $arrayChoise2); 
             $choice2 = is_numeric($choice2) ? $choice2-1 : $choice2;// -1 cause of choices +1 for players
         }
         elseif($choice == 2){
             $choice2 = selectPkmn($pkmnTeamJoueur,0, false);
             if($choice2 != leaveInputMenu()){           
-                drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+                Display_Fight::drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
             }
         }
         elseif($choice == 3){
             $choice2 = enterIntoBag($joueur, $pnj['type']);
             // si item type == capture, jouer autre fonction
-            drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
+            Display_Fight::drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy);
         }
         $actionJoueur = "$choice $choice2";
 
@@ -188,13 +188,13 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
         }
         elseif($action['choice'][0] == '2'){
             resetTeamStatsTemp($action['teamAtk']);
-            drawPkmnAllBattleHUD($action['teamDef'], !$action['isjoueur']);
+            Display_Fight::drawPkmnAllBattleHUD($action['teamDef'], !$action['isjoueur']);
             switchPkmn($action['teamAtk'], $action['choice'][1]);
-            clearPkmnHUD($action['isjoueur']);
-            animationPkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn de laction
+            Display_Fight::clearPkmnHUD($action['isjoueur']);
+            Animations::pkmnAppearinBattle($action['isjoueur'], $action['teamAtk'][0]);// faire apparaitre pkmn de laction
             
             usleep(250000);
-            drawPkmnAllBattleHUD($action['teamAtk'], $action['isjoueur']);
+            Display_Fight::drawPkmnAllBattleHUD($action['teamAtk'], $action['isjoueur']);
         }
         elseif($action['choice'][0] == '3'){
             if($action['Bag'][$action['choice'][1]]['type'] == 'PokeBalls'){
@@ -207,7 +207,7 @@ function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$
             else{
                 useItem($action['Bag'], $action['Bag'][$action['choice'][1]], $action['teamAtk'][$action['choice'][2]]);
             }
-            drawPkmnAllBattleHUD($action['teamAtk'], $action['isjoueur']);
+            Display_Fight::drawPkmnAllBattleHUD($action['teamAtk'], $action['isjoueur']);
         }
     }
     if(!isPkmnDead_simple($pkmnTeamJoueur[0])){
@@ -264,20 +264,20 @@ function endBattle(&$joueur, $pnj){
     else{
         if($pnj['type'] == 'trainer'){
             $spriteEnemy = is_array($pnj['Sprite']) ? $pnj['Sprite'][0] : $pnj['Sprite'];
-            drawSprite(getSprites($spriteEnemy), getPosSpritePkmn(false));
+            Display::drawSprite(getSprites($spriteEnemy), Parameters::getPosSpritePkmn(false));
         }
         if(isset($pnj['Dialogues']['end'])){
-            // debugLog($pnj['Dialogues']['end']);
+            // CustomFunctions::debugLog($pnj['Dialogues']['end']);
             if(is_array($pnj['Dialogues']['end'])){
                 foreach($pnj['Dialogues']['end'] as $message){
                     if(!is_null($message)){
-                                    // debugLog('1');
+                                    // CustomFunctions::debugLog('1');
                         messageBoiteDialogue($message,-1);
                     }
                 }
             }
             elseif(isset($pnj['Dialogues']['end'])){
-                // debugLog('2');
+                // CustomFunctions::debugLog('2');
                 messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
         }

@@ -6,7 +6,7 @@ function enterIntoBag(&$save, $type = 'hub'){
     $indexCategory = 0;
     $currentIndexItemTEMP = 0;
     while(true){
-        clearGameScreen();
+         Display::clearGameScreen();
         
         // Set interface depends on category of items
         if($type == 'wild'){
@@ -16,14 +16,14 @@ function enterIntoBag(&$save, $type = 'hub'){
             $categories = ['Heals'];
         }
         elseif($type == 'hub'){
-            $categories = getAllCategoriesItem();
+            $categories = Parameters::getAllCategoriesItem();
         }
 
         // Create list depends on category selected
         $currentListItemTEMP = [];
         foreach($allItemsBag as $key => &$item){
-            // debugLog($categories[$indexCategory]);
-            if($item['type'] == getCategoryName($categories, $indexCategory)){
+            // CustomFunctions::debugLog($categories[$indexCategory]);
+            if($item['type'] == Parameters::getCategoryName($categories, $indexCategory)){
                 array_push($currentListItemTEMP, ['key'=>$key, 'item'=>$item]);
             }
         }
@@ -33,7 +33,7 @@ function enterIntoBag(&$save, $type = 'hub'){
             $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
         }
         elseif($type == 'hub'){
-            if(getCategoryName($categories, $indexCategory) != 'PokeBalls'){
+            if(Parameters::getCategoryName($categories, $indexCategory) != 'PokeBalls'){
                 $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
             }
             else{
@@ -42,12 +42,12 @@ function enterIntoBag(&$save, $type = 'hub'){
         }
         
         // Draw & write before action
-        messageBoiteDialogue(getMessageBoiteDialogue());
+        messageBoiteDialogue(Parameters::getMessageBoiteDialogue());
         drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
         drawCategoryBag($categories, $indexCategory);
 
         // Action
-        $move = waitForInput(getPosChoice(),$moveChoice);
+        $move = waitForInput(Parameters::getPosChoice(),$moveChoice);
         if($move == leaveInputMenu()){
             return leaveInputMenu();
         }
@@ -104,7 +104,7 @@ function enterIntoBag(&$save, $type = 'hub'){
 function actionBagHub(&$save, &$pkmnTeam, $choice){
     $action = explode(" ", $choice);
     useItem($save['Bag'], $save['Bag'][$action[0]], $pkmnTeam[$action[1]]);
-    drawPkmnTeam($pkmnTeam);
+    Display_Fight::drawPkmnTeam($pkmnTeam);
     sleep(1);
 }
 
@@ -126,16 +126,16 @@ function drawRefreshInterfaceList($listItems, $indexItem = 0){
             }
         }
         else{
-            $valueToShow = formatMoney($itemBag['price']);
+            $valueToShow = CustomFunctions::formatMoney($itemBag['price']);
             $name = $itemBag['name'];
         }
 
         $sign = $isInBag ? ' x ' : ' : ';
         if($key == $indexItem){
-            textArea('-> '/*.$key . '. keyBag:'.$keyBag.' '*/.$name . $sign . $valueToShow, [4+$i,5]);
+            Display::textArea('-> '/*.$key . '. keyBag:'.$keyBag.' '*/.$name . $sign . $valueToShow, [4+$i,5]);
         }
         else{
-            textArea(/*$key . '. keyBag:'.$keyBag.' '.*/$name . $sign . $valueToShow, [4+$i,5]);
+            Display::textArea(/*$key . '. keyBag:'.$keyBag.' '.*/$name . $sign . $valueToShow, [4+$i,5]);
         }
         $i += 2;
         $y++;
@@ -157,7 +157,7 @@ function useItemOn(&$bag, $indexItem, &$pkmnTeam){
         if($itemToUse['type'] == 'PokeBalls'){
             return "$indexItem $choice2";
         }
-        drawPkmnTeam($pkmnTeam);
+        Display_Fight::drawPkmnTeam($pkmnTeam);
         $exceptions = getExceptionsItemToPkmnTeam($pkmnTeam, $itemToUse);
 
         // Select Pkmn to heal
@@ -300,7 +300,7 @@ function getItemObject($itemName, $quantity = 1){
 
 function removeItem(&$bag, &$item){
     if($item['quantity'] <= 0){
-        remove($item, $bag);
+        CustomFunctions::remove($item, $bag);
     }
 }
 ?>

@@ -34,40 +34,40 @@ function waitForInput($pos= [31,0], $options = null, $string = null, $showOption
             $sentence .= leaveInputMenu().' : ';
         }
     }
-    moveCursor($pos);
+    Cursor::moveCursor($pos);
     $choice = readline($sentence);
-    $scaleToClear = [3,getScreenScale()[1]];
+    $scaleToClear = [3,Parameters::getScreenScale()[1]];
 
     if($options != null){
         while (!in_array($choice, $options)) {
-            clearArea($scaleToClear, $pos);
-            moveCursor($pos);
+            Display::clearArea($scaleToClear, $pos);
+            Cursor::moveCursor($pos);
             $choice = readline($sentence);
         }
     }
-    // drawBox($scaleToClear, $pos);
-    clearArea($scaleToClear, $pos);
+    // Display::drawBox($scaleToClear, $pos);
+    Display::clearArea($scaleToClear, $pos);
     return $choice;
 }
 
 function enterToContinue($pos, $showMessage){
     $sentence = 'Enter to keep going';
 
-    moveCursor($pos);
+    Cursor::moveCursor($pos);
     $choice = readline($sentence);
-    clearArea([1,60], $pos);
+    Display::clearArea([1,60], $pos);
     return $choice;
 }
 
 function binaryChoice(){
-    $pos = getPosYesOrNo();
-    $scale = getScaleYesOrNo();
-    drawBox($scale,$pos, '|','-',true);
-    textArea('YES', [$pos[0]+1,$pos[1]+2]);
-    textArea('NO', [$pos[0]+3,$pos[1]+2]);
+    $pos = Parameters::getPosYesOrNo();
+    $scale = Parameters::getScaleYesOrNo();
+    Display::drawBox($scale,$pos, '|','-',true);
+    Display::textArea('YES', [$pos[0]+1,$pos[1]+2]);
+    Display::textArea('NO', [$pos[0]+3,$pos[1]+2]);
 
-    $choice2 = waitForInput(getPosChoice(), ['y','n']);
-    clearArea($scale, $pos);
+    $choice2 = waitForInput(Parameters::getPosChoice(), ['y','n']);
+    Display::clearArea($scale, $pos);
     if($choice2 == 'y'){
         return true;
     }

@@ -2,7 +2,7 @@
 function drawHub(&$save){
     
     while(true){
-        drawGameCadre();
+        Display_Game::drawGameCadre();
         
         $choiceBefore = [1, 2, 3, 4, 6];
         $choiceBeforeHUD = ['1 : CONTINUE', '2 : POKEDEX', '3 : POKEMON', '4 : BAG', '6 : QUIT'];
@@ -13,8 +13,8 @@ function drawHub(&$save){
             $townName = $towns[$save['IndexFloor']];
             array_splice($choiceBeforeHUD, 4, 0, '5 : '.$townName);
         }
-        drawBoxTextJusitfy(getPosMenuHUD(), $choiceBeforeHUD);
-        drawBoxTitle(getPosPlaceHUD(),[3,7], 'HUB');
+        drawBoxTextJusitfy(Parameters::getPosMenuHUD(), $choiceBeforeHUD);
+        drawBoxTitle(Parameters::getPosPlaceHUD(),[3,7], 'HUB');
         drawMoney(null,$save['Money']);
         drawNextFloor([10,28]);
 
@@ -49,35 +49,35 @@ function drawHub(&$save){
         elseif($choice == 6){
             exitGame();
         }
-        setFile($save, getSavePath('save'));
+        setFile($save, Parameters::getSavePath('save'));
     }
-    animationEnterBattle();
+    Animations::enterBattle();
 
-    drawGameCadre();
-    clearGameScreen();
+    Display_Game::drawGameCadre();
+     Display::clearGameScreen();
 }
 
 function drawNextFloor($pos){
     $posY = $pos[0];
     $posX = $pos[1];
-    drawBox([10,30],[$posY,$posX]);
+    Display::drawBox([10,30],[$posY,$posX]);
 
-    $saveFight = getSave(getSavePath('save'));
-    justifyText('NEXT', 30, $pos, 'center');
-    textArea('Floor : '.$saveFight['IndexFloor'], [$posY+2,$posX+2]);
+    $saveFight = getSave(Parameters::getSavePath('save'));
+    Display::justifyText('NEXT', 30, $pos, 'center');
+    Display::textArea('Floor : '.$saveFight['IndexFloor'], [$posY+2,$posX+2]);
 
     $currentRoute = getRouteFromIndex($saveFight['IndexFloor'],true);
     $pnj = checkPNJExist($saveFight['IndexFloor']);
     if(!is_null($currentRoute)){
-        textArea('Route : '.$currentRoute, [$posY+4,$posX+2],26);
+        Display::textArea('Route : '.$currentRoute, [$posY+4,$posX+2],26);
 
         if(!is_null($pnj)){
-            textArea('Trainer : '.ucfirst($pnj['Name']), [$posY+6,$posX+2], 26);
+            Display::textArea('Trainer : '.ucfirst($pnj['Name']), [$posY+6,$posX+2], 26);
         }
     }
     else{
         if(!is_null($pnj)){
-            textArea('Trainer : '.ucfirst($pnj['Name']), [$posY+4,$posX+2], 26);
+            Display::textArea('Trainer : '.ucfirst($pnj['Name']), [$posY+4,$posX+2], 26);
         }
     }
 }
@@ -88,7 +88,7 @@ function checkTeamPkmnFromMenu(&$pkmnTeam){
         if(is_numeric($choice)){
             while(true){ // LOOP ACTION TO A SINGLE PKMN
                 messageBoiteDialogue("1: Stats ".$pkmnTeam[$choice]['Name']."\n2: Move to First Place");
-                $choice2 = waitForInput(getPosChoice(), [leaveInputMenu(),1,2]);
+                $choice2 = waitForInput(Parameters::getPosChoice(), [leaveInputMenu(),1,2]);
                 if($choice2 == 1){
                     seeSheetPkmn($pkmnTeam[$choice]);
                     break;
@@ -110,12 +110,12 @@ function checkTeamPkmnFromMenu(&$pkmnTeam){
 }
 
 function seeSheetPkmn($pkmn){
-    clearGameScreen();
+     Display::clearGameScreen();
     displayPkmnLeftMenu($pkmn);
     displayCapacitiesMenu($pkmn);
     displayBottonPkmnStatsInterface($pkmn);
     waitForInput();
-    clearArea([20,30], [2,30]);
+    Display::clearArea([20,30], [2,30]);
     dispslayStatsPkmnMenu($pkmn);
     waitForInput();
 }
@@ -128,27 +128,27 @@ function displayPkmnLeftMenu($pkmn, $catch = null){
         $pkmn['Type 1'] = '???';
         $pkmn['Type 2'] = '???';
     }
-    drawSprite(getSprites($pkmn['Sprite']), [8,3]);
-    drawBox([5,24], [2,3]);
+    Display::drawSprite(getSprites($pkmn['Sprite']), [8,3]);
+    Display::drawBox([5,24], [2,3]);
     if(array_key_exists('Level', $pkmn)){
-        justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
+        Display::justifyText('Lv:'.$pkmn['Level'], 20, [3,5], 'right');
     }
-    textAreaLimited(ucfirst($pkmn['Name']),30,[3,5]);
-    // debugLog($catch);
+    Display::textAreaLimited(ucfirst($pkmn['Name']),30,[3,5]);
+    // CustomFunctions::debugLog($catch);
     if(!is_null($catch)){
-        justifyText($catch, 20, [4,5], 'right');
+        Display::justifyText($catch, 20, [4,5], 'right');
     }
     else{
-        justifyText('    ', 20, [4,5], 'right');
+        Display::justifyText('    ', 20, [4,5], 'right');
     }
-    textAreaLimited('N° : '.$pkmn['N Pokedex'],30,[4,5]);
+    Display::textAreaLimited('N° : '.$pkmn['N Pokedex'],30,[4,5]);
 
-    setColorByType($pkmn['Type 2']);
-    justifyText($pkmn['Type 2'], 20, [5,5], 'right');
+    Display_Game::setColorByType($pkmn['Type 2']);
+    Display::justifyText($pkmn['Type 2'], 20, [5,5], 'right');
     
-    setColorByType($pkmn['Type 1']);
-    textAreaLimited($pkmn['Type 1'],30,[5,5]);
-    setColor('reset');
+    Display_Game::setColorByType($pkmn['Type 1']);
+    Display::textAreaLimited($pkmn['Type 1'],30,[5,5]);
+    Display::setColor('reset');
 }
 
 function displayCapacitiesMenu($pkmn){
@@ -156,19 +156,19 @@ function displayCapacitiesMenu($pkmn){
     $y = 0;
     $x = 30;
     foreach($pkmn['Capacites'] as $capacitePkmn){
-        setColorByType($capacitePkmn['Type']);
-        drawBox([4,30],[2+$i,$x],'|','-',true);
-        setColor('reset');
+        Display_Game::setColorByType($capacitePkmn['Type']);
+        Display::drawBox([4,30],[2+$i,$x],'|','-',true);
+        Display::setColor('reset');
 
         if($capacitePkmn['Category'] != 'status'){
-            justifyText('Power:'.$capacitePkmn['Power'], 9, [4+$i,$x+19],'right');
+            Display::justifyText('Power:'.$capacitePkmn['Power'], 9, [4+$i,$x+19],'right');
         }      
-        setColorByType($capacitePkmn['Category']);
-        justifyText(ucfirst($capacitePkmn['Category']), 9, [3+$i,$x+19],'right');
-        setColor('reset');
+        Display_Game::setColorByType($capacitePkmn['Category']);
+        Display::justifyText(ucfirst($capacitePkmn['Category']), 9, [3+$i,$x+19],'right');
+        Display::setColor('reset');
 
-        textAreaLimited(($y+1).' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
-        textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
+        Display::textAreaLimited(($y+1).' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
+        Display::textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
         ++$y;
         $i += 4;
     }
@@ -178,33 +178,33 @@ function dispslayStatsPkmnMenu($pkmn){
     $i = 6;
     $x = 35;
     $stats = $pkmn['Stats'];
-    drawBox([15,22],[$i,$x]);
+    Display::drawBox([15,22],[$i,$x]);
     foreach($stats as $key=>$stat){
-        justifyText($stat, 18 ,[1+$i,$x+2], 'right');
-        textArea($key, [1+$i,$x+2]);
+        Display::justifyText($stat, 18 ,[1+$i,$x+2], 'right');
+        Display::textArea($key, [1+$i,$x+2]);
         $i += 2;
     }
 }
 //// TOWN ////////////////////////////////////////////////////////////////////////////
 function inTown(&$save){
     while(true){
-        drawGameCadre();
+        Display_Game::drawGameCadre();
         $choiceBefore = [];
         // choice change si shop disponible ou pokecenter
         $choiceBefore = [1,2,3];
         global $towns;
         $townName = $towns[$save['IndexFloor']];
-        drawBoxTitle(getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
-        drawBoxTextJusitfy(getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : EXIT']);
-        drawSprite(getSprites('Town'), [8, 29]);
+        drawBoxTitle(Parameters::getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
+        drawBoxTextJusitfy(Parameters::getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : EXIT']);
+        Display::drawSprite(getSprites('Town'), [8, 29]);
         messageBoiteDialogue('Welcome to '.$townName.'!');
 
         // Attend la selection entre 1 et 2
         $choice = waitForInput([31,0],$choiceBefore);
         if($choice == 1){
             // poke center heal
-            clearGameScreen();
-            drawSprite(getSprites('healer'),[4,17]);
+             Display::clearGameScreen();
+            Display::drawSprite(getSprites('healer'),[4,17]);
             messageBoiteDialogue("Welcome to our Pokémon Center!\nWe heal your Pokémon back to perfect health!\nShall we heal your Pokémon?");
             if(binaryChoice()){
                 fullHealTeam($save['Team']);
@@ -224,13 +224,13 @@ function inTown(&$save){
 
 
 function displayBottonPkmnStatsInterface($pkmn){
-    drawPkmnInfoHUD([23,3], $pkmn);
+    Display_Fight::drawPkmnInfoHUD([23,3], $pkmn);
     // $texts = ['Exp :'.$pkmn['exp'], 'Exp To Level :'.$pkmn['expToLevel']];
-    drawBox([5,25],[23,30]);
-    setColorByType('exp');
-    textArea('Exp :'.$pkmn['exp'], [24,32]);
-    textArea('Exp To Level :'.$pkmn['expToLevel'], [26,32]);
+    Display::drawBox([5,25],[23,30]);
+    Display_Game::setColorByType('exp');
+    Display::textArea('Exp :'.$pkmn['exp'], [24,32]);
+    Display::textArea('Exp To Level :'.$pkmn['expToLevel'], [26,32]);
     // drawBoxTextJusitfy([23,30], $texts);
-    setColor('reset');
+    Display::setColor('reset');
 }
 ?>

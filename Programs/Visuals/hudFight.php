@@ -1,231 +1,218 @@
 <?php
 // -- HUD PKMN--
 // - Afficher HUD du pkmn joueur -
-// drawPkmnInfoHUD(17,34, $pkmn1);
-// drawSprite($sprites[$pkmn1['Sprite']], 9, 3); 
+// Display_Fight::drawPkmnInfoHUD(17,34, $pkmn1);
+// Display::drawSprite($sprites[$pkmn1['Sprite']], 9, 3); 
 // - Afficher HUD du pkmn ennemi -
-// drawPkmnInfoHUD(2,3, $pkmn2);
-// drawSprite($sprites[$pkmn2['Sprite']], 1, 35);
+// Display_Fight::drawPkmnInfoHUD(2,3, $pkmn2);
+// Display::drawSprite($sprites[$pkmn2['Sprite']], 1, 35);
 
 
+class Display_Fight{
+    //// CREATE HUD INGAME //////////////////////////
 
-//// CREATE HUD INGAME //////////////////////////
-function drawSkeletonHUD(){
-    drawGameCadre();
-    drawBoiteDialogue();
-}
+    static static function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
+        Display::clearGameScreen();
+        Display_Game::drawSkeletonHUD();
 
-
-function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
-    clearGameScreen();
-    drawSkeletonHUD();
-
-    // Afficher HUD du pkmn joueur
-    drawPkmnAllBattleHUD($pkmnTeamJoueur, true);
-    
-    // Afficher HUD du pkmn ennemi
-    drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
-}
+        // Afficher HUD du pkmn joueur
+        Display_Fight::drawPkmnAllBattleHUD($pkmnTeamJoueur, true);
+        
+        // Afficher HUD du pkmn ennemi
+        Display_Fight::drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
+    }
 
 
-//// draw INFO PKMN ///////////////////////////////////////////
-function drawPkmnAllBattleHUD(&$pkmnTeam, $isJoueur){  
-    drawPkmnInfoHUD(getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
-    drawSprite(getSprites($pkmnTeam[0]['Sprite']), getPosSpritePkmn($isJoueur));
-    drawInfoTeamCount($pkmnTeam,getPosTeam($isJoueur));
-}
+    //// draw INFO PKMN ///////////////////////////////////////////
+    static function drawPkmnAllBattleHUD(&$pkmnTeam, $isJoueur){  
+        Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
+        Display::drawSprite(getSprites($pkmnTeam[0]['Sprite']), Parameters::getPosSpritePkmn($isJoueur));
+        Display_Fight::drawInfoTeamCount($pkmnTeam,Parameters::getPosTeam($isJoueur));
+    }
 
-function drawInfoTeamCount($pkmnTeam, $pos){
-    $message = '<';
-    for($i = 0; $i < 6; $i++){
-        if($i < count($pkmnTeam)){
-            if($pkmnTeam[$i]['Stats']['Health'] > 0){
-                $message .= '0';
+    static function drawInfoTeamCount($pkmnTeam, $pos){
+        $message = '<';
+        for($i = 0; $i < 6; $i++){
+            if($i < count($pkmnTeam)){
+                if($pkmnTeam[$i]['Stats']['Health'] > 0){
+                    $message .= '0';
+                }else{
+                    $message .= 'X';
+                }
             }else{
-                $message .= 'X';
+                $message .= '-';
             }
-        }else{
-            $message .= '-';
         }
+        $message .= '>';
+        Display::textArea($message, $pos);
     }
-    $message .= '>';
-    textArea($message, $pos);
-}
 
 
 
-function clearPkmnHUD($isJoueur){
-    clearArea(getScaleHUDPkmn(),getPosHealthPkmn($isJoueur));
-}
-
-function drawPkmnInfoHUD($pos, $pkmn, $isJoueur = true){
-    clearArea(getScaleHUDPkmn(),$pos);
-    drawBox(getScaleHUDPkmn(),$pos,'|','-', true);
-
-    textArea(ucfirst($pkmn['Name']), [$pos[0]+1, $pos[1]+2]);
-    $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : status($pkmn['Status']);
-    textArea($displayLevel, [$pos[0]+1, $pos[1]+19]);
-    textArea('<          >', [$pos[0]+2, $pos[1]+10]);
-
-    updateHealthPkmn($pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur, $pos);
-    if($isJoueur){
-        updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
+    static function clearPkmnHUD($isJoueur){
+        Display::clearArea(Parameters::getScaleHUDPkmn(),Parameters::getPosHealthPkmn($isJoueur));
     }
-    // if(!$isJoueur){
-    //     // draw info if caught or not
-    // }
-} 
 
-function updateHealthPkmn($health, $healthMax, $isJoueur = true, $pos=null){
-    $pourcentage = $health/$healthMax;
-    if(is_null($pos)){
-        $pos = getPosHealthPkmn($isJoueur);
-    }
-    //Set health text
-    clearArea([1,7],[$pos[0]+2,$pos[1]+2]); //clear pour eviter 
-    if($isJoueur){
-        textArea($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
-    }
-    
-    //Set health graphic style + color
-    moveCursor([$pos[0]+2,$pos[1]+11]);
-    
-    
-    if($pourcentage > 0.5){
-        setColor('green');
-    }elseif($pourcentage < 0.2){
-        setColor('red');
-    }
-    else{
-        setColor('orange');
-    }
-    for($i=0;$i<10;++$i){
-        if (($pourcentage*10) > $i){
-            echo '=';
-        } else {
-            echo ' ';
+    static function drawPkmnInfoHUD($pos, $pkmn, $isJoueur = true){
+        Display::clearArea(Parameters::getScaleHUDPkmn(),$pos);
+        Display::drawBox(Parameters::getScaleHUDPkmn(),$pos,'|','-', true);
+
+        Display::textArea(ucfirst($pkmn['Name']), [$pos[0]+1, $pos[1]+2]);
+        $displayLevel = $pkmn['Status'] == null ? "Lv".$pkmn['Level'] : status($pkmn['Status']);
+        Display::textArea($displayLevel, [$pos[0]+1, $pos[1]+19]);
+        Display::textArea('<          >', [$pos[0]+2, $pos[1]+10]);
+
+        Display_Fight::updateHealthPkmn($pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur, $pos);
+        if($isJoueur){
+            Display_Fight::updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
         }
-    }
-    setColor('reset');
-}
-function updateExpPkmn($pos,$exp, $expMax){
-    $pourcentage = $exp/$expMax;
+        // if(!$isJoueur){
+        //     // draw info if caught or not
+        // }
+    } 
 
-    //Set exp text
-    clearArea([1,7],[$pos[0]+3,$pos[1]+3]); //clear pour eviter 
-    textArea('<          >', [$pos[0]+3, $pos[1]+10]);
-
-    //Set health graphic style + color
-    moveCursor([$pos[0]+3,$pos[1]+11]);
-    setColorByType('exp');
-    for($i=0;$i<10;++$i){
-        if (($pourcentage*10) > $i){
-            echo '=';
-        } else {
-            echo ' ';
+    static function updateHealthPkmn($health, $healthMax, $isJoueur = true, $pos=null){
+        $pourcentage = $health/$healthMax;
+        if(is_null($pos)){
+            $pos = Parameters::getPosHealthPkmn($isJoueur);
         }
-    }
-    setColor('reset');
-}
-
-function levelUpWindow($oldStats, $newStats){
-    drawBox([10,20], [7,39]);
-    $pos = [7,39];
-
-    $keys = array_keys($oldStats);
-
-    $differences = [];
-    for($i=0;$i<count($newStats);++$i){
-        array_push($differences, $newStats[$keys[$i]]-$oldStats[$keys[$i]]);
-    }
-    // $i = 1;
-    // foreach($oldStats as $key=>$stat){
-    //     textArea($key, [$pos[0]+$i,$pos[1]+2]);
-    //     $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
-    //     textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
-    //     ++$i;
-    // }
-    displayStats($oldStats, $pos);
-
-    // sleep(2);
-    waitForInput();
-    for($i=0;$i<count($newStats);++$i){
-        $phrase_alignee = str_pad($differences[$i].'->', 4, " ", STR_PAD_LEFT);
-        textArea($phrase_alignee, [$pos[0]+$i+1,$pos[1]+10]);
-    }
-    waitForInput();
-    $i = 1;
-    clearArea([6,6], [$pos[0]+1,$pos[1]+10]);
-    displayStats($newStats, $pos);
-    // foreach($newStats as $key=>$stat){
-    //     textArea($key, [$pos[0]+$i,$pos[1]+2]);
-    //     $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
-    //     textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
-    //     ++$i;
-    // }
-    waitForInput();
-    clearArea([10,20], [7,39]);
-}
- 
-function displayStats($stats, $pos){
-    $i = 1;
-    foreach($stats as $key=>$stat){
-        textArea($key, [$pos[0]+$i,$pos[1]+2]);
-        $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
-        textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
-        ++$i;
-    }
-}
-
-//// draw MENU ///////////////////////////////////
-
-function drawPkmnTeam($pkmnTeam){
-    clearGameScreen();
-    
-    for($i=0;$i<count($pkmnTeam);++$i){
-        $x = ($i % 2 == 0) ? 3 : 33;
-        $y = ($i+1) * 3;
-        $pos = [$y,$x];
-        drawPkmnInfoHUD($pos, $pkmnTeam[$i]);
-    }
-}
-
-// MENU INTERFACE CHOICE PLAYER
-function interfaceCapacities($capacites){
-    $posYInit = 25;
-    $posXInit = 5;
-    for($i=0;$i<4;++$i){
-        if(isset($capacites[$i]['Name']))
-        {
-            $posY = $posYInit;
-            $posX = $posXInit;
-            if ($i == 1) {
-                $posX = $posXInit + 20;
-            }elseif ($i == 2) {
-                $posY = $posY + 3;
-            }elseif ($i == 3) {
-                $posY = $posYInit +3;
-                $posX = $posXInit +20;
+        //Set health text
+        Display::clearArea([1,7],[$pos[0]+2,$pos[1]+2]); //clear pour eviter 
+        if($isJoueur){
+            Display::textArea($health.'/'.$healthMax,[$pos[0]+2,$pos[1]+2] );
+        }
+        
+        //Set health graphic style + color
+        Cursor::moveCursor([$pos[0]+2,$pos[1]+11]);
+        
+        
+        if($pourcentage > 0.5){
+            Display::setColor('green');
+        }elseif($pourcentage < 0.2){
+            Display::setColor('red');
+        }
+        else{
+            Display::setColor('orange');
+        }
+        for($i=0;$i<10;++$i){
+            if (($pourcentage*10) > $i){
+                echo '=';
+            } else {
+                echo ' ';
             }
-            textAreaLimited(($i+1).' : ',23,[$posY,$posX]);
-            setColorByType($capacites[$i]['Type']);
-            textAreaLimited($capacites[$i]['Name'],23,[$posY,$posX+4]);
-            setColor('reset');
-            textAreaLimited('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
         }
+        Display::setColor('reset');
+    }
+
+    static function updateExpPkmn($pos,$exp, $expMax){
+        $pourcentage = $exp/$expMax;
+
+        //Set exp text
+        Display::clearArea([1,7],[$pos[0]+3,$pos[1]+3]); //clear pour eviter 
+        Display::textArea('<          >', [$pos[0]+3, $pos[1]+10]);
+
+        //Set health graphic style + color
+        Cursor::moveCursor([$pos[0]+3,$pos[1]+11]);
+        Display_Game::setColorByType('exp');
+        for($i=0;$i<10;++$i){
+            if (($pourcentage*10) > $i){
+                echo '=';
+            } else {
+                echo ' ';
+            }
+        }
+        Display::setColor('reset');
+    }
+
+    static function levelUpWindow($oldStats, $newStats){
+        Display::drawBox([10,20], [7,39]);
+        $pos = [7,39];
+
+        $keys = array_keys($oldStats);
+
+        $differences = [];
+        for($i=0;$i<count($newStats);++$i){
+            array_push($differences, $newStats[$keys[$i]]-$oldStats[$keys[$i]]);
+        }
+
+        Display_Fight::displayStats($oldStats, $pos);
+
+        // sleep(2);
+        waitForInput();
+        for($i=0;$i<count($newStats);++$i){
+            $phrase_alignee = str_pad($differences[$i].'->', 4, " ", STR_PAD_LEFT);
+            Display::textArea($phrase_alignee, [$pos[0]+$i+1,$pos[1]+10]);
+        }
+        waitForInput();
+        $i = 1;
+        Display::clearArea([6,6], [$pos[0]+1,$pos[1]+10]);
+        Display_Fight::displayStats($newStats, $pos);
+
+        waitForInput();
+        Display::clearArea([10,20], [7,39]);
+    }
+    
+    static function displayStats($stats, $pos){
+        $i = 1;
+        foreach($stats as $key=>$stat){
+            Display::textArea($key, [$pos[0]+$i,$pos[1]+2]);
+            $phrase_alignee = str_pad($stat, 3, " ", STR_PAD_LEFT);
+            Display::textArea($phrase_alignee, [$pos[0]+$i,$pos[1]+15]);
+            ++$i;
+        }
+    }
+
+    //// draw MENU ///////////////////////////////////
+
+    static function drawPkmnTeam($pkmnTeam){
+        Display::clearGameScreen();
+        
+        for($i=0;$i<count($pkmnTeam);++$i){
+            $x = ($i % 2 == 0) ? 3 : 33;
+            $y = ($i+1) * 3;
+            $pos = [$y,$x];
+            Display_Fight::drawPkmnInfoHUD($pos, $pkmnTeam[$i]);
+        }
+    }
+
+    // MENU INTERFACE CHOICE PLAYER
+    static function interfaceCapacities($capacites){
+        $posYInit = 25;
+        $posXInit = 5;
+        for($i=0;$i<4;++$i){
+            if(isset($capacites[$i]['Name']))
+            {
+                $posY = $posYInit;
+                $posX = $posXInit;
+                if ($i == 1) {
+                    $posX = $posXInit + 20;
+                }elseif ($i == 2) {
+                    $posY = $posY + 3;
+                }elseif ($i == 3) {
+                    $posY = $posYInit +3;
+                    $posX = $posXInit +20;
+                }
+                Display::textAreaLimited(($i+1).' : ',23,[$posY,$posX]);
+                Display_Game::setColorByType($capacites[$i]['Type']);
+                Display::textAreaLimited($capacites[$i]['Name'],23,[$posY,$posX+4]);
+                Display::setColor('reset');
+                Display::textAreaLimited('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
+            }
+        }
+    }
+
+    static function interfaceMenu(){
+        $screenScale = Parameters::getScreenScale();
+        $posYInit = $screenScale[0] - 6;
+        $posXInit = $screenScale[1] - 14;
+        $posY = $screenScale[0] - 5;
+        $posX = $screenScale[1] - 12;
+        Display::drawBox([7,15],[$posYInit,$posXInit]); // cadre des choix
+
+        Display::textArea( '1 : ATTACK', [$posY,$posX]);
+        Display::textArea('2 : PKMN', [$posY+1,$posX]);
+        Display::textArea('3 : BAG', [$posY+2,$posX]);
     }
 }
 
-function interfaceMenu(){
-    $screenScale = getScreenScale();
-    $posYInit = $screenScale[0] - 6;
-    $posXInit = $screenScale[1] - 14;
-    $posY = $screenScale[0] - 5;
-    $posX = $screenScale[1] - 12;
-    drawBox([7,15],[$posYInit,$posXInit]); // cadre des choix
-
-    textArea( '1 : ATTACK', [$posY,$posX]);
-    textArea('2 : PKMN', [$posY+1,$posX]);
-    textArea('3 : BAG', [$posY+2,$posX]);
-}
 ?>

@@ -68,10 +68,10 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
             messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
             return;
         }
-        animationAttack($pkmnAtk, !$isJoueurTakeDamage);
+        Animations::attack($pkmnAtk, !$isJoueurTakeDamage);
         attackPkmnCalculator($pkmnAtk,$pkmnDef, $newCapacite, !$isJoueurTakeDamage);
     }
-    drawPkmnInfoHUD(getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
+    Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn($isJoueurTakeDamage), $pkmnDef, $isJoueurTakeDamage);
     sleep(1);
 }
 
@@ -135,7 +135,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     takeDamagePkmn($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
     //// update health pkmn def before drain ////////////////////////////////////////////////////////
-    drawPkmnInfoHUD(getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
+    Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn(!$isJoueur), $pkmnDef, !$isJoueur);
     usleep(500000);
     
     //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
@@ -161,7 +161,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
             messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
         }  
         // update health pkmn atk after drain
-        drawPkmnInfoHUD(getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
+        Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
     }
 }
 
@@ -179,7 +179,7 @@ function statusCapacityPkmn(&$pkmnAtk,&$pkmnDef, &$capacite, $isJoueurAttack){
     if($capacite['effects']['Healing'] != 0){
         $pkmnAtk['Stats']['Health'] += intval(($capacite['effects']['Healing'] / 100) * $pkmnAtk['Stats']['Health Max']);
         checkHealthOutRange($pkmnAtk);
-        drawPkmnInfoHUD(getPosHealthPkmn($isJoueurAttack),$pkmnAtk, $isJoueurAttack);
+        Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn($isJoueurAttack),$pkmnAtk, $isJoueurAttack);
     }
 }
 
@@ -195,11 +195,11 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
                 if($pkmnAtk['Stats Temp'][$stat[1]] < 6){
                     $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0];
                     if($pkmnAtk['Stats Temp'][$stat[1]] > 0){
-                        animationUp($pkmnAtk,$isJoueurAttack);
+                        Animations::up($pkmnAtk,$isJoueurAttack);
                         messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
                     }
                     else{
-                        animationDown($pkmnAtk,$isJoueurAttack);
+                        Animations::down($pkmnAtk,$isJoueurAttack);
                         messageBoiteDialogue($pkmnAtk['Name']." decreases ". $stat[1]."!",1);
                     }
                 }
@@ -217,11 +217,11 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
                     $pkmnDef['Stats Temp'][$stat[1]] += $stat[0];
                     // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                     if($pkmnDef['Stats Temp'][$stat[1]] > 0){
-                        animationUp($pkmnDef,!$isJoueurAttack);
+                        Animations::up($pkmnDef,!$isJoueurAttack);
                         messageBoiteDialogue($pkmnDef['Name']." increases ". $stat[1]."!",1);
                     }
                     else{
-                        animationDown($pkmnDef,!$isJoueurAttack);
+                        Animations::down($pkmnDef,!$isJoueurAttack);
                         messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                     }
                 }
@@ -286,7 +286,7 @@ function getHits($minHits, $maxHits) {
 }
 
 function takeDamagePkmn(&$pkmn, $damage, $isJoueur){
-    animationTakeDamage($pkmn, $isJoueur);
+    Animations::takeDamage($pkmn, $isJoueur);
     if($damage < 0){
         messageBoiteDialogue(ucfirst($pkmn['Name']) . ' drains ' . -$damage . ' Hp.',1);
     }
@@ -314,13 +314,12 @@ function isPkmnDead(&$pkmn, $isJoueur){
 }
 function animatePkmnKo($pkmn, $isJoueur){
     clearBoiteDialogue();
-    clearArea(getScaleHUDPkmn(), getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
+    Display::clearArea(Parameters::getScaleHUDPkmn(), Parameters::getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
 
     // Clear sprite pkmn
-    $posClearSprite = getPosSpritePkmn($isJoueur);
-    $posClearSprite = [$posClearSprite[0],$posClearSprite[1]];
-    $scaleClear = getScaleSpritePkmn();
-    clearArea($scaleClear,$posClearSprite);
+    $posClearSprite = Parameters::getPosSpritePkmn($isJoueur);
+    $scaleClear = Parameters::getScaleSpritePkmn();
+    Display::clearArea($scaleClear,$posClearSprite);
 
     messageBoiteDialogue(ucfirst($pkmn['Name']) . ' is K.O.',1);
 }
@@ -349,7 +348,7 @@ function searchNewPkmnInTeam(&$teamPkmn){
     return null;
 }
 function selectPkmn(&$pkmnTeam, $exception = [], $pkmnDeadSelect = true, $string='Which Pokemon do you want?'){
-    drawPkmnTeam($pkmnTeam);
+    Display_Fight::drawPkmnTeam($pkmnTeam);
     drawBoiteDialogue();
     messageBoiteDialogue($string);
     
@@ -373,7 +372,7 @@ function selectPkmn(&$pkmnTeam, $exception = [], $pkmnDeadSelect = true, $string
             array_push($arrayChoice, ($i+1));
         }
     }
-    $choice = waitForInput(getPosChoice(),$arrayChoice);
+    $choice = waitForInput(Parameters::getPosChoice(),$arrayChoice);
     $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
     return $choice;
 }

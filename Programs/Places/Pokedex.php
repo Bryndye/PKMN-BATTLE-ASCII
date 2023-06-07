@@ -1,12 +1,12 @@
 <?php
 function addPkmnToPokedex($pkmn, $type){
-    $main = getSave(getSavePath('myGame'));
+    $main = getSave(Parameters::getSavePath('myGame'));
     if(!array_key_exists($pkmn['N Pokedex'], $main['Pokedex'])){ // SEE
         $main['Pokedex'][$pkmn['N Pokedex']] = getTypePkmnToPokedex($type);
     }
     else{
         if($main['Pokedex'][$pkmn['N Pokedex']] == 2){ // CATCH
-            // debugLog($main['Pokedex'][$pkmn['N Pokedex']].' already caugth',2);
+            // CustomFunctions::debugLog($main['Pokedex'][$pkmn['N Pokedex']].' already caugth',2);
             return;
         }
         else{
@@ -14,7 +14,7 @@ function addPkmnToPokedex($pkmn, $type){
         }
     }
     ksort($main['Pokedex']);
-    setData($main['Pokedex'], 'Pokedex', getSavePath('myGame'));
+    setData($main['Pokedex'], 'Pokedex', Parameters::getSavePath('myGame'));
 }
 
 function getTypePkmnToPokedex($type){
@@ -30,7 +30,7 @@ function getTypePkmnToPokedex($type){
 }
 
 function countPkmnCatchFromPokedex(){
-    $main = getSave(getSavePath('myGame'));
+    $main = getSave(Parameters::getSavePath('myGame'));
     $result = array_filter($main['Pokedex'], function($value) {
         return $value == 2;
     });
@@ -50,7 +50,7 @@ function getCountPokedex(){
 }
 
 function isPkmnAlreadyCatch($nameOrIndex){
-    $main = getSave(getSavePath('myGame'));
+    $main = getSave(Parameters::getSavePath('myGame'));
     if(array_key_exists($nameOrIndex, $main['Pokedex']) && $main['Pokedex'][$nameOrIndex] == 2){ // SEE
         return true;
     }
@@ -62,11 +62,11 @@ function isPkmnAlreadyCatch($nameOrIndex){
 function pokedexInterface(){
     $indexPokedex = 1;
     $lastNPokdex = getLastNPokedex();
-    $pkmnSeeAndCatch = getDataFromSave('Pokedex',getSavePath('myGame'));
+    $pkmnSeeAndCatch = getDataFromSave('Pokedex',Parameters::getSavePath('myGame'));
 
     while(true){
-        clearGameScreen();
-        messageBoiteDialogue(getMessageBoiteDialogue('count','Navigate into the Pokedex :'));
+         Display::clearGameScreen();
+        messageBoiteDialogue(Parameters::getMessageBoiteDialogue('count','Navigate into the Pokedex :'));
         $currentPkmnUsing = getPokemon($indexPokedex);
         
         listPokedexRight($currentPkmnUsing['Name'], $pkmnSeeAndCatch);
@@ -76,7 +76,7 @@ function pokedexInterface(){
 
         displayPkmnLeftMenu($exceptionValue ? $currentPkmnUsing : null, $catchInfo);
         
-        $choice = waitForInput(getPosChoice(), null, ' Select '. leaveInputMenu() .' : ');
+        $choice = waitForInput(Parameters::getPosChoice(), null, ' Select '. leaveInputMenu() .' : ');
 
         if(is_numeric($choice)){
             $indexPokedex = $choice <= $lastNPokdex ? $choice : $indexPokedex;
@@ -106,12 +106,12 @@ function listPokedexRight($startKey, $exception = null){
     $pointerFlag = false;
 
     $counts = array_count_values($exception);
-    drawBox([3,25],[2,$x]);
+    Display::drawBox([3,25],[2,$x]);
 
     $countS = array_key_exists('1',$counts) ? $counts['1'] : 0;
     $countC = array_key_exists('2',$counts) ? $counts['2'] : 0;
-    justifyText('C:'.$countC.' S:'.($countS+$countC), 21, [3,$x+2], 'right');
-    textArea('Total:'.getCountPokedex(), [3,$x+2]);
+    Display::justifyText('C:'.$countC.' S:'.($countS+$countC), 21, [3,$x+2], 'right');
+    Display::textArea('Total:'.getCountPokedex(), [3,$x+2]);
 
     foreach($slice as $pkmn){
         $pokedexNumber = $pkmn['N Pokedex'];

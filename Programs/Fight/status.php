@@ -146,7 +146,7 @@ function damageTurn(&$pkmn, $isJoueur){
             takeDamagePkmn($pkmn, intval($pkmn['Stats']['Health Max'] * $pkmn['Stats Temp']['poisonned']), $isJoueur);
         }
         messageBoiteDialogue(ucfirst($pkmn['Name']) . ' takes damage from its status!',1);
-        updateHealthPkmn($pkmn['Stats']['Health'], $pkmn['Stats']['Health Max'], $isJoueur);
+        Display_Fight::updateHealthPkmn($pkmn['Stats']['Health'], $pkmn['Stats']['Health Max'], $isJoueur);
         sleep(1);
         isPkmnDead($pkmn, $isJoueur);
     }

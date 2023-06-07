@@ -62,13 +62,13 @@ function setPowerCapacityPourcentByWeight($pkmn){
 
 function setPowerCapacityPourcentByLevel($pkmnAtk, $pkmnDef, $capacite){
     $power = $pkmnDef['Level'];
-    // $factor = multipleOf($power, 2);
+    // $factor = CustomFunctions::multipleOf($power, 2);
     return $power; 
 }
 
 function setPowerCapacityPourcentBySpeed($pkmnAtk, $pkmnDef, $capacite){
     $power = $capacite['Power'];
-    $factor = multipleOf($power, 2);
+    $factor = CustomFunctions::multipleOf($power, 2);
     return $factor * 20; 
 }
 
@@ -114,17 +114,17 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             $choice = binaryChoice();
             if(!$choice){
                 messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .$capacite['Name'].'...');
-                clearGameScreen();
+                 Display::clearGameScreen();
                 return false; //for the bag 
                 // break;
             }
-            clearGameScreen();
+             Display::clearGameScreen();
             displayPkmnLeftMenu($pkmn);
             displayCapacitiesMenu($pkmn);
             drawCapacityToLearn($capacite, [18,30]);
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
-                messageBoiteDialogue('Which capacity to removes?');
+                messageBoiteDialogue('Which capacity to CustomFunctions::removes?');
                 $choice = waitForInput([31,0], [leaveInputMenu(),1,2,3,4]);
                 $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
                 if($choice == leaveInputMenu()){
@@ -136,14 +136,14 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
                     messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!');
-                    clearGameScreen();
+                     Display::clearGameScreen();
                     return true; //for the bag 
                 }
                 else{
                     continue;
                 }
             }
-            clearGameScreen();
+             Display::clearGameScreen();
         }
     }
     else{
@@ -156,18 +156,18 @@ function setCapacityToPkmn(&$pkmn, $capacite){
 function drawCapacityToLearn($capacity, $pos){
     $y = $pos[0];
     $x = $pos[1];
-    setColorByType($capacity['Type']);
-    drawBox([4,30],[2+$y,$x],'|','-',true);
-    setColor('reset');
+    Display_Game::setColorByType($capacity['Type']);
+    Display::drawBox([4,30],[2+$y,$x],'|','-',true);
+    Display::setColor('reset');
 
     if($capacity['Category'] != 'status'){
-        justifyText('Power:'.$capacity['Power'], 9, [4+$y,$x+19],'right');
+        Display::justifyText('Power:'.$capacity['Power'], 9, [4+$y,$x+19],'right');
     }      
-    setColorByType($capacity['Category']);
-    justifyText(ucfirst($capacity['Category']), 9, [3+$y,$x+19],'right');
-    setColor('reset');
+    Display_Game::setColorByType($capacity['Category']);
+    Display::justifyText(ucfirst($capacity['Category']), 9, [3+$y,$x+19],'right');
+    Display::setColor('reset');
 
-    textAreaLimited($capacity['Name'],23,[3+$y,$x+2]);
-    textAreaLimited('PP : '.$capacity['PP'].'/'.$capacity['PP Max'],23,[4+$y,$x+2]);
+    Display::textAreaLimited($capacity['Name'],23,[3+$y,$x+2]);
+    Display::textAreaLimited('PP : '.$capacity['PP'].'/'.$capacity['PP Max'],23,[4+$y,$x+2]);
 }
 ?>

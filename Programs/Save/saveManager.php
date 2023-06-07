@@ -2,45 +2,45 @@
 
 function saveMainManager(){
     // Si joueur a deja sauvegarde
-    if(isSaveExist(getSavePath('myGame'))){
-        $save = getSave(getSavePath('myGame'));
+    if(isSaveExist(Parameters::getSavePath('myGame'))){
+        $save = getSave(Parameters::getSavePath('myGame'));
         adaptMainSave();
         if(!isset($save['name'])){
-            deleteSave(getSavePath('myGame'));
+            deleteSave(Parameters::getSavePath('myGame'));
             cinematicPresentation();
         }
         return $save;
     }
     else{
         // Si le dossier existe
-        if(is_dir(getFolderSave(getParameterPathSave()))){
+        if(is_dir(Parameters::getFolderSave(Parameters::getParameterPathSave()))){
             return createMainSave();
         }
         else{
             // Creer le dossier sil existe pas
-            mkdir(getFolderSave(getParameterPathSave()), 0777, true);
+            mkdir(Parameters::getFolderSave(Parameters::getParameterPathSave()), 0777, true);
             return createMainSave();
         }
     }
 }
 
 function savePartyManager(){
-    if(isSaveExist(getSavePath('save'))){
-        $saveParty = getSave(getSavePath('save'));
+    if(isSaveExist(Parameters::getSavePath('save'))){
+        $saveParty = getSave(Parameters::getSavePath('save'));
 
         // Si la partie est créée mais sans pkmn starter, delete.
         if(!isset($saveParty['Team'])){
-            deleteSave(getSavePath('save'));
+            deleteSave(Parameters::getSavePath('save'));
             return createPartySave();
         }
         return $saveParty;
     }
     else{
-        if(is_dir(getFolderSave(getParameterPathSave()))){
+        if(is_dir(Parameters::getFolderSave(Parameters::getParameterPathSave()))){
             return createPartySave();
         }
         else{
-            mkdir(getFolderSave(getParameterPathSave()), 0777, true);
+            mkdir(Parameters::getFolderSave(Parameters::getParameterPathSave()), 0777, true);
             return createPartySave();
         }
     }
@@ -54,27 +54,27 @@ function createMainSave(){
     $datasMainSave = [
         'name' => null,
         'Game wins' => 0,
-        'IndexFloor Max' => getIndexFloorMaxOriginal(),
+        'IndexFloor Max' => Parameters::getIndexFloorMaxOriginal(),
         'Pokedex' => [],
         'wins' => 0,
         'loses' => 0
     ];
-    $datasMainSave['name'] = waitForInput(getPosChoice(), null, 'Choose your name : ');
+    $datasMainSave['name'] = waitForInput(Parameters::getPosChoice(), null, 'Choose your name : ');
     $json = json_encode($datasMainSave);
-    file_put_contents(getSavePath('myGame'), $json);
+    file_put_contents(Parameters::getSavePath('myGame'), $json);
     return $datasMainSave;
 }
 
 function mainSaveExist(){
-    if(!isSaveExist(getSavePath('myGame'))){
+    if(!isSaveExist(Parameters::getSavePath('myGame'))){
         createMainSave();
     }
     else{
-        $file = file_get_contents(getSavePath('myGame'));
+        $file = file_get_contents(Parameters::getSavePath('myGame'));
         $array = json_decode($file, true);
 
         if(!isset($array['name'])){
-            deleteSave(getSavePath('myGame'));
+            deleteSave(Parameters::getSavePath('myGame'));
             createMainSave();
         }
     }
@@ -98,8 +98,8 @@ function createPartySave(){
         messageBoiteDialogue("You've discovered Mew, so I've decided you can have it.",-1);
     }
     $json = json_encode($datasPartySave);
-    file_put_contents(getSavePath('save'), $json);
-    setData($var[1], 'Starter', getSavePath('save')); // SECURITY STARTER IF PLAYER QUIT BEFORE SAVE
+    file_put_contents(Parameters::getSavePath('save'), $json);
+    setData($var[1], 'Starter', Parameters::getSavePath('save')); // SECURITY STARTER IF PLAYER QUIT BEFORE SAVE
     $datasPartySave['Starter'] = $var[1]; // SAVE INTO VAR TO SAVE LATER
     return $datasPartySave;
 }
@@ -108,12 +108,12 @@ function createPartySave(){
 
 function adaptMainSave(){
     // add key and default value if doesnt exist
-    $main = getSave(getSavePath('myGame'));
+    $main = getSave(Parameters::getSavePath('myGame'));
     if(!array_key_exists('Pokedex', $main)){
         $main['Pokedex'] = [];
     }
-    if(array_key_exists('IndexFloor Max', $main) && $main['IndexFloor Max'] < getIndexFloorMaxOriginal()){
-        $main['IndexFloor Max'] = getIndexFloorMaxOriginal();
+    if(array_key_exists('IndexFloor Max', $main) && $main['IndexFloor Max'] < Parameters::getIndexFloorMaxOriginal()){
+        $main['IndexFloor Max'] = Parameters::getIndexFloorMaxOriginal();
     }
 }
 
@@ -154,7 +154,7 @@ function getSave($path){
 
 function getDataFromSave($key, $path){
     // $path = isPathNull($path);
-    if(!file_exists(getFolderSave())){
+    if(!file_exists(Parameters::getFolderSave())){
         return null;
     }
     $file = file_get_contents($path);
@@ -171,7 +171,7 @@ function deleteSave($path){
 }
 
 function isSaveExist($path){
-    if(!file_exists(getFolderSave(getParameterPathSave()))){
+    if(!file_exists(Parameters::getFolderSave(Parameters::getParameterPathSave()))){
         return false;
     }
     if(file_exists($path)){
@@ -182,7 +182,7 @@ function isSaveExist($path){
 
 function isPathNull($path){
     if(is_null($path)){
-        return getSavePath('save');
+        return Parameters::getSavePath('save');
     }
     else{
         return $path;

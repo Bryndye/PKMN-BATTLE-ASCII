@@ -57,7 +57,7 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
         $capacitesCanLearn = $pkmn['capacites'];
         $capTemp = getLastFourElements($capacitesCanLearn, $level);
         // if($pkmn['Name'] == 'mew'){
-        //     debugLog($capTemp);
+        //     CustomFunctions::debugLog($capTemp);
 
         // }
         foreach($capTemp as $capacite){
@@ -188,8 +188,8 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
             $stat = $newStats[$key];
         }
     }
-    levelUpWindow($oldStats, $newStats);
-    verifyAddWhenEvolve($pkmn);
+    Display_Fight::levelUpWindow($oldStats, $newStats);
+    verifyCapWhenEvolve($pkmn);
     getExp($pkmn, $expLeft, true, $notFirstPkmn);
 }
 
@@ -314,7 +314,7 @@ function resetPPCapacitiesTeamPkmn(&$teamPkmn){
 ////////////////////////////////////////////////////////////////////////////////////////
 ///// EVOLUTION ////////////////////////////////////////////////////////////////////////
 
-function verifyAddWhenEvolve(&$pkmn){
+function verifyCapWhenEvolve(&$pkmn){
     $pkmnCapaList = getPokemon($pkmn['Name'])['capacites'];
     $newCapa = getLastElements($pkmnCapaList, $pkmn['Level']);
     
@@ -354,7 +354,7 @@ function verifyIfPkmnCanEvolve(&$pkmn, $item = null){
 }
 
 function evolution(&$pkmn, $indexChoiceEvol = null){
-    clearGameScreen();
+     Display::clearGameScreen();
     drawBoiteDialogue();
     messageBoiteDialogue('What?',-1);
     messageBoiteDialogue(ucfirst($pkmn['Name']) .' is evolving!',-1);
@@ -369,24 +369,24 @@ function evolution(&$pkmn, $indexChoiceEvol = null){
         $newName = $pkmn['evolution']['Name'];
     }
 
-    drawSprite(getSprites($pkmn['Sprite']), [5,16]);
+    Display::drawSprite(getSprites($pkmn['Sprite']), [5,16]);
     usleep(1);
-    clearSprite([4,16]);
+    Display::clearSprite([4,16]);
     usleep(150000);
-    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
-    clearSprite([4,16]);
-    drawSprite(getSprites($pkmn['Sprite']), [5,16]);
+    Display::drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
+    Display::clearSprite([4,16]);
+    Display::drawSprite(getSprites($pkmn['Sprite']), [5,16]);
     usleep(150000);
-    clearSprite([4,16]);
+    Display::clearSprite([4,16]);
     usleep(150000);
-    drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
+    Display::drawSprite(getSprites($pkmnEvol['Sprite']), [5,16]);
     setStatsToEvol($pkmn, $pkmnEvol);
     addPkmnToPokedex($pkmn, 'catch');
     sleep(1);
     messageBoiteDialogue('Tadadaa...',-1);
     messageBoiteDialogue($olderName .' evolves into '. $newName,-1);
     sleep(1);
-    clearGameScreen();
+     Display::clearGameScreen();
 }
 
 function setStatsToEvol(&$pkmn, $pkmnToEvolve){
@@ -433,7 +433,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         // too much pokemon, fired one
         while(true){
             $choice = selectPkmn($pkmnTeam);
-            textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
+            Display::textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
             $choice2 = binaryChoice();
             if($choice2){
                 $pkmnTeam[$choice] = $pkmn;
@@ -468,7 +468,7 @@ function capturePokemon($pokeball, $pkmn) {
     // Calculer le taux de capture final en prenant en compte les points de vie et l'effet de statut
     $finalCatchRate = (( 1 + ( $pkmn['Stats']['Health Max'] * 3 - $pkmn['Stats']['Health'] * 2 ) * $catchRate * $ballRate * $statusEffect ) / ( $pkmn['Stats']['Health Max'] * 3 )) / 256;
 
-    // debugLog($finalCatchRate."\n");
+    // CustomFunctions::debugLog($finalCatchRate."\n");
     // Si le taux de capture final est supérieur à 255, la capture est garantie
     if ($finalCatchRate*100 >= 100) {
         return true;
@@ -476,7 +476,7 @@ function capturePokemon($pokeball, $pkmn) {
 
     // Sinon, générer un nombre aléatoire entre 0 et 100
     $randomNumber = mt_rand(0, 100);
-    // debugLog($randomNumber."\n");
+    // CustomFunctions::debugLog($randomNumber."\n");
 
     // Si le nombre aléatoire est inférieur au taux de capture final, la capture réussit
     if ($randomNumber < $finalCatchRate*100) {
@@ -489,7 +489,7 @@ function capturePokemon($pokeball, $pkmn) {
 
 
 function captureItem($pokeball, $pkmn){
-    animationCapture();
+    Animations::animationCapture();
 
     $var = capturePokemon($pokeball, $pkmn);
 
@@ -499,7 +499,7 @@ function captureItem($pokeball, $pkmn){
         return true;
     } else {
         messageBoiteDialogue('Oh no! The Pokemon escapes the ball!',1);
-        drawSpritePkmn($pkmn, false);
+        Display_Game::drawSpritePkmn($pkmn, false);
         return false;
     }
 

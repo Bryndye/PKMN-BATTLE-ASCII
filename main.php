@@ -30,8 +30,8 @@ include_once 'Programs/Places/Pokedex.php';
 
 
 //// SET THE GAME ////
-clear();
-hideCursor();
+Display::clear();
+Cursor::hideCursor();
 shell_exec('mode con: cols=60 lines=33'); // Windows
 // shell_exec('resize -s 33 60'); // Linux
 
@@ -47,7 +47,7 @@ while(true){
     $saveParty = savePartyManager();
     $pkmnTeamJoueur = &$saveParty['Team'];
 
-    setData($pkmnTeamJoueur, 'Team', getSavePath('save'));
+    setData($pkmnTeamJoueur, 'Team', Parameters::getSavePath('save'));
     // array_push($pkmnTeamJoueur,generatePkmnBattle(150,200));
     if(array_key_exists('IndexFloor', $saveParty)){
         $IndexFloor = $saveParty['IndexFloor'];
@@ -90,9 +90,9 @@ while(true){
         else{
             ++$IndexFloor;
             $saveParty['IndexFloor'] = $IndexFloor;
-            setFile($saveParty, getSavePath('save'));
+            setFile($saveParty, Parameters::getSavePath('save'));
         }
-        waitForInput(getPosChoice());
+        waitForInput(Parameters::getPosChoice());
 
         if($IndexFloor == 105){
             cinematicLeagueEnding($saveParty);

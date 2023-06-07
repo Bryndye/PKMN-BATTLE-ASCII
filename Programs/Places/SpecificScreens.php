@@ -1,59 +1,59 @@
 <?php
 // include 'graphics.php';
 function intro(){
-    drawGameCadre();
+    Display_Game::drawGameCadre();
     
     // Animation de * en diagonale sur l'écran
-    $height = getScreenScale();
+    $height = Parameters::getScreenScale();
     for ($i = 0; $i < $height[0]-2; $i++) {
-        clearGameScreen();
-        // drawFullBox([1,1],[$i,2*$i+4]);
+         Display::clearGameScreen();
+        // Display::drawFullBox([1,1],[$i,2*$i+4]);
         if($i != ($height[0]-1) && $i > 1){
-            drawFullBox([3,3],[$i,2*$i]);
+            Display::drawFullBox([3,3],[$i,2*$i]);
         }
         if($i>6){
-            drawDiagonal([4,4], [$i-6,2*($i-3)]);
-            // drawFullBox([1,1],[($i-6)+4,2*($i-3)]);
-            drawDiagonal([3,3],[$i-5,2*($i-1)]);
-            drawDiagonal([3,3],[$i-3,2*($i-3)]);
+            Display::drawDiagonal([4,4], [$i-6,2*($i-3)]);
+            // Display::drawFullBox([1,1],[($i-6)+4,2*($i-3)]);
+            Display::drawDiagonal([3,3],[$i-5,2*($i-1)]);
+            Display::drawDiagonal([3,3],[$i-3,2*($i-3)]);
         }
         usleep(25000); // Arrête l'exécution d'un programme durant un laps de temps
     }
-    clearGameScreen();
+     Display::clearGameScreen();
 
     // Fait apparaitre un Charizard au milieu de l'écran pendant x TEMPS
     animationIntro();
 
     // Menu titre + press pour joueur
-    drawGameCadre();
-    drawSprite(getSprites('title'),[3,2]);
-    drawSprite(getSprites('Pikachu'),[15,15]);
+    Display_Game::drawGameCadre();
+    Display::drawSprite(getSprites('title'),[3,2]);
+    Display::drawSprite(getSprites('Pikachu'),[15,15]);
 
     waitForInput();
 }
 
 function animationIntro(){
-    drawSprite(getSprites('Charizard'),[3,2]);
+    Display::drawSprite(getSprites('Charizard'),[3,2]);
     sleep(2);
-    drawSprite(getSprites('effectTitle'),[3,2]);
+    Display::drawSprite(getSprites('effectTitle'),[3,2]);
     sleep(1);
-    drawSprite(getSprites('effectFireTitle'),[22,53]);
+    Display::drawSprite(getSprites('effectFireTitle'),[22,53]);
     sleep(1);
-    drawSprite(getSprites('effectFireTitle2'),[21,4]);
+    Display::drawSprite(getSprites('effectFireTitle2'),[21,4]);
     sleep(1);
 }
 function menuStart(){
-    drawGameCadre();
+    Display_Game::drawGameCadre();
     
     $choiceBefore = [];
-    if(isSaveExist(getSavePath('save'),true)){
-        drawBoxTextJusitfy(getPosMenuHUD(), ['1 : CONTINUE', '2 : DELETE', '3 : QUIT']);
+    if(isSaveExist(Parameters::getSavePath('save'),true)){
+        drawBoxTextJusitfy(Parameters::getPosMenuHUD(), ['1 : CONTINUE', '2 : DELETE', '3 : QUIT']);
         $choiceBefore = [1,2,3];
     }
     else{
-        drawBox([7,20],[5,5]);
-        textArea('1 : NEW GAME', [7,7]);
-        textArea("3 : QUIT", [9,7]);
+        Display::drawBox([7,20],[5,5]);
+        Display::textArea('1 : NEW GAME', [7,7]);
+        Display::textArea("3 : QUIT", [9,7]);
         $choiceBefore = [1,3];
     }
 
@@ -65,10 +65,10 @@ function menuStart(){
         exitGame();
     }
     elseif($choice == 2){
-        deleteSave(getSavePath('save'));
+        deleteSave(Parameters::getSavePath('save'));
     }
 
-    clearGameScreen();
+     Display::clearGameScreen();
 }
 function exitGame(){
     echo "\033c";
@@ -76,29 +76,29 @@ function exitGame(){
 }
 
 function drawStatsFromSaveToMenu(){
-    if(isSaveExist(getSavePath('myGame'))){
-        drawBox([21,30],[3,28]);
-        $save = getSave(getSavePath('myGame'));
-        textArea('Name : '.$save['name'], [5,30]);
-        textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
-        textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
+    if(isSaveExist(Parameters::getSavePath('myGame'))){
+        Display::drawBox([21,30],[3,28]);
+        $save = getSave(Parameters::getSavePath('myGame'));
+        Display::textArea('Name : '.$save['name'], [5,30]);
+        Display::textArea('Pokedex : '. countPkmnCatchFromPokedex().'/'.getCountPokedex(), [7,30]);
+        Display::textArea('Floor Max : '.$save['IndexFloor Max'], [8,30]);
 
-        // if(isSaveExist(getSavePath('myGame'))){
-        //     $floorMaxReached = getDataFromSave('Record IndexFloor', getSavePath('myGame')) ?? 0;
-        //     textArea('Floor reached Max : '.$floorMaxReached, [9,30]);
+        // if(isSaveExist(Parameters::getSavePath('myGame'))){
+        //     $floorMaxReached = getDataFromSave('Record IndexFloor', Parameters::getSavePath('myGame')) ?? 0;
+        //     Display::textArea('Floor reached Max : '.$floorMaxReached, [9,30]);
         // }
-        textArea('Win Count : '.$save['Game wins'], [10,30]);
+        Display::textArea('Win Count : '.$save['Game wins'], [10,30]);
 
-        if(isSaveExist(getSavePath('save'))){
-            $saveFight = getSave(getSavePath('save'));
-            textArea('------ Current Game ------', [12,30]);
-            textArea('Floor : '.$saveFight['IndexFloor'], [13,30]);
-            textArea("Money : ".formatMoney($saveFight['Money']), [14,30]);
+        if(isSaveExist(Parameters::getSavePath('save'))){
+            $saveFight = getSave(Parameters::getSavePath('save'));
+            Display::textArea('------ Current Game ------', [12,30]);
+            Display::textArea('Floor : '.$saveFight['IndexFloor'], [13,30]);
+            Display::textArea("Money : ".CustomFunctions::formatMoney($saveFight['Money']), [14,30]);
             
             $y = 0;
             foreach($saveFight['Team'] as $key => $pkmn){
-                justifyText('Lv: '.$pkmn['Level'], 7,[16+$y,45], 'right');
-                textArea(ucfirst($pkmn['Name']), [16+$y,30]);
+                Display::justifyText('Lv: '.$pkmn['Level'], 7,[16+$y,45], 'right');
+                Display::textArea(ucfirst($pkmn['Name']), [16+$y,30]);
                 $y +=1;
             }
         }
@@ -107,9 +107,9 @@ function drawStatsFromSaveToMenu(){
 
 function chooseFirstPokemon(){
     drawBoiteDialogue();
-    drawSprite(getSprites('Pokeball'), [8,2]);
-    drawSprite(getSprites('Pokeball'), [8,32]);
-    drawSprite(getSprites('Pokeball'), [1,17]);
+    Display::drawSprite(getSprites('Pokeball'), [8,2]);
+    Display::drawSprite(getSprites('Pokeball'), [8,32]);
+    Display::drawSprite(getSprites('Pokeball'), [1,17]);
     messageBoiteDialogue('Choose your first Pokemon : 
        
 1 : Bulbasaur  2 : Squirtle  3 : Charmander');
@@ -131,17 +131,17 @@ function chooseFirstPokemon(){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// FIRST TIME IN GAME //////////////////////////////////////////////////////////////////////
 function startGame(){
-    // debugLog(getSavePath('myGame'));
-    // debugLog(isSaveExist(getSavePath('myGame')));
-    if(!isSaveExist(getSavePath('myGame'))){
+    // CustomFunctions::debugLog(Parameters::getSavePath('myGame'));
+    // CustomFunctions::debugLog(isSaveExist(Parameters::getSavePath('myGame')));
+    if(!isSaveExist(Parameters::getSavePath('myGame'))){
         cinematicPresentation();
     }
     else{
-        $file = file_get_contents(getSavePath('myGame'));
+        $file = file_get_contents(Parameters::getSavePath('myGame'));
         $array = json_decode($file, true);
 
         if(!isset($array['name'])){
-            deleteSave(getSavePath('myGame'));
+            deleteSave(Parameters::getSavePath('myGame'));
             cinematicPresentation();
         }
     }
@@ -149,27 +149,27 @@ function startGame(){
 
 function cinematicPresentation(){
     $posSprite = [5,16];
-    drawGameCadre();
+    Display_Game::drawGameCadre();
     drawBoiteDialogue();
-    drawSprite(getSprites('trainer'), $posSprite);
+    Display::drawSprite(getSprites('trainer'), $posSprite);
     messageBoiteDialogue("Hello, i'm Prof. Twig and welcome to the world of Pokemon!", -1);
     messageBoiteDialogue("Let me show you what a pokemon is.", -1);
-    clearArea([15,50],[2,2]);
-    clearSprite($posSprite);
-    drawSprite(getSprites('Pokeball_1'),$posSprite);
+    Display::clearArea([15,50],[2,2]);
+    Display::clearSprite($posSprite);
+    Display::drawSprite(getSprites('Pokeball_1'),$posSprite);
     sleep(1);
-    drawSprite(getSprites("Pikachu"), $posSprite);
+    Display::drawSprite(getSprites("Pikachu"), $posSprite);
     messageBoiteDialogue("Here's Pikachu!", -1);
     messageBoiteDialogue("He's an electric type. You'll need Pokemons to do Pokemon battles. You can meet him later on your journey.", -1);
-    clearSprite($posSprite);
-    drawSprite(getSprites('trainer'), $posSprite);
+    Display::clearSprite($posSprite);
+    Display::drawSprite(getSprites('trainer'), $posSprite);
     messageBoiteDialogue("By the way, what is your name?", -1);
 
     messageBoiteDialogue("'To select/ choose an action, write your answer under this box.'", -1);
     saveMainManager();
-    $save = getSave(getSavePath('myGame'));
+    $save = getSave(Parameters::getSavePath('myGame'));
     messageBoiteDialogue("Hi ". $save['name'].". Let me introduce you the rules.", -1);
-    messageBoiteDialogue("But this time, it will be different. You have ".getIndexFloorMaxOriginal()." battles to win.", -1);
+    messageBoiteDialogue("But this time, it will be different. You have ".Parameters::getIndexFloorMaxOriginal()." battles to win.", -1);
     messageBoiteDialogue("You loose, you restart. Everytime you can choose a new starter Pokemon.", -1);
     messageBoiteDialogue("You can still buy items that can help you on your journey, but be careful with your money!", -1);
     messageBoiteDialogue("Capture Pokemons to grow up your team! You can only stock 6 Pokemons with you. If you capture one, you must replace it with a member of your team.", -1);
@@ -180,24 +180,24 @@ function cinematicPresentation(){
 }
 
 function cinematicLeagueEnding(&$save){
-    clearGameScreen();
-    $name = getDataFromSave('name', getSavePath('myGame'));
+     Display::clearGameScreen();
+    $name = getDataFromSave('name', Parameters::getSavePath('myGame'));
     messageBoiteDialogue('Congratulations! You beat the league Pokemon!', -1);
 
     foreach($save['Team'] as $pkmn){
-        clearGameScreen();
-        drawSprite(getSprites($pkmn['Sprite']), [3,18]);
-        drawBox([4,20],[20,20]);
+         Display::clearGameScreen();
+        Display::drawSprite(getSprites($pkmn['Sprite']), [3,18]);
+        Display::drawBox([4,20],[20,20]);
 
-        justifyText(ucfirst($pkmn['Name']), 20, [21,20], 'center');
-        justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
+        Display::justifyText(ucfirst($pkmn['Name']), 20, [21,20], 'center');
+        Display::justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
         messageBoiteDialogue('Bravo to '.ucfirst($pkmn['Name']).'!');
 
         waitForInput([31,0]);
-        clearSprite([3,18]);
+        Display::clearSprite([3,18]);
     }
-    clearGameScreen();
-    drawSprite(getSprites('trainer'), [6,18]);
+     Display::clearGameScreen();
+    Display::drawSprite(getSprites('trainer'), [6,18]);
     sleep(1);
 
     messageBoiteDialogue('Bravo '.$name.' and your team to defeat the league!', -1);
@@ -209,24 +209,24 @@ function cinematicLeagueEnding(&$save){
 //////////////////////////////////////////////////////////////////////////////////////////////
 //// ENDING //////////////////////////////////////////////////////////////////////
 function cinematicEnding(&$save){
-    clearGameScreen();
+     Display::clearGameScreen();
     messageBoiteDialogue('Congratulations! You beat the game!', -1);
-    $name = getDataFromSave('name', getSavePath('myGame'));
-    $win = getDataFromSave('Game wins', getSavePath('myGame'));
+    $name = getDataFromSave('name', Parameters::getSavePath('myGame'));
+    $win = getDataFromSave('Game wins', Parameters::getSavePath('myGame'));
     foreach($save['Team'] as $pkmn){
-        clearGameScreen();
-        drawSprite(getSprites($pkmn['Sprite']), [3,18]);
-        drawBox([4,20],[20,20]);
+         Display::clearGameScreen();
+        Display::drawSprite(getSprites($pkmn['Sprite']), [3,18]);
+        Display::drawBox([4,20],[20,20]);
 
-        justifyText(ucfirst($pkmn['Name']), 20, [21,20], 'center');
-        justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
+        Display::justifyText(ucfirst($pkmn['Name']), 20, [21,20], 'center');
+        Display::justifyText("Lv: ".$pkmn['Level'], 20, [22,20], 'center');
         messageBoiteDialogue('Bravo to '.ucfirst($pkmn['Name']).'!');
 
         waitForInput([31,0]);
-        clearSprite([3,18]);
+        Display::clearSprite([3,18]);
     }
-    clearGameScreen();
-    drawSprite(getSprites('trainer'), [6,18]);
+     Display::clearGameScreen();
+    Display::drawSprite(getSprites('trainer'), [6,18]);
     messageBoiteDialogue('Bravo '.$name.' and your team to defeat the game!', -1);
     if($win == 0){
         messageBoiteDialogue('New Pokemons have apparently appeared. New birds according to trainers.', -1);
@@ -240,22 +240,22 @@ function cinematicEnding(&$save){
 }
 
 function endGame(){
-    deleteSave(getSavePath('save'));
-    $gameWins = getDataFromSave('Game wins', getSavePath('myGame'));
+    deleteSave(Parameters::getSavePath('save'));
+    $gameWins = getDataFromSave('Game wins', Parameters::getSavePath('myGame'));
     ++$gameWins;
-    $floorMaxReturn = ($gameWins*10) + getIndexFloorMaxOriginal() > 140 ? 141 : ($gameWins*10) + getIndexFloorMaxOriginal();
-    setData($floorMaxReturn, 'IndexFloor Max', getSavePath('myGame'));
-    setData($gameWins, 'Game wins', getSavePath('myGame'));
+    $floorMaxReturn = ($gameWins*10) + Parameters::getIndexFloorMaxOriginal() > 140 ? 141 : ($gameWins*10) + Parameters::getIndexFloorMaxOriginal();
+    setData($floorMaxReturn, 'IndexFloor Max', Parameters::getSavePath('myGame'));
+    setData($gameWins, 'Game wins', Parameters::getSavePath('myGame'));
 }
 
 function screenLose(){
-    clearGameScreen();
-    addData(1, 'loses', getSavePath('myGame'));
-    setData(getDataFromSave('IndexFloor', getSavePath('save')), 'Record IndexFloor', getSavePath('myGame'));
-    $floor = getDataFromSave('IndexFloor', getSavePath('save'));
+    Display::clearGameScreen();
+    addData(1, 'loses', Parameters::getSavePath('myGame'));
+    setData(getDataFromSave('IndexFloor', Parameters::getSavePath('save')), 'Record IndexFloor', Parameters::getSavePath('myGame'));
+    $floor = getDataFromSave('IndexFloor', Parameters::getSavePath('save'));
 
-    drawSprite(getSprites('Pokeball'), [3,18]);
+    Display::drawSprite(getSprites('Pokeball'), [3,18]);
     messageBoiteDialogue('You lost at '. $floor . ' floor...', -1);
-    deleteSave(getSavePath('save'));
+    deleteSave(Parameters::getSavePath('save'));
 }
 ?>

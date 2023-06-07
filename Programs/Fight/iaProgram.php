@@ -40,7 +40,7 @@ function createWildPkmn($level, $name, $dialogues = null, $title = null){
 }
 
 function createLegendaryWildPkmn($indexFloor){
-    if(getDataFromSave('Game wins', getSavePath('my Game'))> 0){
+    if(getDataFromSave('Game wins', Parameters::getSavePath('my Game'))> 0){
         if(rand(0,100) >= 99){
             $choiceLegendary = ['zapdos','moltres','articuno'];
             return createWildPkmn($indexFloor, 
@@ -59,7 +59,7 @@ function generatePNJ($indexFloor, $level){
     $pnj = managerPNJGenerate($indexFloor, $level);
     if($pnj['Title'] == 'Champion' || $pnj['Title'] == 'Gym Leader' || $pnj['Title'] == 'Elite Four' || $pnj['Title'] == 'Legendary' || $pnj['Title'] == 'Rival'){
         $spriteEnemy = is_array($pnj['Sprite']) ? $pnj['Sprite'][0] : $pnj['Sprite'];
-        animationVersusLeader($spriteEnemy);
+        Animations::versusLeader($spriteEnemy);
     }
     return $pnj;
 }
@@ -179,7 +179,7 @@ function choosePkmn(&$teamPkmn){
 }
 
 function selectStarterRival($stadeEvol = 0){
-    $starter = getDataFromSave('Starter', getSavePath('save'));
+    $starter = getDataFromSave('Starter', Parameters::getSavePath('save'));
 
     switch($starter){
         case 1:
@@ -192,7 +192,7 @@ function selectStarterRival($stadeEvol = 0){
             $starter = 'charmander';  
             break;
         case null:
-            // debugLog('No Starter',1);
+            // CustomFunctions::debugLog('No Starter',1);
             $starter = 'charmander';
             break;
     }

@@ -6,15 +6,15 @@ function managerShop(&$save){
     $listIemsShop = getSave('Resources/items.json'); // TEMP
     $listIemsShop = listItemsBuyableInShop($save['IndexFloor']);
     while(true){
-        clearGameScreen();
+         Display::clearGameScreen();
 
-        $categories = getAllCategoriesItem();
+        $categories = Parameters::getAllCategoriesItem();
 
         // Create list depends on category selected
         $currentListItemTEMP = [];
         foreach($listIemsShop as $key => &$item){
-            // debugLog($item);
-            if($item['type'] == getCategoryName($categories, $indexCategory)){
+            // CustomFunctions::debugLog($item);
+            if($item['type'] == Parameters::getCategoryName($categories, $indexCategory)){
                 array_push($currentListItemTEMP, ['key'=>$key, 'item'=>$item]);
             }
         }
@@ -22,12 +22,12 @@ function managerShop(&$save){
 
         // Draw & write before action
         drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
-        drawCategoryBag(getAllCategoriesItem(), $indexCategory);
+        drawCategoryBag(Parameters::getAllCategoriesItem(), $indexCategory);
         messageBoiteDialogue("Which item do you want to buy?\n   z   \n<q   d> Use=v\n   s");
         drawMoney(null, $save['Money']);
 
         // Action
-        $move = waitForInput(getPosChoice(),$moveChoice);
+        $move = waitForInput(Parameters::getPosChoice(),$moveChoice);
         if($move == leaveInputMenu()){
             return leaveInputMenu();
         }
@@ -35,7 +35,7 @@ function managerShop(&$save){
         elseif($move == 'v'){
             while(true){
                 messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['item']['name'].' do you want?');
-                $quantity = waitForInput(getPosChoice(), '', ' Quantity? ');
+                $quantity = waitForInput(Parameters::getPosChoice(), '', ' Quantity? ');
                 if(!is_numeric($quantity)){
                     messageBoiteDialogue('Please insert a number.',-1);
                     continue;
@@ -113,39 +113,4 @@ function listItemsBuyableInShop($indexFloor){
     }
     return $items;
 }
-
-//// OLD
-// function drawShop($items){
-//     drawMoney();
-//     $i = 0;
-//     $y = 0;
-//     $choice = [];
-//     foreach($items as $key => $item){
-//         $key = $y;
-//         $name = '';
-//         if(isset($item['name'])){
-//             $name = $item['name'];
-//         }
-//         else{
-//             $name = $key;
-//         }
-//         textArea($y . '. '.$name . ' : ' . $item['price'], [4+$i,5]);
-
-//         $choice[$y] = $item;
-//         $i += 2;
-//         $y++;
-//     }
-//     return $choice;
-// }
-
-// function listItemsBuyable($items, $currentMoney){
-//     $list = drawShop($items);
-//     $choice = [leaveInputMenu()];
-//     for($i=1;$i<count($list)+1;++$i){
-//         if($currentMoney >= $list[$i-1]['price']){
-//             $choice[$i] = $i-1;
-//         }
-//     }
-//     return [$list, $choice];
-// }
 ?>
