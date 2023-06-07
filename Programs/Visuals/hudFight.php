@@ -1,12 +1,4 @@
 <?php
-// -- HUD PKMN--
-// - Afficher HUD du pkmn joueur -
-// Display_Fight::drawPkmnInfoHUD(17,34, $pkmn1);
-// Display::drawSprite($sprites[$pkmn1['Sprite']], 9, 3); 
-// - Afficher HUD du pkmn ennemi -
-// Display_Fight::drawPkmnInfoHUD(2,3, $pkmn2);
-// Display::drawSprite($sprites[$pkmn2['Sprite']], 1, 35);
-
 
 class Display_Fight{
     //// CREATE HUD INGAME //////////////////////////
@@ -64,7 +56,7 @@ class Display_Fight{
 
         Display_Fight::updateHealthPkmn($pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur, $pos);
         if($isJoueur){
-            Display_Fight::updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
+            Display_Fight::updateHealthPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
         }
         // if(!$isJoueur){
         //     // draw info if caught or not

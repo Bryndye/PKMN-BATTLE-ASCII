@@ -195,11 +195,11 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
                 if($pkmnAtk['Stats Temp'][$stat[1]] < 6){
                     $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0];
                     if($pkmnAtk['Stats Temp'][$stat[1]] > 0){
-                        Animations::up($pkmnAtk,$isJoueurAttack);
+                        Animations::attackUp($pkmnAtk,$isJoueurAttack);
                         messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
                     }
                     else{
-                        Animations::down($pkmnAtk,$isJoueurAttack);
+                        Animations::attackDown($pkmnAtk,$isJoueurAttack);
                         messageBoiteDialogue($pkmnAtk['Name']." decreases ". $stat[1]."!",1);
                     }
                 }
@@ -217,11 +217,11 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
                     $pkmnDef['Stats Temp'][$stat[1]] += $stat[0];
                     // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                     if($pkmnDef['Stats Temp'][$stat[1]] > 0){
-                        Animations::up($pkmnDef,!$isJoueurAttack);
+                        Animations::attackUp($pkmnDef,!$isJoueurAttack);
                         messageBoiteDialogue($pkmnDef['Name']." increases ". $stat[1]."!",1);
                     }
                     else{
-                        Animations::down($pkmnDef,!$isJoueurAttack);
+                        Animations::attackDown($pkmnDef,!$isJoueurAttack);
                         messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                     }
                 }

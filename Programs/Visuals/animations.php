@@ -190,7 +190,7 @@ class Animations{
         Display_Game::drawSpritePkmn($pkmn, $isJoueur);
     }
     
-    static function down($pkmn, $isJoueur){
+    static function attackDown($pkmn, $isJoueur){
         $pos = Parameters::getPosSpritePkmn($isJoueur);
         $scaleSprite = Parameters::getScaleSpritePkmn();
         for($i=0;$i<3;++$i){
@@ -206,7 +206,7 @@ class Animations{
         Display::drawSprite(getSprites($pkmn['Sprite']),$pos);
     }
     
-    static function up($pkmn, $isJoueur){
+    static function attackUp($pkmn, $isJoueur){
         $pos = Parameters::getPosSpritePkmn($isJoueur);
         $scaleSprite = Parameters::getScaleSpritePkmn();
         for($i=0;$i<3;++$i){
