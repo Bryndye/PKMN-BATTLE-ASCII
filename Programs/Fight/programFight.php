@@ -35,23 +35,23 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     }
     
     $capacite['PP'] -= 1;
-    messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!',1);
+    Display_Game::messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!',1);
 
     // Accuracy capacity
     $chanceAccuracy = rand(0,100);
     if(!is_null($capacite['Accuracy']) && $chanceAccuracy > $capacite['Accuracy']*calculateBoostTemps($pkmnAtk, 'Accuracy')){
-        messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!',1);
+        Display_Game::messageBoiteDialogue($pkmnAtk['Name'].' misses his attack!',1);
         return;
     }
 
     if(is_string($capacite['Power']) && $capacite['Power'] == 'randomReplace'){
         $capacite = getRandCapacites('randomReplace');
-        messageBoiteDialogue($pkmnAtk['Name'].' replaces his attack with '. $capacite['Name'].'!',1);
+        Display_Game::messageBoiteDialogue($pkmnAtk['Name'].' replaces his attack with '. $capacite['Name'].'!',1);
     }
     // Set new Capacite ref depend on metronome
     if(is_string($capacite['Power']) && $capacite['Power'] == 'random'){
         $newCapacite = getRandCapacites('metronome');
-        messageBoiteDialogue($pkmnAtk['Name'].' invokes '. $newCapacite['Name'].'!',1);
+        Display_Game::messageBoiteDialogue($pkmnAtk['Name'].' invokes '. $newCapacite['Name'].'!',1);
     }
     else {
         $newCapacite = &$capacite;
@@ -65,7 +65,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
         // Evasion fiscal
         $chanceEvasion = rand(0,100);
         if($chanceEvasion < $pkmnDef['Stats Temp']['evasion']){
-            messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
+            Display_Game::messageBoiteDialogue($pkmnDef['Name'].' dodges the attack!',1);
             return;
         }
         Animations::attack($pkmnAtk, !$isJoueurTakeDamage);
@@ -130,7 +130,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     $timesHit = 1;
     if($capacite['effects']['hits']['min hits'] != null && $capacite['effects']['hits']['max hits']){
         $timesHit = getHits($capacite['effects']['hits']['min hits'], $capacite['effects']['hits']['max hits']);
-        messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit.'.',1);
+        Display_Game::messageBoiteDialogue($pkmnAtk['Name']." hits " .  $timesHit.'.',1);
     }
     takeDamagePkmn($pkmnDef, $finalDamage * $timesHit, !$isJoueur);
     
@@ -140,17 +140,17 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     
     //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
     if($finalDamage == 0){
-        messageBoiteDialogue("It didn't affect ".$pkmnDef['Name'],1);
+        Display_Game::messageBoiteDialogue("It didn't affect ".$pkmnDef['Name'],1);
         return;
     }
     else if($isCrit){
-        messageBoiteDialogue("Critical hit!",1);
+        Display_Game::messageBoiteDialogue("Critical hit!",1);
     }
     else if($efficace > 1){
-        messageBoiteDialogue("It's super effective!",1);
+        Display_Game::messageBoiteDialogue("It's super effective!",1);
     }
     else if($efficace < 1){
-        messageBoiteDialogue("It's not very effective!",1);
+        Display_Game::messageBoiteDialogue("It's not very effective!",1);
     }
 
     ailmentChanceOnpKmn($capacite, $pkmnDef);
@@ -158,7 +158,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
         takeDamagePkmn($pkmnAtk, -ceil(($capacite['effects']['Drain']/100) * $finalDamage), $isJoueur);
 
         if($capacite['effects']['Drain'] <= 0){
-            messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
+            Display_Game::messageBoiteDialogue($pkmnAtk['Name']." takes damage from recoil!",1);
         }  
         // update health pkmn atk after drain
         Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn($isJoueur), $pkmnAtk, $isJoueur);
@@ -196,15 +196,15 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
                     $pkmnAtk['Stats Temp'][$stat[1]] += $stat[0];
                     if($pkmnAtk['Stats Temp'][$stat[1]] > 0){
                         Animations::attackUp($pkmnAtk,$isJoueurAttack);
-                        messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
+                        Display_Game::messageBoiteDialogue($pkmnAtk['Name']." increases ". $stat[1]."!",1);
                     }
                     else{
                         Animations::attackDown($pkmnAtk,$isJoueurAttack);
-                        messageBoiteDialogue($pkmnAtk['Name']." decreases ". $stat[1]."!",1);
+                        Display_Game::messageBoiteDialogue($pkmnAtk['Name']." decreases ". $stat[1]."!",1);
                     }
                 }
                 else{
-                    messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
+                    Display_Game::messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
                 }
             }
         }
@@ -215,18 +215,18 @@ function boostStatsTemp(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueurAttack){
             if($chance <= $stat[2]){ 
                 if($pkmnDef['Stats Temp'][$stat[1]] > -6){
                     $pkmnDef['Stats Temp'][$stat[1]] += $stat[0];
-                    // messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
+                    // Display_Game::messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                     if($pkmnDef['Stats Temp'][$stat[1]] > 0){
                         Animations::attackUp($pkmnDef,!$isJoueurAttack);
-                        messageBoiteDialogue($pkmnDef['Name']." increases ". $stat[1]."!",1);
+                        Display_Game::messageBoiteDialogue($pkmnDef['Name']." increases ". $stat[1]."!",1);
                     }
                     else{
                         Animations::attackDown($pkmnDef,!$isJoueurAttack);
-                        messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
+                        Display_Game::messageBoiteDialogue($pkmnDef['Name']." decreases ". $stat[1]."!",1);
                     }
                 }
                 else{
-                    messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
+                    Display_Game::messageBoiteDialogue("Can't modify ". $stat[1]."!",1);
                 }
             }
         }
@@ -270,7 +270,7 @@ function resetAllStatsTempToPkmn(&$pkmn){
             'Used' => false
         ]
     ];
-    messageBoiteDialogue(ucfirst($pkmn['Name']) . ' reset all changes.',1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) . ' reset all changes.',1);
 }
 
 function getHits($minHits, $maxHits) {
@@ -288,7 +288,7 @@ function getHits($minHits, $maxHits) {
 function takeDamagePkmn(&$pkmn, $damage, $isJoueur){
     Animations::takeDamage($pkmn, $isJoueur);
     if($damage < 0){
-        messageBoiteDialogue(ucfirst($pkmn['Name']) . ' drains ' . -$damage . ' Hp.',1);
+        Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) . ' drains ' . -$damage . ' Hp.',1);
     }
 
     $pkmn['Stats']['Health'] -= $damage;
@@ -313,7 +313,7 @@ function isPkmnDead(&$pkmn, $isJoueur){
     }
 }
 function animatePkmnKo($pkmn, $isJoueur){
-    clearBoiteDialogue();
+    Display_Game::clearBoiteDialogue();
     Display::clearArea(Parameters::getScaleHUDPkmn(), Parameters::getPosHealthPkmn($isJoueur)); //clear HUD pkmn life
 
     // Clear sprite pkmn
@@ -321,7 +321,7 @@ function animatePkmnKo($pkmn, $isJoueur){
     $scaleClear = Parameters::getScaleSpritePkmn();
     Display::clearArea($scaleClear,$posClearSprite);
 
-    messageBoiteDialogue(ucfirst($pkmn['Name']) . ' is K.O.',1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) . ' is K.O.',1);
 }
 
 function isTeamPkmnAlive($teamPkmn){
@@ -349,8 +349,8 @@ function searchNewPkmnInTeam(&$teamPkmn){
 }
 function selectPkmn(&$pkmnTeam, $exception = [], $pkmnDeadSelect = true, $string='Which Pokemon do you want?'){
     Display_Fight::drawPkmnTeam($pkmnTeam);
-    drawBoiteDialogue();
-    messageBoiteDialogue($string);
+    Display_Game::drawBoiteDialogue();
+    Display_Game::messageBoiteDialogue($string);
     
     $arrayChoice = [];
     array_push($arrayChoice, leaveInputMenu());
@@ -386,7 +386,7 @@ function switchPkmn(&$pkmnTeam ,$index, $inBattle = true){
         }
     }
     if($inBattle) {
-        messageBoiteDialogue(ucfirst($pkmnTeam[0]['Name']) .', Go!',1);
+        Display_Game::messageBoiteDialogue(ucfirst($pkmnTeam[0]['Name']) .', Go!',1);
     }
 }
 ///////////////////////////////////////////////////////////

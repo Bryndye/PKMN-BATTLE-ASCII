@@ -166,7 +166,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
     $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
     $pkmn['exp'] = 0;
 
-    messageBoiteDialogue(ucfirst($pkmn['Name']).' level up to '.$pkmn['Level'].'!',-1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' level up to '.$pkmn['Level'].'!',-1);
 
     $newStats = [];
     $oldStats= [];
@@ -200,7 +200,7 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
 
     $pkmn['exp'] += $exp;
     if(!$inThisFct && $notFirstPkmn){
-        messageBoiteDialogue(ucfirst($pkmn['Name']).' gets '.$exp.' exp!',-1);
+        Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' gets '.$exp.' exp!',-1);
     }
 
     if($pkmn['exp'] >= $pkmn['expToLevel']){
@@ -244,23 +244,23 @@ function healPkmn($item, &$pkmn){
             $parts = explode("%", $item['effect']);
             $value = intval($parts[0]);
             $pkmn['Stats']['Health'] = intval(($value/100) * $pkmn['Stats']['Health Max']);
-            messageBoiteDialogue(ucfirst($pkmn['Name']) . " revives!",1);
+            Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) . " revives!",1);
         }
         else{
-            messageBoiteDialogue(ucfirst($pkmn['Name']) . " is already alive!",1);
+            Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) . " is already alive!",1);
         }
     }
     elseif(!isPkmnDead_simple($pkmn)){    
         $pkmn['Stats']['Health'] += $item['effect'];
         checkHealthOutRange($pkmn);
-        messageBoiteDialogue("Use ". $item['name'].' on '.ucfirst($pkmn['Name']) . "!",1);
+        Display_Game::messageBoiteDialogue("Use ". $item['name'].' on '.ucfirst($pkmn['Name']) . "!",1);
         print($pkmn['Stats']['Health']);
     }
 }
 
 function healStatusToPkmn(&$pkmn){
     $pkmn['Status'] = null;
-    messageBoiteDialogue(ucfirst($pkmn['Name']) . ' is cured of its ailment!',1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) . ' is cured of its ailment!',1);
 }
 
 function isPkmnDead_simple($pkmn){
@@ -276,7 +276,7 @@ function resetTeamStatsTemp(&$pkmnTeam){
 }
 
 function resetStatsTemp(&$pkmn){
-    // messageBoiteDialogue('DEBUG : RESET STAT '.$pkmn['Name'],-1);
+    // Display_Game::messageBoiteDialogue('DEBUG : RESET STAT '.$pkmn['Name'],-1);
     $pkmn['Stats Temp'] = [
         'Atk' => 0,
         'Def' => 0,
@@ -355,9 +355,9 @@ function verifyIfPkmnCanEvolve(&$pkmn, $item = null){
 
 function evolution(&$pkmn, $indexChoiceEvol = null){
      Display::clearGameScreen();
-    drawBoiteDialogue();
-    messageBoiteDialogue('What?',-1);
-    messageBoiteDialogue(ucfirst($pkmn['Name']) .' is evolving!',-1);
+    Display_Game::drawBoiteDialogue();
+    Display_Game::messageBoiteDialogue('What?',-1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']) .' is evolving!',-1);
 
     $olderName = $pkmn['Name'];
     if(!is_null($indexChoiceEvol)){
@@ -383,8 +383,8 @@ function evolution(&$pkmn, $indexChoiceEvol = null){
     setStatsToEvol($pkmn, $pkmnEvol);
     addPkmnToPokedex($pkmn, 'catch');
     sleep(1);
-    messageBoiteDialogue('Tadadaa...',-1);
-    messageBoiteDialogue($olderName .' evolves into '. $newName,-1);
+    Display_Game::messageBoiteDialogue('Tadadaa...',-1);
+    Display_Game::messageBoiteDialogue($olderName .' evolves into '. $newName,-1);
     sleep(1);
      Display::clearGameScreen();
 }
@@ -495,10 +495,10 @@ function captureItem($pokeball, $pkmn){
 
     sleep(1);
     if($var) {
-        messageBoiteDialogue('The Pokemon has been captured!',1);
+        Display_Game::messageBoiteDialogue('The Pokemon has been captured!',1);
         return true;
     } else {
-        messageBoiteDialogue('Oh no! The Pokemon escapes the ball!',1);
+        Display_Game::messageBoiteDialogue('Oh no! The Pokemon escapes the ball!',1);
         Display_Game::drawSpritePkmn($pkmn, false);
         return false;
     }

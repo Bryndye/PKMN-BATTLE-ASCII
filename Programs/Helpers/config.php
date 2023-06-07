@@ -81,7 +81,7 @@ class Parameters{
         return 110;
     }
     //// POSITIONS ///////////////////////////////////////////////
-    static function getPosSpritePkmn($isJoueur){
+    static function getPosSpritePkmn($isJoueur) : array{
         if($isJoueur)
         {
             return [9,2]; // joueur
@@ -91,7 +91,7 @@ class Parameters{
         }
     }
     
-    static function getPosSpriteTrainer($isJoueur){
+    static function getPosSpriteTrainer($isJoueur) : array{
         if($isJoueur)
         {
             return [2,2]; // joueur
@@ -101,7 +101,7 @@ class Parameters{
         }
     }
     
-    static function getPosHealthPkmn($isJoueur){    
+    static function getPosHealthPkmn($isJoueur) : array{    
         if($isJoueur){
             return [18,34]; // joueur
         }
@@ -110,7 +110,7 @@ class Parameters{
         }
     }
     
-    static function getPosTeam($isJoueur){    
+    static function getPosTeam($isJoueur) : array{    
         if($isJoueur){
             return [17,34]; // joueur
         }
@@ -119,19 +119,19 @@ class Parameters{
         }
     }
     
-    static function getPosPlaceHUD(){
+    static function getPosPlaceHUD() : array{
         return [3,5];
     }
     
-    static function getPosMenuHUD(){
+    static function getPosMenuHUD() : array{
         return [7,5];
     }
     
-    static function getPosDialogue(){
+    static function getPosDialogue() : array{
         return [24,1];
     }
     
-    static function getPosChoice(){
+    static function getPosChoice() : array{
         return [31,0];
     }
     
@@ -142,30 +142,28 @@ class Parameters{
         return [$screenScale[0]-($scaleDialogue[0]+$scale[0]), $screenScale[1]-2-$scale[1]];
     }
     //// SCALE ///////////////////////////////////////////////
-    static function getScreenScale(){
+    static function getScreenScale() : array{
         return [30,60];
     }
     
-    static function getScaleSpritePkmn(){
+    static function getScaleSpritePkmn() : array{
         return [15,28];
     }
     
     
-    static function getScaleHUDPkmn(){
+    static function getScaleHUDPkmn() : array{
         return [5,25];
     }
     
-    static function getScaleDialogue(){
+    static function getScaleDialogue() : array{
         return [7,60];
     }
     
-    static function getScaleYesOrNo(){
+    static function getScaleYesOrNo() : array{
         return [5,10];
     }
 }
 
-///////////////////////////////////////////////////////
-//// CUSTOM FUNCTIONS /////////////////////////////////
 class CustomFunctions{
     static function multipleOf($number, $multiple) {
         $result = bcdiv($number, $multiple, 0); // 0 decimal places

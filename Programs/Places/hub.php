@@ -18,7 +18,7 @@ function drawHub(&$save){
         drawMoney(null,$save['Money']);
         drawNextFloor([10,28]);
 
-        messageBoiteDialogue('What do you want to do?');
+        Display_Game::messageBoiteDialogue('What do you want to do?');
 
         // Attend la selection entre 1 et 2
         $choice = waitForInput([31,0],$choiceBefore);
@@ -87,14 +87,14 @@ function checkTeamPkmnFromMenu(&$pkmnTeam){
         $choice = selectPkmn($pkmnTeam, null, true, 'Choose a Pokemon.');
         if(is_numeric($choice)){
             while(true){ // LOOP ACTION TO A SINGLE PKMN
-                messageBoiteDialogue("1: Stats ".$pkmnTeam[$choice]['Name']."\n2: Move to First Place");
+                Display_Game::messageBoiteDialogue("1: Stats ".$pkmnTeam[$choice]['Name']."\n2: Move to First Place");
                 $choice2 = waitForInput(Parameters::getPosChoice(), [leaveInputMenu(),1,2]);
                 if($choice2 == 1){
                     seeSheetPkmn($pkmnTeam[$choice]);
                     break;
                 }
                 else if($choice2 == 2){
-                    messageBoiteDialogue('Switch place '.$pkmnTeam[$choice]['Name'].' where?');
+                    Display_Game::messageBoiteDialogue('Switch place '.$pkmnTeam[$choice]['Name'].' where?');
                     switchPkmn($pkmnTeam, $choice, false);
                     break;
                 }
@@ -197,7 +197,7 @@ function inTown(&$save){
         drawBoxTitle(Parameters::getPosPlaceHUD(),[3,strlen($townName)+4], $townName);
         drawBoxTextJusitfy(Parameters::getPosMenuHUD(), ['1 : POKE CENTER', '2 : POKE SHOP', '3 : EXIT']);
         Display::drawSprite(getSprites('Town'), [8, 29]);
-        messageBoiteDialogue('Welcome to '.$townName.'!');
+        Display_Game::messageBoiteDialogue('Welcome to '.$townName.'!');
 
         // Attend la selection entre 1 et 2
         $choice = waitForInput([31,0],$choiceBefore);
@@ -205,10 +205,10 @@ function inTown(&$save){
             // poke center heal
              Display::clearGameScreen();
             Display::drawSprite(getSprites('healer'),[4,17]);
-            messageBoiteDialogue("Welcome to our Pokémon Center!\nWe heal your Pokémon back to perfect health!\nShall we heal your Pokémon?");
+            Display_Game::messageBoiteDialogue("Welcome to our Pokémon Center!\nWe heal your Pokémon back to perfect health!\nShall we heal your Pokémon?");
             if(binaryChoice()){
                 fullHealTeam($save['Team']);
-                messageBoiteDialogue("Thank you! Your Pokémon are fighting fit!\nWe hope to see you again!",-1);
+                Display_Game::messageBoiteDialogue("Thank you! Your Pokémon are fighting fit!\nWe hope to see you again!",-1);
             }
         }
         elseif($choice == 2){

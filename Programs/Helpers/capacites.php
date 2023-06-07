@@ -109,11 +109,11 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         // Premiere boucle : vouloir apprendre la capacite ?
         $replace = false;
         while(!$replace){
-            messageBoiteDialogue(ucfirst($pkmn['Name']).' wants to learn '.$capacite['Name'].'.');
-            messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
+            Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' wants to learn '.$capacite['Name'].'.');
+            Display_Game::messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
             $choice = binaryChoice();
             if(!$choice){
-                messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .$capacite['Name'].'...');
+                Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .$capacite['Name'].'...');
                  Display::clearGameScreen();
                 return false; //for the bag 
                 // break;
@@ -124,18 +124,18 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             drawCapacityToLearn($capacite, [18,30]);
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
-                messageBoiteDialogue('Which capacity to CustomFunctions::removes?');
+                Display_Game::messageBoiteDialogue('Which capacity to CustomFunctions::removes?');
                 $choice = waitForInput([31,0], [leaveInputMenu(),1,2,3,4]);
                 $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
                 if($choice == leaveInputMenu()){
                     break;
                 }
-                messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');
+                Display_Game::messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');
                 $choice2 = binaryChoice();
                 if($choice2){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
-                    messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!');
+                    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!');
                      Display::clearGameScreen();
                     return true; //for the bag 
                 }
@@ -148,7 +148,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
     }
     else{
         array_push($pkmn['Capacites'], $capacite);
-        messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!',-1);
+        Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!',-1);
         return true; //for the bag 
     }
 }

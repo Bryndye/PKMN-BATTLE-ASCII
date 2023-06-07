@@ -42,7 +42,7 @@ function enterIntoBag(&$save, $type = 'hub'){
         }
         
         // Draw & write before action
-        messageBoiteDialogue(Parameters::getMessageBoiteDialogue());
+        Display_Game::messageBoiteDialogue(Parameters::getMessageBoiteDialogue());
         drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
         drawCategoryBag($categories, $indexCategory);
 

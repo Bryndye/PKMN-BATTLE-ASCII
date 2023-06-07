@@ -12,7 +12,7 @@ class Display_Game{
 
     static function drawSkeletonHUD(){
         Display_Game::drawGameCadre();
-        drawBoiteDialogue();
+        Display_Game::drawBoiteDialogue();
     }
 
     static function setColorByType($type = 'normal'){
@@ -108,6 +108,30 @@ class Display_Game{
         $scaleClear = Parameters::getScaleSpritePkmn();
         Display::clearArea($scaleClear,$posClearSprite);
     }
+
+    //// DRAW DIALOGUE ///////////////////////////////////////////
+    static function drawBoiteDialogue(){
+        Display::drawBox(Parameters::getScaleDialogue(), Parameters::getPosDialogue(), '|','-',true,['|','|','+','+']);
+    }
+
+    static function messageBoiteDialogue($message, $time = 0){
+        Display_Game::drawBoiteDialogue();
+        Display_Game::clearBoiteDialogue();
+        Display::textAreaLimited($message);
+        if($time >= 0){
+            sleep($time);
+        }
+        elseif($time < 0){
+            waitForInput();
+        }
+    }
+
+
+    static function clearBoiteDialogue(){
+        $pos = Parameters::getPosDialogue();
+        $scale = Parameters::getScaleDialogue();
+        Display::clearArea([$scale[0]-2, $scale[1]-2],[$pos[0]+1, $pos[1]+1]); //clear boite dialogue
+    }
 }
 //// DRAW HUB PLACE ///////////////////////////////////////////
 
@@ -146,29 +170,7 @@ function drawCategorySelected($categories, $caterogySelected, $pos){
         $newPosX = CustomFunctions::countLinesAndColumns($category)[1]+2+$newPosX;
     }
 }
-//// DRAW DIALOGUE ///////////////////////////////////////////
-function drawBoiteDialogue(){
-    Display::drawBox(Parameters::getScaleDialogue(), Parameters::getPosDialogue(), '|','-',true,['|','|','+','+']);
-}
 
-function messageBoiteDialogue($message, $time = 0){
-    drawBoiteDialogue();
-    clearBoiteDialogue();
-    Display::textAreaLimited($message);
-    if($time >= 0){
-        sleep($time);
-    }
-    elseif($time < 0){
-        waitForInput();
-    }
-}
-
-
-function clearBoiteDialogue(){
-    $pos = Parameters::getPosDialogue();
-    $scale = Parameters::getScaleDialogue();
-    Display::clearArea([$scale[0]-2, $scale[1]-2],[$pos[0]+1, $pos[1]+1]); //clear boite dialogue
-}
 
 //////////////////////////////////////////////////////////////
 //// COLOR TEXT///////////////////////////////////////////////

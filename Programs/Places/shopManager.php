@@ -23,7 +23,7 @@ function managerShop(&$save){
         // Draw & write before action
         drawRefreshInterfaceList($currentListItemTEMP, $currentIndexItemTEMP);
         drawCategoryBag(Parameters::getAllCategoriesItem(), $indexCategory);
-        messageBoiteDialogue("Which item do you want to buy?\n   z   \n<q   d> Use=v\n   s");
+        Display_Game::messageBoiteDialogue(Parameters::getMessageBoiteDialogue('use','Which item do you want to buy?'));
         drawMoney(null, $save['Money']);
 
         // Action
@@ -34,13 +34,13 @@ function managerShop(&$save){
         // Validation item
         elseif($move == 'v'){
             while(true){
-                messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['item']['name'].' do you want?');
+                Display_Game::messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['item']['name'].' do you want?');
                 $quantity = waitForInput(Parameters::getPosChoice(), '', ' Quantity? ');
                 if(!is_numeric($quantity)){
-                    messageBoiteDialogue('Please insert a number.',-1);
+                    Display_Game::messageBoiteDialogue('Please insert a number.',-1);
                     continue;
                 }elseif($quantity == 0 || $quantity == null){
-                    messageBoiteDialogue('Cancel purchase',-1);
+                    Display_Game::messageBoiteDialogue('Cancel purchase',-1);
                     break;
                 }
                 else{
@@ -94,12 +94,12 @@ function managerShop(&$save){
 function buyItem(&$save, $itemToBuy, $quantity = 1){
     $money = &$save['Money'];
     if($money < $itemToBuy['price']*$quantity){
-        messageBoiteDialogue("You don't have enough money for ".$itemToBuy['name'].' x '.$quantity.'.');
+        Display_Game::messageBoiteDialogue("You don't have enough money for ".$itemToBuy['name'].' x '.$quantity.'.');
         waitForInput();
         return false;
     }
     $money -= $itemToBuy['price'] * $quantity;
-    messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.',1);
+    Display_Game::messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.',1);
     return true;
 }
 

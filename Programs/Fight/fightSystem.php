@@ -9,20 +9,20 @@ function startFight(&$joueur, &$pnj){
     $pkmnTeamJoueur = &$joueur['Team'];
 
     // animation entrer dresseurs
-    drawBoiteDialogue();
+    Display_Game::drawBoiteDialogue();
     
     Animations::charactersenterBattle(getSprites('trainerBack'),$pnj['Sprite']);
 
-    messageBoiteDialogue($pnj['Dialogues']['entrance'], -1); // message trainer 
-    messageBoiteDialogue(ucfirst($pnj['Name']).' wants to fight!',-1); // message trainer 
+    Display_Game::messageBoiteDialogue($pnj['Dialogues']['entrance'], -1); // message trainer 
+    Display_Game::messageBoiteDialogue(ucfirst($pnj['Name']).' wants to fight!',-1); // message trainer 
 
     // animation pokeball
     if($pnj['type'] == 'trainer'){
-        messageBoiteDialogue(ucfirst($pkmnTeamEnemy[0]['Name']).', Go!',1);
+        Display_Game::messageBoiteDialogue(ucfirst($pkmnTeamEnemy[0]['Name']).', Go!',1);
         Animations::pkmnAppearinBattle(false, $pkmnTeamEnemy[0]);// faire apparaitre pkmn E
         sleep(1);
     }
-    messageBoiteDialogue(ucfirst($pkmnTeamJoueur[0]['Name']).', Go!',1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmnTeamJoueur[0]['Name']).', Go!',1);
     Animations::pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
     sleep(1);
 
@@ -45,7 +45,7 @@ function gameplayLoop(&$joueur, &$pnj){
             $choice2 = selectPkmn($pkmnTeamJoueur, 0, false);
             switchPkmn($pkmnTeamJoueur ,$choice2);
              Display::clearGameScreen();
-            drawBoiteDialogue();
+            Display_Game::drawBoiteDialogue();
             Display_Fight::drawPkmnAllBattleHUD($pkmnTeamEnemy, false);
             Animations::pkmnAppearinBattle(true, $pkmnTeamJoueur[0]);// faire apparaitre pkmn j
         }
@@ -123,7 +123,7 @@ function loopFight(&$joueur, &$pnj){
 
 // Lancer les actions des joueurs
 function fight(&$pkmnTeamJoueur,&$pkmnTeamEnemy, $actionJoueur, $actionEnemy, &$bagJ, &$bajE){
-    clearBoiteDialogue();
+    Display_Game::clearBoiteDialogue();
     
     $actionsTurn = [];
 
@@ -233,7 +233,7 @@ function isActionBePriority($pkmn, $action){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function endPkmnDied(&$pkmnTeamJoueur, &$pkmnE){
-    messageBoiteDialogue("You've fainted " . ucfirst($pkmnE['Name']).'.');
+    Display_Game::messageBoiteDialogue("You've fainted " . ucfirst($pkmnE['Name']).'.');
     for($i=0;$i<count($pkmnTeamJoueur);++$i){
         $firstPkmn = $i == 0;
         if(!isPkmnDead_simple($pkmnTeamJoueur[$i])){
@@ -258,8 +258,8 @@ function endBattle(&$joueur, $pnj){
     resetTeamStatsTemp($joueur['Team']);
 
     if(!isTeamPkmnAlive($pkmnTeamJoueur)){
-        messageBoiteDialogue('Your whole Team is k.o!',1);
-        messageBoiteDialogue("You can't fight...",1);
+        Display_Game::messageBoiteDialogue('Your whole Team is k.o!',1);
+        Display_Game::messageBoiteDialogue("You can't fight...",1);
     }
     else{
         if($pnj['type'] == 'trainer'){
@@ -272,19 +272,19 @@ function endBattle(&$joueur, $pnj){
                 foreach($pnj['Dialogues']['end'] as $message){
                     if(!is_null($message)){
                                     // CustomFunctions::debugLog('1');
-                        messageBoiteDialogue($message,-1);
+                        Display_Game::messageBoiteDialogue($message,-1);
                     }
                 }
             }
             elseif(isset($pnj['Dialogues']['end'])){
                 // CustomFunctions::debugLog('2');
-                messageBoiteDialogue($pnj['Dialogues']['end'],-1);
+                Display_Game::messageBoiteDialogue($pnj['Dialogues']['end'],-1);
             }
         }
-        messageBoiteDialogue("You've defeated " . ucfirst($pnj['Name']).'!',-1);
+        Display_Game::messageBoiteDialogue("You've defeated " . ucfirst($pnj['Name']).'!',-1);
         if(!is_null($pnj['Reward']) && $pnj['Reward']>0){
             $joueur['Money'] += $pnj['Reward'];
-            messageBoiteDialogue('You get ' . $pnj['Reward'].' pokedollars.',1);
+            Display_Game::messageBoiteDialogue('You get ' . $pnj['Reward'].' pokedollars.',1);
         }
     }
 }

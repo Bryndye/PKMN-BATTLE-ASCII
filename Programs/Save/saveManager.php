@@ -95,7 +95,7 @@ function createPartySave(){
     $datasPartySave['Team'] = $var[0];
     if(isPkmnAlreadyCatch('mew')){
         array_push($datasPartySave['Team'], generatePkmnBattle('mew',5));
-        messageBoiteDialogue("You've discovered Mew, so I've decided you can have it.",-1);
+        Display_Game::messageBoiteDialogue("You've discovered Mew, so I've decided you can have it.",-1);
     }
     $json = json_encode($datasPartySave);
     file_put_contents(Parameters::getSavePath('save'), $json);
@@ -154,7 +154,9 @@ function getSave($path){
 
 function getDataFromSave($key, $path){
     // $path = isPathNull($path);
-    if(!file_exists(Parameters::getFolderSave())){
+    // CustomFunctions::debugLog(file_exists(Parameters::getFolderSave()));
+    if(file_exists(Parameters::getFolderSave(Parameters::getParameterPathSave())) == false){
+        // CustomFunctions::debugLog('NON');
         return null;
     }
     $file = file_get_contents($path);

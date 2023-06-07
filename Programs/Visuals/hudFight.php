@@ -3,7 +3,7 @@
 class Display_Fight{
     //// CREATE HUD INGAME //////////////////////////
 
-    static static function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
+    static function drawGameHUD($pkmnTeamJoueur, $pkmnTeamEnemy){
         Display::clearGameScreen();
         Display_Game::drawSkeletonHUD();
 
@@ -56,7 +56,7 @@ class Display_Fight{
 
         Display_Fight::updateHealthPkmn($pkmn['Stats']['Health'],$pkmn['Stats']['Health Max'], $isJoueur, $pos);
         if($isJoueur){
-            Display_Fight::updateHealthPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
+            Display_Fight::updateExpPkmn($pos,$pkmn['exp'], $pkmn['expToLevel']);
         }
         // if(!$isJoueur){
         //     // draw info if caught or not

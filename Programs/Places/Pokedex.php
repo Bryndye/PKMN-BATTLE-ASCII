@@ -63,10 +63,10 @@ function pokedexInterface(){
     $indexPokedex = 1;
     $lastNPokdex = getLastNPokedex();
     $pkmnSeeAndCatch = getDataFromSave('Pokedex',Parameters::getSavePath('myGame'));
-
+    // CustomFunctions::debugLog(getDataFromSave('Wins',Parameters::getSavePath('myGame')));
     while(true){
-         Display::clearGameScreen();
-        messageBoiteDialogue(Parameters::getMessageBoiteDialogue('count','Navigate into the Pokedex :'));
+        Display::clearGameScreen();
+        Display_Game::messageBoiteDialogue(Parameters::getmessageBoiteDialogue('count','Navigate into the Pokedex :'));
         $currentPkmnUsing = getPokemon($indexPokedex);
         
         listPokedexRight($currentPkmnUsing['Name'], $pkmnSeeAndCatch);
