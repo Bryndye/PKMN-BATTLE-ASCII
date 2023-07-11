@@ -124,7 +124,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
             drawCapacityToLearn($capacite, [18,30]);
             // Deuxieme boucle : remplacer par quelle capacite ?
             while(true){
-                Display_Game::messageBoiteDialogue('Which capacity to CustomFunctions::removes?');
+                Display_Game::messageBoiteDialogue('Which capacity to removes?');
                 $choice = waitForInput([31,0], [leaveInputMenu(),1,2,3,4]);
                 $choice = is_numeric($choice) ? $choice-1 : $choice;// -1 cause of choices +1 for players
                 if($choice == leaveInputMenu()){
