@@ -918,7 +918,7 @@ $Routes = [
                 10000,
                 [],
                 [
-                    generatePkmnBattle(selectStarterRival(2), 100),
+                    generatePkmnBattle(150, 100),
                 ]
             ),
         ]

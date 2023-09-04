@@ -183,6 +183,7 @@ function useItem(&$bag, &$item, &$pkmn){
             }
             break;
         case 'PokeBalls':
+            removeItem($bag, $item); // exception qui a besoin dun return de capture
             return captureItem($item, $pkmn);
         case 'status':
             healStatusToPkmn($pkmn);
@@ -194,9 +195,8 @@ function useItem(&$bag, &$item, &$pkmn){
             verifyIfPkmnCanEvolve($pkmn, $item);
             break;
     }
-
+    CustomFunctions::debugLog($usedItem);
     if(is_bool($usedItem) && $usedItem){
-        --$item['quantity'];
         removeItem($bag, $item);
     }
     else{
@@ -215,8 +215,9 @@ function getExceptionsItemToPkmnTeam($pkmnTeam, $item){
             }
         }
         elseif(isReviveItem($item)){
+            CustomFunctions::debugLog($item);
             foreach($pkmnTeam as $key=>$pkmn){
-                if($pkmn['Stats']['Health'] >= 0){
+                if($pkmn['Stats']['Health'] > 0){
                     array_push($exceptions, $key);
                 }
             }
@@ -299,6 +300,7 @@ function getItemObject($itemName, $quantity = 1){
 
 
 function removeItem(&$bag, &$item){
+    --$item['quantity'];
     if($item['quantity'] <= 0){
         CustomFunctions::remove($item, $bag);
     }

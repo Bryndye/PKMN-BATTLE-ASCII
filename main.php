@@ -25,9 +25,8 @@ include_once 'Programs/Places/shopManager.php';
 
 // INIT LAST PROGRAMS
 include_once 'Programs/Visuals/animations.php';
-include_once 'Resources/trainersAndRoutes.php';
 include_once 'Programs/Places/Pokedex.php';
-
+include_once 'Resources/trainersAndRoutes.php'; // INIT RIVAL AFTER SAVE SET
 
 //// SET THE GAME ////
 Display::clear();
@@ -35,7 +34,7 @@ Cursor::hideCursor();
 shell_exec('mode con: cols=60 lines=33'); // Windows
 // shell_exec('resize -s 33 60'); // Linux
 
-intro();
+// intro();
 startGame();
 
 //// GAME ////
