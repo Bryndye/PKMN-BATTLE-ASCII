@@ -12,8 +12,14 @@ class Animations{
         $posY = $posInit[0];
         $posX = $posInit[1];
         for($i=0;$i<$countToExecuteAnimation; ++$i){
+            $oldPosY = $posY;
+            $oldPosX = $posX;
             $posX += $moveXPerLaps;
             $posY += $moveYPerLaps;
+
+            if(round($oldPosY) == round($posY) && round($oldPosX) == round($posX)){
+                continue;
+            }
             // CustomFunctions::debugLog("x:$posX y:$posY \n", 0);
             // Display::textArea("x:$posX y:$posY \n",[0,0]);
             Display::drawSprite($sprite, [$posY,$posX]);

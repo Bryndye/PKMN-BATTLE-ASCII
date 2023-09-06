@@ -195,7 +195,7 @@ function useItem(&$bag, &$item, &$pkmn){
             verifyIfPkmnCanEvolve($pkmn, $item);
             break;
     }
-    CustomFunctions::debugLog($usedItem);
+    // CustomFunctions::debugLog($usedItem);
     if(is_bool($usedItem) && $usedItem){
         removeItem($bag, $item);
     }
@@ -209,13 +209,12 @@ function getExceptionsItemToPkmnTeam($pkmnTeam, $item){
     if($item['type'] == 'Heals'){
         if(isStatusItem($item)){
             foreach($pkmnTeam as $key=>$pkmn){
-                if(!hasStatus($pkmn)){
+                if(!hasStatus($pkmn) || $pkmn['Stats']['Health'] <= 0){
                     array_push($exceptions, $key);
                 }
             }
         }
         elseif(isReviveItem($item)){
-            CustomFunctions::debugLog($item);
             foreach($pkmnTeam as $key=>$pkmn){
                 if($pkmn['Stats']['Health'] > 0){
                     array_push($exceptions, $key);
@@ -224,7 +223,7 @@ function getExceptionsItemToPkmnTeam($pkmnTeam, $item){
         }
         else{
             foreach($pkmnTeam as $key=>$pkmn){
-                if($pkmn['Stats']['Health'] == $pkmn['Stats']['Health Max']){
+                if($pkmn['Stats']['Health'] == $pkmn['Stats']['Health Max'] || $pkmn['Stats']['Health'] <= 0){
                     array_push($exceptions, $key);
                 }
             }
