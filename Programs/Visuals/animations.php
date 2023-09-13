@@ -30,7 +30,7 @@ class Animations{
         }
     }
     
-    static function pkmnAppearinBattle($isJoueur, $pkmn /*, $animPkBall = false*/){
+    static function pkmnAppearinBattle($isJoueur, $pkmn){
         Display_Game::clearSpritePkmn($isJoueur);
         Display::drawSprite(getSprites('Pokeball_1'), Parameters::getPosSpritePkmn($isJoueur));
         usleep(500000);
@@ -190,7 +190,7 @@ class Animations{
         $decalage = $isJoueur ? 1 : -1;
     
         Display_Game::clearSpritePkmn($isJoueur);
-        Display::drawSprite(getSprites($pkmn['Sprite']),[$pos[0],$pos[1]+$decalage]);
+        Display::drawSprite(getSprites($pkmn['Sprite'], $isJoueur),[$pos[0],$pos[1]+$decalage]);
         usleep(150000);
         Display::clearSprite([$pos[0]-1,$pos[1]+$decalage]);
         Display_Game::drawSpritePkmn($pkmn, $isJoueur);
@@ -201,7 +201,7 @@ class Animations{
         $scaleSprite = Parameters::getScaleSpritePkmn();
         for($i=0;$i<3;++$i){
             Display_Game::clearSpritePkmn($isJoueur);
-            Display::drawSprite(getSprites($pkmn['Sprite']),$pos);
+            Display::drawSprite(getSprites($pkmn['Sprite'], $isJoueur),$pos);
     
             Display::setColor('red');
             Display::drawSprite(getSprites('down'), [$pos[0]+($i+1)*2+intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
@@ -209,7 +209,7 @@ class Animations{
             usleep(150000);
         }
         Display_Game::clearSpritePkmn($isJoueur);
-        Display::drawSprite(getSprites($pkmn['Sprite']),$pos);
+        Display::drawSprite(getSprites($pkmn['Sprite'],$isJoueur),$pos);
     }
     
     static function attackUp($pkmn, $isJoueur){
@@ -217,7 +217,7 @@ class Animations{
         $scaleSprite = Parameters::getScaleSpritePkmn();
         for($i=0;$i<3;++$i){
             Display_Game::clearSpritePkmn($isJoueur);
-            Display::drawSprite(getSprites($pkmn['Sprite']),$pos);
+            Display::drawSprite(getSprites($pkmn['Sprite'],$isJoueur),$pos);
     
             Display::setColor('green');
             Display::drawSprite(getSprites('up'), [$pos[0]+$scaleSprite[0]-($i+1)*2-intval($scaleSprite[0]/4),$pos[1]+intval($scaleSprite[1]/2)-6]);
@@ -225,7 +225,7 @@ class Animations{
             usleep(150000);
         }
         Display_Game::clearSpritePkmn($isJoueur);
-        Display::drawSprite(getSprites($pkmn['Sprite']),$pos);
+        Display::drawSprite(getSprites($pkmn['Sprite'],$isJoueur),$pos);
     }
     
     static function takeDamage($pkmn, $isJoueur){

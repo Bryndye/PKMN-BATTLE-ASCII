@@ -18,7 +18,7 @@ class Display_Fight{
     //// draw INFO PKMN ///////////////////////////////////////////
     static function drawPkmnAllBattleHUD(&$pkmnTeam, $isJoueur){  
         Display_Fight::drawPkmnInfoHUD(Parameters::getPosHealthPkmn($isJoueur), $pkmnTeam[0], $isJoueur);
-        Display::drawSprite(getSprites($pkmnTeam[0]['Sprite']), Parameters::getPosSpritePkmn($isJoueur));
+        Display::drawSprite(getSprites($pkmnTeam[0]['Sprite'], $isJoueur), Parameters::getPosSpritePkmn($isJoueur));
         Display_Fight::drawInfoTeamCount($pkmnTeam,Parameters::getPosTeam($isJoueur));
     }
 

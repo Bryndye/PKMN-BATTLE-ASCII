@@ -210,13 +210,15 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
 }
 
 function getNextLevelExp($currentLevel) {
-    $expToNextLevel = (int)((5 * $currentLevel * $currentLevel * $currentLevel) / 5);
-    return intval($expToNextLevel);
+    $expToNextLevelCurrent = (int)((5 * pow($currentLevel -1, 3)) / 5);
+    $expToNextLevel = (int)((5 * pow($currentLevel, 3)) / 5);
+    $expToLevelUp = $expToNextLevel - $expToNextLevelCurrent;
+    return intval($expToLevelUp);
 }
 
 function expToGive($pkmnAtk, $pkmnDef){
     $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) * 5;
+    return intval($exp) * 2;
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -498,8 +500,9 @@ function captureItem($pokeball, $pkmn){
         Display_Game::messageBoiteDialogue('The Pokemon has been captured!',1);
         return true;
     } else {
-        Display_Game::messageBoiteDialogue('Oh no! The Pokemon escapes the ball!',1);
+        Display_Game::clearSpritePkmn(false);
         Display_Game::drawSpritePkmn($pkmn, false);
+        Display_Game::messageBoiteDialogue('Oh no! The Pokemon escapes the ball!',1);
         return false;
     }
 

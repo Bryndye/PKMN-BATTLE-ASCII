@@ -1,8 +1,37 @@
 <?php
-function getSprites($name){
+function getSprites($name, $inBack = false){
   global $sprites;
-  return $sprites[$name];
+  if($inBack){
+    return getSpritesBack($name);
+  }
+  else{
+    return $sprites[$name];
+  }
 }
+
+function getSpritesBack($name){
+    global $spritesBack;
+
+    if(!array_key_exists($name, $spritesBack)){
+        // return $spritesBack['standard'];
+        global $sprites;
+        return $sprites[$name];
+    }
+
+    $newName = '';
+    if (preg_match('/\d/', $name)) {
+        for ($i = 0; $i < strlen($name); $i++) {
+            if (!is_numeric($name[$i])) {
+                $newName .= $name[$i];
+            }
+        }
+    } else {
+        $newName = $name;
+    }
+
+    return $spritesBack[$name]; 
+}
+
 $sprites = [
 //// SPRITES TITLE //////////////////////////////////////////////////////////////////////////
   'title' => 
@@ -1075,6 +1104,30 @@ x xxx x',
        /^^\ /    \
       W    | "^"^"
            W',
+'stary' => 
+'         /\
+        / `\
+ ___   /  ` \   ___
+ \` --/  _`  \-- `/
+  \`     --     `/
+   \````( O)````/
+    \   `--`   /
+     | ` /\ ` |
+     | `/  \` |
+     |`/    \`|
+     |/      \|',
+'staryoss'=>
+'         /\
+  _____ / `\ _____
+ _\_   /  ` \   _/_
+ \` --/  _`  \-- `/
+  \`     --     `/
+   \````( O)````/
+    \   `--`   /
+   / | ` /\ ` | \
+  /  | `/  \` |  \
+ /___|`/_""_\`|___\
+     |/      \|',
 'gastly'=>
 '
 
@@ -1222,9 +1275,9 @@ x xxx x',
 ████████████████████████████
 ████████████████████████████
 ████████████████████████████
-██████████████░█████████████
-█████████████░█░████████████
-██████████████░█████████████
+████████████████████████████
+████████████████████████████
+████████████████████████████
 ████████████████████████████
 ████████████████████████████
 ████████████████████████████
@@ -1280,4 +1333,101 @@ x xxx x',
                /_|--"\ -"-             "-"`__"-( \
                  / -"""\-"               `/  `--|"'
 ];
+
+$spritesBack = [
+'standard' =>
+    '
+
+
+
+
+
+    _____"""""_______
+    \               /
+     \             /
+      |        MM ,|
+      |        MMM,|
+      |^^^^^^^---__|
+       \          /
+   /---_\  ____\-/_
+  /                 \ ',
+'stary'=>
+  '
+
+
+
+
+
+
+           /\
+          // \
+         / /  \
+ _______/ /    \_______
+ \                    /
+  \                / /
+   \              / /
+    \              /',
+'staryoss' => 
+    "
+
+
+
+
+
+
+         /\
+  ______/__\______
+ _\       |     _/_
+ \        |       /
+  \       |      /
+   \----,,,,----/ ",
+'ball' =>
+   '
+
+
+
+
+
+
+      xxxxxxxxxx
+    xx          xx
+   x              x
+  x                x
+ x                  x
+ x                  x
+ x                  x
+ xxxxxx        xxxxxx', 'voltorb' => &$spritesBack['ball'], 'electrob' => &$spritesBack['ball'],
+'rattata'=>
+ '
+
+
+
+
+
+
+        /\ /\
+       /  /  \
+      (      \\
+  \   (      0(
+  /   /        ]
+ /   /    \   /
+ \  / ^  ^ \v/
+  \/   ^    \ ', 'rattatac' => &$spritesBack['rattata'],
+'thumbnail' =>
+  '
+
+
+
+
+
+      __      __
+     /  |----|  \
+     \____   |  /
+------          |
+ "  "        /─ |
+       __    |@ |
+         \     /\
+ " "  |   |\   \/
+      |   | -\_/'
+]
 ?>

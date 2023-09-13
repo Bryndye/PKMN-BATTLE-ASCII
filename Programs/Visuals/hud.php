@@ -3,7 +3,7 @@ class Display_Game{
     static function drawSpritePkmn($pkmn, $isJoueur){
         $posFinal = Parameters::getPosSpritePkmn($isJoueur);
         
-        Display::drawSprite(getSprites($pkmn['Sprite']), $posFinal);
+        Display::drawSprite(getSprites($pkmn['Sprite'], $isJoueur), $posFinal);
     }
 
     static function drawGameCadre(){

@@ -14141,7 +14141,7 @@
     },
     "dragon-rage":{
     "Name":"dragon-rage",
-    "Power":40,
+    "Power":60,
     "Type":"dragon",
     "PP":10,
     "Category":"special",
