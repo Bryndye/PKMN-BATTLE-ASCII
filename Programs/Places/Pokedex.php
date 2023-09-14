@@ -6,7 +6,6 @@ function addPkmnToPokedex($pkmn, $type){
     }
     else{
         if($main['Pokedex'][$pkmn['N Pokedex']] == 2){ // CATCH
-            // CustomFunctions::debugLog($main['Pokedex'][$pkmn['N Pokedex']].' already caugth',2);
             return;
         }
         else{
@@ -72,7 +71,7 @@ function pokedexInterface(){
         listPokedexRight($currentPkmnUsing['Name'], $pkmnSeeAndCatch);
 
         $exceptionValue = $pkmnSeeAndCatch[$currentPkmnUsing['N Pokedex']] ?? null;
-        $catchInfo = $exceptionValue == 2 ? 'Catch' : ($exceptionValue == 1 ? 'See' : null);
+        $catchInfo = $exceptionValue == 2 ? 'Caught' : ($exceptionValue == 1 ? 'Seen' : null);
 
         displayPkmnLeftMenu($exceptionValue ? $currentPkmnUsing : null, $catchInfo);
         
@@ -80,7 +79,23 @@ function pokedexInterface(){
 
         if(is_numeric($choice)){
             $indexPokedex = $choice <= $lastNPokdex ? $choice : $indexPokedex;
-        } else {
+        }
+        elseif(is_string($choice) && strlen($choice) > 1){ 
+            global $pokemonPokedex;
+            if(key_exists($choice, $pokemonPokedex)){
+                $indexPokedex = $pokemonPokedex[$choice]['N Pokedex'];
+            }
+            else{
+                foreach ($pokemonPokedex as $pokemonName => $data) {
+                    if (stripos($pokemonName, $choice) !== false) {
+                        $indexPokedex = $data['N Pokedex'];
+                        break;
+                    }
+                }
+            }
+            // CustomFunctions::debugLog(key_exists($choice, $pokemonPokedex),-1);
+        }
+        else {
             switch ($choice){
                 case 's': $indexPokedex++; break;
                 case 'z': $indexPokedex--; break;

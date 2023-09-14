@@ -45,7 +45,7 @@ class Parameters{
             $string .= "  Use : v\n   s";
         }
         elseif($Mode == 'count'){
-            $string .= "  Find by number : ***\n   s";
+            $string .= "  Find by Number/Name (ex:'bulb')\n   s";
         }
         else{
             $string .= "\n   s";

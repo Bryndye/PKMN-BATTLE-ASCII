@@ -35,7 +35,7 @@ function attackBehaviourPkmn(&$pkmnAtk, &$pkmnDef, $isJoueurTakeDamage, &$capaci
     }
     
     $capacite['PP'] -= 1;
-    Display_Game::messageBoiteDialogue($pkmnAtk['Name'] . ' use ' . $capacite['Name'] .'!',1);
+    Display_Game::messageBoiteDialogue(ucfirst($pkmnAtk['Name']) . ' use ' . $capacite['Name'] .'!',1);
 
     // Accuracy capacity
     $chanceAccuracy = rand(0,100);

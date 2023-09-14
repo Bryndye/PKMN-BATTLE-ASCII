@@ -132,10 +132,10 @@ function drawRefreshInterfaceList($listItems, $indexItem = 0){
 
         $sign = $isInBag ? ' x ' : ' : ';
         if($key == $indexItem){
-            Display::textArea('-> '/*.$key . '. keyBag:'.$keyBag.' '*/.$name . $sign . $valueToShow, [4+$i,5]);
+            Display::textArea('-> '.$name . $sign . $valueToShow, [4+$i,5]);
         }
         else{
-            Display::textArea(/*$key . '. keyBag:'.$keyBag.' '.*/$name . $sign . $valueToShow, [4+$i,5]);
+            Display::textArea($name . $sign . $valueToShow, [4+$i,5]);
         }
         $i += 2;
         $y++;

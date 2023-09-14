@@ -129,7 +129,7 @@ $Routes = [
                 [
                     'entrance' => "Hello!",
                     'end' => [
-                        "By!"
+                        "Bye!"
                     ]
                 ],
                 3000,
@@ -145,7 +145,7 @@ $Routes = [
                 [
                     'entrance' => "Hello!",
                     'end' => [
-                        "By!"
+                        "Bye!"
                     ]
                 ],
                 3000,
@@ -189,7 +189,7 @@ $Routes = [
                 'rate' => 15
             ],
             'jigglypuff' => [
-                'level' => [15,18],
+                'level' => [18,20],
                 'rate' => 5
             ]
         ],
@@ -231,19 +231,19 @@ $Routes = [
         'Floors' => [31,39],
         'Pokemon savages' => [
             'sandshrew' => [
-                'level' => [20,24],
+                'level' => [22,24],
                 'rate' => 30
             ],
             'ekans' => [
-                'level' => [18,20],
+                'level' => [22,25],
                 'rate' => 30
             ],
             'growlithe' => [
-                'level' => [20,25],
+                'level' => [22,25],
                 'rate' => 15
             ],
             'vulpix' => [
-                'level' => [20,25],
+                'level' => [22,25],
                 'rate' => 15
             ],
             'kadabra' => [
@@ -1062,9 +1062,9 @@ function generateIAs(){
             [
                 getItemObject('Super potion',2)
             ],            [
-                generatePkmnBattle('voltorb', 21,0,["thunder-shock","tackle"]),
-                generatePkmnBattle('pikachu', 18,0,["thunder-shock","quick-attack","tail-whip","surf"]),
-                generatePkmnBattle('raichu', 23,0,["thunder-shock","tail-whip","quick-attack"]),
+                generatePkmnBattle('voltorb', 23,0,["thunder-shock","tackle"]),
+                generatePkmnBattle('pikachu', 22,0,["thunder-shock","quick-attack","surf"]),
+                generatePkmnBattle('raichu', 25,0,["thunder-shock","tail-whip","quick-attack"]),
             ],
             1,'Gym Leader'
         ),
@@ -1102,7 +1102,7 @@ function generateIAs(){
             ],            
             [
                 generatePkmnBattle('victreebel', 29,0,['vine-whip','toxic']),
-                generatePkmnBattle('tangela', 24,0,['vine-whip','absorb']),
+                generatePkmnBattle('tangela', 26,0,['vine-whip','absorb']),
                 generatePkmnBattle('vileplume', 29,0,['vine-whip','sleep-powder','mega-drain']),
             ],
             1,'Gym Leader'
@@ -1118,8 +1118,8 @@ function generateIAs(){
             3000,
             [],
             [
-                generatePkmnBattle('primeape', 30),
-                generatePkmnBattle('pidgeot', 30),
+                generatePkmnBattle('primeape', 33),
+                generatePkmnBattle('pidgeot', 32),
                 generatePkmnBattle('kadabra', 34),
                 generatePkmnBattle(selectStarterRival(2), 32),
             ],
@@ -1140,7 +1140,7 @@ function generateIAs(){
                 getItemObject('Super potion',2)
             ],            
             [
-                generatePkmnBattle('kadabra', 34,0,['recover','psychic']),
+                generatePkmnBattle('kadabra', 35,0,['recover','psychic']),
                 generatePkmnBattle('mr-mime', 36,0,['confusion','harden','light-screen']),
                 generatePkmnBattle('venomoth', 36,0,['psybeam','leech-life']),
                 generatePkmnBattle('alakazam', 38,0,['recover','psychic','amnesia']),

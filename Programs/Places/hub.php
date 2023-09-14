@@ -44,7 +44,6 @@ function drawHub(&$save){
         }
         elseif($choice == 5){
             inTown($save);
-            // managerShop($save);
         }
         elseif($choice == 6){
             exitGame();

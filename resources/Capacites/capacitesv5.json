@@ -7328,7 +7328,7 @@
     },
     "poison-sting":{
     "Name":"poison-sting",
-    "Power":20,
+    "Power":40,
     "Type":"poison",
     "PP":35,
     "Category":"physical",

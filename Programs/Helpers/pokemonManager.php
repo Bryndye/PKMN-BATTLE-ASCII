@@ -77,7 +77,7 @@ function generatePkmnBattle($index, $level, $exp = 0, $capacites = []){
     unset($pokemonBattle['capacites']);
     $pokemonBattle['Level'] = $level;
     $pokemonBattle['exp'] = $exp;
-    $pokemonBattle['expToLevel'] = getNextLevelExp($level);
+    $pokemonBattle['expToLevel'] = getNextLevelExp($level, $pkmn['base experience']);
     $pokemonBattle['Stats'] = [
         'Health' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),
         'Health Max' => calculateHealth($pkmn['StatsBase']['Health'],$level, $ivs['Health']),//error 
@@ -163,7 +163,7 @@ function levelUp(&$pkmn, $expLeft, $inThisFct = false, $notFirstPkmn = true){
         // $pkmn['exp'] = 1;
         return;
     }
-    $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
+    $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level'], $pkmn['base experience']);
     $pkmn['exp'] = 0;
 
     Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' level up to '.$pkmn['Level'].'!',-1);
@@ -209,7 +209,7 @@ function getExp(&$pkmn, $exp, $inThisFct = false, $notFirstPkmn = true){
     }
 }
 
-function getNextLevelExp($currentLevel) {
+function getNextLevelExp($currentLevel, $baseExp) {
     $expToNextLevelCurrent = (int)((5 * pow($currentLevel -1, 3)) / 5);
     $expToNextLevel = (int)((5 * pow($currentLevel, 3)) / 5);
     $expToLevelUp = $expToNextLevel - $expToNextLevelCurrent;
@@ -217,8 +217,8 @@ function getNextLevelExp($currentLevel) {
 }
 
 function expToGive($pkmnAtk, $pkmnDef){
-    $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5);
-    return intval($exp) * 2;
+    $exp = ((1.5 * $pkmnDef['Level'] + 10) * $pkmnDef['base experience'] * $pkmnAtk['Level']) / (($pkmnDef['Level'] + $pkmnAtk['Level'] + 10) * 5) * 2;
+    return intval($exp);
 }
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -403,7 +403,7 @@ function setStatsToEvol(&$pkmn, $pkmnToEvolve){
             $pkmn[$key] = $stat;
         }
     }
-    $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level']);
+    $pkmn['expToLevel'] = getNextLevelExp($pkmn['Level'], $pkmn['base experience']);
 
     $newStats = [];
     $oldStats= [];

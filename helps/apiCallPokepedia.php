@@ -55,11 +55,12 @@ $pokemonList = [];
 //     ];
 //     $pokemonList[$i] = $pokemonChain;
 // }
-$file = file_get_contents('../../json/pokemonsv1.json');
-$array = json_decode($file, true);
+$file = file_get_contents('../../json/pokemonsv3.json');
+$pokemonList = json_decode($file, true);
 
-
-// $response = @file_get_contents($file);
+$url = "https://pokeapi.co/api/v2/pokemon/".$i;
+$response = @file_get_contents($url);
+$response = @file_get_contents($file);
 foreach($array as &$pkmn){
     $pkmn['capacites'] = [
         [
