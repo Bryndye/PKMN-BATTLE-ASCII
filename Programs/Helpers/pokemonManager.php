@@ -465,7 +465,7 @@ function capturePokemon($pokeball, $pkmn) {
     $statusEffect = getStatusEffect($pkmn['Status'], 'capture');
 
     // Variable base catch rate du pkmn : actuellement var inexistante
-    $catchRate = 122;
+    $catchRate = 200;
 
     // Calculer le taux de capture final en prenant en compte les points de vie et l'effet de statut
     $finalCatchRate = (( 1 + ( $pkmn['Stats']['Health Max'] * 3 - $pkmn['Stats']['Health'] * 2 ) * $catchRate * $ballRate * $statusEffect ) / ( $pkmn['Stats']['Health Max'] * 3 )) / 256;
