@@ -10,26 +10,26 @@ function getSprites($name, $inBack = false){
 }
 
 function getSpritesBack($name){
-    global $spritesBack;
+  global $spritesBack;
 
-    if(!array_key_exists($name, $spritesBack)){
-        // return $spritesBack['standard'];
-        global $sprites;
-        return $sprites[$name];
-    }
+  $newName = '';
+  if (preg_match('/\d/', $name)) {
+      for ($i = 0; $i < strlen($name); $i++) {
+          if (!is_numeric($name[$i])) {
+              $newName .= $name[$i];
+          }
+      }
+  } else {
+      $newName = $name;
+  }
 
-    $newName = '';
-    if (preg_match('/\d/', $name)) {
-        for ($i = 0; $i < strlen($name); $i++) {
-            if (!is_numeric($name[$i])) {
-                $newName .= $name[$i];
-            }
-        }
-    } else {
-        $newName = $name;
-    }
+  if(!array_key_exists($newName, $spritesBack)){
+    // return $spritesBack['standard'];
+    global $sprites;
+    return $sprites[$name];
+  }
 
-    return $spritesBack[$name]; 
+  return $spritesBack[$newName]; 
 }
 
 $sprites = [
@@ -959,8 +959,7 @@ x xxx x',
   (   0 \------/ 0   )
  (       \____/       )
  (  0   )      (   0  )
-  (____)        (____)
-',
+  (____)        (____)',
 'thumbnail'=>
 '
 
@@ -1026,7 +1025,7 @@ x xxx x',
         \______/
         __|  |__',
 'Grass3'=>
-'        ________
+'        _______
      __(  ____ )__
     /  /--    --\  \
    (  /          \  )
@@ -1407,7 +1406,7 @@ $spritesBack = [
 
         /\ /\
        /  /  \
-      (      \\
+      (     \ \
   \   (      0(
   /   /        ]
  /   /    \   /
@@ -1422,12 +1421,142 @@ $spritesBack = [
 
       __      __
      /  |----|  \
-     \____   |  /
-------          |
- "  "        /─ |
-       __    |@ |
-         \     /\
- " "  |   |\   \/
-      |   | -\_/'
+     \          /
+     /          |
+    /  ^     /─ |
+   / ^       |@ |
+  /            /\
+ /     /  \    \/
+/      \   \-\_/',
+'bug'=>
+'
+
+
+
+
+      --\  /--
+        |  |
+        |--|
+     /--|  |--\
+     [       [@
+   /-[       [@-\
+ -/  \       =/  \-
+     | ##  ## |
+     |        |
+     | ##  ## |',
+'bug2'=>
+'
+
+
+
+
+
+
+   --\  /--
+     |  |
+   /-|--|---\
+  (        /@)
+  (        [@)
+   \       =/
+   |--------|
+   |        |',
+'bug3'=>
+'
+
+
+
+
+
+       \      /
+        \    /
+  (\     |  |       /)
+ (  \   /|--|--\   /  )
+( 0  \ (      /@) /  0 )
+(     \(      [@)/     )
+(   0  \ =  ===/   0   )
+ (      \ \/  /       )
+  ( {    \   /     } )',
+
+'Grass'=>
+'
+
+
+
+      ____
+   /--    --\
+  /  ,    ,  \
+  |   , ,   \ |
+  |    #   |  |
+  |   , ,  |_@|
+   \_      ,_/
+      |---|
+   (-_\   /_-)
+       | |
+       | |',
+
+'Grass2'=>
+'
+
+         ____
+      /--    --\
+     /,      ,  \
+    /  ,    ,  _\
+    |   , ,   |  |
+    |    #    |  |
+    |   , ,   |_@|
+    \  ,    ,    /
+     \_       ,_/
+       |------|
+  /---_\     /_---\
+ <,,   \ ##  /  ,, >
+  \____ \## / ____/',
+'Grass3'=>
+'
+
+
+
+        ______
+     __(  ___ )__
+    /  /--   --\ \
+   (  /         \ )
+    \/           /\
+   /|           \[ \
+  ( |            ) |
+   \|           /[_@
+    /\  {   } /\  /
+   (  \_/  /_/  )/
+    \_ /  /   _/',
+    "Wazo legendary"=>
+    '
+
+
+
+
+     {^\_
+     \ *^\_*
+  {\*\_* * \
+ /  \  \    \
+" ^  \  { ```\    /}
+ "  " \ /   # *  / \
+  ",   \     @| / "\
+   " ^        >/"^ \
+     "/    " "/   *"\
+     /  "    /^"^"^\ ',
+  'Mewtwo'=>
+  '
+
+
+
+
+
+         /\___/\
+        _]      \
+       (/        )
+  |\  (/|       _|
+  \x\(( \      \@/
+   \x\)\_\ \   __]
+ O_|x|_)--/     [___O
+OO-\xx\        -----OO
+    |xx\       \ '
 ]
 ?>
