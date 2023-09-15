@@ -26567,7 +26567,7 @@
     },
     "hyper-fang":{
     "Name":"hyper-fang",
-    "Power":80,
+    "Power":100,
     "Type":"normal",
     "PP":15,
     "Category":"physical",

@@ -13,10 +13,10 @@ function managerShop(&$save){
         // Create list depends on category selected
         $currentListItemTEMP = [];
         foreach($listIemsShop as $key => &$item){
-            if($item['type'] == Parameters::getCategoryName($categories, $indexCategory)){
+            if($item['type'] == Parameters::getCategoryName($categories, $indexCategory) && !array_key_exists('quantity',$item)){
                 array_push($currentListItemTEMP, ['key'=>$key, 'item'=>$item]);
             }
-        }
+        };
         $moveChoice = inputsNavigate($categories, $currentListItemTEMP);
 
         // Draw & write before action
