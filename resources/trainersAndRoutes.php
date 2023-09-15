@@ -297,11 +297,11 @@ $Routes = [
         'Floors' => [41,49],
         'Pokemon savages' => [
             'eevee' => [
-                'level' => [25,28],
+                'level' => [30,34],
                 'rate' => 10
             ],
             'voltorb' => [
-                'level' => [25,26],
+                'level' => [30,34],
                 'rate' => 10
             ],
             'gloom' => [
@@ -309,11 +309,11 @@ $Routes = [
                 'rate' => 20
             ],
             'rhyhorn' => [
-                'level' => [26,28],
+                'level' => [30,34],
                 'rate' => 15
             ],
             'lickitung' => [
-                'level' => [28,30],
+                'level' => [30,36],
                 'rate' => 25
             ],
         ],
@@ -329,10 +329,10 @@ $Routes = [
                 6000,
                 [],
                 [
-                    generatePkmnBattle('onix', 26),
-                    generatePkmnBattle('eevee', 28),
-                    generatePkmnBattle('slowpoke', 27),
-                    generatePkmnBattle('growlithe', 30),
+                    generatePkmnBattle('onix', 30),
+                    generatePkmnBattle('eevee', 32),
+                    generatePkmnBattle('slowpoke', 36),
+                    generatePkmnBattle('growlithe', 31),
                 ]
             ),
             createTrainer('A Girl', 
@@ -343,13 +343,13 @@ $Routes = [
                         "I guess you won't. Good for him."
                     ]
                 ],
-                6000,
+                5400,
                 [],
                 [
-                    generatePkmnBattle('cloyster', 26),
-                    generatePkmnBattle('eevee', 28),
-                    generatePkmnBattle('slowpoke', 27),
-                    generatePkmnBattle('vulpix', 30),
+                    generatePkmnBattle('cloyster', 30),
+                    generatePkmnBattle('eevee', 32),
+                    generatePkmnBattle('slowpoke', 35),
+                    generatePkmnBattle('vulpix', 31),
                 ]
             ),
         ]
@@ -358,31 +358,31 @@ $Routes = [
         'Floors' => [51,59],
         'Pokemon savages' => [
             'horsea' => [
-                'level' => [30,32],
+                'level' => [34,35],
                 'rate' => 5
             ],
             'krabby' => [
-                'level' => [30,32],
+                'level' => [34,35],
                 'rate' => 25
             ],
             'slowpoke' => [
-                'level' => [30,31],
+                'level' => [34,35],
                 'rate' => 25
             ],
             'poliwag' => [
-                'level' => [30,32],
+                'level' => [34,38],
                 'rate' => 20
             ],
             'goldeen' => [
-                'level' => [30,30],
+                'level' => [34,38],
                 'rate' => 20
             ],
             'magikarp' => [
-                'level' => [35,45],
+                'level' => [35,36],
                 'rate' => 5
             ],
             'psyduck' => [
-                'level' => [30,32],
+                'level' => [34,38],
                 'rate' => 25
             ],
             'snorlax' => [
@@ -402,12 +402,12 @@ $Routes = [
                 6000,
                 [],
                 [
-                    generatePkmnBattle('magikarp', 35),
-                    generatePkmnBattle('magikarp', 35),
-                    generatePkmnBattle('magikarp', 35),
-                    generatePkmnBattle('magikarp', 35),
-                    generatePkmnBattle('magikarp', 35),
-                    generatePkmnBattle('gyarados', 35),
+                    generatePkmnBattle('magikarp', 50),
+                    generatePkmnBattle('magikarp', 50),
+                    generatePkmnBattle('magikarp', 50),
+                    generatePkmnBattle('magikarp', 50),
+                    generatePkmnBattle('magikarp', 50),
+                    generatePkmnBattle('gyarados', 40),
                 ]
                 ),
                 createTrainer('A fisher man', 
@@ -421,9 +421,9 @@ $Routes = [
                 6000,
                 [],
                 [
-                    generatePkmnBattle('dratini', 30),
-                    generatePkmnBattle('gyarados', 30),
-                    generatePkmnBattle('gyarados', 30)
+                    generatePkmnBattle('dratini', 35),
+                    generatePkmnBattle('gyarados', 40),
+                    generatePkmnBattle('gyarados', 48)
                 ]
             )
         ]
@@ -432,23 +432,23 @@ $Routes = [
         'Floors' => [61,69],
         'Pokemon savages' => [
             'drowzee' => [
-                'level' => [30,35],
+                'level' => [38,40],
                 'rate' => 10
             ],
             'mr-mime' => [
-                'level' => [30,33],
+                'level' => [38,40],
                 'rate' => 10
             ],            
             'venonat' => [
-                'level' => [31,35],
+                'level' => [35,40],
                 'rate' => 20
             ],
             'tauros' => [
-                'level' => [33,36],
+                'level' => [33,40],
                 'rate' => 10
             ],
             'jynx' => [
-                'level' => [32,32],
+                'level' => [32,38],
                 'rate' => 20
             ],
             'farfetchd' => [
@@ -456,11 +456,11 @@ $Routes = [
                 'rate' => 10
             ],
             'machop' => [
-                'level' => [30,32],
+                'level' => [38,40],
                 'rate' => 20
             ],
             'snorlax' => [
-                'level' => [32,35],
+                'level' => [35,40],
                 'rate' => 10
             ],
         ],
@@ -476,10 +476,10 @@ $Routes = [
                 6000,
                 [],
                 [
-                    generatePkmnBattle('muk', 34),
-                    generatePkmnBattle('weezing', 35),
-                    generatePkmnBattle('haunter', 35),
-                    generatePkmnBattle('nidoqueen', 33),
+                    generatePkmnBattle('muk', 44),
+                    generatePkmnBattle('weezing', 40),
+                    generatePkmnBattle('haunter', 42),
+                    generatePkmnBattle('nidoqueen', 41),
                 ]
             ),
             createTrainer('A Biker', 
@@ -493,10 +493,10 @@ $Routes = [
                 6000,
                 [],
                 [
-                    generatePkmnBattle('muk', 36),
-                    generatePkmnBattle('weezing', 33),
-                    generatePkmnBattle('gengar', 30),
-                    generatePkmnBattle('nidoking', 33),
+                    generatePkmnBattle('muk', 40),
+                    generatePkmnBattle('weezing', 40),
+                    generatePkmnBattle('gengar', 42),
+                    generatePkmnBattle('nidoking', 40),
                 ]
             ),
         ]
@@ -505,31 +505,31 @@ $Routes = [
         'Floors' => [71,79],
         'Pokemon savages' => [
             'abra' => [
-                'level' => [32,34],
+                'level' => [42,44],
                 'rate' => 5
             ],
             'koffing' => [
-                'level' => [36,38],
+                'level' => [46,47],
                 'rate' => 25
             ],
             'weepinbell' => [
-                'level' => [33,36],
+                'level' => [43,44],
                 'rate' => 20
             ],
             'tentacool' => [
-                'level' => [33,36],
+                'level' => [43,44],
                 'rate' => 25
             ],
             'ponyta' => [
-                'level' => [32,36],
+                'level' => [42,45],
                 'rate' => 25
             ],
             'ditto' => [
-                'level' => [35,45],
+                'level' => [45,45],
                 'rate' => 5
             ],
             'lapras' => [
-                'level' => [40,42],
+                'level' => [40,50],
                 'rate' => 15
             ],
         ],
@@ -574,31 +574,31 @@ $Routes = [
         'Floors' => [81,89],
         'Pokemon savages' => [
             'machoke' => [
-                'level' => [35,40],
+                'level' => [45,47],
                 'rate' => 20
             ],
             'marowak' => [
-                'level' => [40,44],
+                'level' => [40,48],
                 'rate' => 25
             ],
             'grimer' => [
-                'level' => [38,40],
+                'level' => [48,50],
                 'rate' => 5
             ],
             'clefairy' => [
-                'level' => [37,38],
+                'level' => [47,50],
                 'rate' => 20
             ],
             'electabuzz' => [
-                'level' => [38,40],
+                'level' => [48,50],
                 'rate' => 10
             ],
             'magmar' => [
-                'level' => [38,40],
+                'level' => [48,50],
                 'rate' => 10
             ],
             'dratini' => [
-                'level' => [40,40],
+                'level' => [40,50],
                 'rate' => 5
             ],
         ],
@@ -859,31 +859,31 @@ $Routes = [
         'Floors' => [131,139],
         'Pokemon savages' => [
             'scyther' => [
-                'level' => [34,38],
+                'level' => [50,50],
                 'rate' => 10
             ],
             'pinsir' => [
-                'level' => [34,38],
+                'level' => [60,65],
                 'rate' => 10
             ],
             'porygon' => [
-                'level' => [34,38],
+                'level' => [60,65],
                 'rate' => 10
             ],
             'omanyte' => [
-                'level' => [34,38],
+                'level' =>[60,65],
                 'rate' => 10
             ],
             'kabuto' => [
-                'level' => [34,38],
+                'level' => [60,65],
                 'rate' => 10
             ],
             'aerodactyl' => [
-                'level' => [34,38],
+                'level' => [60,65],
                 'rate' => 10
             ],
             'tangela' => [
-                'level' => [34,38],
+                'level' => [60,65],
                 'rate' => 55
             ],
         ],

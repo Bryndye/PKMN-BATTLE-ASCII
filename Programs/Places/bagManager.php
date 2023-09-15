@@ -190,18 +190,22 @@ function useItem(&$bag, &$item, &$pkmn){
             break;
         case 'TMs':
             $usedItem = setCapacityToPkmn($pkmn, getCapacite($item['name']));
-            break;
+            if(is_bool($usedItem) && $usedItem){
+                removeItem($bag, $item);
+            }
+            return;
         case 'Items':
-            verifyIfPkmnCanEvolve($pkmn, $item);
-            break;
+            $usedItem = verifyIfPkmnCanEvolve($pkmn, $item);
+            if(is_bool($usedItem) && $usedItem){
+                removeItem($bag, $item);
+            }
+            else{
+                Display_Game::messageBoiteDialogue("but it has no effect",-1);
+            }
+            return;
     }
-    // CustomFunctions::debugLog($usedItem);
-    if(is_bool($usedItem) && $usedItem){
-        removeItem($bag, $item);
-    }
-    else{
-        removeItem($bag, $item);
-    }
+
+    removeItem($bag, $item);
 }
 
 function getExceptionsItemToPkmnTeam($pkmnTeam, $item){

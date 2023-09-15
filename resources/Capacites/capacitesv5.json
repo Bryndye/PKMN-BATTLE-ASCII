@@ -13348,7 +13348,7 @@
     "Name":"solar-beam",
     "Power":120,
     "Type":"grass",
-    "PP":10,
+    "PP":5,
     "Category":"special",
     "Accuracy":100,
     "crit_rate":0,
@@ -33783,7 +33783,7 @@
         ]
     },
     "shadow-ball":{
-        "Name":"metal-claw",
+        "Name":"shadow-ball",
         "Power":80,
         "Type":"ghost",
         "PP":15,

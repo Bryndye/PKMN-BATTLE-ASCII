@@ -1465,7 +1465,7 @@ $spritesBack = [
  x                  x
  x                  x
  x                  x
- xxxxxx        xxxxxx', 'voltorb' => &$spritesBack['ball'], 'electrob' => &$spritesBack['ball'],
+ xxxxxx        xxxxxx',
 'Rattata'=>
  '
 
@@ -1481,7 +1481,7 @@ $spritesBack = [
       /   /        ]
      /   /    \   /
      \  / ^  ^ \v/
-      \/   ^    \ ', 'Rattatac' => &$spritesBack['Rattata'],
+      \/   ^    \ ',
 'thumbnail' =>
   '
 
@@ -1628,5 +1628,8 @@ $spritesBack = [
  O_|x|_)--/     [___O
 OO-\xx\        -----OO
     |xx\       \ '
-]
+  ];
+$spritesBack['Rattatac'] = &$spritesBack['Rattata'];
+$spritesBack['voltorb'] = &$spritesBack['ball'];
+$spritesBack['electrob'] = &$spritesBack['ball'];
 ?>

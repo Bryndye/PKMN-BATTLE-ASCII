@@ -331,12 +331,12 @@ function verifyIfPkmnCanEvolve(&$pkmn, $item = null){
         if(!is_null($item) && isset($pkmn['evolution']['Item'])){
             if($pkmn['evolution']['Item'] == $item['name']){
                 evolution($pkmn);
-                return;
+                return true;
             }
         }
         elseif(isset($pkmn['evolution']['Name']) && $pkmn['Level'] >= $pkmn['evolution']['Level']){
             evolution($pkmn);
-            return;
+            return true;
         }
     }
     else{
@@ -344,15 +344,16 @@ function verifyIfPkmnCanEvolve(&$pkmn, $item = null){
             if(!is_null($item) && isset($evolPkmn['item'])){
                 if($evolPkmn['item'] == $item['name']){
                     evolution($pkmn, $key);
-                    return;
+                    return true;
                 }
             }
             elseif(isset($evolPkmn['Name']) && array_key_exists('Level',$evolPkmn) && $pkmn['Level'] >= $evolPkmn['Level']){
                 evolution($pkmn);
-                return;
+                return true;
             }
         }
     }
+    return false;
 }
 
 function evolution(&$pkmn, $indexChoiceEvol = null){

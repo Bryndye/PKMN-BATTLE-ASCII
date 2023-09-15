@@ -12,7 +12,7 @@
 		"name":"Super potion",
 		"type": "Heals",
 		"effect": "50",
-		"price" : "400",
+		"price" : "500",
 		"indexFloor" : 20
 	},
     "Hyper potion":
@@ -20,7 +20,7 @@
 		"name":"Hyper potion",
 		"type": "Heals",
 		"effect": "120",
-		"price" : "900",
+		"price" : "1200",
 		"indexFloor" : 50
 	},
 	"Total Heals":
@@ -52,7 +52,7 @@
 		"name":"HyperBall",
 		"type": "PokeBalls",
 		"effect": "2",
-		"price" : "1000",
+		"price" : "1200",
 		"indexFloor" : 40
 	},
 	"MasterBall":
