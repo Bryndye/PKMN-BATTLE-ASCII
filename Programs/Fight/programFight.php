@@ -122,6 +122,10 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     $efficace = checkTypeMatchup($capacite['Type'], $pkmnDef['Type 1']) * checkTypeMatchup($capacite['Type'], $pkmnDef['Type 2']);
     $random = rand(85,100) / 100;
     $c = $power * $stab * $efficace * $isBurned * $random * ($isCrit ? 2 :1);
+    if($efficace == 0){
+        Display_Game::messageBoiteDialogue("It didn't affect ".$pkmnDef['Name'],1);
+        return;
+    }
     // c = Capacite Base atk* STAB(1-2)* Type(0.5-4)* Critical(1-2)* random([0.85,1]}
 
     $finalDamage = ceil($a * $b * $c); // final damage
@@ -139,11 +143,7 @@ function attackPkmnCalculator(&$pkmnAtk, &$pkmnDef, $capacite, $isJoueur){
     usleep(500000);
     
     //// MESSAGE CONDITION //////////////////////////////////////////////////////////////////////////
-    if($finalDamage == 0){
-        Display_Game::messageBoiteDialogue("It didn't affect ".$pkmnDef['Name'],1);
-        return;
-    }
-    else if($isCrit){
+    if($isCrit){
         Display_Game::messageBoiteDialogue("Critical hit!",1);
     }
     else if($efficace > 1){
