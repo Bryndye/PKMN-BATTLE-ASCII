@@ -25,15 +25,18 @@ function managerShop(&$save){
         Display_Game::messageBoiteDialogue(Parameters::getMessageBoiteDialogue('use','Which item do you want to buy?'));
 
         // SHOW COUNT OF ITEM FROM BAG //
-        $itemName = $currentListItemTEMP[$currentIndexItemTEMP]['item']['name'];
-        $quantity=0;
-        foreach ($save['Bag'] as $item) {
-            if ($item['name'] === $itemName) {
-                $quantity = $item['quantity'];
+        if(count($currentListItemTEMP) != 0){
+
+            $itemName = $currentListItemTEMP[$currentIndexItemTEMP]['item']['name'];
+            $quantity=0;
+            foreach ($save['Bag'] as $item) {
+                if ($item['name'] === $itemName) {
+                    $quantity = $item['quantity'];
+                }
             }
+            Display::drawBox([3,15],[8,38]);
+            Display::textArea('You have x'.$quantity, [9,40]);
         }
-        Display::drawBox([3,15],[8,38]);
-        Display::textArea('You have x'.$quantity, [9,40]);
         /////
 
         drawMoney(null, $save['Money']);
