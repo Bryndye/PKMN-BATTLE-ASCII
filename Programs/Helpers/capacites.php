@@ -109,11 +109,11 @@ function setCapacityToPkmn(&$pkmn, $capacite){
         // Premiere boucle : vouloir apprendre la capacite ?
         $replace = false;
         while(!$replace){
-            Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' wants to learn '.$capacite['Name'].'.');
+            Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' wants to learn '. ucfirst($capacite['Name']).'.');
             Display_Game::messageBoiteDialogue('Do you want to learn '.$capacite['Name'].'? ');
             $choice = binaryChoice();
             if(!$choice){
-                Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .$capacite['Name'].'...');
+                Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name'])." didn't learned " .ucfirst($capacite['Name']).'...');
                  Display::clearGameScreen();
                 return false; //for the bag 
                 // break;
@@ -130,12 +130,12 @@ function setCapacityToPkmn(&$pkmn, $capacite){
                 if($choice == leaveInputMenu()){
                     break;
                 }
-                Display_Game::messageBoiteDialogue('Are you sure to leave '.$pkmn['Capacites'][$choice]['Name'].'? ');
+                Display_Game::messageBoiteDialogue('Are you sure to leave '. ucfirst($pkmn['Capacites'][$choice]['Name']).'? ');
                 $choice2 = binaryChoice();
                 if($choice2){
                     $pkmn['Capacites'][$choice] = $capacite;
                     $replace = true;
-                    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!');
+                    Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' . ucfirst($capacite['Name']).'!');
                      Display::clearGameScreen();
                     return true; //for the bag 
                 }
@@ -148,7 +148,7 @@ function setCapacityToPkmn(&$pkmn, $capacite){
     }
     else{
         array_push($pkmn['Capacites'], $capacite);
-        Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .$capacite['Name'].'!',-1);
+        Display_Game::messageBoiteDialogue(ucfirst($pkmn['Name']).' has learned ' .ucfirst($capacite['Name']).'!',-1);
         return true; //for the bag 
     }
 }
@@ -167,7 +167,7 @@ function drawCapacityToLearn($capacity, $pos){
     Display::justifyText(ucfirst($capacity['Category']), 9, [3+$y,$x+19],'right');
     Display::setColor('reset');
 
-    Display::textAreaLimited($capacity['Name'],23,[3+$y,$x+2]);
+    Display::textAreaLimited(ucfirst($capacity['Name']),23,[3+$y,$x+2]);
     Display::textAreaLimited('PP : '.$capacity['PP'].'/'.$capacity['PP Max'],23,[4+$y,$x+2]);
 }
 ?>

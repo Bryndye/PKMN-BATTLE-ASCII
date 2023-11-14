@@ -161,7 +161,7 @@ function useItemOn(&$bag, $indexItem, &$pkmnTeam){
         $exceptions = getExceptionsItemToPkmnTeam($pkmnTeam, $itemToUse);
 
         // Select Pkmn to heal
-        $choice2 = selectPkmn($pkmnTeam, $exceptions, true, 'Use '.$itemToUse['name'] .' on?');
+        $choice2 = selectPkmn($pkmnTeam, $exceptions, true, 'Use '. ucfirst($itemToUse['name']) .' on?');
         if($choice2 == leaveInputMenu()){
             return leaveInputMenu();
         }

@@ -49,9 +49,13 @@ function managerShop(&$save){
         // Validation item
         elseif($move == 'v'){
             while(true){
-                Display_Game::messageBoiteDialogue('How many '.$currentListItemTEMP[$currentIndexItemTEMP]['item']['name'].' do you want?');
+                Display_Game::messageBoiteDialogue('How many '. ucfirst($currentListItemTEMP[$currentIndexItemTEMP]['item']['name']).' do you want?');
                 $quantity = waitForInput(Parameters::getPosChoice(), '', ' Quantity? ');
+
                 if(!is_numeric($quantity)){
+                    if($quantity == 'c'){
+                        break;
+                    }
                     Display_Game::messageBoiteDialogue('Please insert a number.',-1);
                     continue;
                 }elseif($quantity == 0 || $quantity == null){
@@ -109,12 +113,12 @@ function managerShop(&$save){
 function buyItem(&$save, $itemToBuy, $quantity = 1){
     $money = &$save['Money'];
     if($money < $itemToBuy['price']*$quantity){
-        Display_Game::messageBoiteDialogue("You don't have enough money for ".$itemToBuy['name'].' x '.$quantity.'.');
+        Display_Game::messageBoiteDialogue("You don't have enough money for ". ucfirst($itemToBuy['name']).' x '.$quantity.'.');
         waitForInput();
         return false;
     }
     $money -= $itemToBuy['price'] * $quantity;
-    Display_Game::messageBoiteDialogue('You bought '.$itemToBuy['name'].' x '.$quantity.'.',1);
+    Display_Game::messageBoiteDialogue('You bought '. ucfirst($itemToBuy['name']).' x '.$quantity.'.',1);
     return true;
 }
 

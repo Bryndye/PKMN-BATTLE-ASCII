@@ -1898,7 +1898,7 @@
             "before": "",
             "after": {
                 "Name": "nidoqueen",
-                "min level": 36,
+                "min level": "Moonstone",
                 "stade": 3
             }
         },
@@ -2152,7 +2152,7 @@
             "before": "",
             "after": {
                 "Name": "nidoking",
-                "min level": 36,
+                "min level": "Moonstone",
                 "stade": 3
             }
         },
@@ -2318,7 +2318,11 @@
         },
         "evolution": {
             "before": "",
-            "after": ""
+            "after": {
+                "Name": "clefable",
+                "item": "Moonstone",
+                "stade": 2
+            }
         },
         "Sprite": "standard2",
         "capacites": [
@@ -2594,7 +2598,11 @@
         },
         "evolution": {
             "before": "",
-            "after": ""
+            "after": {
+                "Name": "wigglytuff",
+                "item": "Moonstone",
+                "stade": 2
+            }
         },
         "Sprite": "standard3",
         "capacites": [

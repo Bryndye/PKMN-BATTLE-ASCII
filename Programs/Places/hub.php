@@ -86,14 +86,14 @@ function checkTeamPkmnFromMenu(&$pkmnTeam){
         $choice = selectPkmn($pkmnTeam, null, true, 'Choose a Pokemon.');
         if(is_numeric($choice)){
             while(true){ // LOOP ACTION TO A SINGLE PKMN
-                Display_Game::messageBoiteDialogue("1: Stats ".$pkmnTeam[$choice]['Name']."\n2: Move to First Place");
+                Display_Game::messageBoiteDialogue("1: Stats ". ucfirst($pkmnTeam[$choice]['Name'])."\n2: Move to First Place");
                 $choice2 = waitForInput(Parameters::getPosChoice(), [leaveInputMenu(),1,2]);
                 if($choice2 == 1){
                     seeSheetPkmn($pkmnTeam[$choice]);
                     break;
                 }
                 else if($choice2 == 2){
-                    Display_Game::messageBoiteDialogue('Switch place '.$pkmnTeam[$choice]['Name'].' where?');
+                    Display_Game::messageBoiteDialogue('Switch place '.ucfirst($pkmnTeam[$choice]['Name']).' where?');
                     switchPkmn($pkmnTeam, $choice, false);
                     break;
                 }
@@ -166,7 +166,7 @@ function displayCapacitiesMenu($pkmn){
         Display::justifyText(ucfirst($capacitePkmn['Category']), 9, [3+$i,$x+19],'right');
         Display::setColor('reset');
 
-        Display::textAreaLimited(($y+1).' : '.$capacitePkmn['Name'],23,[3+$i,$x+2]);
+        Display::textAreaLimited(($y+1).' : '. ucfirst($capacitePkmn['Name']),23,[3+$i,$x+2]);
         Display::textAreaLimited('PP : '.$capacitePkmn['PP'].'/'.$capacitePkmn['PP Max'],23,[4+$i,$x+2]);
         ++$y;
         $i += 4;

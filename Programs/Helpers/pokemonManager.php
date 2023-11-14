@@ -255,7 +255,7 @@ function healPkmn($item, &$pkmn){
     elseif(!isPkmnDead_simple($pkmn)){    
         $pkmn['Stats']['Health'] += $item['effect'];
         checkHealthOutRange($pkmn);
-        Display_Game::messageBoiteDialogue("Use ". $item['name'].' on '.ucfirst($pkmn['Name']) . "!",1);
+        Display_Game::messageBoiteDialogue("Use ". ucfirst($item['name']).' on '.ucfirst($pkmn['Name']) . "!",1);
         print($pkmn['Stats']['Health']);
     }
 }
@@ -387,7 +387,7 @@ function evolution(&$pkmn, $indexChoiceEvol = null){
     addPkmnToPokedex($pkmn, 'catch');
     sleep(1);
     Display_Game::messageBoiteDialogue('Tadadaa...',-1);
-    Display_Game::messageBoiteDialogue($olderName .' evolves into '. $newName,-1);
+    Display_Game::messageBoiteDialogue(ucfirst($olderName) .' evolves into '. ucfirst($newName),-1);
     sleep(1);
      Display::clearGameScreen();
 }
@@ -436,7 +436,7 @@ function getPokemonFromCapture(&$pkmnTeam, $pkmn){
         // too much pokemon, fired one
         while(true){
             $choice = selectPkmn($pkmnTeam);
-            Display::textAreaLimited('Are you sure to leave '.$pkmnTeam[$choice]['Name'].'? ');
+            Display::textAreaLimited('Are you sure to leave '. ucfirst($pkmnTeam[$choice]['Name']).'? ');
             $choice2 = binaryChoice();
             if($choice2){
                 $pkmnTeam[$choice] = $pkmn;

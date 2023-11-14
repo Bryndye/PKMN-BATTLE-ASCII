@@ -186,7 +186,7 @@ class Display_Fight{
                 }
                 Display::textAreaLimited(($i+1).' : ',23,[$posY,$posX]);
                 Display_Game::setColorByType($capacites[$i]['Type']);
-                Display::textAreaLimited($capacites[$i]['Name'],23,[$posY,$posX+4]);
+                Display::textAreaLimited( ucfirst($capacites[$i]['Name']),23,[$posY,$posX+4]);
                 Display::setColor('reset');
                 Display::textAreaLimited('PP : '.$capacites[$i]['PP'].'/'.$capacites[$i]['PP Max'],23,[$posY+1,$posX]);
             }

@@ -649,23 +649,23 @@ $Routes = [
                 'rate' => 15
             ],
             'haunter' => [
-                'level' => [43,44],
+                'level' => [48,49],
                 'rate' => 15
             ],
             'kangaskhan' => [
-                'level' => [44,46],
+                'level' => [48,52],
                 'rate' => 30
             ],
             'hitmonlee' => [
-                'level' => [44,44],
+                'level' => [50,54],
                 'rate' => 20
             ],
             'hitmonchan' => [
-                'level' => [44,44],
+                'level' => [50,54],
                 'rate' => 20
             ],
             'dratini' => [
-                'level' => [42,42],
+                'level' => [50,50],
                 'rate' => 5
             ],
         ],
@@ -1292,7 +1292,7 @@ function generateIAs(){
                 generatePkmnBattle('hitmonchan', 55,0,['ice-punch','fire-punch','thunder-punch','quick-attack']),
                 generatePkmnBattle('hitmonlee', 55,0,['jump-kick', 'high-jump-kick','mega-kick','focus-energy']),
                 generatePkmnBattle('onix', 56,0,['rage', 'rock-throw','slam','harden']),
-                generatePkmnBattle('machamp', 58,0,['leer','focus-energy','sacrifice','fissure']),
+                generatePkmnBattle('machamp', 58,0,['leer','focus-energy','submission','fissure']),
             ],
             1,'Elite Four'
         ),
