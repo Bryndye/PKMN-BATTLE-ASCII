@@ -17,7 +17,6 @@ This is a simplified version of Pokémon:
 ## 🖼️ Screenshots
 ![Screenshot 1](https://img.itch.zone/aW1hZ2UvMjEwMjI4MC8xMjM3MzM4My5wbmc=/347x500/7YL2qk.png)
 ![Screenshot 2](https://img.itch.zone/aW1hZ2UvMjEwMjI4MC8xMjM3MzM4Ny5wbmc=/347x500/1q8rKU.png)
-![Screenshot 3](https://img.itch.zone/aW1hZ2UvMjEwMjI4MC8xMjM3MzM4Ny5wbmc=/347x500/1q8rKU.png)
 ![Screenshot 4](https://github.com/user-attachments/assets/cc7c1ab7-4894-402d-b0e4-229f0cdf5bb7)
 ![Screenshot_5](https://github.com/user-attachments/assets/3af144a9-6ccd-475e-bae2-63453be950fe)
 
